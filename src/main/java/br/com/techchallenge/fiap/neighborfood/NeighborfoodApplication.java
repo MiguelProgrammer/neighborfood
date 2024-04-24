@@ -29,11 +29,6 @@ public class NeighborfoodApplication {
         pedidoRepository.save(pedidoEntity);
     }
 
-	@Repository
-	public interface PedidoRepository extends JpaRepository<PedidoEntity, Long> {
-
-	}
-
     @Getter
     @Setter
     @Entity
@@ -48,4 +43,7 @@ public class NeighborfoodApplication {
 
         private String name;
     }
+
+    @Repository
+    public interface PedidoRepository extends JpaRepository<PedidoEntity, Long> {}
 }
