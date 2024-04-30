@@ -1,6 +1,5 @@
 package br.com.techchallenge.fiap.neighborfood.model;
 
-import br.com.techchallenge.fiap.neighborfood.model.Cliente;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

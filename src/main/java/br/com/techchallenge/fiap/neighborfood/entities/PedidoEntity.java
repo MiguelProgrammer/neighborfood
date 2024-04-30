@@ -1,24 +1,23 @@
 package br.com.techchallenge.fiap.neighborfood.entities;
 
-import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
+import javax.persistence.*;
 import java.io.Serializable;
 
-@Getter
-@Setter
 @Entity
-@AllArgsConstructor
+@Data
 @NoArgsConstructor
+@AllArgsConstructor
+@Builder
 @Table(name = "pedido")
-public class PedidoEntity implements Serializable {
+public class PedidoEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id")
     private Long id;
 
+    @ManyToOne(fetch = FetchType.EAGER)
     private ClienteEntity cliente;
 }

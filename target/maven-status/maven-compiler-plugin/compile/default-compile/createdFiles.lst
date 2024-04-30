@@ -1,7 +1,9 @@
 br\com\techchallenge\fiap\neighborfood\entities\PedidoEntity.class
 br\com\techchallenge\fiap\neighborfood\NeighborfoodApplication.class
+br\com\techchallenge\fiap\neighborfood\repository\PedidoRepository.class
 br\com\techchallenge\fiap\neighborfood\entities\ClienteEntity.class
 br\com\techchallenge\fiap\neighborfood\model\Pedido.class
+br\com\techchallenge\fiap\neighborfood\service\login\Login.class
 br\com\techchallenge\fiap\neighborfood\model\Cliente.class
-br\com\techchallenge\fiap\neighborfood\repository\PedidoRepository.class
-br\com\techchallenge\fiap\neighborfood\config\Login.class
+br\com\techchallenge\fiap\neighborfood\entities\PedidoEntity$PedidoEntityBuilder.class
+br\com\techchallenge\fiap\neighborfood\entities\ClienteEntity$ClienteEntityBuilder.class
