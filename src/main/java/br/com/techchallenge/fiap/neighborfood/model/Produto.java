@@ -1,23 +1,21 @@
 package br.com.techchallenge.fiap.neighborfood.model;
 
+import br.com.techchallenge.fiap.neighborfood.enums.Categoria;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.math.BigDecimal;
 
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Cliente {
+public class Produto {
 
-    private Long id;
     private String nome;
-    private String email;
-    private String cpf;
-
-    private Set<Pedido> pedido  = new HashSet<>();
+    private BigDecimal preco;
+    private Categoria categoria;
+    private String descricao;
 }
