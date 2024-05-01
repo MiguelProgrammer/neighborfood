@@ -1,19 +1,19 @@
 package br.com.techchallenge.fiap.neighborfood.model;
 
-import br.com.techchallenge.fiap.neighborfood.enums.Acompanhamento;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.math.BigDecimal;
+
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Pedido {
+public class Campanha {
 
-    private Long id;
-    private Cliente cliente;
-    private Itens itens;
-    private Acompanhamento progresso;
+    private String nome;
+    private String descricao;
+    private BigDecimal valorDesconto;
 }
