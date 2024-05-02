@@ -1,49 +1,123 @@
 openapi: 3.0.0
 info:
-  title: Swagger Analyst Developer - OpenAPI 3.0
+  title: Swagger NeighborFood - OpenAPI 3.0
   description: |-
-    Service created only practce, study.
-
-    With service you manage a analyst how create, read, update and delete.
-    
-    The data are listed on table on front-end with angular basic.
+    Fiap Challenge - Phase 1 - NeighborFood Project
   termsOfService: http://swagger.io/terms/
   contact:
     email: miguel.silva@mackenzista.com.br
   version: 0.0.1
 
 tags:
-  - name: "Analyst"
-    description: "Manage Analyst"
-    externalDocs:
-      description: ""
-      url: "http://swagger.io"
+  - name: login
+    description: "Realizar login, com cpf"
+  - name: register
+    description: "Se cadastrar via nome, email e cpf"
+  - name: menu
+    description: "Apresenta os opcionais"
+  - name: order
+    description: "Realização do pedido"
+  - name: payment
+    description: "Realização do pagamento"
+  - name: follow-up
+    description: "Acompanhar status do pedido"
+  - name: stock
+    description: "Verificar itens do estoque"
+  - name: customers
+    description: "Para gerenciamento de campanhas promocionais"
 
 
 paths:
 
-  /analyst/create:
+  /neighborfood/login:
     post:
       tags:
-        - "Analyst"
-      summary: "Add a new analyst to the internal talent"
-      description: "Add a new analyst to the internal talent"
-      operationId: addAnalyst
+        - login
+      summary: "Se cadastrar, logar"
+      description: "Identificação do cliente"
+      operationId: login
       requestBody:
-        description: Create a new analyst in the internal talent
+        description: Identifica um cliente logado
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/AnalystDTO'
+              $ref: '#/components/schemas/ClienteRequest'
       responses:
         '200':
-          description: Successful operation
+          description: Usuário logado
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/AnalystDTO'
-        '405':
-          description: Invalid input
+                $ref: ""
+        '400':
+          description: request inválida
+
+  /neighborfood/cadastro:
+    post:
+      tags:
+        - register
+      summary: "Se cadastrar, logar"
+      description: "Cria cliente"
+      operationId: register
+      requestBody:
+        description: Cria um novo cliente
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ClienteDTO'
+      responses:
+        '200':
+          description: Usuário logado
+          content:
+            application/json:
+              schema:
+                $ref: ""
+        '400':
+          description: request inválida
+
+  /neighborfood/menu:
+    get:
+      tags:
+        - menu
+      summary: "Apresenta o menu com itens opcionais"
+      description: "menu de opções"
+      operationId: menu
+      responses:
+        '200':
+          description: Usuário logado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Combo'
+        '400':
+          description: request inválida
+
+  /neighborfood/acompanhamento/{idpedido}:
+    get:
+      tags:
+        - follow-up
+      summary: Procura o status de um pedido
+      description: Retorna o status de um pedido
+      operationId: findOrderByIdOrder
+      parameters:
+        - name: idpedido
+          in: path
+          description: id do pedido
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Pedido'
+        '400':
+          description: Id inválido
+        '404':
+          description: Pedido não encontrado
 
   /analyst/{pId}:
     get:
@@ -146,6 +220,37 @@ paths:
 
 components:
   schemas:
+
+    Acompanhamento:
+      type: string
+      enum:
+        - RECEBIDO
+        - EM_PREPARACAO
+        - PRONTO
+        - FINALIZADO
+
+    Combo:
+      type: string
+      enum:
+        - LANCHE
+        - ACOMPANHAMENTO
+        - BEBIDA
+        - SOBREMESA
+
+    ClienteRequest:
+      type: object
+      properties:
+        nome:
+          type: string
+        email:
+          type: string
+        cpf:
+          type: string
+
+    ClienteDTO:
+      type: object
+
+
     AnalystDTO:
       required:
         - pId

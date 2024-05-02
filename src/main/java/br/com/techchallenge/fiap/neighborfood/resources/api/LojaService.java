@@ -14,26 +14,26 @@ public class LojaService implements AnalystApi {
 
 
     @Override
-    @CrossOrigin(origins = "*")
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
     public ResponseEntity<AnalystDTO> addAnalyst(AnalystDTO analystDTO) {
         return AnalystApi.super.addAnalyst(analystDTO);
     }
 
     @Override
-    @CrossOrigin(origins = "*")
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
     public ResponseEntity<Void> deleteAnalystById(Long pId) {
         return AnalystApi.super.deleteAnalystById(pId);
     }
 
 
     @Override
-    @CrossOrigin(origins = "*")
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
     public ResponseEntity<AnalystDTO> getAllAnalyst() {
         return AnalystApi.super.getAllAnalyst();
     }
 
     @Override
-    @CrossOrigin(origins = "*")
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
     public ResponseEntity<AnalystDTO> getAnalystById(Long pId) {
         return AnalystApi.super.getAnalystById(pId);
     }

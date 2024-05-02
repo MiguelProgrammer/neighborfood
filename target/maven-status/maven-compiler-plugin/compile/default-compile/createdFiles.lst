@@ -15,6 +15,7 @@ br\com\techchallenge\fiap\neighborfood\NeighborfoodApplication.class
 _generated_sources_swagger\AnalystApi.class
 br\com\techchallenge\fiap\neighborfood\model\Campanha.class
 br\com\techchallenge\fiap\model\AnalystDTO$StackEnum.class
+br\com\techchallenge\fiap\neighborfood\resources\api\LojaService.class
 br\com\techchallenge\fiap\model\AnalystDTO$ActuationEnum.class
 br\com\techchallenge\fiap\neighborfood\repository\PedidoRepository.class
 br\com\techchallenge\fiap\neighborfood\service\PagamentoService.class
