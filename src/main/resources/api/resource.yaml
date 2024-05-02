@@ -64,7 +64,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/ClienteDTO'
+              $ref: '#/components/schemas/Cliente'
       responses:
         '200':
           description: Usuário logado
@@ -221,6 +221,48 @@ paths:
 components:
   schemas:
 
+    Pedido:
+      type: object
+      properties:
+
+        id:
+          type: integer
+          format: int64
+
+        Cliente:
+          $ref: '#/components/schemas/Cliente'
+
+        Itens:
+          $ref: '#/components/schemas/Itens'
+
+        Acompanhamento:
+          $ref: '#/components/schemas/Acompanhamento'
+
+    Itens:
+      type: object
+      properties:
+        comboList:
+          type: array
+          items:
+            $ref: '#/components/schemas/Combo'
+        produtoList:
+          type: array
+          items:
+            $ref: '#/components/schemas/Produto'
+
+    Produto:
+      type: object
+      properties:
+        nome:
+          type: string
+        preco:
+          type: number
+          format: double
+        Categoria:
+          type: object
+        descricao:
+          type: string
+
     Acompanhamento:
       type: string
       enum:
@@ -247,7 +289,7 @@ components:
         cpf:
           type: string
 
-    ClienteDTO:
+    Cliente:
       type: object
 
 

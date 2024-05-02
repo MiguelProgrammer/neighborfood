@@ -6,14 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="b98da9cc-1d07-4246-9de1-00a329614987" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/techchallenge/fiap/neighborfood/resources/api/LojaService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/techchallenge/fiap/neighborfood/resources/api/LojaService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.dev.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application-dev.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application.dev.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/generated-sources/openapi/src/main/java/_generated_sources_swagger/AnalystApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/target/generated-sources/openapi/src/main/java/_generated_sources_swagger/AnalystApi.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/generated-sources/openapi/src/main/java/br/com/techchallenge/fiap/model/AnalystDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/target/generated-sources/openapi/src/main/java/br/com/techchallenge/fiap/model/AnalystDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/neighborfood-0.0.1-SNAPSHOT.jar.original" beforeDir="false" afterPath="$PROJECT_DIR$/target/neighborfood-0.0.1-SNAPSHOT.jar.original" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/techchallenge/fiap/neighborfood/model/Pedido.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/techchallenge/fiap/neighborfood/model/Pedido.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -81,7 +74,7 @@
       <recent name="br.com.techchallenge.fiap.neighborfood.model" />
     </key>
   </component>
-  <component name="RunManager" selected="Spring Boot.NeighborfoodApplication">
+  <component name="RunManager">
     <configuration name="UpgradeSpringBoot_3_2" type="OpenRewriteRunConfigurationType" factoryName="OpenRewrite" nameIsGenerated="true">
       <option name="activeRecipes" value="org.openrewrite.java.spring.boot3.UpgradeSpringBoot_3_2" />
       <option name="workingDirectory" value="$PROJECT_DIR$" />
@@ -97,10 +90,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <list>
-      <item itemvalue="OpenRewrite.UpgradeSpringBoot_3_2" />
-      <item itemvalue="Spring Boot.NeighborfoodApplication" />
-    </list>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
