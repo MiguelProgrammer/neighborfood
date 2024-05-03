@@ -84,7 +84,7 @@ paths:
       operationId: menu
       responses:
         '200':
-          description: Usuário logado
+          description: Apresenta os itens de menu
           content:
             application/json:
               schema:
@@ -113,11 +113,41 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Pedido'
+                $ref: '#/components/schemas/AcompanhamentoResponse'
         '400':
           description: Id inválido
         '404':
           description: Pedido não encontrado
+
+  /neighborfood/pagamento:
+    post:
+      tags:
+        - payment
+      summary: Realiza o pagamento do pedido
+      description: Realiza pagamento
+      operationId: payment
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Pagamento'
+      responses:
+        '200':
+          description: pagamento realizado com sucesso.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AcompanhamentoResponse'
+        '400':
+          description: Id inválido
+        '404':
+          description: Pedido não encontrado
+
+
+
+
+
 
   /analyst/{pId}:
     get:
@@ -221,6 +251,15 @@ paths:
 components:
   schemas:
 
+    Pagamento:
+      type: object
+      properties:
+        idPedido:
+          type: integer
+          format: int64
+        pagou:
+          type: boolean
+
     Pedido:
       type: object
       properties:
@@ -262,6 +301,12 @@ components:
           type: object
         descricao:
           type: string
+
+    AcompanhamentoResponse:
+      type: object
+      properties:
+        status:
+          $ref: '#/components/schemas/Itens'
 
     Acompanhamento:
       type: string

@@ -12,7 +12,6 @@ import lombok.Setter;
 @NoArgsConstructor
 public class Pedido {
 
-
     private Long id;
     private Cliente cliente;
     private Itens itens;

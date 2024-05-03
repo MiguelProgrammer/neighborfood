@@ -5,7 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b98da9cc-1d07-4246-9de1-00a329614987" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/br/com/techchallenge/fiap/neighborfood/model/Pagamento.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/techchallenge/fiap/neighborfood/model/Pedido.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/techchallenge/fiap/neighborfood/model/Pedido.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -73,7 +75,7 @@
       <recent name="br.com.techchallenge.fiap.neighborfood.model" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="OpenRewrite.UpgradeSpringBoot_3_2">
     <configuration name="UpgradeSpringBoot_3_2" type="OpenRewriteRunConfigurationType" factoryName="OpenRewrite" nameIsGenerated="true">
       <option name="activeRecipes" value="org.openrewrite.java.spring.boot3.UpgradeSpringBoot_3_2" />
       <option name="workingDirectory" value="$PROJECT_DIR$" />
@@ -89,6 +91,10 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <list>
+      <item itemvalue="OpenRewrite.UpgradeSpringBoot_3_2" />
+      <item itemvalue="Spring Boot.NeighborfoodApplication" />
+    </list>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
@@ -124,6 +130,7 @@
       <workItem from="1714565345359" duration="10570000" />
       <workItem from="1714576145139" duration="1491000" />
       <workItem from="1714605037251" duration="3536000" />
+      <workItem from="1714773457609" duration="3089000" />
     </task>
     <servers />
   </component>
