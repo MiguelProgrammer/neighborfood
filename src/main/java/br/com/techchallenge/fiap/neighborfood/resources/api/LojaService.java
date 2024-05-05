@@ -1,47 +1,89 @@
 package br.com.techchallenge.fiap.neighborfood.resources.api;
 
-import _generated_sources_swagger.AnalystApi;
-import br.com.techchallenge.fiap.model.AnalystDTO;
+import _generated_sources_swagger.NeighborfoodApi;
+import br.com.techchallenge.fiap.model.*;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.context.request.NativeWebRequest;
-
-import java.util.Optional;
 
 @RestController
-public class LojaService implements AnalystApi {
+public class LojaService implements NeighborfoodApi {
 
-
+    /**
+     * @param clienteRequest
+     * @return
+     */
     @Override
-    @CrossOrigin(origins = "*", allowedHeaders = "*")
-    public ResponseEntity<AnalystDTO> addAnalyst(AnalystDTO analystDTO) {
-        return AnalystApi.super.addAnalyst(analystDTO);
+    public ResponseEntity<Object> login(ClienteRequest clienteRequest) {
+        return NeighborfoodApi.super.login(clienteRequest);
     }
 
+    /**
+     * @return
+     */
     @Override
-    @CrossOrigin(origins = "*", allowedHeaders = "*")
-    public ResponseEntity<Void> deleteAnalystById(Long pId) {
-        return AnalystApi.super.deleteAnalystById(pId);
+    public ResponseEntity<Combo> menu() {
+        return NeighborfoodApi.super.menu();
     }
 
-
+    /**
+     * @param pedido
+     * @return
+     */
     @Override
-    @CrossOrigin(origins = "*", allowedHeaders = "*")
-    public ResponseEntity<AnalystDTO> getAllAnalyst() {
-        return AnalystApi.super.getAllAnalyst();
+    public ResponseEntity<AcompanhamentoResponse> order(Pedido pedido) {
+        return NeighborfoodApi.super.order(pedido);
     }
 
+    /**
+     * @param pagamento
+     * @return
+     */
     @Override
-    @CrossOrigin(origins = "*", allowedHeaders = "*")
-    public ResponseEntity<AnalystDTO> getAnalystById(Long pId) {
-        return AnalystApi.super.getAnalystById(pId);
+    public ResponseEntity<AcompanhamentoResponse> payment(Pagamento pagamento) {
+        return NeighborfoodApi.super.payment(pagamento);
     }
 
-
+    /**
+     * @param body
+     * @return
+     */
     @Override
-    @CrossOrigin(origins = "*")
-    public ResponseEntity<AnalystDTO> updateAnalyst(AnalystDTO analystDTO) {
-        return AnalystApi.super.updateAnalyst(analystDTO);
+    public ResponseEntity<Object> register(Object body) {
+        return NeighborfoodApi.super.register(body);
+    }
+
+    /**
+     * @param idpedido
+     * @return
+     */
+    @Override
+    public ResponseEntity<AcompanhamentoResponse> findOrderByIdOrder(Long idpedido) {
+        return NeighborfoodApi.super.findOrderByIdOrder(idpedido);
+    }
+
+    /**
+     * @return
+     */
+    @Override
+    public ResponseEntity<Combo> listCategory() {
+        return NeighborfoodApi.super.listCategory();
+    }
+
+    /**
+     * @param produto
+     * @return
+     */
+    @Override
+    public ResponseEntity<Void> registerProduct(Produto produto) {
+        return NeighborfoodApi.super.registerProduct(produto);
+    }
+
+    /**
+     * @param mimo
+     * @return
+     */
+    @Override
+    public ResponseEntity<Void> sendBonus(Mimo mimo) {
+        return NeighborfoodApi.super.sendBonus(mimo);
     }
 }

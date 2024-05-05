@@ -22,9 +22,11 @@ tags:
   - name: follow-up
     description: "Acompanhar status do pedido"
   - name: stock
-    description: "Verificar itens do estoque"
+    description: "Itens do estoque"
   - name: customers
     description: "Para gerenciamento de campanhas promocionais"
+  - name: products
+    description: "Gerenciamento de produtos"
 
 
 paths:
@@ -92,6 +94,29 @@ paths:
         '400':
           description: request inválida
 
+  /neighborfood/pedido:
+    post:
+      tags:
+        - order
+      summary: Realizar um pedido
+      description:  Fazer um  pedido
+      operationId: order
+      requestBody:
+        description: Cria um novo pedido
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Pedido'
+      responses:
+        '200':
+          description: Pedido criado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AcompanhamentoResponse'
+        '400':
+          description: request inválida
+
   /neighborfood/acompanhamento/{idpedido}:
     get:
       tags:
@@ -144,112 +169,82 @@ paths:
         '404':
           description: Pedido não encontrado
 
-
-
-
-
-
-  /analyst/{pId}:
-    get:
+  /neighborfood/cliente:
+    post:
       tags:
-        - "Analyst"
-      summary: Find Analyst by ID
-      description: Returns a single Analyst
-      operationId: getAnalystById
-      parameters:
-        - name: pId
-          in: path
-          description: pId of Analyst to return
-          required: true
-          schema:
-            type: integer
-            format: int64
-      responses:
-        '200':
-          description: successful operation
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/AnalystDTO'
-        '400':
-          description: Invalid ID supplied
-        '404':
-          description: pId not found
-
-  /analyst/all:
-    get:
-      tags:
-        - "Analyst"
-      summary: List all Analyst
-      description: Returns a list of Analyst
-      operationId: getAllAnalyst
-      responses:
-        '200':      # Response
-          description: OK
-          content:  # Response body
-            application/json:   # One of media types
-              schema:
-                $ref: '#/components/schemas/AnalystDTO'
-              example:
-                - pId: 1
-                  actuation: BACK
-                  stack: JAVA
-                - pId: 2
-                  actuation: FRONT
-                  stack: ANGULAR
-
-  /analyst/{pId}/delete:
-    get:
-      tags:
-        - "Analyst"
-      summary: Delete Analyst by ID
-      description: Delete a single Analyst
-      operationId: deleteAnalystById
-      parameters:
-        - name: pId
-          in: path
-          description: pId of Analyst to delete
-          required: true
-          schema:
-            type: integer
-            format: int64
-      responses:
-        '200':
-          description: successful operation
-        '400':
-          description: Invalid ID supplied
-        '404':
-          description: pId not found
-
-  /analyst/update:
-    put:
-      tags:
-        - "Analyst"
-      summary: Update an existing analyst
-      description: Update an existing analyst by Id
-      operationId: updateAnalyst
+        - customers
+      summary: Envia mimo ao último cliente que realizou um pedido
+      description: Envia mimo ao cliente
+      operationId: sendBonus
       requestBody:
-        description: Update analyst in the internal talent
+        required: true
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/AnalystDTO'
+              $ref: '#/components/schemas/Mimo'
       responses:
         '200':
-          description: Successful operation
+          description: Mimo enviado
+        '400':
+          description: Id inválido
+        '404':
+          description: Mimo não disponível
+
+  /neighborfood/painel/estoque:
+    get:
+      tags:
+        - stock
+      summary: Gerencia produtos e categorias
+      description: Lista categorias
+      operationId: listCategory
+      responses:
+        '200':
+          description: Lista categorias disponíveis
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/AnalystDTO'
+                $ref: '#/components/schemas/Combo'
         '400':
-          description: Invalid ID supplied
+          description: Categoria inválida
         '404':
-          description: Analyst not found
-        '405':
-          description: Validation exception
+          description: Categorias não cadastradas
+
+  /neighborfood/painel/produto/cadastro:
+    post:
+      tags:
+        - products
+      summary: Cadastra produtos
+      description: Cadastra produtos a partir da uma categoria
+      operationId: registerProduct
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Produto'
+      responses:
+        '200':
+          description: Erro ao cadastrar
+        '400':
+          description: Id inválido
+        '404':
+          description: Produto inválido
+
 
 components:
   schemas:
+
+
+    Mimo:
+      type: object
+      properties:
+        codigo:
+          type: string
+        desconto:
+          type: number
+        idCliente:
+          type: integer
+          format: int64
 
     Pagamento:
       type: object
@@ -298,7 +293,7 @@ components:
           type: number
           format: double
         Categoria:
-          type: object
+          $ref: '#/components/schemas/Combo'
         descricao:
           type: string
 
@@ -336,29 +331,3 @@ components:
 
     Cliente:
       type: object
-
-
-    AnalystDTO:
-      required:
-        - pId
-        - actuation
-        - stack
-      type: object
-      properties:
-        pId:
-          type: integer
-          format: int64
-          example: 8
-        actuation:
-          type: string
-          enum:
-            - BACK
-            - FRONT
-            - BLANK
-        stack:
-          type: string
-          enum:
-            - JAVA
-            - ANGULAR
-            - DEVOPS
-            - SECURITY_INFORMATION

@@ -1,6 +1,14 @@
 .openapi-generator-ignore
 README.md
 pom.xml
-src/main/java/_generated_sources_swagger/AnalystApi.java
 src/main/java/_generated_sources_swagger/ApiUtil.java
-src/main/java/br/com/techchallenge/fiap/model/AnalystDTO.java
+src/main/java/_generated_sources_swagger/NeighborfoodApi.java
+src/main/java/br/com/techchallenge/fiap/model/Acompanhamento.java
+src/main/java/br/com/techchallenge/fiap/model/AcompanhamentoResponse.java
+src/main/java/br/com/techchallenge/fiap/model/ClienteRequest.java
+src/main/java/br/com/techchallenge/fiap/model/Combo.java
+src/main/java/br/com/techchallenge/fiap/model/Itens.java
+src/main/java/br/com/techchallenge/fiap/model/Mimo.java
+src/main/java/br/com/techchallenge/fiap/model/Pagamento.java
+src/main/java/br/com/techchallenge/fiap/model/Pedido.java
+src/main/java/br/com/techchallenge/fiap/model/Produto.java
