@@ -1,20 +1,33 @@
+/*
+ * Copyright (c) 2024. MiguelProgrammer
+ */
+
 package br.com.techchallenge.fiap.neighborfood.resources.api;
+
+
 
 import _generated_sources_swagger.NeighborfoodApi;
 import br.com.techchallenge.fiap.model.*;
+import br.com.techchallenge.fiap.neighborfood.model.Cliente;
+import br.com.techchallenge.fiap.neighborfood.service.Login;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class LojaService implements NeighborfoodApi {
+public class LojaControllerImpl implements NeighborfoodApi {
+
+    @Autowired
+    private Login acesso;
 
     /**
      * @param clienteRequest
      * @return
      */
     @Override
-    public ResponseEntity<Object> login(ClienteRequest clienteRequest) {
-        return NeighborfoodApi.super.login(clienteRequest);
+    public Cliente login(ClienteRequest clienteRequest) {
+        ClienteRequest login = acesso.login(clienteRequest);
+        return NeighborfoodApi.super.login(login);
     }
 
     /**
