@@ -5,16 +5,15 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.ArrayList;
-import java.util.Collection;
+import java.math.BigDecimal;
 
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Itens {
+public class CampanhaDTO {
 
-    Collection<Combo> comboList = new ArrayList<>();
-    Collection<Produto> produtoList = new ArrayList<>();
-
+    private String nome;
+    private String descricao;
+    private BigDecimal valorDesconto;
 }

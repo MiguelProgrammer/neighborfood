@@ -39,10 +39,6 @@ public class LanchoneteControllerImpl implements NeighborfoodApi {
         return ResponseEntity.ok(pedidoService.menuOpcionais());
     }
 
-    @Override
-    public ResponseEntity<AcompanhamentoResponse> order(Pedido pedido) {
-        return NeighborfoodApi.super.order(pedido);
-    }
 
     @Override
     public ResponseEntity<AcompanhamentoResponse> payment(Pagamento pagamento) {
@@ -50,8 +46,8 @@ public class LanchoneteControllerImpl implements NeighborfoodApi {
     }
 
     @Override
-    public ResponseEntity<Combo> listCategory() {
-        return NeighborfoodApi.super.listCategory();
+    public ResponseEntity<AcompanhamentoResponse> order(Pedido pedido) {
+        return pedidoService.pedido(pedido);
     }
 
     @Override

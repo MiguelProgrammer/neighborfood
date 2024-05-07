@@ -2,7 +2,7 @@ package br.com.techchallenge.fiap.model;
 
 import java.net.URI;
 import java.util.Objects;
-import br.com.techchallenge.fiap.model.Combo;
+import br.com.techchallenge.fiap.model.CategoriaCombo;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
@@ -20,14 +20,14 @@ import jakarta.annotation.Generated;
  * Produto
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-05-06T23:24:06.360344700-03:00[America/Sao_Paulo]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-05-07T07:28:27.371142200-03:00[America/Sao_Paulo]")
 public class Produto {
 
   private String nome;
 
   private Double preco;
 
-  private Combo categoria;
+  private CategoriaCombo categoria;
 
   private String descricao;
 
@@ -71,7 +71,7 @@ public class Produto {
     this.preco = preco;
   }
 
-  public Produto categoria(Combo categoria) {
+  public Produto categoria(CategoriaCombo categoria) {
     this.categoria = categoria;
     return this;
   }
@@ -83,11 +83,11 @@ public class Produto {
   @Valid 
   @Schema(name = "Categoria", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("Categoria")
-  public Combo getCategoria() {
+  public CategoriaCombo getCategoria() {
     return categoria;
   }
 
-  public void setCategoria(Combo categoria) {
+  public void setCategoria(CategoriaCombo categoria) {
     this.categoria = categoria;
   }
 

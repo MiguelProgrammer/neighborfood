@@ -2,7 +2,6 @@ package br.com.techchallenge.fiap.model;
 
 import java.net.URI;
 import java.util.Objects;
-import br.com.techchallenge.fiap.model.Combo;
 import br.com.techchallenge.fiap.model.Produto;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -22,42 +21,11 @@ import jakarta.annotation.Generated;
  * Itens
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-05-06T23:24:06.360344700-03:00[America/Sao_Paulo]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-05-07T07:28:27.371142200-03:00[America/Sao_Paulo]")
 public class Itens {
 
   @Valid
-  private List<Combo> comboList;
-
-  @Valid
   private List<@Valid Produto> produtoList;
-
-  public Itens comboList(List<Combo> comboList) {
-    this.comboList = comboList;
-    return this;
-  }
-
-  public Itens addComboListItem(Combo comboListItem) {
-    if (this.comboList == null) {
-      this.comboList = new ArrayList<>();
-    }
-    this.comboList.add(comboListItem);
-    return this;
-  }
-
-  /**
-   * Get comboList
-   * @return comboList
-  */
-  @Valid 
-  @Schema(name = "comboList", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
-  @JsonProperty("comboList")
-  public List<Combo> getComboList() {
-    return comboList;
-  }
-
-  public void setComboList(List<Combo> comboList) {
-    this.comboList = comboList;
-  }
 
   public Itens produtoList(List<@Valid Produto> produtoList) {
     this.produtoList = produtoList;
@@ -96,20 +64,18 @@ public class Itens {
       return false;
     }
     Itens itens = (Itens) o;
-    return Objects.equals(this.comboList, itens.comboList) &&
-        Objects.equals(this.produtoList, itens.produtoList);
+    return Objects.equals(this.produtoList, itens.produtoList);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(comboList, produtoList);
+    return Objects.hash(produtoList);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class Itens {\n");
-    sb.append("    comboList: ").append(toIndentedString(comboList)).append("\n");
     sb.append("    produtoList: ").append(toIndentedString(produtoList)).append("\n");
     sb.append("}");
     return sb.toString();

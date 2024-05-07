@@ -21,14 +21,14 @@ import jakarta.annotation.Generated;
  * AcompanhamentoResponse
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-05-06T23:24:06.360344700-03:00[America/Sao_Paulo]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-05-07T07:28:27.371142200-03:00[America/Sao_Paulo]")
 public class AcompanhamentoResponse {
 
   private Long idCliente;
 
-  private Itens status;
+  private Itens itens;
 
-  private Acompanhamento acompanhamento;
+  private Acompanhamento status;
 
   private Double total;
 
@@ -52,7 +52,27 @@ public class AcompanhamentoResponse {
     this.idCliente = idCliente;
   }
 
-  public AcompanhamentoResponse status(Itens status) {
+  public AcompanhamentoResponse itens(Itens itens) {
+    this.itens = itens;
+    return this;
+  }
+
+  /**
+   * Get itens
+   * @return itens
+  */
+  @Valid 
+  @Schema(name = "Itens", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("Itens")
+  public Itens getItens() {
+    return itens;
+  }
+
+  public void setItens(Itens itens) {
+    this.itens = itens;
+  }
+
+  public AcompanhamentoResponse status(Acompanhamento status) {
     this.status = status;
     return this;
   }
@@ -64,32 +84,12 @@ public class AcompanhamentoResponse {
   @Valid 
   @Schema(name = "status", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("status")
-  public Itens getStatus() {
+  public Acompanhamento getStatus() {
     return status;
   }
 
-  public void setStatus(Itens status) {
+  public void setStatus(Acompanhamento status) {
     this.status = status;
-  }
-
-  public AcompanhamentoResponse acompanhamento(Acompanhamento acompanhamento) {
-    this.acompanhamento = acompanhamento;
-    return this;
-  }
-
-  /**
-   * Get acompanhamento
-   * @return acompanhamento
-  */
-  @Valid 
-  @Schema(name = "Acompanhamento", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
-  @JsonProperty("Acompanhamento")
-  public Acompanhamento getAcompanhamento() {
-    return acompanhamento;
-  }
-
-  public void setAcompanhamento(Acompanhamento acompanhamento) {
-    this.acompanhamento = acompanhamento;
   }
 
   public AcompanhamentoResponse total(Double total) {
@@ -122,14 +122,14 @@ public class AcompanhamentoResponse {
     }
     AcompanhamentoResponse acompanhamentoResponse = (AcompanhamentoResponse) o;
     return Objects.equals(this.idCliente, acompanhamentoResponse.idCliente) &&
+        Objects.equals(this.itens, acompanhamentoResponse.itens) &&
         Objects.equals(this.status, acompanhamentoResponse.status) &&
-        Objects.equals(this.acompanhamento, acompanhamentoResponse.acompanhamento) &&
         Objects.equals(this.total, acompanhamentoResponse.total);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(idCliente, status, acompanhamento, total);
+    return Objects.hash(idCliente, itens, status, total);
   }
 
   @Override
@@ -137,8 +137,8 @@ public class AcompanhamentoResponse {
     StringBuilder sb = new StringBuilder();
     sb.append("class AcompanhamentoResponse {\n");
     sb.append("    idCliente: ").append(toIndentedString(idCliente)).append("\n");
+    sb.append("    itens: ").append(toIndentedString(itens)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
-    sb.append("    acompanhamento: ").append(toIndentedString(acompanhamento)).append("\n");
     sb.append("    total: ").append(toIndentedString(total)).append("\n");
     sb.append("}");
     return sb.toString();

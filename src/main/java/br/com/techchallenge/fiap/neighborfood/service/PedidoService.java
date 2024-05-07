@@ -4,14 +4,8 @@
 
 package br.com.techchallenge.fiap.neighborfood.service;
 
-import br.com.techchallenge.fiap.model.AcompanhamentoResponse;
-import br.com.techchallenge.fiap.model.Combo;
-import br.com.techchallenge.fiap.model.Itens;
+import br.com.techchallenge.fiap.model.*;
 import br.com.techchallenge.fiap.neighborfood.entities.ClienteEntity;
-import br.com.techchallenge.fiap.neighborfood.enums.Acompanhamento;
-import br.com.techchallenge.fiap.neighborfood.model.Cliente;
-import br.com.techchallenge.fiap.neighborfood.model.Pedido;
-import br.com.techchallenge.fiap.neighborfood.model.Produto;
 import br.com.techchallenge.fiap.neighborfood.repository.ClienteRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,19 +27,20 @@ public class PedidoService {
 
     public List<String> menuOpcionais() {
         List<String> opcionais = new ArrayList<>();
-        for (Combo opt : Combo.values()) {
+        for (CategoriaCombo opt : CategoriaCombo.values()) {
             opcionais.add(opt.toString());
         }
         return opcionais;
     }
 
     public ResponseEntity<AcompanhamentoResponse> pedido(Pedido pedido) {
-        Optional<ClienteEntity> cliente = clienteRepository.findById(pedido.getCliente().getId());
+
+        Optional<ClienteEntity> cliente = clienteRepository.findById(pedido.getIdCliente());
         if (!cliente.isPresent()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
 
-        pedido.setCliente(mapper.map(cliente.get(), Cliente.class));
+        pedido.setIdCliente(cliente.get().getId());
 
         List<Produto> produtos = new ArrayList<>();
         pedido.getItens().getProdutoList().forEach(pr -> {
@@ -53,11 +48,10 @@ public class PedidoService {
         });
 
         Itens itens = new Itens();
-        itens.setProdutoList(pedido.getItens().getProdutoList());
-        itens.setComboList(pedido.getItens().getComboList());
+        itens.setProdutoList(produtos);
 
-        pedido.setProgresso(Acompanhamento.RECEBIDO);
-
-        return null;
+        AcompanhamentoResponse response = new AcompanhamentoResponse();
+        response.setStatus(Acompanhamento.RECEBIDO);
+        return ResponseEntity.ok(response);
     }
 }

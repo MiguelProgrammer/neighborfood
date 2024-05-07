@@ -1,5 +1,6 @@
 package br.com.techchallenge.fiap.neighborfood.model;
 
+import br.com.techchallenge.fiap.model.CategoriaCombo;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,9 +12,10 @@ import java.math.BigDecimal;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Campanha {
+public class ProdutoDTO {
 
     private String nome;
+    private BigDecimal preco;
+    private CategoriaCombo categoria;
     private String descricao;
-    private BigDecimal valorDesconto;
 }

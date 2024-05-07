@@ -2,15 +2,15 @@ package br.com.techchallenge.fiap.neighborfood.model;
 
 import java.util.Objects;
 
-public class Pagamento {
+public class PagamentoDTO {
 
     private Long idPedido;
     private Boolean pagou = false;
 
-    public Pagamento() {
+    public PagamentoDTO() {
     }
 
-    public Pagamento(Long idPedido, Boolean pagou) {
+    public PagamentoDTO(Long idPedido, Boolean pagou) {
         this.idPedido = idPedido;
         this.pagou = pagou;
     }
@@ -34,7 +34,7 @@ public class Pagamento {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Pagamento pagamento)) return false;
+        if (!(o instanceof PagamentoDTO pagamento)) return false;
         return Objects.equals(idPedido, pagamento.idPedido) && Objects.equals(pagou, pagamento.pagou);
     }
 

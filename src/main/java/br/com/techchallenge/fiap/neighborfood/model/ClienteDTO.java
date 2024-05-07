@@ -1,19 +1,23 @@
 package br.com.techchallenge.fiap.neighborfood.model;
 
-import br.com.techchallenge.fiap.neighborfood.enums.Acompanhamento;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Pedido {
+public class ClienteDTO {
 
     private Long id;
-    private Cliente cliente;
-    private Itens itens;
-    private Acompanhamento progresso;
+    private String nome;
+    private String email;
+    private String cpf;
+
+    private Set<PedidoDTO> pedido  = new HashSet<>();
 }

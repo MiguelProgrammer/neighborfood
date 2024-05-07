@@ -5,19 +5,14 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.Collection;
 
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Cliente {
+public class ComboDTO {
 
-    private Long id;
-    private String nome;
-    private String email;
-    private String cpf;
+    private Collection<ProdutoDTO> combo;
 
-    private Set<Pedido> pedido  = new HashSet<>();
 }

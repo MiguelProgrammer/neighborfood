@@ -205,7 +205,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Combo'
+                $ref: '#/components/schemas/CategoriaCombo'
         '400':
           description: Categoria inválida
         '404':
@@ -260,22 +260,15 @@ components:
     Pedido:
       type: object
       properties:
-
         idCliente:
           type: integer
           format: int64
-
         Itens:
           $ref: '#/components/schemas/Itens'
-
 
     Itens:
       type: object
       properties:
-        comboList:
-          type: array
-          items:
-            $ref: '#/components/schemas/Combo'
         produtoList:
           type: array
           items:
@@ -290,7 +283,7 @@ components:
           type: number
           format: double
         Categoria:
-          $ref: '#/components/schemas/Combo'
+          $ref: '#/components/schemas/CategoriaCombo'
         descricao:
           type: string
 
@@ -300,9 +293,9 @@ components:
         idCliente:
           type: integer
           format: int64
-        status:
+        Itens:
           $ref: '#/components/schemas/Itens'
-        Acompanhamento:
+        status:
           $ref: '#/components/schemas/Acompanhamento'
         total:
           type: number
@@ -317,7 +310,7 @@ components:
         - PRONTO
         - FINALIZADO
 
-    Combo:
+    CategoriaCombo:
       type: string
       enum:
         - LANCHE

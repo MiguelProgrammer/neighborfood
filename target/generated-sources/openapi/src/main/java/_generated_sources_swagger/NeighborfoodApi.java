@@ -6,8 +6,8 @@
 package _generated_sources_swagger;
 
 import br.com.techchallenge.fiap.model.AcompanhamentoResponse;
+import br.com.techchallenge.fiap.model.CategoriaCombo;
 import br.com.techchallenge.fiap.model.ClienteRequest;
-import br.com.techchallenge.fiap.model.Combo;
 import br.com.techchallenge.fiap.model.Mimo;
 import br.com.techchallenge.fiap.model.Pagamento;
 import br.com.techchallenge.fiap.model.Pedido;
@@ -38,7 +38,7 @@ import java.util.Map;
 import java.util.Optional;
 import jakarta.annotation.Generated;
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-05-06T23:24:06.360344700-03:00[America/Sao_Paulo]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-05-07T07:28:27.371142200-03:00[America/Sao_Paulo]")
 @Validated
 @Tag(name = "follow-up", description = "Acompanhar status do pedido")
 public interface NeighborfoodApi {
@@ -85,7 +85,7 @@ public interface NeighborfoodApi {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "{ \"total\" : 1.4658129805029452, \"idCliente\" : 0, \"status\" : { \"comboList\" : [ null, null ], \"produtoList\" : [ { \"preco\" : 6.027456183070403, \"nome\" : \"nome\", \"descricao\" : \"descricao\" }, { \"preco\" : 6.027456183070403, \"nome\" : \"nome\", \"descricao\" : \"descricao\" } ] } }";
+                    String exampleString = "{ \"total\" : 1.4658129805029452, \"idCliente\" : 0, \"Itens\" : { \"produtoList\" : [ { \"preco\" : 6.027456183070403, \"nome\" : \"nome\", \"descricao\" : \"descricao\" }, { \"preco\" : 6.027456183070403, \"nome\" : \"nome\", \"descricao\" : \"descricao\" } ] } }";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
                     break;
                 }
@@ -111,7 +111,7 @@ public interface NeighborfoodApi {
         tags = { "stock" },
         responses = {
             @ApiResponse(responseCode = "200", description = "Lista categorias disponíveis", content = {
-                @Content(mediaType = "application/json", schema = @Schema(implementation = Combo.class))
+                @Content(mediaType = "application/json", schema = @Schema(implementation = CategoriaCombo.class))
             }),
             @ApiResponse(responseCode = "400", description = "Categoria inválida"),
             @ApiResponse(responseCode = "404", description = "Categorias não cadastradas")
@@ -122,14 +122,14 @@ public interface NeighborfoodApi {
         value = "/neighborfood/painel/estoque",
         produces = { "application/json" }
     )
-    default ResponseEntity<Combo> _listCategory(
+    default ResponseEntity<CategoriaCombo> _listCategory(
         
     ) {
         return listCategory();
     }
 
     // Override this method
-    default  ResponseEntity<Combo> listCategory() {
+    default  ResponseEntity<CategoriaCombo> listCategory() {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
@@ -275,7 +275,7 @@ public interface NeighborfoodApi {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "{ \"total\" : 1.4658129805029452, \"idCliente\" : 0, \"status\" : { \"comboList\" : [ null, null ], \"produtoList\" : [ { \"preco\" : 6.027456183070403, \"nome\" : \"nome\", \"descricao\" : \"descricao\" }, { \"preco\" : 6.027456183070403, \"nome\" : \"nome\", \"descricao\" : \"descricao\" } ] } }";
+                    String exampleString = "{ \"total\" : 1.4658129805029452, \"idCliente\" : 0, \"Itens\" : { \"produtoList\" : [ { \"preco\" : 6.027456183070403, \"nome\" : \"nome\", \"descricao\" : \"descricao\" }, { \"preco\" : 6.027456183070403, \"nome\" : \"nome\", \"descricao\" : \"descricao\" } ] } }";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
                     break;
                 }
@@ -325,7 +325,7 @@ public interface NeighborfoodApi {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "{ \"total\" : 1.4658129805029452, \"idCliente\" : 0, \"status\" : { \"comboList\" : [ null, null ], \"produtoList\" : [ { \"preco\" : 6.027456183070403, \"nome\" : \"nome\", \"descricao\" : \"descricao\" }, { \"preco\" : 6.027456183070403, \"nome\" : \"nome\", \"descricao\" : \"descricao\" } ] } }";
+                    String exampleString = "{ \"total\" : 1.4658129805029452, \"idCliente\" : 0, \"Itens\" : { \"produtoList\" : [ { \"preco\" : 6.027456183070403, \"nome\" : \"nome\", \"descricao\" : \"descricao\" }, { \"preco\" : 6.027456183070403, \"nome\" : \"nome\", \"descricao\" : \"descricao\" } ] } }";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
                     break;
                 }

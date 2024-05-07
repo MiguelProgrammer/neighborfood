@@ -4,7 +4,7 @@
 
 package br.com.techchallenge.fiap.neighborfood.entities;
 
-import br.com.techchallenge.fiap.neighborfood.enums.Categoria;
+import br.com.techchallenge.fiap.model.CategoriaCombo;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -35,7 +35,7 @@ public class ProdutoEntity implements Serializable {
     private BigDecimal preco;
 
     @Column(name = "categoria")
-    private Categoria categoria;
+    private CategoriaCombo categoria;
 
     @Column(name = "descricao")
     private String descricao;
