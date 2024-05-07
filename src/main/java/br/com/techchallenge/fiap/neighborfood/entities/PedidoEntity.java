@@ -1,5 +1,8 @@
 package br.com.techchallenge.fiap.neighborfood.entities;
 
+import br.com.techchallenge.fiap.neighborfood.enums.Acompanhamento;
+import br.com.techchallenge.fiap.neighborfood.model.Cliente;
+import br.com.techchallenge.fiap.neighborfood.model.Itens;
 import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -38,4 +41,8 @@ public class PedidoEntity implements Serializable {
 
     @ManyToOne(fetch = FetchType.EAGER)
     private ClienteEntity cliente;
+
+//    private Cliente cliente;
+//    private Itens itens;
+//    private Acompanhamento progresso;
 }

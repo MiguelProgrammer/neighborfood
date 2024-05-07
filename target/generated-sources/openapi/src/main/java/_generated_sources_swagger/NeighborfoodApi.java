@@ -12,12 +12,15 @@ import br.com.techchallenge.fiap.model.Mimo;
 import br.com.techchallenge.fiap.model.Pagamento;
 import br.com.techchallenge.fiap.model.Pedido;
 import br.com.techchallenge.fiap.model.Produto;
-import br.com.techchallenge.fiap.neighborfood.model.Cliente;
+import io.swagger.v3.oas.annotations.ExternalDocumentation;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.Parameters;
+import io.swagger.v3.oas.annotations.media.ArraySchema;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import io.swagger.v3.oas.annotations.enums.ParameterIn;
 import org.springframework.http.HttpStatus;
@@ -26,13 +29,16 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.NativeWebRequest;
+import org.springframework.web.multipart.MultipartFile;
 
 import jakarta.validation.Valid;
-
+import jakarta.validation.constraints.*;
+import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import jakarta.annotation.Generated;
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-05-05T00:44:45.191036500-03:00[America/Sao_Paulo]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-05-06T23:24:06.360344700-03:00[America/Sao_Paulo]")
 @Validated
 @Tag(name = "follow-up", description = "Acompanhar status do pedido")
 public interface NeighborfoodApi {
@@ -79,7 +85,7 @@ public interface NeighborfoodApi {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "{ \"status\" : { \"comboList\" : [ null, null ], \"produtoList\" : [ { \"preco\" : 0.8008281904610115, \"nome\" : \"nome\", \"descricao\" : \"descricao\" }, { \"preco\" : 0.8008281904610115, \"nome\" : \"nome\", \"descricao\" : \"descricao\" } ] } }";
+                    String exampleString = "{ \"total\" : 1.4658129805029452, \"idCliente\" : 0, \"status\" : { \"comboList\" : [ null, null ], \"produtoList\" : [ { \"preco\" : 6.027456183070403, \"nome\" : \"nome\", \"descricao\" : \"descricao\" }, { \"preco\" : 6.027456183070403, \"nome\" : \"nome\", \"descricao\" : \"descricao\" } ] } }";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
                     break;
                 }
@@ -144,7 +150,7 @@ public interface NeighborfoodApi {
      *
      * @param clienteRequest Identifica um cliente logado (optional)
      * @return Usuário logado (status code 200)
-     * or request inválida (status code 400)
+     *         or request inválida (status code 400)
      */
     @Operation(
         operationId = "login",
@@ -164,14 +170,14 @@ public interface NeighborfoodApi {
         produces = { "application/json" },
         consumes = { "application/json" }
     )
-    default Cliente _login(
+    default ResponseEntity<Object> _login(
         @Parameter(name = "ClienteRequest", description = "Identifica um cliente logado") @Valid @RequestBody(required = false) ClienteRequest clienteRequest
     ) {
         return login(clienteRequest);
     }
 
     // Override this method
-    default Cliente login(ClienteRequest clienteRequest) {
+    default  ResponseEntity<Object> login(ClienteRequest clienteRequest) {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf(""))) {
@@ -181,8 +187,8 @@ public interface NeighborfoodApi {
                 }
             }
         });
+        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
 
-        return null;
     }
 
 
@@ -200,7 +206,7 @@ public interface NeighborfoodApi {
         tags = { "menu" },
         responses = {
             @ApiResponse(responseCode = "200", description = "Apresenta os itens de menu", content = {
-                @Content(mediaType = "application/json", schema = @Schema(implementation = Combo.class))
+                @Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = String.class)))
             }),
             @ApiResponse(responseCode = "400", description = "request inválida")
         }
@@ -210,18 +216,18 @@ public interface NeighborfoodApi {
         value = "/neighborfood/menu",
         produces = { "application/json" }
     )
-    default ResponseEntity<Combo> _menu(
+    default ResponseEntity<List<String>> _menu(
         
     ) {
         return menu();
     }
 
     // Override this method
-    default  ResponseEntity<Combo> menu() {
+    default  ResponseEntity<List<String>> menu() {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "null";
+                    String exampleString = "[ \"\", \"\" ]";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
                     break;
                 }
@@ -269,7 +275,7 @@ public interface NeighborfoodApi {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "{ \"status\" : { \"comboList\" : [ null, null ], \"produtoList\" : [ { \"preco\" : 0.8008281904610115, \"nome\" : \"nome\", \"descricao\" : \"descricao\" }, { \"preco\" : 0.8008281904610115, \"nome\" : \"nome\", \"descricao\" : \"descricao\" } ] } }";
+                    String exampleString = "{ \"total\" : 1.4658129805029452, \"idCliente\" : 0, \"status\" : { \"comboList\" : [ null, null ], \"produtoList\" : [ { \"preco\" : 6.027456183070403, \"nome\" : \"nome\", \"descricao\" : \"descricao\" }, { \"preco\" : 6.027456183070403, \"nome\" : \"nome\", \"descricao\" : \"descricao\" } ] } }";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
                     break;
                 }
@@ -319,7 +325,7 @@ public interface NeighborfoodApi {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "{ \"status\" : { \"comboList\" : [ null, null ], \"produtoList\" : [ { \"preco\" : 0.8008281904610115, \"nome\" : \"nome\", \"descricao\" : \"descricao\" }, { \"preco\" : 0.8008281904610115, \"nome\" : \"nome\", \"descricao\" : \"descricao\" } ] } }";
+                    String exampleString = "{ \"total\" : 1.4658129805029452, \"idCliente\" : 0, \"status\" : { \"comboList\" : [ null, null ], \"produtoList\" : [ { \"preco\" : 6.027456183070403, \"nome\" : \"nome\", \"descricao\" : \"descricao\" }, { \"preco\" : 6.027456183070403, \"nome\" : \"nome\", \"descricao\" : \"descricao\" } ] } }";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
                     break;
                 }
@@ -334,7 +340,7 @@ public interface NeighborfoodApi {
      * POST /neighborfood/cadastro : Se cadastrar, logar
      * Cria cliente
      *
-     * @param body Cria um novo cliente (optional)
+     * @param clienteRequest Cria um novo cliente (optional)
      * @return Usuário logado (status code 200)
      *         or request inválida (status code 400)
      */
@@ -357,22 +363,13 @@ public interface NeighborfoodApi {
         consumes = { "application/json" }
     )
     default ResponseEntity<Object> _register(
-        @Parameter(name = "body", description = "Cria um novo cliente") @Valid @RequestBody(required = false) Object body
+        @Parameter(name = "ClienteRequest", description = "Cria um novo cliente") @Valid @RequestBody(required = false) ClienteRequest clienteRequest
     ) {
-        return register(body);
+        return register(clienteRequest);
     }
 
     // Override this method
-    default  ResponseEntity<Object> register(Object body) {
-        getRequest().ifPresent(request -> {
-            for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
-                if (mediaType.isCompatibleWith(MediaType.valueOf(""))) {
-                    String exampleString = "";
-                    ApiUtil.setExampleResponse(request, "", exampleString);
-                    break;
-                }
-            }
-        });
+    default  ResponseEntity<Object> register(ClienteRequest clienteRequest) {
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
 
     }
