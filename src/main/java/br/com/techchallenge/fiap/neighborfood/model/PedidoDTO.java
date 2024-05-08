@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.math.BigDecimal;
+
 @Getter
 @Setter
 @AllArgsConstructor
@@ -15,5 +17,6 @@ public class PedidoDTO {
     private Long id;
     private Long idCliente;
     private ItensDTO itens;
+    private BigDecimal total;
     private Acompanhamento progresso;
 }

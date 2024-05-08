@@ -14,7 +14,6 @@ import java.util.Collection;
 @NoArgsConstructor
 public class ItensDTO {
 
-    Collection<ComboDTO> comboList = new ArrayList<>();
     Collection<ProdutoDTO> produtoList = new ArrayList<>();
 
 }

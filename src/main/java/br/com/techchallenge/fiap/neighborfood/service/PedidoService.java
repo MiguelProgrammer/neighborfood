@@ -6,13 +6,17 @@ package br.com.techchallenge.fiap.neighborfood.service;
 
 import br.com.techchallenge.fiap.model.*;
 import br.com.techchallenge.fiap.neighborfood.entities.ClienteEntity;
+import br.com.techchallenge.fiap.neighborfood.entities.PedidoEntity;
+import br.com.techchallenge.fiap.neighborfood.entities.ProdutoEntity;
 import br.com.techchallenge.fiap.neighborfood.repository.ClienteRepository;
+import br.com.techchallenge.fiap.neighborfood.repository.PedidoRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -22,6 +26,9 @@ public class PedidoService {
 
     @Autowired
     private ClienteRepository clienteRepository;
+
+    @Autowired
+    private PedidoRepository pedidoRepository;
 
     private ModelMapper mapper = new ModelMapper();
 
@@ -35,23 +42,26 @@ public class PedidoService {
 
     public ResponseEntity<AcompanhamentoResponse> pedido(Pedido pedido) {
 
+        PedidoEntity entity = new PedidoEntity();
+        List<ProdutoEntity> produtos = new ArrayList<>();
         Optional<ClienteEntity> cliente = clienteRepository.findById(pedido.getIdCliente());
         if (!cliente.isPresent()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
 
-        pedido.setIdCliente(cliente.get().getId());
+        entity.setIdCliente(cliente.get().getId());
 
-        List<Produto> produtos = new ArrayList<>();
-        pedido.getItens().getProdutoList().forEach(pr -> {
-            produtos.add(pr);
+        pedido.getItens().forEach(pr -> {
+            produtos.add(mapper.map(pr, ProdutoEntity.class));
+        });
+        entity.setItens(produtos);
+        entity.setAcompanhamento(Acompanhamento.RECEBIDO);
+        pedido.getItens().forEach(pr -> {
+            entity.setTotal(entity.getTotal().add(BigDecimal.valueOf(pr.getPreco())));
         });
 
-        Itens itens = new Itens();
-        itens.setProdutoList(produtos);
-
         AcompanhamentoResponse response = new AcompanhamentoResponse();
-        response.setStatus(Acompanhamento.RECEBIDO);
+        response.setStatusPedido(mapper.map(pedidoRepository.save(entity), Pedido.class));
         return ResponseEntity.ok(response);
     }
 }

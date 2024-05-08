@@ -2,9 +2,13 @@ package br.com.techchallenge.fiap.model;
 
 import java.net.URI;
 import java.util.Objects;
-import br.com.techchallenge.fiap.model.Itens;
+import br.com.techchallenge.fiap.model.Acompanhamento;
+import br.com.techchallenge.fiap.model.Produto;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
+import java.util.ArrayList;
+import java.util.List;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
 import jakarta.validation.Valid;
@@ -19,12 +23,17 @@ import jakarta.annotation.Generated;
  * Pedido
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-05-07T07:28:27.371142200-03:00[America/Sao_Paulo]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-05-07T23:47:14.174480-03:00[America/Sao_Paulo]")
 public class Pedido {
 
   private Long idCliente;
 
-  private Itens itens;
+  @Valid
+  private List<@Valid Produto> itens;
+
+  private Double total;
+
+  private Acompanhamento status;
 
   public Pedido idCliente(Long idCliente) {
     this.idCliente = idCliente;
@@ -46,8 +55,16 @@ public class Pedido {
     this.idCliente = idCliente;
   }
 
-  public Pedido itens(Itens itens) {
+  public Pedido itens(List<@Valid Produto> itens) {
     this.itens = itens;
+    return this;
+  }
+
+  public Pedido addItensItem(Produto itensItem) {
+    if (this.itens == null) {
+      this.itens = new ArrayList<>();
+    }
+    this.itens.add(itensItem);
     return this;
   }
 
@@ -58,12 +75,52 @@ public class Pedido {
   @Valid 
   @Schema(name = "Itens", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("Itens")
-  public Itens getItens() {
+  public List<@Valid Produto> getItens() {
     return itens;
   }
 
-  public void setItens(Itens itens) {
+  public void setItens(List<@Valid Produto> itens) {
     this.itens = itens;
+  }
+
+  public Pedido total(Double total) {
+    this.total = total;
+    return this;
+  }
+
+  /**
+   * Get total
+   * @return total
+  */
+  
+  @Schema(name = "total", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("total")
+  public Double getTotal() {
+    return total;
+  }
+
+  public void setTotal(Double total) {
+    this.total = total;
+  }
+
+  public Pedido status(Acompanhamento status) {
+    this.status = status;
+    return this;
+  }
+
+  /**
+   * Get status
+   * @return status
+  */
+  @Valid 
+  @Schema(name = "status", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("status")
+  public Acompanhamento getStatus() {
+    return status;
+  }
+
+  public void setStatus(Acompanhamento status) {
+    this.status = status;
   }
 
   @Override
@@ -76,12 +133,14 @@ public class Pedido {
     }
     Pedido pedido = (Pedido) o;
     return Objects.equals(this.idCliente, pedido.idCliente) &&
-        Objects.equals(this.itens, pedido.itens);
+        Objects.equals(this.itens, pedido.itens) &&
+        Objects.equals(this.total, pedido.total) &&
+        Objects.equals(this.status, pedido.status);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(idCliente, itens);
+    return Objects.hash(idCliente, itens, total, status);
   }
 
   @Override
@@ -90,6 +149,8 @@ public class Pedido {
     sb.append("class Pedido {\n");
     sb.append("    idCliente: ").append(toIndentedString(idCliente)).append("\n");
     sb.append("    itens: ").append(toIndentedString(itens)).append("\n");
+    sb.append("    total: ").append(toIndentedString(total)).append("\n");
+    sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("}");
     return sb.toString();
   }

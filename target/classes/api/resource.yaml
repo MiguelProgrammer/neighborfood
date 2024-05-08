@@ -264,15 +264,14 @@ components:
           type: integer
           format: int64
         Itens:
-          $ref: '#/components/schemas/Itens'
-
-    Itens:
-      type: object
-      properties:
-        produtoList:
           type: array
           items:
             $ref: '#/components/schemas/Produto'
+        total:
+          type: number
+          format: double
+        status:
+          $ref: '#/components/schemas/Acompanhamento'
 
     Produto:
       type: object
@@ -290,16 +289,9 @@ components:
     AcompanhamentoResponse:
       type: object
       properties:
-        idCliente:
-          type: integer
-          format: int64
-        Itens:
-          $ref: '#/components/schemas/Itens'
-        status:
-          $ref: '#/components/schemas/Acompanhamento'
-        total:
-          type: number
-          format: double
+        statusPedido:
+          $ref: '#/components/schemas/Pedido'
+
 
 
     Acompanhamento:

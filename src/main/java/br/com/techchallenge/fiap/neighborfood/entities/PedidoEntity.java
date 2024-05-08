@@ -1,22 +1,12 @@
 package br.com.techchallenge.fiap.neighborfood.entities;
 
-import lombok.NoArgsConstructor;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.Builder;
-
-import jakarta.persistence.Table;
-import jakarta.persistence.Entity;
-import jakarta.persistence.SequenceGenerator;
-import jakarta.persistence.Id;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Column;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.FetchType;
+import br.com.techchallenge.fiap.model.Acompanhamento;
+import jakarta.persistence.*;
+import lombok.*;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
+import java.util.List;
 
 
 @Getter
@@ -36,10 +26,15 @@ public class PedidoEntity implements Serializable {
     @Column(name = "id")
     private Long id;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    private ClienteEntity cliente;
+    @Column(name = "id_cliente")
+    private Long idCliente;
 
-//    private Cliente cliente;
-//    private Itens itens;
-//    private Acompanhamento progresso;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "id")
+    private List<ProdutoEntity> itens;
+
+    @Column(name = "total")
+    private BigDecimal total;
+
+    @Column(name = "status")
+    private Acompanhamento acompanhamento;
 }
