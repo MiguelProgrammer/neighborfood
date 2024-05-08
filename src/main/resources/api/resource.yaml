@@ -267,11 +267,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Produto'
-        total:
-          type: number
-          format: double
-        status:
-          $ref: '#/components/schemas/Acompanhamento'
 
     Produto:
       type: object
@@ -289,8 +284,13 @@ components:
     AcompanhamentoResponse:
       type: object
       properties:
-        statusPedido:
+        pedido:
           $ref: '#/components/schemas/Pedido'
+        status:
+          $ref: '#/components/schemas/Acompanhamento'
+        total:
+          type: number
+          format: double
 
 
 

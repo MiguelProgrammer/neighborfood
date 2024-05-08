@@ -20,12 +20,12 @@ import jakarta.annotation.Generated;
  * Produto
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-05-07T23:47:14.174480-03:00[America/Sao_Paulo]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-05-08T07:51:34.385242400-03:00[America/Sao_Paulo]")
 public class Produto {
 
   private String nome;
 
-  private Double preco;
+  private java.math.BigDecimal preco;
 
   private CategoriaCombo categoria;
 
@@ -51,7 +51,7 @@ public class Produto {
     this.nome = nome;
   }
 
-  public Produto preco(Double preco) {
+  public Produto preco(java.math.BigDecimal preco) {
     this.preco = preco;
     return this;
   }
@@ -63,11 +63,11 @@ public class Produto {
   
   @Schema(name = "preco", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("preco")
-  public Double getPreco() {
+  public java.math.BigDecimal getPreco() {
     return preco;
   }
 
-  public void setPreco(Double preco) {
+  public void setPreco(java.math.BigDecimal preco) {
     this.preco = preco;
   }
 

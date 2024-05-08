@@ -111,6 +111,9 @@
                                 <useJakartaEe>true</useJakartaEe>
                                 <validateSpec>true</validateSpec>
                             </configOptions>
+                            <typeMappings>
+                                <typeMapping>Double=java.math.BigDecimal</typeMapping>
+                            </typeMappings>
                         </configuration>
                     </execution>
                 </executions>

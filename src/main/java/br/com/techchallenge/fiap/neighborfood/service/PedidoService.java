@@ -44,6 +44,7 @@ public class PedidoService {
 
         PedidoEntity entity = new PedidoEntity();
         List<ProdutoEntity> produtos = new ArrayList<>();
+
         Optional<ClienteEntity> cliente = clienteRepository.findById(pedido.getIdCliente());
         if (!cliente.isPresent()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -54,14 +55,20 @@ public class PedidoService {
         pedido.getItens().forEach(pr -> {
             produtos.add(mapper.map(pr, ProdutoEntity.class));
         });
+
         entity.setItens(produtos);
-        entity.setAcompanhamento(Acompanhamento.RECEBIDO);
+
         pedido.getItens().forEach(pr -> {
-            entity.setTotal(entity.getTotal().add(BigDecimal.valueOf(pr.getPreco())));
+            entity.setTotal(entity.getTotal().add(pr.getPreco()));
         });
 
+        entity.setAcompanhamento(Acompanhamento.RECEBIDO);
+        PedidoEntity pedidoCriado = pedidoRepository.save(entity);
+
         AcompanhamentoResponse response = new AcompanhamentoResponse();
-        response.setStatusPedido(mapper.map(pedidoRepository.save(entity), Pedido.class));
+        response.setTotal(pedidoCriado.getTotal());
+        response.setPedido(mapper.map(pedidoCriado, Pedido.class));
+        response.setStatus(pedidoCriado.getAcompanhamento());
         return ResponseEntity.ok(response);
     }
 }

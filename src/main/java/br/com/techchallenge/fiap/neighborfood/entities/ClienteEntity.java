@@ -38,6 +38,6 @@ public class ClienteEntity implements Serializable {
     private String cpf;
 
     @Column(name = "pedidos")
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "pedido")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "id")
     private Set<PedidoEntity> pedidos = new HashSet<>();
 }

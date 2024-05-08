@@ -29,12 +29,14 @@ public class PedidoEntity implements Serializable {
     @Column(name = "id_cliente")
     private Long idCliente;
 
+    @Column(name = "itens")
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "id")
     private List<ProdutoEntity> itens;
 
     @Column(name = "total")
-    private BigDecimal total;
+    private BigDecimal total = BigDecimal.ZERO;
 
     @Column(name = "status")
+    @Enumerated(EnumType.STRING)
     private Acompanhamento acompanhamento;
 }
