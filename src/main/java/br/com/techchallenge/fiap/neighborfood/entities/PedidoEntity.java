@@ -1,12 +1,14 @@
 package br.com.techchallenge.fiap.neighborfood.entities;
 
 import br.com.techchallenge.fiap.model.Acompanhamento;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 
 @Getter
@@ -16,22 +18,20 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "pedido")
-@SequenceGenerator(name = "pedido_sequence", initialValue = 1)
+@JsonIgnoreProperties({"idPedido"})
 public class PedidoEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(name = "id_cliente")
     private Long idCliente;
 
-    @Column(name = "itens")
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "id")
-    private List<ProdutoEntity> itens;
+    @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<ProdutoEntity> itens = new HashSet<>();
 
     @Column(name = "total")
     private BigDecimal total = BigDecimal.ZERO;

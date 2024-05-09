@@ -4,7 +4,9 @@ br\com\techchallenge\fiap\neighborfood\entities\PedidoEntity.class
 br\com\techchallenge\fiap\neighborfood\model\ClienteDTO.class
 br\com\techchallenge\fiap\model\Acompanhamento.class
 br\com\techchallenge\fiap\neighborfood\repository\ClienteRepository.class
+br\com\techchallenge\fiap\neighborfood\entities\PagamentoEntity$PagamentoEntityBuilder.class
 br\com\techchallenge\fiap\neighborfood\model\CampanhaDTO.class
+br\com\techchallenge\fiap\neighborfood\entities\PagamentoEntity.class
 br\com\techchallenge\fiap\model\CategoriaCombo.class
 br\com\techchallenge\fiap\neighborfood\model\ItensDTO.class
 br\com\techchallenge\fiap\neighborfood\service\AcompanhamentoService.class
@@ -16,7 +18,6 @@ br\com\techchallenge\fiap\neighborfood\service\PedidoService.class
 br\com\techchallenge\fiap\neighborfood\model\PedidoDTO.class
 br\com\techchallenge\fiap\neighborfood\entities\PedidoEntity$PedidoEntityBuilder.class
 br\com\techchallenge\fiap\neighborfood\resources\api\LanchoneteControllerImpl.class
-br\com\techchallenge\fiap\neighborfood\service\Pagamento.class
 br\com\techchallenge\fiap\neighborfood\model\PagamentoDTO.class
 br\com\techchallenge\fiap\neighborfood\NeighborfoodApplication.class
 br\com\techchallenge\fiap\neighborfood\entities\ProdutoEntity$ProdutoEntityBuilder.class
@@ -27,7 +28,10 @@ br\com\techchallenge\fiap\model\Mimo.class
 br\com\techchallenge\fiap\neighborfood\repository\PedidoRepository.class
 br\com\techchallenge\fiap\neighborfood\service\Cliente.class
 br\com\techchallenge\fiap\neighborfood\service\Estoque.class
+br\com\techchallenge\fiap\neighborfood\repository\ProdutoRepository.class
 br\com\techchallenge\fiap\model\AcompanhamentoResponse.class
+br\com\techchallenge\fiap\neighborfood\service\PagamentoService.class
 br\com\techchallenge\fiap\neighborfood\entities\ProdutoEntity.class
 br\com\techchallenge\fiap\model\Pagamento.class
+br\com\techchallenge\fiap\neighborfood\repository\PagamentoRepository.class
 br\com\techchallenge\fiap\neighborfood\entities\ClienteEntity$ClienteEntityBuilder.class

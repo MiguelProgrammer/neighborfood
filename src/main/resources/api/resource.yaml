@@ -119,7 +119,7 @@ paths:
         '400':
           description: request inválida
 
-  /neighborfood/acompanhamento/{idpedido}:
+  /neighborfood/acompanhamento/{idPedido}:
     get:
       tags:
         - follow-up
@@ -127,7 +127,7 @@ paths:
       description: Retorna o status de um pedido
       operationId: findOrderByIdOrder
       parameters:
-        - name: idpedido
+        - name: idPedido
           in: path
           description: id do pedido
           required: true
@@ -260,6 +260,9 @@ components:
     Pedido:
       type: object
       properties:
+        id:
+          type: integer
+          format: int64
         idCliente:
           type: integer
           format: int64

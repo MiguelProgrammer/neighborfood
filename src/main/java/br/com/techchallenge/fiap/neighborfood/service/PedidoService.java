@@ -4,22 +4,23 @@
 
 package br.com.techchallenge.fiap.neighborfood.service;
 
-import br.com.techchallenge.fiap.model.*;
+import br.com.techchallenge.fiap.model.Acompanhamento;
+import br.com.techchallenge.fiap.model.AcompanhamentoResponse;
+import br.com.techchallenge.fiap.model.CategoriaCombo;
+import br.com.techchallenge.fiap.model.Pedido;
 import br.com.techchallenge.fiap.neighborfood.entities.ClienteEntity;
 import br.com.techchallenge.fiap.neighborfood.entities.PedidoEntity;
 import br.com.techchallenge.fiap.neighborfood.entities.ProdutoEntity;
 import br.com.techchallenge.fiap.neighborfood.repository.ClienteRepository;
 import br.com.techchallenge.fiap.neighborfood.repository.PedidoRepository;
+import br.com.techchallenge.fiap.neighborfood.repository.ProdutoRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 public class PedidoService {
@@ -29,6 +30,9 @@ public class PedidoService {
 
     @Autowired
     private PedidoRepository pedidoRepository;
+
+    @Autowired
+    private ProdutoRepository produtoRepository;
 
     private ModelMapper mapper = new ModelMapper();
 
@@ -42,28 +46,27 @@ public class PedidoService {
 
     public ResponseEntity<AcompanhamentoResponse> pedido(Pedido pedido) {
 
-        PedidoEntity entity = new PedidoEntity();
-        List<ProdutoEntity> produtos = new ArrayList<>();
+        PedidoEntity entity = mapper.map(pedido, PedidoEntity.class);
+        Set<ProdutoEntity> produtos = new HashSet<>();
 
-        Optional<ClienteEntity> cliente = clienteRepository.findById(pedido.getIdCliente());
+        Optional<ClienteEntity> cliente = clienteRepository.findById(entity.getIdCliente());
         if (!cliente.isPresent()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
 
-        entity.setIdCliente(cliente.get().getId());
-
         pedido.getItens().forEach(pr -> {
             produtos.add(mapper.map(pr, ProdutoEntity.class));
-        });
-
-        entity.setItens(produtos);
-
-        pedido.getItens().forEach(pr -> {
             entity.setTotal(entity.getTotal().add(pr.getPreco()));
         });
 
         entity.setAcompanhamento(Acompanhamento.RECEBIDO);
+        entity.setItens(produtos);
         PedidoEntity pedidoCriado = pedidoRepository.save(entity);
+        pedidoCriado.getItens().forEach(pr -> {
+            pr.setIdPedido(pedidoCriado.getId());
+        });
+        pedidoRepository.saveAndFlush(pedidoCriado);
+
 
         AcompanhamentoResponse response = new AcompanhamentoResponse();
         response.setTotal(pedidoCriado.getTotal());

@@ -8,6 +8,7 @@ package br.com.techchallenge.fiap.neighborfood.resources.api;
 import _generated_sources_swagger.NeighborfoodApi;
 import br.com.techchallenge.fiap.model.*;
 import br.com.techchallenge.fiap.neighborfood.service.LoginService;
+import br.com.techchallenge.fiap.neighborfood.service.PagamentoService;
 import br.com.techchallenge.fiap.neighborfood.service.PedidoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -24,6 +25,9 @@ public class LanchoneteControllerImpl implements NeighborfoodApi {
     @Autowired
     private PedidoService pedidoService;
 
+    @Autowired
+    private PagamentoService pagamentoService;
+
     @Override
     public ResponseEntity<Object> login(ClienteRequest clienteRequest) {
         return acesso.login(clienteRequest);
@@ -39,11 +43,9 @@ public class LanchoneteControllerImpl implements NeighborfoodApi {
         return ResponseEntity.ok(pedidoService.menuOpcionais());
     }
 
-
-
     @Override
     public ResponseEntity<AcompanhamentoResponse> payment(Pagamento pagamento) {
-        return NeighborfoodApi.super.payment(pagamento);
+        return ResponseEntity.ok(pagamentoService.pagamento(pagamento));
     }
 
     @Override

@@ -21,13 +21,35 @@ import jakarta.annotation.Generated;
  * Pedido
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-05-08T07:51:34.385242400-03:00[America/Sao_Paulo]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-05-09T00:20:56.815186900-03:00[America/Sao_Paulo]")
 public class Pedido {
+
+  private Long id;
 
   private Long idCliente;
 
   @Valid
   private List<@Valid Produto> itens;
+
+  public Pedido id(Long id) {
+    this.id = id;
+    return this;
+  }
+
+  /**
+   * Get id
+   * @return id
+  */
+  
+  @Schema(name = "id", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("id")
+  public Long getId() {
+    return id;
+  }
+
+  public void setId(Long id) {
+    this.id = id;
+  }
 
   public Pedido idCliente(Long idCliente) {
     this.idCliente = idCliente;
@@ -86,19 +108,21 @@ public class Pedido {
       return false;
     }
     Pedido pedido = (Pedido) o;
-    return Objects.equals(this.idCliente, pedido.idCliente) &&
+    return Objects.equals(this.id, pedido.id) &&
+        Objects.equals(this.idCliente, pedido.idCliente) &&
         Objects.equals(this.itens, pedido.itens);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(idCliente, itens);
+    return Objects.hash(id, idCliente, itens);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class Pedido {\n");
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    idCliente: ").append(toIndentedString(idCliente)).append("\n");
     sb.append("    itens: ").append(toIndentedString(itens)).append("\n");
     sb.append("}");

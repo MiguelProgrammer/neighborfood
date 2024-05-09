@@ -38,7 +38,7 @@ import java.util.Map;
 import java.util.Optional;
 import jakarta.annotation.Generated;
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-05-08T07:51:34.385242400-03:00[America/Sao_Paulo]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-05-09T00:20:56.815186900-03:00[America/Sao_Paulo]")
 @Validated
 @Tag(name = "follow-up", description = "Acompanhar status do pedido")
 public interface NeighborfoodApi {
@@ -48,10 +48,10 @@ public interface NeighborfoodApi {
     }
 
     /**
-     * GET /neighborfood/acompanhamento/{idpedido} : Procura o status de um pedido
+     * GET /neighborfood/acompanhamento/{idPedido} : Procura o status de um pedido
      * Retorna o status de um pedido
      *
-     * @param idpedido id do pedido (required)
+     * @param idPedido id do pedido (required)
      * @return successful operation (status code 200)
      *         or Id inválido (status code 400)
      *         or Pedido não encontrado (status code 404)
@@ -71,21 +71,21 @@ public interface NeighborfoodApi {
     )
     @RequestMapping(
         method = RequestMethod.GET,
-        value = "/neighborfood/acompanhamento/{idpedido}",
+        value = "/neighborfood/acompanhamento/{idPedido}",
         produces = { "application/json" }
     )
     default ResponseEntity<AcompanhamentoResponse> _findOrderByIdOrder(
-        @Parameter(name = "idpedido", description = "id do pedido", required = true, in = ParameterIn.PATH) @PathVariable("idpedido") Long idpedido
+        @Parameter(name = "idPedido", description = "id do pedido", required = true, in = ParameterIn.PATH) @PathVariable("idPedido") Long idPedido
     ) {
-        return findOrderByIdOrder(idpedido);
+        return findOrderByIdOrder(idPedido);
     }
 
     // Override this method
-    default  ResponseEntity<AcompanhamentoResponse> findOrderByIdOrder(Long idpedido) {
+    default  ResponseEntity<AcompanhamentoResponse> findOrderByIdOrder(Long idPedido) {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "{ \"total\" : 1.4658129805029452, \"pedido\" : { \"idCliente\" : 0, \"Itens\" : [ { \"preco\" : 6.027456183070403, \"nome\" : \"nome\", \"descricao\" : \"descricao\" }, { \"preco\" : 6.027456183070403, \"nome\" : \"nome\", \"descricao\" : \"descricao\" } ] } }";
+                    String exampleString = "{ \"total\" : 5.962133916683182, \"pedido\" : { \"idCliente\" : 6, \"Itens\" : [ { \"preco\" : 1.4658129805029452, \"nome\" : \"nome\", \"descricao\" : \"descricao\" }, { \"preco\" : 1.4658129805029452, \"nome\" : \"nome\", \"descricao\" : \"descricao\" } ], \"id\" : 0 } }";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
                     break;
                 }
@@ -275,7 +275,7 @@ public interface NeighborfoodApi {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "{ \"total\" : 1.4658129805029452, \"pedido\" : { \"idCliente\" : 0, \"Itens\" : [ { \"preco\" : 6.027456183070403, \"nome\" : \"nome\", \"descricao\" : \"descricao\" }, { \"preco\" : 6.027456183070403, \"nome\" : \"nome\", \"descricao\" : \"descricao\" } ] } }";
+                    String exampleString = "{ \"total\" : 5.962133916683182, \"pedido\" : { \"idCliente\" : 6, \"Itens\" : [ { \"preco\" : 1.4658129805029452, \"nome\" : \"nome\", \"descricao\" : \"descricao\" }, { \"preco\" : 1.4658129805029452, \"nome\" : \"nome\", \"descricao\" : \"descricao\" } ], \"id\" : 0 } }";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
                     break;
                 }
@@ -325,7 +325,7 @@ public interface NeighborfoodApi {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "{ \"total\" : 1.4658129805029452, \"pedido\" : { \"idCliente\" : 0, \"Itens\" : [ { \"preco\" : 6.027456183070403, \"nome\" : \"nome\", \"descricao\" : \"descricao\" }, { \"preco\" : 6.027456183070403, \"nome\" : \"nome\", \"descricao\" : \"descricao\" } ] } }";
+                    String exampleString = "{ \"total\" : 5.962133916683182, \"pedido\" : { \"idCliente\" : 6, \"Itens\" : [ { \"preco\" : 1.4658129805029452, \"nome\" : \"nome\", \"descricao\" : \"descricao\" }, { \"preco\" : 1.4658129805029452, \"nome\" : \"nome\", \"descricao\" : \"descricao\" } ], \"id\" : 0 } }";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
                     break;
                 }
