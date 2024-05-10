@@ -6,6 +6,7 @@ br\com\techchallenge\fiap\model\Acompanhamento.class
 br\com\techchallenge\fiap\neighborfood\repository\ClienteRepository.class
 br\com\techchallenge\fiap\neighborfood\entities\PagamentoEntity$PagamentoEntityBuilder.class
 br\com\techchallenge\fiap\neighborfood\model\CampanhaDTO.class
+br\com\techchallenge\fiap\neighborfood\service\ClienteService.class
 br\com\techchallenge\fiap\neighborfood\entities\PagamentoEntity.class
 br\com\techchallenge\fiap\model\CategoriaCombo.class
 br\com\techchallenge\fiap\neighborfood\model\ItensDTO.class
@@ -26,12 +27,11 @@ br\com\techchallenge\fiap\model\Produto.class
 br\com\techchallenge\fiap\neighborfood\model\ProdutoDTO.class
 br\com\techchallenge\fiap\model\Mimo.class
 br\com\techchallenge\fiap\neighborfood\repository\PedidoRepository.class
-br\com\techchallenge\fiap\neighborfood\service\Cliente.class
-br\com\techchallenge\fiap\neighborfood\service\Estoque.class
 br\com\techchallenge\fiap\neighborfood\repository\ProdutoRepository.class
 br\com\techchallenge\fiap\model\AcompanhamentoResponse.class
 br\com\techchallenge\fiap\neighborfood\service\PagamentoService.class
 br\com\techchallenge\fiap\neighborfood\entities\ProdutoEntity.class
 br\com\techchallenge\fiap\model\Pagamento.class
 br\com\techchallenge\fiap\neighborfood\repository\PagamentoRepository.class
+br\com\techchallenge\fiap\neighborfood\service\EstoqueService.class
 br\com\techchallenge\fiap\neighborfood\entities\ClienteEntity$ClienteEntityBuilder.class

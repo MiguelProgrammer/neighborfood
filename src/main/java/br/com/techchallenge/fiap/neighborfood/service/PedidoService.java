@@ -18,10 +18,15 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.scheduling.annotation.EnableScheduling;
+import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
 
+@Component
+@EnableScheduling
 @Service
 public class PedidoService {
 
@@ -72,6 +77,22 @@ public class PedidoService {
         response.setTotal(pedidoCriado.getTotal());
         response.setPedido(mapper.map(pedidoCriado, Pedido.class));
         response.setStatus(pedidoCriado.getAcompanhamento());
+
+
+        finalizaPedido(pedidoCriado);
+
         return ResponseEntity.ok(response);
     }
+
+    @Scheduled(cron = "3000")
+    private void finalizaPedido(PedidoEntity pedido) {
+
+        AcompanhamentoResponse response = new AcompanhamentoResponse();
+        response.setTotal(pedido.getTotal());
+        response.setPedido(mapper.map(pedido, Pedido.class));
+        response.setStatus(Acompanhamento.PRONTO);
+        PedidoEntity entity = pedidoRepository.saveAndFlush(pedido);
+        System.out.println(pedido);
+    }
+
 }

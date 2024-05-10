@@ -1,10 +1,8 @@
 C:\Users\Miguel Silva\Documents\Pos\project\neighborfood\src\main\java\br\com\techchallenge\fiap\neighborfood\service\PedidoService.java
 C:\Users\Miguel Silva\Documents\Pos\project\neighborfood\target\generated-sources\openapi\src\main\java\br\com\techchallenge\fiap\model\Produto.java
-C:\Users\Miguel Silva\Documents\Pos\project\neighborfood\src\main\java\br\com\techchallenge\fiap\neighborfood\service\Cliente.java
 C:\Users\Miguel Silva\Documents\Pos\project\neighborfood\src\main\java\br\com\techchallenge\fiap\neighborfood\service\PagamentoService.java
 C:\Users\Miguel Silva\Documents\Pos\project\neighborfood\target\generated-sources\openapi\src\main\java\_generated_sources_swagger\NeighborfoodApi.java
 C:\Users\Miguel Silva\Documents\Pos\project\neighborfood\src\main\java\br\com\techchallenge\fiap\neighborfood\entities\ProdutoEntity.java
-C:\Users\Miguel Silva\Documents\Pos\project\neighborfood\src\main\java\br\com\techchallenge\fiap\neighborfood\service\Estoque.java
 C:\Users\Miguel Silva\Documents\Pos\project\neighborfood\src\main\java\br\com\techchallenge\fiap\neighborfood\repository\PagamentoRepository.java
 C:\Users\Miguel Silva\Documents\Pos\project\neighborfood\src\main\java\br\com\techchallenge\fiap\neighborfood\entities\ClienteEntity.java
 C:\Users\Miguel Silva\Documents\Pos\project\neighborfood\src\main\java\br\com\techchallenge\fiap\neighborfood\entities\PedidoEntity.java
@@ -14,6 +12,7 @@ C:\Users\Miguel Silva\Documents\Pos\project\neighborfood\src\main\java\br\com\te
 C:\Users\Miguel Silva\Documents\Pos\project\neighborfood\src\main\java\br\com\techchallenge\fiap\neighborfood\model\ComboDTO.java
 C:\Users\Miguel Silva\Documents\Pos\project\neighborfood\target\generated-sources\openapi\src\main\java\br\com\techchallenge\fiap\model\ClienteRequest.java
 C:\Users\Miguel Silva\Documents\Pos\project\neighborfood\src\main\java\br\com\techchallenge\fiap\neighborfood\model\PagamentoDTO.java
+C:\Users\Miguel Silva\Documents\Pos\project\neighborfood\src\main\java\br\com\techchallenge\fiap\neighborfood\service\ClienteService.java
 C:\Users\Miguel Silva\Documents\Pos\project\neighborfood\target\generated-sources\openapi\src\main\java\br\com\techchallenge\fiap\model\Acompanhamento.java
 C:\Users\Miguel Silva\Documents\Pos\project\neighborfood\target\generated-sources\openapi\src\main\java\br\com\techchallenge\fiap\model\AcompanhamentoResponse.java
 C:\Users\Miguel Silva\Documents\Pos\project\neighborfood\target\generated-sources\openapi\src\main\java\br\com\techchallenge\fiap\model\Pagamento.java
@@ -29,5 +28,6 @@ C:\Users\Miguel Silva\Documents\Pos\project\neighborfood\src\main\java\br\com\te
 C:\Users\Miguel Silva\Documents\Pos\project\neighborfood\src\main\java\br\com\techchallenge\fiap\neighborfood\model\PedidoDTO.java
 C:\Users\Miguel Silva\Documents\Pos\project\neighborfood\target\generated-sources\openapi\src\main\java\_generated_sources_swagger\ApiUtil.java
 C:\Users\Miguel Silva\Documents\Pos\project\neighborfood\src\main\java\br\com\techchallenge\fiap\neighborfood\entities\PagamentoEntity.java
+C:\Users\Miguel Silva\Documents\Pos\project\neighborfood\src\main\java\br\com\techchallenge\fiap\neighborfood\service\EstoqueService.java
 C:\Users\Miguel Silva\Documents\Pos\project\neighborfood\src\main\java\br\com\techchallenge\fiap\neighborfood\model\ProdutoDTO.java
 C:\Users\Miguel Silva\Documents\Pos\project\neighborfood\src\main\java\br\com\techchallenge\fiap\neighborfood\NeighborfoodApplication.java
