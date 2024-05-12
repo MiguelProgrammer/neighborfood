@@ -2,11 +2,8 @@ package br.com.techchallenge.fiap.model;
 
 import java.net.URI;
 import java.util.Objects;
-import br.com.techchallenge.fiap.model.Produto;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import java.util.ArrayList;
-import java.util.List;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
 import jakarta.validation.Valid;
@@ -18,40 +15,15 @@ import java.util.*;
 import jakarta.annotation.Generated;
 
 /**
- * Pedido
+ * MimoRequest
  */
 
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-05-12T00:39:16.545662600-03:00[America/Sao_Paulo]")
-public class Pedido {
-
-  private Long id;
+public class MimoRequest {
 
   private Long idCliente;
 
-  @Valid
-  private List<@Valid Produto> itens;
-
-  public Pedido id(Long id) {
-    this.id = id;
-    return this;
-  }
-
-  /**
-   * Get id
-   * @return id
-  */
-  
-  @Schema(name = "id", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
-  @JsonProperty("id")
-  public Long getId() {
-    return id;
-  }
-
-  public void setId(Long id) {
-    this.id = id;
-  }
-
-  public Pedido idCliente(Long idCliente) {
+  public MimoRequest idCliente(Long idCliente) {
     this.idCliente = idCliente;
     return this;
   }
@@ -71,34 +43,6 @@ public class Pedido {
     this.idCliente = idCliente;
   }
 
-  public Pedido itens(List<@Valid Produto> itens) {
-    this.itens = itens;
-    return this;
-  }
-
-  public Pedido addItensItem(Produto itensItem) {
-    if (this.itens == null) {
-      this.itens = new ArrayList<>();
-    }
-    this.itens.add(itensItem);
-    return this;
-  }
-
-  /**
-   * Get itens
-   * @return itens
-  */
-  @Valid 
-  @Schema(name = "Itens", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
-  @JsonProperty("Itens")
-  public List<@Valid Produto> getItens() {
-    return itens;
-  }
-
-  public void setItens(List<@Valid Produto> itens) {
-    this.itens = itens;
-  }
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -107,24 +51,20 @@ public class Pedido {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    Pedido pedido = (Pedido) o;
-    return Objects.equals(this.id, pedido.id) &&
-        Objects.equals(this.idCliente, pedido.idCliente) &&
-        Objects.equals(this.itens, pedido.itens);
+    MimoRequest mimoRequest = (MimoRequest) o;
+    return Objects.equals(this.idCliente, mimoRequest.idCliente);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, idCliente, itens);
+    return Objects.hash(idCliente);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class Pedido {\n");
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    sb.append("class MimoRequest {\n");
     sb.append("    idCliente: ").append(toIndentedString(idCliente)).append("\n");
-    sb.append("    itens: ").append(toIndentedString(itens)).append("\n");
     sb.append("}");
     return sb.toString();
   }

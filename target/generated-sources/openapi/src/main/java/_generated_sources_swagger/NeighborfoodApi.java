@@ -6,12 +6,12 @@
 package _generated_sources_swagger;
 
 import br.com.techchallenge.fiap.model.AcompanhamentoResponse;
-import br.com.techchallenge.fiap.model.CategoriaCombo;
+import br.com.techchallenge.fiap.model.AdminRequest;
 import br.com.techchallenge.fiap.model.ClienteRequest;
 import br.com.techchallenge.fiap.model.Mimo;
+import br.com.techchallenge.fiap.model.MimoRequest;
 import br.com.techchallenge.fiap.model.Pagamento;
 import br.com.techchallenge.fiap.model.Pedido;
-import br.com.techchallenge.fiap.model.Produto;
 import io.swagger.v3.oas.annotations.ExternalDocumentation;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -38,7 +38,7 @@ import java.util.Map;
 import java.util.Optional;
 import jakarta.annotation.Generated;
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-05-10T00:51:13.584459400-03:00[America/Sao_Paulo]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-05-12T00:39:16.545662600-03:00[America/Sao_Paulo]")
 @Validated
 @Tag(name = "follow-up", description = "Acompanhar status do pedido")
 public interface NeighborfoodApi {
@@ -86,54 +86,6 @@ public interface NeighborfoodApi {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
                     String exampleString = "{ \"total\" : 5.962133916683182, \"pedido\" : { \"idCliente\" : 6, \"Itens\" : [ { \"preco\" : 1.4658129805029452, \"nome\" : \"nome\", \"descricao\" : \"descricao\" }, { \"preco\" : 1.4658129805029452, \"nome\" : \"nome\", \"descricao\" : \"descricao\" } ], \"id\" : 0 } }";
-                    ApiUtil.setExampleResponse(request, "application/json", exampleString);
-                    break;
-                }
-            }
-        });
-        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
-
-    }
-
-
-    /**
-     * GET /neighborfood/painel/estoque : Gerencia produtos e categorias
-     * Lista categorias
-     *
-     * @return Lista categorias disponíveis (status code 200)
-     *         or Categoria inválida (status code 400)
-     *         or Categorias não cadastradas (status code 404)
-     */
-    @Operation(
-        operationId = "listCategory",
-        summary = "Gerencia produtos e categorias",
-        description = "Lista categorias",
-        tags = { "stock" },
-        responses = {
-            @ApiResponse(responseCode = "200", description = "Lista categorias disponíveis", content = {
-                @Content(mediaType = "application/json", schema = @Schema(implementation = CategoriaCombo.class))
-            }),
-            @ApiResponse(responseCode = "400", description = "Categoria inválida"),
-            @ApiResponse(responseCode = "404", description = "Categorias não cadastradas")
-        }
-    )
-    @RequestMapping(
-        method = RequestMethod.GET,
-        value = "/neighborfood/painel/estoque",
-        produces = { "application/json" }
-    )
-    default ResponseEntity<CategoriaCombo> _listCategory(
-        
-    ) {
-        return listCategory();
-    }
-
-    // Override this method
-    default  ResponseEntity<CategoriaCombo> listCategory() {
-        getRequest().ifPresent(request -> {
-            for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
-                if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "null";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
                     break;
                 }
@@ -193,6 +145,54 @@ public interface NeighborfoodApi {
 
 
     /**
+     * POST /neighborfood/painel/login : Cadastrar adm, logar adm
+     * Identificação do adm
+     *
+     * @param adminRequest Identifica um adminsitrador logado (optional)
+     * @return Usuário logado (status code 200)
+     *         or request inválida (status code 400)
+     */
+    @Operation(
+        operationId = "loginAdm",
+        summary = "Cadastrar adm, logar adm",
+        description = "Identificação do adm",
+        tags = { "loginAdm" },
+        responses = {
+            @ApiResponse(responseCode = "200", description = "Usuário logado", content = {
+                @Content(mediaType = "application/json", schema = @Schema(implementation = Object.class))
+            }),
+            @ApiResponse(responseCode = "400", description = "request inválida")
+        }
+    )
+    @RequestMapping(
+        method = RequestMethod.POST,
+        value = "/neighborfood/painel/login",
+        produces = { "application/json" },
+        consumes = { "application/json" }
+    )
+    default ResponseEntity<Object> _loginAdm(
+        @Parameter(name = "AdminRequest", description = "Identifica um adminsitrador logado") @Valid @RequestBody(required = false) AdminRequest adminRequest
+    ) {
+        return loginAdm(adminRequest);
+    }
+
+    // Override this method
+    default  ResponseEntity<Object> loginAdm(AdminRequest adminRequest) {
+        getRequest().ifPresent(request -> {
+            for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
+                if (mediaType.isCompatibleWith(MediaType.valueOf(""))) {
+                    String exampleString = "";
+                    ApiUtil.setExampleResponse(request, "", exampleString);
+                    break;
+                }
+            }
+        });
+        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
+
+    }
+
+
+    /**
      * GET /neighborfood/menu : Apresenta o menu com itens opcionais
      * menu de opções
      *
@@ -206,7 +206,7 @@ public interface NeighborfoodApi {
         tags = { "menu" },
         responses = {
             @ApiResponse(responseCode = "200", description = "Apresenta os itens de menu", content = {
-                @Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = String.class)))
+                @Content(mediaType = "application/json", schema = @Schema(implementation = String.class))
             }),
             @ApiResponse(responseCode = "400", description = "request inválida")
         }
@@ -216,23 +216,14 @@ public interface NeighborfoodApi {
         value = "/neighborfood/menu",
         produces = { "application/json" }
     )
-    default ResponseEntity<List<String>> _menu(
+    default ResponseEntity<String> _menu(
         
     ) {
         return menu();
     }
 
     // Override this method
-    default  ResponseEntity<List<String>> menu() {
-        getRequest().ifPresent(request -> {
-            for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
-                if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "[ \"\", \"\" ]";
-                    ApiUtil.setExampleResponse(request, "application/json", exampleString);
-                    break;
-                }
-            }
-        });
+    default  ResponseEntity<String> menu() {
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
 
     }
@@ -376,48 +367,107 @@ public interface NeighborfoodApi {
 
 
     /**
-     * POST /neighborfood/painel/produto/cadastro : Cadastra produtos
-     * Cadastra produtos a partir da uma categoria
+     * POST /neighborfood/painel/cadastro : Se cadastrar, logar
+     * Cria cliente
      *
-     * @param produto  (required)
-     * @return Erro ao cadastrar (status code 200)
-     *         or Id inválido (status code 400)
-     *         or Produto inválido (status code 404)
+     * @param adminRequest Cria um novo administrador (optional)
+     * @return Usuário cadastrao (status code 200)
+     *         or request inválida (status code 400)
      */
     @Operation(
-        operationId = "registerProduct",
-        summary = "Cadastra produtos",
-        description = "Cadastra produtos a partir da uma categoria",
-        tags = { "products" },
+        operationId = "registerAdm",
+        summary = "Se cadastrar, logar",
+        description = "Cria cliente",
+        tags = { "registerAdm" },
         responses = {
-            @ApiResponse(responseCode = "200", description = "Erro ao cadastrar"),
-            @ApiResponse(responseCode = "400", description = "Id inválido"),
-            @ApiResponse(responseCode = "404", description = "Produto inválido")
+            @ApiResponse(responseCode = "200", description = "Usuário cadastrao", content = {
+                @Content(mediaType = "application/json", schema = @Schema(implementation = Object.class))
+            }),
+            @ApiResponse(responseCode = "400", description = "request inválida")
         }
     )
     @RequestMapping(
         method = RequestMethod.POST,
-        value = "/neighborfood/painel/produto/cadastro",
+        value = "/neighborfood/painel/cadastro",
+        produces = { "application/json" },
         consumes = { "application/json" }
     )
-    default ResponseEntity<Void> _registerProduct(
-        @Parameter(name = "Produto", description = "", required = true) @Valid @RequestBody Produto produto
+    default ResponseEntity<Object> _registerAdm(
+        @Parameter(name = "AdminRequest", description = "Cria um novo administrador") @Valid @RequestBody(required = false) AdminRequest adminRequest
     ) {
-        return registerProduct(produto);
+        return registerAdm(adminRequest);
     }
 
     // Override this method
-    default  ResponseEntity<Void> registerProduct(Produto produto) {
+    default  ResponseEntity<Object> registerAdm(AdminRequest adminRequest) {
+        getRequest().ifPresent(request -> {
+            for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
+                if (mediaType.isCompatibleWith(MediaType.valueOf(""))) {
+                    String exampleString = "";
+                    ApiUtil.setExampleResponse(request, "", exampleString);
+                    break;
+                }
+            }
+        });
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
 
     }
 
 
     /**
-     * POST /neighborfood/cliente : Envia mimo ao último cliente que realizou um pedido
+     * GET /neighborfood/painel/produto/cadastro/{idAdmin} : Cadastra produtos
+     * Cadastra produtos em lote
+     *
+     * @param idAdmin id identificador do administrador (required)
+     * @return Produtos cadastrados (status code 200)
+     *         or Id inválido (status code 400)
+     *         or Produto inválido (status code 404)
+     */
+    @Operation(
+        operationId = "registerProduct",
+        summary = "Cadastra produtos",
+        description = "Cadastra produtos em lote",
+        tags = { "products" },
+        responses = {
+            @ApiResponse(responseCode = "200", description = "Produtos cadastrados", content = {
+                @Content(mediaType = "application/json", schema = @Schema(implementation = Object.class))
+            }),
+            @ApiResponse(responseCode = "400", description = "Id inválido"),
+            @ApiResponse(responseCode = "404", description = "Produto inválido")
+        }
+    )
+    @RequestMapping(
+        method = RequestMethod.GET,
+        value = "/neighborfood/painel/produto/cadastro/{idAdmin}",
+        produces = { "application/json" }
+    )
+    default ResponseEntity<Object> _registerProduct(
+        @Parameter(name = "idAdmin", description = "id identificador do administrador", required = true, in = ParameterIn.PATH) @PathVariable("idAdmin") Long idAdmin
+    ) {
+        return registerProduct(idAdmin);
+    }
+
+    // Override this method
+    default  ResponseEntity<Object> registerProduct(Long idAdmin) {
+        getRequest().ifPresent(request -> {
+            for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
+                if (mediaType.isCompatibleWith(MediaType.valueOf(""))) {
+                    String exampleString = "";
+                    ApiUtil.setExampleResponse(request, "", exampleString);
+                    break;
+                }
+            }
+        });
+        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
+
+    }
+
+
+    /**
+     * POST /neighborfood/painel/cliente : Envia mimo ao último cliente que realizou um pedido
      * Envia mimo ao cliente
      *
-     * @param mimo  (required)
+     * @param mimoRequest  (required)
      * @return Mimo enviado (status code 200)
      *         or Id inválido (status code 400)
      *         or Mimo não disponível (status code 404)
@@ -428,24 +478,36 @@ public interface NeighborfoodApi {
         description = "Envia mimo ao cliente",
         tags = { "customers" },
         responses = {
-            @ApiResponse(responseCode = "200", description = "Mimo enviado"),
+            @ApiResponse(responseCode = "200", description = "Mimo enviado", content = {
+                @Content(mediaType = "application/json", schema = @Schema(implementation = Mimo.class))
+            }),
             @ApiResponse(responseCode = "400", description = "Id inválido"),
             @ApiResponse(responseCode = "404", description = "Mimo não disponível")
         }
     )
     @RequestMapping(
         method = RequestMethod.POST,
-        value = "/neighborfood/cliente",
+        value = "/neighborfood/painel/cliente",
+        produces = { "application/json" },
         consumes = { "application/json" }
     )
-    default ResponseEntity<Void> _sendBonus(
-        @Parameter(name = "Mimo", description = "", required = true) @Valid @RequestBody Mimo mimo
+    default ResponseEntity<Mimo> _sendBonus(
+        @Parameter(name = "MimoRequest", description = "", required = true) @Valid @RequestBody MimoRequest mimoRequest
     ) {
-        return sendBonus(mimo);
+        return sendBonus(mimoRequest);
     }
 
     // Override this method
-    default  ResponseEntity<Void> sendBonus(Mimo mimo) {
+    default  ResponseEntity<Mimo> sendBonus(MimoRequest mimoRequest) {
+        getRequest().ifPresent(request -> {
+            for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
+                if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
+                    String exampleString = "{ \"codigo\" : \"codigo\", \"desconto\" : 0.8008281904610115, \"idCliente\" : 6 }";
+                    ApiUtil.setExampleResponse(request, "application/json", exampleString);
+                    break;
+                }
+            }
+        });
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
 
     }

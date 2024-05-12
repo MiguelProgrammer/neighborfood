@@ -22,6 +22,9 @@ import java.util.Optional;
 public class PagamentoService {
 
     @Autowired
+    private AcompanhamentoService acompanhamentoService;
+
+    @Autowired
     private PagamentoRepository pagamentoRepository;
 
     @Autowired
@@ -39,11 +42,16 @@ public class PagamentoService {
             PagamentoEntity entity = mapper.map(pagamento, PagamentoEntity.class);
             pagamentoRepository.save(entity);
 
+            System.out.println("Pagamento Aprovado!");
+
             try {
 
-                response.setStatus(Acompanhamento.EM_PREPARACAO);
-                pedid.get().setAcompanhamento(Acompanhamento.EM_PREPARACAO);
+                pedid.get().setStatus(Acompanhamento.EM_PREPARACAO);
                 pedidoRepository.save(pedid.get());
+
+                response.setStatus(Acompanhamento.EM_PREPARACAO);
+
+                System.out.println(acompanhamentoService.sms(response.getStatus()));
 
                 response.setPedido(mapper.map(pedid, Pedido.class));
                 response.setTotal(pedid.get().getTotal());

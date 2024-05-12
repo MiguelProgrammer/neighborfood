@@ -20,7 +20,7 @@ import jakarta.annotation.Generated;
  * Produto
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-05-10T00:51:13.584459400-03:00[America/Sao_Paulo]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-05-12T00:39:16.545662600-03:00[America/Sao_Paulo]")
 public class Produto {
 
   private String nome;
@@ -81,8 +81,8 @@ public class Produto {
    * @return categoria
   */
   @Valid 
-  @Schema(name = "Categoria", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
-  @JsonProperty("Categoria")
+  @Schema(name = "categoria", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("categoria")
   public CategoriaCombo getCategoria() {
     return categoria;
   }

@@ -5,6 +5,7 @@
 package br.com.techchallenge.fiap.neighborfood.entities;
 
 import br.com.techchallenge.fiap.model.CategoriaCombo;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -17,15 +18,23 @@ import java.math.BigDecimal;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "produto")
-@SequenceGenerator(name = "produto_sequence", initialValue = 1)
-public class ProdutoEntity implements Serializable {
+@Table(name = "itens_pedido")
+@JsonIgnoreProperties({"idPedido"})
+@SequenceGenerator(name = "itens_sequence", initialValue = 1)
+public class ItensEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
+
+    @ManyToOne
+    @JoinColumn(name = "pedido_id", insertable=false, updatable=false)
+    private PedidoEntity pedido;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
+    @Column(name = "pedido_id")
+    private Long idPedido;
 
     @Column(name = "nome")
     private String nome;

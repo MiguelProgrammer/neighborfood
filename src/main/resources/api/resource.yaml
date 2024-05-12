@@ -11,7 +11,11 @@ info:
 tags:
   - name: login
     description: "Realizar login, com cpf"
+  - name: loginAdm
+    description: "Realizar login, com cpf"
   - name: register
+    description: "Se cadastrar via nome, email e cpf"
+  - name: registerAdm
     description: "Se cadastrar via nome, email e cpf"
   - name: menu
     description: "Apresenta os opcionais"
@@ -21,8 +25,6 @@ tags:
     description: "Realização do pagamento"
   - name: follow-up
     description: "Acompanhar status do pedido"
-  - name: stock
-    description: "Itens do estoque"
   - name: customers
     description: "Para gerenciamento de campanhas promocionais"
   - name: products
@@ -90,9 +92,7 @@ paths:
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  type: string
+                type: string
         '400':
           description: request inválida
 
@@ -171,7 +171,7 @@ paths:
         '404':
           description: Pedido não encontrado
 
-  /neighborfood/cliente:
+  /neighborfood/painel/cliente:
     post:
       tags:
         - customers
@@ -183,50 +183,88 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Mimo'
+              $ref: '#/components/schemas/MimoRequest'
       responses:
         '200':
           description: Mimo enviado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Mimo'
         '400':
           description: Id inválido
         '404':
           description: Mimo não disponível
 
-  /neighborfood/painel/estoque:
-    get:
-      tags:
-        - stock
-      summary: Gerencia produtos e categorias
-      description: Lista categorias
-      operationId: listCategory
-      responses:
-        '200':
-          description: Lista categorias disponíveis
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/CategoriaCombo'
-        '400':
-          description: Categoria inválida
-        '404':
-          description: Categorias não cadastradas
-
-  /neighborfood/painel/produto/cadastro:
+  /neighborfood/painel/login:
     post:
       tags:
-        - products
-      summary: Cadastra produtos
-      description: Cadastra produtos a partir da uma categoria
-      operationId: registerProduct
+        - loginAdm
+      summary: "Cadastrar adm, logar adm"
+      description: "Identificação do adm"
+      operationId: loginAdm
       requestBody:
-        required: true
+        description: Identifica um adminsitrador logado
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Produto'
+              $ref: '#/components/schemas/AdminRequest'
       responses:
         '200':
-          description: Erro ao cadastrar
+          description: Usuário logado
+          content:
+            application/json:
+              schema:
+                $ref: ""
+        '400':
+          description: request inválida
+
+  /neighborfood/painel/cadastro:
+    post:
+      tags:
+        - registerAdm
+      summary: "Se cadastrar, logar"
+      description: "Cria cliente"
+      operationId: registerAdm
+      requestBody:
+        description: Cria um novo administrador
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AdminRequest'
+      responses:
+        '200':
+          description: Usuário cadastrao
+          content:
+            application/json:
+              schema:
+                $ref: ""
+        '400':
+          description: request inválida
+
+
+  /neighborfood/painel/produto/cadastro/{idAdmin}:
+    get:
+      tags:
+        - products
+      summary: Cadastra produtos
+      description: Cadastra produtos em lote
+      operationId: registerProduct
+      parameters:
+        - name: idAdmin
+          in: path
+          description: id identificador do administrador
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Produtos cadastrados
+          content:
+            application/json:
+              schema:
+                $ref: ""
         '400':
           description: Id inválido
         '404':
@@ -236,6 +274,12 @@ paths:
 components:
   schemas:
 
+    MimoRequest:
+      type: object
+      properties:
+        idCliente:
+          type: integer
+          format: int64
 
     Mimo:
       type: object
@@ -279,7 +323,7 @@ components:
         preco:
           type: number
           format: double
-        Categoria:
+        categoria:
           $ref: '#/components/schemas/CategoriaCombo'
         descricao:
           type: string
@@ -312,6 +356,16 @@ components:
         - ACOMPANHAMENTO
         - BEBIDA
         - SOBREMESA
+
+    AdminRequest:
+      type: object
+      properties:
+        nome:
+          type: string
+        email:
+          type: string
+        cpf:
+          type: string
 
     ClienteRequest:
       type: object

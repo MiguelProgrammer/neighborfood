@@ -17,9 +17,9 @@ import java.math.BigDecimal;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "produto")
-@SequenceGenerator(name = "produto_sequence", initialValue = 1)
-public class ProdutoEntity implements Serializable {
+@Table(name = "estoque")
+@SequenceGenerator(name = "estoque_sequence", initialValue = 1)
+public class EstoqueEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -39,4 +39,7 @@ public class ProdutoEntity implements Serializable {
 
     @Column(name = "descricao")
     private String descricao;
+
+    @Column(name = "img")
+    private String img;
 }
