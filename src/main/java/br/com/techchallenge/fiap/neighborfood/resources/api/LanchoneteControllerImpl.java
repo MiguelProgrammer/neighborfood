@@ -12,8 +12,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 public class LanchoneteControllerImpl implements NeighborfoodApi {
+
+    @Autowired
+    private AdmService admService;
 
     @Autowired
     private NotificacaoService notificacaoService;
@@ -43,9 +48,6 @@ public class LanchoneteControllerImpl implements NeighborfoodApi {
         return acesso.cadastro(clienteRequest);
     }
 
-    /**
-     * @return
-     */
     @Override
     public ResponseEntity<String> menu() {
         return pedidoService.menuOpcionais();
@@ -93,5 +95,32 @@ public class LanchoneteControllerImpl implements NeighborfoodApi {
     @Override
     public ResponseEntity<Mimo> sendBonus(MimoRequest mimo) {
         return notificacaoService.enviaMimos(mimo);
+    }
+
+    /**
+     * GET /neighborfood/painel/pedido/lista/{idAdmin} : Lista de pedidos efetuados contendo seus clientes, itens, status, valores e data de pedido e data de entrega.
+     * Lista os pedidos recebidos
+     *
+     * @param idAdmin id identificador do administrador (required)
+     * @return Lista de pedidos (status code 200)
+     * or Id inválido (status code 400)
+     * or Mimo não disponível (status code 404)
+     */
+    @Override
+    public ResponseEntity<List<AcompanhamentoResponse>> listOrders(Long idAdmin) {
+        return admService.listaPedidos(idAdmin);
+    }
+
+    /**
+     * PUT /neighborfood/pedido/update : Atualizar um pedido
+     * Atualizar itens de um pedido já realizado
+     *
+     * @param pedido atualiar um  pedido (optional)
+     * @return Pedido atualizado (status code 200)
+     * or request inválida (status code 400)
+     */
+    @Override
+    public ResponseEntity<AcompanhamentoResponse> updateOrder(Pedido pedido) {
+        return NeighborfoodApi.super.updateOrder(pedido);
     }
 }

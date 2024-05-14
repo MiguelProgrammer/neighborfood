@@ -9,6 +9,7 @@ import br.com.techchallenge.fiap.neighborfood.entities.AdminEntity;
 import br.com.techchallenge.fiap.neighborfood.entities.EstoqueEntity;
 import br.com.techchallenge.fiap.neighborfood.repository.AdmRepository;
 import br.com.techchallenge.fiap.neighborfood.repository.EstoqueRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,6 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+@Slf4j
 @Service
 public class EstoqueService {
 
@@ -75,10 +77,12 @@ public class EstoqueService {
             });
 
             final String CADASTRO_PRODUTOS =
-                    "_____________________________________________\n\n "
+                    "_____________________________________________\n "
                             + listaProdutos.size() +
-                    " novos produtos foram cadastrados no estoque \n\n" +
+                    " novos produtos foram cadastrados no estoque \n" +
                     "_____________________________________________";
+
+            log.info(CADASTRO_PRODUTOS);
             return ResponseEntity.ok(CADASTRO_PRODUTOS);
         } else {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Usuário não encontrado ou não possui permissão!");

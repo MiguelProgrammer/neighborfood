@@ -16,6 +16,5 @@ public class NeighborfoodApplication {
         Scanner input = new Scanner(System.in);
         SpringApplication.run(NeighborfoodApplication.class, args);
         System.out.println("_______________ Lanchonete NeighborFood _______________");
-        System.out.println("Utilizando o sistema");
     }
 }

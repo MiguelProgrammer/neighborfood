@@ -107,14 +107,14 @@
                         </goals>
                         <configuration>
                             <inputSpec>
-                                ${project.basedir}/src/main/resources/api/resource.yaml
+                                ${project.basedir}/src/main/resources/api/resource.yml
                             </inputSpec>
                             <generatorName>spring</generatorName>
                             <modelPackage>br.com.techchallenge.fiap.model</modelPackage>
                             <apiPackage>$generated-sources/swagger</apiPackage>
                             <configOptions>
                                 <sourceFolder>src/main/java/</sourceFolder>
-                                <delegatePattern>true</delegatePattern>
+                                <delegatePattern>false</delegatePattern>
                                 <interfaceOnly>true</interfaceOnly>
                                 <useJakartaEe>true</useJakartaEe>
                                 <validateSpec>true</validateSpec>

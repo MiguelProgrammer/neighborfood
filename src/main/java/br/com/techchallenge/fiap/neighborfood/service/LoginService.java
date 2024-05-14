@@ -18,7 +18,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.ObjectUtils;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -40,14 +39,16 @@ public class LoginService {
 
     private ModelMapper mapper = new ModelMapper();
 
-    /**
-     * CLIENTE LOGIN
-     */
+    final String MESSAGE = "Usuário não encontrado ou não cadastrado!\n\n" +
+            "Por favor, verifique as informações inseridas.";
+
     public ResponseEntity<Object> login(ClienteRequest clienteRequest) {
+
+
         try {
             ClienteEntity cliente = clienteRepository.findByCpf(clienteRequest.getCpf());
             if (ObjectUtils.isEmpty(cliente)) {
-                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+                return ResponseEntity.ok(MESSAGE);
             } else {
                 return ResponseEntity.ok(mapper.map(cliente, ClienteDTO.class));
             }
@@ -62,7 +63,7 @@ public class LoginService {
         try {
 
             ClienteEntity cliente = clienteRepository.findByCpf(clienteRequest.getCpf());
-            if(ObjectUtils.isEmpty(cliente)) {
+            if (ObjectUtils.isEmpty(cliente)) {
                 if (ObjectUtils.isEmpty(clienteRequest)) {
                     log.info("CLIENTE NÃO SE IDENTIFICADO.");
                     return ResponseEntity.ok(clienteRepository.save(new ClienteEntity()));
@@ -78,31 +79,39 @@ public class LoginService {
         return null;
     }
 
-
-    /**
-     * ADMIN LOGIN
-     */
-
     public ResponseEntity<Object> loginAdm(AdminRequest adminRequest) {
+
         try {
+
             AdminEntity adm = admRepository.findByCpf(adminRequest.getCpf());
+
             if (ObjectUtils.isEmpty(adm)) {
-                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+
+                return ResponseEntity.ok(MESSAGE);
+
             } else {
+
                 AdmDTO map = mapper.map(adm, AdmDTO.class);
                 List<NotificacaoEntity> all = notificacaoRepository.findAll();
                 List<String> notificacoes = new ArrayList<>();
-                if(!ObjectUtils.isEmpty(all)) {
+
+                if (!ObjectUtils.isEmpty(all)) {
+
                     all.forEach(sms -> {
                         notificacoes.add(mapper.map(sms.getDescricao(), String.class));
                     });
+
                     map.setNotificacao(notificacoes);
+
                 }
+
                 return ResponseEntity.ok(map);
             }
 
         } catch (RuntimeException ex) {
+
             System.err.println(ex.getMessage());
+
         }
         return null;
     }
@@ -111,7 +120,7 @@ public class LoginService {
         try {
 
             AdminEntity adm = admRepository.findByCpf(adminRequest.getCpf());
-            if(ObjectUtils.isEmpty(adm)) {
+            if (ObjectUtils.isEmpty(adm)) {
                 if (ObjectUtils.isEmpty(adminRequest)) {
                     log.info("ADM NÃO SE IDENTIFICADO.");
                     return ResponseEntity.ok(admRepository.save(new AdminEntity()));

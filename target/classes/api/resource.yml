@@ -21,6 +21,8 @@ tags:
     description: "Apresenta os opcionais"
   - name: order
     description: "Realização do pedido"
+  - name: orders
+    description: "Lista os pedidos"
   - name: payment
     description: "Realização do pagamento"
   - name: follow-up
@@ -119,6 +121,29 @@ paths:
         '400':
           description: request inválida
 
+  /neighborfood/pedido/update:
+    put:
+      tags:
+        - order
+      summary: Atualizar um pedido
+      description:  Atualizar itens de um pedido já realizado
+      operationId: updateOrder
+      requestBody:
+        description: atualiar um  pedido
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Pedido'
+      responses:
+        '200':
+          description: Pedido atualizado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AcompanhamentoResponse'
+        '400':
+          description: request inválida
+
   /neighborfood/acompanhamento/{idPedido}:
     get:
       tags:
@@ -191,6 +216,35 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Mimo'
+        '400':
+          description: Id inválido
+        '404':
+          description: Mimo não disponível
+
+  /neighborfood/painel/pedido/lista/{idAdmin}:
+    get:
+      tags:
+        - orders
+      summary: Lista de pedidos efetuados contendo seus clientes, itens, status, valores e data de pedido e data de entrega.
+      description: Lista os pedidos recebidos
+      operationId: listOrders
+      parameters:
+        - name: idAdmin
+          in: path
+          description: id identificador do administrador
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Lista de pedidos
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/AcompanhamentoResponse'
+
         '400':
           description: Id inválido
         '404':

@@ -11,6 +11,7 @@ import br.com.techchallenge.fiap.model.Pedido;
 import br.com.techchallenge.fiap.neighborfood.entities.*;
 import br.com.techchallenge.fiap.neighborfood.repository.*;
 import com.google.gson.Gson;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.ObjectUtils;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,7 @@ import org.springframework.stereotype.Service;
 import java.math.BigDecimal;
 import java.util.*;
 
+@Slf4j
 @Service
 public class PedidoService {
 
@@ -106,6 +108,7 @@ public class PedidoService {
             NotificacaoEntity notificacao = new NotificacaoEntity();
             notificacao.setDescricao("Caro adm, por favor, veja a quantia de itens cadastrado no estoque!");
             notificacaoRepository.save(notificacao);
+            log.info("\n\nItens selecionados em falta!\n\n");
             return ResponseEntity.ok(response);
         }
 
