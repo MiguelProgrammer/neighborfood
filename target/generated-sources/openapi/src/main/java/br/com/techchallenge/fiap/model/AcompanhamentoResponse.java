@@ -21,7 +21,7 @@ import jakarta.annotation.Generated;
  * AcompanhamentoResponse
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-05-14T07:58:43.923520700-03:00[America/Sao_Paulo]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-05-15T06:45:52.895238700-03:00[America/Sao_Paulo]")
 public class AcompanhamentoResponse {
 
   private Pedido pedido;

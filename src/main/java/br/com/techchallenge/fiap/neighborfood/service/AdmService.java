@@ -5,15 +5,14 @@
 package br.com.techchallenge.fiap.neighborfood.service;
 
 import br.com.techchallenge.fiap.model.AcompanhamentoResponse;
-import br.com.techchallenge.fiap.neighborfood.entities.AdminEntity;
-import br.com.techchallenge.fiap.neighborfood.entities.PedidoEntity;
-import br.com.techchallenge.fiap.neighborfood.repository.AdmRepository;
-import br.com.techchallenge.fiap.neighborfood.repository.PedidoRepository;
+import br.com.techchallenge.fiap.neighborfood.core.adapters.repository.model.AdminEntity;
+import br.com.techchallenge.fiap.neighborfood.core.adapters.repository.model.PedidoEntity;
+import br.com.techchallenge.fiap.neighborfood.core.adapters.repository.jpa.AdmRepository;
+import br.com.techchallenge.fiap.neighborfood.core.adapters.repository.jpa.PedidoRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.ObjectUtils;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 

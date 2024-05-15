@@ -381,6 +381,8 @@ components:
           $ref: '#/components/schemas/CategoriaCombo'
         descricao:
           type: string
+        img:
+          type: string
 
     AcompanhamentoResponse:
       type: object

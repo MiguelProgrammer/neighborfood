@@ -6,9 +6,9 @@ package br.com.techchallenge.fiap.neighborfood.service;
 
 import br.com.techchallenge.fiap.model.Mimo;
 import br.com.techchallenge.fiap.model.MimoRequest;
-import br.com.techchallenge.fiap.neighborfood.entities.ClienteEntity;
-import br.com.techchallenge.fiap.neighborfood.repository.ClienteRepository;
-import br.com.techchallenge.fiap.neighborfood.repository.NotificacaoRepository;
+import br.com.techchallenge.fiap.neighborfood.core.adapters.repository.model.ClienteEntity;
+import br.com.techchallenge.fiap.neighborfood.core.adapters.repository.jpa.ClienteRepository;
+import br.com.techchallenge.fiap.neighborfood.core.adapters.repository.jpa.NotificacaoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;

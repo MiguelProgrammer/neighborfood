@@ -5,10 +5,10 @@
 package br.com.techchallenge.fiap.neighborfood.service;
 
 import br.com.techchallenge.fiap.model.CategoriaCombo;
-import br.com.techchallenge.fiap.neighborfood.entities.AdminEntity;
-import br.com.techchallenge.fiap.neighborfood.entities.EstoqueEntity;
-import br.com.techchallenge.fiap.neighborfood.repository.AdmRepository;
-import br.com.techchallenge.fiap.neighborfood.repository.EstoqueRepository;
+import br.com.techchallenge.fiap.neighborfood.core.adapters.repository.model.AdminEntity;
+import br.com.techchallenge.fiap.neighborfood.core.adapters.repository.model.EstoqueEntity;
+import br.com.techchallenge.fiap.neighborfood.core.adapters.repository.jpa.AdmRepository;
+import br.com.techchallenge.fiap.neighborfood.core.adapters.repository.jpa.EstoqueRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

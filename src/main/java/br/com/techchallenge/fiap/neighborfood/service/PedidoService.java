@@ -8,8 +8,8 @@ import br.com.techchallenge.fiap.model.Acompanhamento;
 import br.com.techchallenge.fiap.model.AcompanhamentoResponse;
 import br.com.techchallenge.fiap.model.CategoriaCombo;
 import br.com.techchallenge.fiap.model.Pedido;
-import br.com.techchallenge.fiap.neighborfood.entities.*;
-import br.com.techchallenge.fiap.neighborfood.repository.*;
+import br.com.techchallenge.fiap.neighborfood.core.adapters.repository.jpa.*;
+import br.com.techchallenge.fiap.neighborfood.core.adapters.repository.model.*;
 import com.google.gson.Gson;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.ObjectUtils;
@@ -63,23 +63,13 @@ public class PedidoService {
 
     public ResponseEntity<AcompanhamentoResponse> pedido(Pedido pedido) {
 
-        PedidoEntity pedidoFeito = new PedidoEntity();
         Set<ItensEntity> itens = new HashSet<>();
         AcompanhamentoResponse response = new AcompanhamentoResponse();
-        Optional<PedidoEntity> pedidoByid = pedidoRepository.findById(pedido.getId());
         PedidoEntity entity = mapper.map(pedido, PedidoEntity.class);
-        if(pedidoByid.isPresent()){
-            pedidoFeito = mapper.map(pedidoByid.get(), PedidoEntity.class);
-        }
 
         Optional<ClienteEntity> cliente = clienteRepository.findById(entity.getIdCliente());
-
         if (!cliente.isPresent()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-
-        if(!ObjectUtils.isEmpty(pedidoFeito)){
-
         }
 
         pedido.getItens().forEach(pr -> {
@@ -105,15 +95,10 @@ public class PedidoService {
 
             System.out.println(acompanhamentoService.sms(entity.getStatus()));
 
-            if(pedidoByid.isPresent()) {
-                ItensEntity map = mapper.map(pedidoByid.get(), ItensEntity.class);
-                PedidoEntity pedidoCriado = pedidoRepository.save(pedidoByid.get());
-                pedidoCriado.getItens().forEach(pr -> {
-                    pr.setIdPedido(pedidoCriado.getId());
-                });
-            } else {
-
-            }
+            PedidoEntity pedidoCriado = pedidoRepository.save(entity);
+            pedidoCriado.getItens().forEach(pr -> {
+                pr.setIdPedido(pedidoCriado.getId());
+            });
 
             pedidoRepository.saveAndFlush(pedidoCriado);
             response.setTotal(pedidoCriado.getTotal());
