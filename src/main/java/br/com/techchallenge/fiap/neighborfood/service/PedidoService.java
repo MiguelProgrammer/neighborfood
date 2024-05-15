@@ -18,6 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.util.*;
@@ -62,13 +63,23 @@ public class PedidoService {
 
     public ResponseEntity<AcompanhamentoResponse> pedido(Pedido pedido) {
 
+        PedidoEntity pedidoFeito = new PedidoEntity();
         Set<ItensEntity> itens = new HashSet<>();
         AcompanhamentoResponse response = new AcompanhamentoResponse();
+        Optional<PedidoEntity> pedidoByid = pedidoRepository.findById(pedido.getId());
         PedidoEntity entity = mapper.map(pedido, PedidoEntity.class);
+        if(pedidoByid.isPresent()){
+            pedidoFeito = mapper.map(pedidoByid.get(), PedidoEntity.class);
+        }
 
         Optional<ClienteEntity> cliente = clienteRepository.findById(entity.getIdCliente());
+
         if (!cliente.isPresent()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+
+        if(!ObjectUtils.isEmpty(pedidoFeito)){
+
         }
 
         pedido.getItens().forEach(pr -> {
@@ -94,10 +105,15 @@ public class PedidoService {
 
             System.out.println(acompanhamentoService.sms(entity.getStatus()));
 
-            PedidoEntity pedidoCriado = pedidoRepository.save(entity);
-            pedidoCriado.getItens().forEach(pr -> {
-                pr.setIdPedido(pedidoCriado.getId());
-            });
+            if(pedidoByid.isPresent()) {
+                ItensEntity map = mapper.map(pedidoByid.get(), ItensEntity.class);
+                PedidoEntity pedidoCriado = pedidoRepository.save(pedidoByid.get());
+                pedidoCriado.getItens().forEach(pr -> {
+                    pr.setIdPedido(pedidoCriado.getId());
+                });
+            } else {
+
+            }
 
             pedidoRepository.saveAndFlush(pedidoCriado);
             response.setTotal(pedidoCriado.getTotal());
@@ -111,6 +127,25 @@ public class PedidoService {
             log.info("\n\nItens selecionados em falta!\n\n");
             return ResponseEntity.ok(response);
         }
+
+    }
+
+    @Transactional
+    public ResponseEntity<AcompanhamentoResponse> atualizarPedido(Pedido pedido) {
+
+        PedidoEntity entity = mapper.map(pedido, PedidoEntity.class);
+        Optional<ClienteEntity> cliente = clienteRepository.findById(entity.getIdCliente());
+        List<ItensEntity> itensById = itensRepository.findAllById(pedido.getId());
+        if (!cliente.isPresent() && ObjectUtils.isEmpty(itensById)) {
+            log.info("\n\nCliente ou Pedido não encontrado!\n\n");
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+
+        itensById.forEach(pr -> {
+            estoqueRepository.save(mapper.map(pr, EstoqueEntity.class));
+        });
+
+        return this.pedido(pedido);
 
     }
 

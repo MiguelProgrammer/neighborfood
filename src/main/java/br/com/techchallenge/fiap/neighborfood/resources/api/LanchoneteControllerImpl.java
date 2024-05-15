@@ -121,6 +121,6 @@ public class LanchoneteControllerImpl implements NeighborfoodApi {
      */
     @Override
     public ResponseEntity<AcompanhamentoResponse> updateOrder(Pedido pedido) {
-        return NeighborfoodApi.super.updateOrder(pedido);
+        return pedidoService.atualizarPedido(pedido);
     }
 }
