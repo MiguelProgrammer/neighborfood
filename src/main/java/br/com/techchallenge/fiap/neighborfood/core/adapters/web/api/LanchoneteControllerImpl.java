@@ -6,7 +6,7 @@ package br.com.techchallenge.fiap.neighborfood.core.adapters.web.api;
 
 
 import _generated_sources_swagger.NeighborfoodApi;
-import br.com.techchallenge.fiap.model.*;
+import br.com.techchallenge.fiap.neighborfood.core.domain.*;
 import br.com.techchallenge.fiap.neighborfood.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -73,7 +73,6 @@ public class LanchoneteControllerImpl implements NeighborfoodApi {
     public ResponseEntity<AcompanhamentoResponse> findOrderByIdOrder(Long idpedido) {
         return acompanhamentoService.getOrderStatus(idpedido);
     }
-
 
 
     @Override

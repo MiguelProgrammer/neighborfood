@@ -1,4 +1,4 @@
-package br.com.techchallenge.fiap.model;
+package br.com.techchallenge.fiap.neighborfood.core.domain;
 
 import java.net.URI;
 import java.util.Objects;
@@ -15,11 +15,11 @@ import java.util.*;
 import jakarta.annotation.Generated;
 
 /**
- * AdminRequest
+ * ClienteRequest
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-05-15T06:45:52.895238700-03:00[America/Sao_Paulo]")
-public class AdminRequest {
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-05-15T20:29:37.152578500-03:00[America/Sao_Paulo]")
+public class ClienteRequest {
 
   private String nome;
 
@@ -27,7 +27,7 @@ public class AdminRequest {
 
   private String cpf;
 
-  public AdminRequest nome(String nome) {
+  public ClienteRequest nome(String nome) {
     this.nome = nome;
     return this;
   }
@@ -47,7 +47,7 @@ public class AdminRequest {
     this.nome = nome;
   }
 
-  public AdminRequest email(String email) {
+  public ClienteRequest email(String email) {
     this.email = email;
     return this;
   }
@@ -67,7 +67,7 @@ public class AdminRequest {
     this.email = email;
   }
 
-  public AdminRequest cpf(String cpf) {
+  public ClienteRequest cpf(String cpf) {
     this.cpf = cpf;
     return this;
   }
@@ -95,10 +95,10 @@ public class AdminRequest {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    AdminRequest adminRequest = (AdminRequest) o;
-    return Objects.equals(this.nome, adminRequest.nome) &&
-        Objects.equals(this.email, adminRequest.email) &&
-        Objects.equals(this.cpf, adminRequest.cpf);
+    ClienteRequest clienteRequest = (ClienteRequest) o;
+    return Objects.equals(this.nome, clienteRequest.nome) &&
+        Objects.equals(this.email, clienteRequest.email) &&
+        Objects.equals(this.cpf, clienteRequest.cpf);
   }
 
   @Override
@@ -109,7 +109,7 @@ public class AdminRequest {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class AdminRequest {\n");
+    sb.append("class ClienteRequest {\n");
     sb.append("    nome: ").append(toIndentedString(nome)).append("\n");
     sb.append("    email: ").append(toIndentedString(email)).append("\n");
     sb.append("    cpf: ").append(toIndentedString(cpf)).append("\n");

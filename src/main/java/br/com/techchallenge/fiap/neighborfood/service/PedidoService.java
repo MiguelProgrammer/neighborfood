@@ -4,12 +4,12 @@
 
 package br.com.techchallenge.fiap.neighborfood.service;
 
-import br.com.techchallenge.fiap.model.Acompanhamento;
-import br.com.techchallenge.fiap.model.AcompanhamentoResponse;
-import br.com.techchallenge.fiap.model.CategoriaCombo;
-import br.com.techchallenge.fiap.model.Pedido;
 import br.com.techchallenge.fiap.neighborfood.core.adapters.repository.jpa.*;
 import br.com.techchallenge.fiap.neighborfood.core.adapters.repository.model.*;
+import br.com.techchallenge.fiap.neighborfood.core.domain.Acompanhamento;
+import br.com.techchallenge.fiap.neighborfood.core.domain.AcompanhamentoResponse;
+import br.com.techchallenge.fiap.neighborfood.core.domain.CategoriaCombo;
+import br.com.techchallenge.fiap.neighborfood.core.domain.Pedido;
 import com.google.gson.Gson;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.ObjectUtils;
@@ -130,7 +130,7 @@ public class PedidoService {
             estoqueRepository.save(mapper.map(pr, EstoqueEntity.class));
         });
 
-        return this.pedido(pedido);
+        return null;
 
     }
 

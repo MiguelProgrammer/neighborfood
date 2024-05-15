@@ -4,7 +4,7 @@
 
 package br.com.techchallenge.fiap.neighborfood.core.domain.models;
 
-import br.com.techchallenge.fiap.model.CategoriaCombo;
+import br.com.techchallenge.fiap.neighborfood.core.domain.CategoriaCombo;
 import lombok.*;
 
 import java.math.BigDecimal;

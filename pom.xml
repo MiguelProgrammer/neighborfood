@@ -110,7 +110,7 @@
                                 ${project.basedir}/src/main/resources/api/resource.yml
                             </inputSpec>
                             <generatorName>spring</generatorName>
-                            <modelPackage>br.com.techchallenge.fiap.model</modelPackage>
+                            <modelPackage>br.com.techchallenge.fiap.neighborfood.core.domain</modelPackage>
                             <apiPackage>$generated-sources/swagger</apiPackage>
                             <configOptions>
                                 <sourceFolder>src/main/java/</sourceFolder>

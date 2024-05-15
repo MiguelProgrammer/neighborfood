@@ -4,7 +4,7 @@
 
 package br.com.techchallenge.fiap.neighborfood.core.adapters.repository.model;
 
-import br.com.techchallenge.fiap.model.Acompanhamento;
+import br.com.techchallenge.fiap.neighborfood.core.domain.Acompanhamento;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.*;

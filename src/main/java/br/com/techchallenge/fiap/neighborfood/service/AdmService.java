@@ -4,11 +4,11 @@
 
 package br.com.techchallenge.fiap.neighborfood.service;
 
-import br.com.techchallenge.fiap.model.AcompanhamentoResponse;
-import br.com.techchallenge.fiap.neighborfood.core.adapters.repository.model.AdminEntity;
-import br.com.techchallenge.fiap.neighborfood.core.adapters.repository.model.PedidoEntity;
 import br.com.techchallenge.fiap.neighborfood.core.adapters.repository.jpa.AdmRepository;
 import br.com.techchallenge.fiap.neighborfood.core.adapters.repository.jpa.PedidoRepository;
+import br.com.techchallenge.fiap.neighborfood.core.adapters.repository.model.AdminEntity;
+import br.com.techchallenge.fiap.neighborfood.core.adapters.repository.model.PedidoEntity;
+import br.com.techchallenge.fiap.neighborfood.core.domain.AcompanhamentoResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.ObjectUtils;
 import org.modelmapper.ModelMapper;
@@ -48,7 +48,7 @@ public class AdmService {
         log.info("Listando pedidos ...\n");
         List<PedidoEntity> listaPedidos = pedidoRepository.findAll();
 
-        if(!ObjectUtils.isEmpty(listaPedidos)) {
+        if (!ObjectUtils.isEmpty(listaPedidos)) {
 
             listaPedidos.forEach(pr -> {
                 log.info("\nPedido: ", pr.getId());

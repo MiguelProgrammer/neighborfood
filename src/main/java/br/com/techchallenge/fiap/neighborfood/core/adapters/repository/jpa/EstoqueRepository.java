@@ -4,8 +4,8 @@
 
 package br.com.techchallenge.fiap.neighborfood.core.adapters.repository.jpa;
 
-import br.com.techchallenge.fiap.model.CategoriaCombo;
 import br.com.techchallenge.fiap.neighborfood.core.adapters.repository.model.EstoqueEntity;
+import br.com.techchallenge.fiap.neighborfood.core.domain.CategoriaCombo;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

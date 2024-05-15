@@ -4,8 +4,9 @@
 
 package br.com.techchallenge.fiap.neighborfood.service;
 
-import br.com.techchallenge.fiap.model.Acompanhamento;
-import br.com.techchallenge.fiap.model.AcompanhamentoResponse;
+import br.com.techchallenge.fiap.neighborfood.core.domain.Acompanhamento;
+import br.com.techchallenge.fiap.neighborfood.core.domain.AcompanhamentoResponse;
+import br.com.techchallenge.fiap.neighborfood.core.domain.models.*;
 import br.com.techchallenge.fiap.neighborfood.core.adapters.repository.model.PedidoEntity;
 import br.com.techchallenge.fiap.neighborfood.core.adapters.repository.jpa.PedidoRepository;
 import br.com.techchallenge.fiap.neighborfood.service.acompanhachain.AcompanhamentoChain;

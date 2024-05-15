@@ -1,8 +1,8 @@
-package br.com.techchallenge.fiap.model;
+package br.com.techchallenge.fiap.neighborfood.core.domain;
 
 import java.net.URI;
 import java.util.Objects;
-import br.com.techchallenge.fiap.model.CategoriaCombo;
+import br.com.techchallenge.fiap.neighborfood.core.domain.CategoriaCombo;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
@@ -20,7 +20,7 @@ import jakarta.annotation.Generated;
  * Produto
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-05-15T06:45:52.895238700-03:00[America/Sao_Paulo]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-05-15T20:29:37.152578500-03:00[America/Sao_Paulo]")
 public class Produto {
 
   private String nome;

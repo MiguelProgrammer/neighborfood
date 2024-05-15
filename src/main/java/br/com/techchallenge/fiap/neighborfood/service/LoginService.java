@@ -4,16 +4,16 @@
 
 package br.com.techchallenge.fiap.neighborfood.service;
 
-import br.com.techchallenge.fiap.model.AdminRequest;
-import br.com.techchallenge.fiap.model.ClienteRequest;
-import br.com.techchallenge.fiap.neighborfood.core.adapters.repository.model.AdminEntity;
-import br.com.techchallenge.fiap.neighborfood.core.adapters.repository.model.ClienteEntity;
-import br.com.techchallenge.fiap.neighborfood.core.adapters.repository.model.NotificacaoEntity;
-import br.com.techchallenge.fiap.neighborfood.core.domain.models.AdmDTO;
-import br.com.techchallenge.fiap.neighborfood.core.domain.models.ClienteDTO;
 import br.com.techchallenge.fiap.neighborfood.core.adapters.repository.jpa.AdmRepository;
 import br.com.techchallenge.fiap.neighborfood.core.adapters.repository.jpa.ClienteRepository;
 import br.com.techchallenge.fiap.neighborfood.core.adapters.repository.jpa.NotificacaoRepository;
+import br.com.techchallenge.fiap.neighborfood.core.adapters.repository.model.AdminEntity;
+import br.com.techchallenge.fiap.neighborfood.core.adapters.repository.model.ClienteEntity;
+import br.com.techchallenge.fiap.neighborfood.core.adapters.repository.model.NotificacaoEntity;
+import br.com.techchallenge.fiap.neighborfood.core.domain.AdminRequest;
+import br.com.techchallenge.fiap.neighborfood.core.domain.ClienteRequest;
+import br.com.techchallenge.fiap.neighborfood.core.domain.models.AdmDTO;
+import br.com.techchallenge.fiap.neighborfood.core.domain.models.ClienteDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.ObjectUtils;
 import org.modelmapper.ModelMapper;

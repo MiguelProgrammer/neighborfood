@@ -4,7 +4,7 @@
 
 package br.com.techchallenge.fiap.neighborfood.core.adapters.repository.model;
 
-import br.com.techchallenge.fiap.model.CategoriaCombo;
+import br.com.techchallenge.fiap.neighborfood.core.domain.CategoriaCombo;
 import jakarta.persistence.*;
 import lombok.*;
 

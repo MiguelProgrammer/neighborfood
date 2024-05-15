@@ -4,7 +4,7 @@
 
 package br.com.techchallenge.fiap.neighborfood.service.acompanhachain.impl;
 
-import br.com.techchallenge.fiap.model.Acompanhamento;
+import br.com.techchallenge.fiap.neighborfood.core.domain.Acompanhamento;
 import br.com.techchallenge.fiap.neighborfood.service.acompanhachain.AcompanhamentoChain;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;

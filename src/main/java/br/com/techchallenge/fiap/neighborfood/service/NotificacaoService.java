@@ -4,11 +4,11 @@
 
 package br.com.techchallenge.fiap.neighborfood.service;
 
-import br.com.techchallenge.fiap.model.Mimo;
-import br.com.techchallenge.fiap.model.MimoRequest;
-import br.com.techchallenge.fiap.neighborfood.core.adapters.repository.model.ClienteEntity;
 import br.com.techchallenge.fiap.neighborfood.core.adapters.repository.jpa.ClienteRepository;
 import br.com.techchallenge.fiap.neighborfood.core.adapters.repository.jpa.NotificacaoRepository;
+import br.com.techchallenge.fiap.neighborfood.core.adapters.repository.model.ClienteEntity;
+import br.com.techchallenge.fiap.neighborfood.core.domain.Mimo;
+import br.com.techchallenge.fiap.neighborfood.core.domain.MimoRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -33,7 +33,7 @@ public class NotificacaoService {
 
         if (cliente.isPresent()) {
             Random gerador = new Random();
-                beneficios.setCodigo(String.valueOf(gerador.nextInt(26)));
+            beneficios.setCodigo(String.valueOf(gerador.nextInt(26)));
             beneficios.setDesconto(new BigDecimal(10.90).setScale(4, RoundingMode.HALF_UP));
             beneficios.setIdCliente(cliente.get().getId());
 
