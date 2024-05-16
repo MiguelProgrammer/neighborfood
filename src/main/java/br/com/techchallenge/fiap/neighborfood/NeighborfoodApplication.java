@@ -9,7 +9,7 @@ import java.util.Scanner;
 
 @Configuration
 @SpringBootApplication
-@EntityScan(basePackages = "br.com.techchallenge.fiap.neighborfood.entities")
+@EntityScan(basePackages = "br.com.techchallenge.fiap.neighborfood.core.*")
 public class NeighborfoodApplication {
 
     public static void main(String[] args) {
