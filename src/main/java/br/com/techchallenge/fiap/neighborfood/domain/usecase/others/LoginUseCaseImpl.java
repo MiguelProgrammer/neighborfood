@@ -4,8 +4,8 @@
 
 package br.com.techchallenge.fiap.neighborfood.domain.usecase.others;
 
-import br.com.techchallenge.fiap.neighborfood.config.AdminException;
-import br.com.techchallenge.fiap.neighborfood.config.ClienteException;
+import br.com.techchallenge.fiap.neighborfood.config.exception.AdminException;
+import br.com.techchallenge.fiap.neighborfood.config.exception.ClienteException;
 import br.com.techchallenge.fiap.neighborfood.domain.model.Admin;
 import br.com.techchallenge.fiap.neighborfood.domain.model.Cliente;
 import br.com.techchallenge.fiap.neighborfood.domain.ports.inbound.LoginUseCasePort;

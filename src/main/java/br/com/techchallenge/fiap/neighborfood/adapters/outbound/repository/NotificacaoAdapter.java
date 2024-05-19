@@ -22,7 +22,7 @@ public class NotificacaoAdapter implements NotificationUseCaseAdapterPort {
 
     @Override
     public MimoDTO enviaMimos(MimoDTO mimoRequest) {
-        return new MimoDTO().fromModel(notificacaoRepository.findByIdUsuarioAndAcao(mimoRequest));
+        return new MimoDTO().fromModel(notificacaoRepository.findByIdUsuario(mimoRequest));
     }
 
 

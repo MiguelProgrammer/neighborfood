@@ -4,11 +4,11 @@
 
 package br.com.techchallenge.fiap.neighborfood.domain.usecase.others.acompanhachain;
 
-import br.com.techchallenge.fiap.neighborfood.domain.model.Acompanhamento;
+import br.com.techchallenge.fiap.neighborfood.domain.model.StatusPedido;
 
 public abstract class AcompanhamentoChain {
 
-    private AcompanhamentoChain acompanhamentoChain;
+    private AcompanhamentoChain StatusPedidoChain;
 
-    public abstract String sms(Acompanhamento acompanhamento);
+    public abstract String sms(StatusPedido StatusPedido);
 }

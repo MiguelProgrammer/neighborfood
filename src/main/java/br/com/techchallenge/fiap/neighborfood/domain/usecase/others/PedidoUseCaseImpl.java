@@ -6,10 +6,10 @@ package br.com.techchallenge.fiap.neighborfood.domain.usecase.others;
 
 import br.com.techchallenge.fiap.neighborfood.adapters.outbound.repository.UserAdapter;
 import br.com.techchallenge.fiap.neighborfood.adapters.outbound.repository.entities.NotificacaoEntity;
-import br.com.techchallenge.fiap.neighborfood.adapters.outbound.repository.entities.PedidoEntity;
-import br.com.techchallenge.fiap.neighborfood.config.ClienteException;
-import br.com.techchallenge.fiap.neighborfood.config.PedidoException;
+import br.com.techchallenge.fiap.neighborfood.config.exception.ClienteException;
+import br.com.techchallenge.fiap.neighborfood.config.exception.PedidoException;
 import br.com.techchallenge.fiap.neighborfood.domain.model.*;
+import br.com.techchallenge.fiap.neighborfood.domain.ports.inbound.AcompanhamentoUseCasePort;
 import br.com.techchallenge.fiap.neighborfood.domain.ports.inbound.PedidoUseCasePort;
 import br.com.techchallenge.fiap.neighborfood.domain.ports.outbound.EstoqueUseCaseAdapterPort;
 import br.com.techchallenge.fiap.neighborfood.domain.ports.outbound.NotificationUseCaseAdapterPort;
@@ -19,7 +19,10 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.ObjectUtils;
 
 import java.math.BigDecimal;
-import java.util.*;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Set;
 
 @Slf4j
 public class PedidoUseCaseImpl implements PedidoUseCasePort {
@@ -27,6 +30,7 @@ public class PedidoUseCaseImpl implements PedidoUseCasePort {
     private PedidoUseCaseAdapterPort pedidoUseCaseAdapterPort;
     private EstoqueUseCaseAdapterPort estoqueUseCaseAdapterPort;
     private NotificationUseCaseAdapterPort notificationUseCaseAdapterPort;
+    private AcompanhamentoUseCasePort acompanhamentoUseCasePort;
     private UserAdapter userAdapter;
 
     @Override
@@ -67,13 +71,13 @@ public class PedidoUseCaseImpl implements PedidoUseCasePort {
             }
         });
 
-        pedido.setStatus(Acompanhamento.RECEBIDO);
+        pedido.setStatus(StatusPedido.RECEBIDO);
         pedido.setItens(itens);
         pedido.setDataPedido(new Date());
 
         if (!pedido.getTotal().equals(BigDecimal.ZERO)) {
 
-            //System.out.println(acompanhamentoService.sms(pedido.getStatus()));
+            System.out.println(acompanhamentoUseCasePort.smsExecute(pedido.getStatus()));
 
             PedidoDTO pedidoDTO = pedidoUseCaseAdapterPort.commitUpdates(pedido.fromEntity(pedido));
             pedidoDTO.getItens().forEach(pr -> {
@@ -115,7 +119,7 @@ public class PedidoUseCaseImpl implements PedidoUseCasePort {
             estoqueUseCaseAdapterPort.repoemEstoque(estoque);
         });
 
-        PedidoDTO byIdPedidoPedido = pedidoUseCaseAdapterPort.findByIdPedidoPedido(pedido.getId());
+        PedidoDTO byIdPedidoPedido = pedidoUseCaseAdapterPort.findByIdPedido(pedido.getId());
         pedidoUseCaseAdapterPort.pedido(pedido);
         byIdPedidoPedido.setTotal(BigDecimal.ZERO);
         pedidoUseCaseAdapterPort.commitUpdates(byIdPedidoPedido.fromEntity(byIdPedidoPedido));
@@ -126,7 +130,7 @@ public class PedidoUseCaseImpl implements PedidoUseCasePort {
             itensById.forEach(item -> {
                 ped.setIdPedido(item.getIdPedido());
 
-                PedidoDTO pedidoDTO = pedidoUseCaseAdapterPort.findByIdPedidoPedido(pedido.getId());
+                PedidoDTO pedidoDTO = pedidoUseCaseAdapterPort.findByIdPedido(pedido.getId());
                 pedidoDTO.setTotal(pedidoDTO.getTotal().add(ped.getPreco()));
                 pedidoUseCaseAdapterPort.commitUpdates(pedidoDTO.fromEntity(pedidoDTO));
 
@@ -135,12 +139,13 @@ public class PedidoUseCaseImpl implements PedidoUseCasePort {
             });
         });
         log.info("Pedido atualizado!");
-        return null;
+
+        return pedidoUseCaseAdapterPort.atualizarPedido(pedido);
 
     }
 
     @Override
-    public void removeItens(Set<Itens> itens) {
+    public void removeItensExecute(Set<Itens> itens) {
         pedidoUseCaseAdapterPort.removeItens(itens);
     }
 }

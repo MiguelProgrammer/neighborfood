@@ -4,7 +4,7 @@
 
 package br.com.techchallenge.fiap.neighborfood.adapters.outbound.repository.entities;
 
-import br.com.techchallenge.fiap.neighborfood.domain.model.Acompanhamento;
+import br.com.techchallenge.fiap.neighborfood.domain.model.StatusPedido;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.*;
@@ -44,7 +44,7 @@ public class PedidoEntity implements Serializable {
 
     @Column(name = "status")
     @Enumerated(EnumType.STRING)
-    private Acompanhamento status;
+    private StatusPedido status;
 
     @Column(name = "data_pedido")
     private Date dataPedido;

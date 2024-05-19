@@ -14,5 +14,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface NotificacaoRepository extends JpaRepository<NotificacaoEntity, Long> {
 
-    MimoEntity findByIdUsuarioAndAcao(MimoDTO mimoRequest);
+    MimoEntity findByIdUsuario(MimoDTO mimoRequest);
 }

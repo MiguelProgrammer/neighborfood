@@ -18,5 +18,5 @@ public interface PedidoUseCasePort {
 
     AcompanhamentoResponse atualizarPedidoExecute(PedidoDTO pedido);
 
-    void removeItens(Set<Itens> itens);
+    void removeItensExecute(Set<Itens> itens);
 }

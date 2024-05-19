@@ -8,7 +8,9 @@ import br.com.techchallenge.fiap.neighborfood.adapters.outbound.repository.entit
 import br.com.techchallenge.fiap.neighborfood.adapters.outbound.repository.entities.PedidoEntity;
 
 import java.math.BigDecimal;
-import java.util.*;
+import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 public class PedidoDTO {
 
@@ -16,14 +18,14 @@ public class PedidoDTO {
     private Long idCliente;
     private Set<Itens> itens = new HashSet<>();
     private BigDecimal total = BigDecimal.ZERO;
-    private Acompanhamento status;
+    private StatusPedido status;
     private Date dataPedido;
     private Date dataPedidoFim;
 
     public PedidoDTO() {
     }
 
-    public PedidoDTO(Long id, Long idCliente, Set<Itens> itens, BigDecimal total, Acompanhamento status, Date dataPedido, Date dataPedidoFim) {
+    public PedidoDTO(Long id, Long idCliente, Set<Itens> itens, BigDecimal total, StatusPedido status, Date dataPedido, Date dataPedidoFim) {
         this.id = id;
         this.idCliente = idCliente;
         this.itens = itens;
@@ -147,11 +149,11 @@ public class PedidoDTO {
         this.total = total;
     }
 
-    public Acompanhamento getStatus() {
+    public StatusPedido getStatus() {
         return status;
     }
 
-    public void setStatus(Acompanhamento status) {
+    public void setStatus(StatusPedido status) {
         this.status = status;
     }
 
@@ -170,4 +172,6 @@ public class PedidoDTO {
     public void setDataPedidoFim(Date dataPedidoFim) {
         this.dataPedidoFim = dataPedidoFim;
     }
+
+
 }

@@ -3,13 +3,3 @@ README.md
 pom.xml
 src/main/java/_generated_sources_swagger/ApiUtil.java
 src/main/java/_generated_sources_swagger/NeighborfoodApi.java
-src/main/java/br/com/techchallenge/fiap/neighborfood/domain/model/Acompanhamento.java
-src/main/java/br/com/techchallenge/fiap/neighborfood/domain/model/AcompanhamentoResponse.java
-src/main/java/br/com/techchallenge/fiap/neighborfood/domain/model/AdminRequest.java
-src/main/java/br/com/techchallenge/fiap/neighborfood/domain/model/CategoriaCombo.java
-src/main/java/br/com/techchallenge/fiap/neighborfood/domain/model/ClienteRequest.java
-src/main/java/br/com/techchallenge/fiap/neighborfood/domain/model/Mimo.java
-src/main/java/br/com/techchallenge/fiap/neighborfood/domain/model/MimoRequest.java
-src/main/java/br/com/techchallenge/fiap/neighborfood/domain/model/Pagamento.java
-src/main/java/br/com/techchallenge/fiap/neighborfood/domain/model/Pedido.java
-src/main/java/br/com/techchallenge/fiap/neighborfood/domain/model/Produto.java

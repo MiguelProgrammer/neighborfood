@@ -4,9 +4,11 @@
 
 package br.com.techchallenge.fiap.neighborfood.domain.ports.outbound;
 
+import br.com.techchallenge.fiap.neighborfood.adapters.outbound.repository.entities.PagamentoEntity;
 import br.com.techchallenge.fiap.neighborfood.adapters.outbound.repository.entities.PedidoEntity;
 import br.com.techchallenge.fiap.neighborfood.domain.model.*;
 
+import java.util.List;
 import java.util.Set;
 
 public interface PedidoUseCaseAdapterPort {
@@ -25,8 +27,11 @@ public interface PedidoUseCaseAdapterPort {
     Set<Itens> findAllById(Long id);
 
     Set<Itens> findByIdPedidoItens(Long id);
-    PedidoDTO findByIdPedidoPedido(Long id);
+    PedidoDTO findByIdPedido(Long id);
 
     PedidoDTO findById(Long id);
 
+    void salvaPagamento(PagamentoEntity entity);
+
+    List<PedidoEntity> pedidosExecute();
 }

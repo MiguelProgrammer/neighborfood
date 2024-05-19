@@ -5,13 +5,6 @@
  */
 package _generated_sources_swagger;
 
-import br.com.techchallenge.fiap.neighborfood.domain.model.AcompanhamentoResponse;
-import br.com.techchallenge.fiap.neighborfood.domain.model.AdminRequest;
-import br.com.techchallenge.fiap.neighborfood.domain.model.ClienteRequest;
-import br.com.techchallenge.fiap.neighborfood.domain.model.Mimo;
-import br.com.techchallenge.fiap.neighborfood.domain.model.MimoRequest;
-import br.com.techchallenge.fiap.neighborfood.domain.model.Pagamento;
-import br.com.techchallenge.fiap.neighborfood.domain.model.Pedido;
 import io.swagger.v3.oas.annotations.ExternalDocumentation;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -38,7 +31,7 @@ import java.util.Map;
 import java.util.Optional;
 import jakarta.annotation.Generated;
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-05-19T01:03:06.165477700-03:00[America/Sao_Paulo]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-05-19T15:29:47.933530400-03:00[America/Sao_Paulo]")
 @Validated
 @Tag(name = "follow-up", description = "Acompanhar status do pedido")
 public interface NeighborfoodApi {
@@ -63,7 +56,7 @@ public interface NeighborfoodApi {
         tags = { "follow-up" },
         responses = {
             @ApiResponse(responseCode = "200", description = "successful operation", content = {
-                @Content(mediaType = "application/json", schema = @Schema(implementation = AcompanhamentoResponse.class))
+                @Content(mediaType = "application/json", schema = @Schema(implementation = Object.class))
             }),
             @ApiResponse(responseCode = "400", description = "Id inválido"),
             @ApiResponse(responseCode = "404", description = "Pedido não encontrado")
@@ -74,14 +67,14 @@ public interface NeighborfoodApi {
         value = "/neighborfood/acompanhamento/{idPedido}",
         produces = { "application/json" }
     )
-    default ResponseEntity<AcompanhamentoResponse> findOrderByIdOrder(
+    default ResponseEntity<Object> findOrderByIdOrder(
         @Parameter(name = "idPedido", description = "id do pedido", required = true, in = ParameterIn.PATH) @PathVariable("idPedido") Long idPedido
     ) {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
-                if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "{ \"total\" : 5.962133916683182, \"pedido\" : { \"idCliente\" : 6, \"Itens\" : [ { \"preco\" : 1.4658129805029452, \"img\" : \"img\", \"nome\" : \"nome\", \"descricao\" : \"descricao\" }, { \"preco\" : 1.4658129805029452, \"img\" : \"img\", \"nome\" : \"nome\", \"descricao\" : \"descricao\" } ], \"id\" : 0 } }";
-                    ApiUtil.setExampleResponse(request, "application/json", exampleString);
+                if (mediaType.isCompatibleWith(MediaType.valueOf(""))) {
+                    String exampleString = "";
+                    ApiUtil.setExampleResponse(request, "", exampleString);
                     break;
                 }
             }
@@ -107,7 +100,7 @@ public interface NeighborfoodApi {
         tags = { "orders" },
         responses = {
             @ApiResponse(responseCode = "200", description = "Lista de pedidos", content = {
-                @Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = AcompanhamentoResponse.class)))
+                @Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = Object.class)))
             }),
             @ApiResponse(responseCode = "400", description = "Id inválido"),
             @ApiResponse(responseCode = "404", description = "Mimo não disponível")
@@ -118,13 +111,13 @@ public interface NeighborfoodApi {
         value = "/neighborfood/painel/pedido/lista/{idAdmin}",
         produces = { "application/json" }
     )
-    default ResponseEntity<List<AcompanhamentoResponse>> listOrders(
+    default ResponseEntity<List<Object>> listOrders(
         @Parameter(name = "idAdmin", description = "id identificador do administrador", required = true, in = ParameterIn.PATH) @PathVariable("idAdmin") Long idAdmin
     ) {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "[ { \"total\" : 5.962133916683182, \"pedido\" : { \"idCliente\" : 6, \"Itens\" : [ { \"preco\" : 1.4658129805029452, \"img\" : \"img\", \"nome\" : \"nome\", \"descricao\" : \"descricao\" }, { \"preco\" : 1.4658129805029452, \"img\" : \"img\", \"nome\" : \"nome\", \"descricao\" : \"descricao\" } ], \"id\" : 0 } }, { \"total\" : 5.962133916683182, \"pedido\" : { \"idCliente\" : 6, \"Itens\" : [ { \"preco\" : 1.4658129805029452, \"img\" : \"img\", \"nome\" : \"nome\", \"descricao\" : \"descricao\" }, { \"preco\" : 1.4658129805029452, \"img\" : \"img\", \"nome\" : \"nome\", \"descricao\" : \"descricao\" } ], \"id\" : 0 } } ]";
+                    String exampleString = "[ \"{}\", \"{}\" ]";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
                     break;
                 }
@@ -139,7 +132,7 @@ public interface NeighborfoodApi {
      * POST /neighborfood/login : Se cadastrar, logar
      * Identificação do cliente
      *
-     * @param clienteRequest Identifica um cliente logado (optional)
+     * @param body Identifica um cliente logado (optional)
      * @return Usuário logado (status code 200)
      *         or request inválida (status code 400)
      */
@@ -162,7 +155,7 @@ public interface NeighborfoodApi {
         consumes = { "application/json" }
     )
     default ResponseEntity<Object> login(
-        @Parameter(name = "ClienteRequest", description = "Identifica um cliente logado") @Valid @RequestBody(required = false) ClienteRequest clienteRequest
+        @Parameter(name = "body", description = "Identifica um cliente logado") @Valid @RequestBody(required = false) Object body
     ) {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
@@ -182,7 +175,7 @@ public interface NeighborfoodApi {
      * POST /neighborfood/painel/login : Cadastrar adm, logar adm
      * Identificação do adm
      *
-     * @param adminRequest Identifica um adminsitrador logado (optional)
+     * @param body Identifica um adminsitrador logado (optional)
      * @return Usuário logado (status code 200)
      *         or request inválida (status code 400)
      */
@@ -205,7 +198,7 @@ public interface NeighborfoodApi {
         consumes = { "application/json" }
     )
     default ResponseEntity<Object> loginAdm(
-        @Parameter(name = "AdminRequest", description = "Identifica um adminsitrador logado") @Valid @RequestBody(required = false) AdminRequest adminRequest
+        @Parameter(name = "body", description = "Identifica um adminsitrador logado") @Valid @RequestBody(required = false) Object body
     ) {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
@@ -235,7 +228,7 @@ public interface NeighborfoodApi {
         tags = { "menu" },
         responses = {
             @ApiResponse(responseCode = "200", description = "Apresenta os itens de menu", content = {
-                @Content(mediaType = "application/json", schema = @Schema(implementation = String.class))
+                @Content(mediaType = "application/json", schema = @Schema(implementation = Object.class))
             }),
             @ApiResponse(responseCode = "400", description = "request inválida")
         }
@@ -245,9 +238,18 @@ public interface NeighborfoodApi {
         value = "/neighborfood/menu",
         produces = { "application/json" }
     )
-    default ResponseEntity<String> menu(
+    default ResponseEntity<Object> menu(
         
     ) {
+        getRequest().ifPresent(request -> {
+            for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
+                if (mediaType.isCompatibleWith(MediaType.valueOf(""))) {
+                    String exampleString = "";
+                    ApiUtil.setExampleResponse(request, "", exampleString);
+                    break;
+                }
+            }
+        });
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
 
     }
@@ -257,7 +259,7 @@ public interface NeighborfoodApi {
      * POST /neighborfood/pedido : Realizar um pedido
      * Fazer um  pedido
      *
-     * @param pedido Cria um novo pedido (optional)
+     * @param body Cria um novo pedido (optional)
      * @return Pedido criado (status code 200)
      *         or request inválida (status code 400)
      */
@@ -268,7 +270,7 @@ public interface NeighborfoodApi {
         tags = { "order" },
         responses = {
             @ApiResponse(responseCode = "200", description = "Pedido criado", content = {
-                @Content(mediaType = "application/json", schema = @Schema(implementation = AcompanhamentoResponse.class))
+                @Content(mediaType = "application/json", schema = @Schema(implementation = Object.class))
             }),
             @ApiResponse(responseCode = "400", description = "request inválida")
         }
@@ -279,14 +281,14 @@ public interface NeighborfoodApi {
         produces = { "application/json" },
         consumes = { "application/json" }
     )
-    default ResponseEntity<AcompanhamentoResponse> order(
-        @Parameter(name = "Pedido", description = "Cria um novo pedido") @Valid @RequestBody(required = false) Pedido pedido
+    default ResponseEntity<Object> order(
+        @Parameter(name = "body", description = "Cria um novo pedido") @Valid @RequestBody(required = false) Object body
     ) {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
-                if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "{ \"total\" : 5.962133916683182, \"pedido\" : { \"idCliente\" : 6, \"Itens\" : [ { \"preco\" : 1.4658129805029452, \"img\" : \"img\", \"nome\" : \"nome\", \"descricao\" : \"descricao\" }, { \"preco\" : 1.4658129805029452, \"img\" : \"img\", \"nome\" : \"nome\", \"descricao\" : \"descricao\" } ], \"id\" : 0 } }";
-                    ApiUtil.setExampleResponse(request, "application/json", exampleString);
+                if (mediaType.isCompatibleWith(MediaType.valueOf(""))) {
+                    String exampleString = "";
+                    ApiUtil.setExampleResponse(request, "", exampleString);
                     break;
                 }
             }
@@ -300,7 +302,7 @@ public interface NeighborfoodApi {
      * POST /neighborfood/pagamento : Realiza o pagamento do pedido
      * Realiza pagamento
      *
-     * @param pagamento  (required)
+     * @param body  (required)
      * @return pagamento realizado com sucesso. (status code 200)
      *         or Id inválido (status code 400)
      *         or Pedido não encontrado (status code 404)
@@ -312,7 +314,7 @@ public interface NeighborfoodApi {
         tags = { "payment" },
         responses = {
             @ApiResponse(responseCode = "200", description = "pagamento realizado com sucesso.", content = {
-                @Content(mediaType = "application/json", schema = @Schema(implementation = AcompanhamentoResponse.class))
+                @Content(mediaType = "application/json", schema = @Schema(implementation = Object.class))
             }),
             @ApiResponse(responseCode = "400", description = "Id inválido"),
             @ApiResponse(responseCode = "404", description = "Pedido não encontrado")
@@ -324,14 +326,14 @@ public interface NeighborfoodApi {
         produces = { "application/json" },
         consumes = { "application/json" }
     )
-    default ResponseEntity<AcompanhamentoResponse> payment(
-        @Parameter(name = "Pagamento", description = "", required = true) @Valid @RequestBody Pagamento pagamento
+    default ResponseEntity<Object> payment(
+        @Parameter(name = "body", description = "", required = true) @Valid @RequestBody Object body
     ) {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
-                if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "{ \"total\" : 5.962133916683182, \"pedido\" : { \"idCliente\" : 6, \"Itens\" : [ { \"preco\" : 1.4658129805029452, \"img\" : \"img\", \"nome\" : \"nome\", \"descricao\" : \"descricao\" }, { \"preco\" : 1.4658129805029452, \"img\" : \"img\", \"nome\" : \"nome\", \"descricao\" : \"descricao\" } ], \"id\" : 0 } }";
-                    ApiUtil.setExampleResponse(request, "application/json", exampleString);
+                if (mediaType.isCompatibleWith(MediaType.valueOf(""))) {
+                    String exampleString = "";
+                    ApiUtil.setExampleResponse(request, "", exampleString);
                     break;
                 }
             }
@@ -345,7 +347,7 @@ public interface NeighborfoodApi {
      * POST /neighborfood/cadastro : Se cadastrar, logar
      * Cria cliente
      *
-     * @param clienteRequest Cria um novo cliente (optional)
+     * @param body Cria um novo cliente (optional)
      * @return Usuário logado (status code 200)
      *         or request inválida (status code 400)
      */
@@ -368,8 +370,17 @@ public interface NeighborfoodApi {
         consumes = { "application/json" }
     )
     default ResponseEntity<Object> register(
-        @Parameter(name = "ClienteRequest", description = "Cria um novo cliente") @Valid @RequestBody(required = false) ClienteRequest clienteRequest
+        @Parameter(name = "body", description = "Cria um novo cliente") @Valid @RequestBody(required = false) Object body
     ) {
+        getRequest().ifPresent(request -> {
+            for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
+                if (mediaType.isCompatibleWith(MediaType.valueOf(""))) {
+                    String exampleString = "";
+                    ApiUtil.setExampleResponse(request, "", exampleString);
+                    break;
+                }
+            }
+        });
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
 
     }
@@ -379,7 +390,7 @@ public interface NeighborfoodApi {
      * POST /neighborfood/painel/cadastro : Se cadastrar, logar
      * Cria cliente
      *
-     * @param adminRequest Cria um novo administrador (optional)
+     * @param body Cria um novo administrador (optional)
      * @return Usuário cadastrao (status code 200)
      *         or request inválida (status code 400)
      */
@@ -402,7 +413,7 @@ public interface NeighborfoodApi {
         consumes = { "application/json" }
     )
     default ResponseEntity<Object> registerAdm(
-        @Parameter(name = "AdminRequest", description = "Cria um novo administrador") @Valid @RequestBody(required = false) AdminRequest adminRequest
+        @Parameter(name = "body", description = "Cria um novo administrador") @Valid @RequestBody(required = false) Object body
     ) {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
@@ -466,7 +477,7 @@ public interface NeighborfoodApi {
      * POST /neighborfood/painel/cliente : Envia mimo ao último cliente que realizou um pedido
      * Envia mimo ao cliente
      *
-     * @param mimoRequest  (required)
+     * @param body  (required)
      * @return Mimo enviado (status code 200)
      *         or Id inválido (status code 400)
      *         or Mimo não disponível (status code 404)
@@ -478,7 +489,7 @@ public interface NeighborfoodApi {
         tags = { "customers" },
         responses = {
             @ApiResponse(responseCode = "200", description = "Mimo enviado", content = {
-                @Content(mediaType = "application/json", schema = @Schema(implementation = Mimo.class))
+                @Content(mediaType = "application/json", schema = @Schema(implementation = Object.class))
             }),
             @ApiResponse(responseCode = "400", description = "Id inválido"),
             @ApiResponse(responseCode = "404", description = "Mimo não disponível")
@@ -490,14 +501,14 @@ public interface NeighborfoodApi {
         produces = { "application/json" },
         consumes = { "application/json" }
     )
-    default ResponseEntity<Mimo> sendBonus(
-        @Parameter(name = "MimoRequest", description = "", required = true) @Valid @RequestBody MimoRequest mimoRequest
+    default ResponseEntity<Object> sendBonus(
+        @Parameter(name = "body", description = "", required = true) @Valid @RequestBody Object body
     ) {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
-                if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "{ \"codigo\" : \"codigo\", \"desconto\" : 0.8008281904610115, \"idCliente\" : 6 }";
-                    ApiUtil.setExampleResponse(request, "application/json", exampleString);
+                if (mediaType.isCompatibleWith(MediaType.valueOf(""))) {
+                    String exampleString = "";
+                    ApiUtil.setExampleResponse(request, "", exampleString);
                     break;
                 }
             }
@@ -511,7 +522,7 @@ public interface NeighborfoodApi {
      * PUT /neighborfood/pedido/update : Atualizar um pedido
      * Atualizar itens de um pedido já realizado
      *
-     * @param pedido atualiar um  pedido (optional)
+     * @param body atualiar um  pedido (optional)
      * @return Pedido atualizado (status code 200)
      *         or request inválida (status code 400)
      */
@@ -522,7 +533,7 @@ public interface NeighborfoodApi {
         tags = { "order" },
         responses = {
             @ApiResponse(responseCode = "200", description = "Pedido atualizado", content = {
-                @Content(mediaType = "application/json", schema = @Schema(implementation = AcompanhamentoResponse.class))
+                @Content(mediaType = "application/json", schema = @Schema(implementation = Object.class))
             }),
             @ApiResponse(responseCode = "400", description = "request inválida")
         }
@@ -533,14 +544,14 @@ public interface NeighborfoodApi {
         produces = { "application/json" },
         consumes = { "application/json" }
     )
-    default ResponseEntity<AcompanhamentoResponse> updateOrder(
-        @Parameter(name = "Pedido", description = "atualiar um  pedido") @Valid @RequestBody(required = false) Pedido pedido
+    default ResponseEntity<Object> updateOrder(
+        @Parameter(name = "body", description = "atualiar um  pedido") @Valid @RequestBody(required = false) Object body
     ) {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
-                if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "{ \"total\" : 5.962133916683182, \"pedido\" : { \"idCliente\" : 6, \"Itens\" : [ { \"preco\" : 1.4658129805029452, \"img\" : \"img\", \"nome\" : \"nome\", \"descricao\" : \"descricao\" }, { \"preco\" : 1.4658129805029452, \"img\" : \"img\", \"nome\" : \"nome\", \"descricao\" : \"descricao\" } ], \"id\" : 0 } }";
-                    ApiUtil.setExampleResponse(request, "application/json", exampleString);
+                if (mediaType.isCompatibleWith(MediaType.valueOf(""))) {
+                    String exampleString = "";
+                    ApiUtil.setExampleResponse(request, "", exampleString);
                     break;
                 }
             }

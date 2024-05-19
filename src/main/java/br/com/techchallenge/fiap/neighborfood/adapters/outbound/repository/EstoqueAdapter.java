@@ -16,6 +16,7 @@ public class EstoqueAdapter implements EstoqueUseCaseAdapterPort {
 
     private EstoqueRepository estoqueRepository;
 
+
     public EstoqueAdapter(EstoqueRepository estoqueRepository) {
         this.estoqueRepository = estoqueRepository;
     }

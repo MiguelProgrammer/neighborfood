@@ -4,7 +4,7 @@
 
 package br.com.techchallenge.fiap.neighborfood.domain.usecase.others.acompanhachain.impl;
 
-import br.com.techchallenge.fiap.neighborfood.domain.model.Acompanhamento;
+import br.com.techchallenge.fiap.neighborfood.domain.model.StatusPedido;
 import br.com.techchallenge.fiap.neighborfood.domain.usecase.others.acompanhachain.AcompanhamentoChain;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
@@ -13,10 +13,10 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class AcompanhamentoChainPreparacaoImpl extends AcompanhamentoChain {
 
-    private AcompanhamentoChain acompanhamentoChain;
+    private AcompanhamentoChain StatusPedidoChain;
 
     @Override
-    public String sms(Acompanhamento acompanhamento) {
+    public String sms(StatusPedido StatusPedido) {
 
         final String MESSAGE =
                 "______________________________\n\n" +
@@ -25,9 +25,9 @@ public class AcompanhamentoChainPreparacaoImpl extends AcompanhamentoChain {
                         "Somente aguarde, obrigado.\n\n" +
                         "______________________________\n\n";
 
-        if (acompanhamento.equals(Acompanhamento.EM_PREPARACAO)) {
+        if (StatusPedido.equals(StatusPedido.EM_PREPARACAO)) {
             return MESSAGE;
         }
-        return new AcompanhamentoChainFinalizadoImpl(acompanhamentoChain).sms(acompanhamento);
+        return new AcompanhamentoChainFinalizadoImpl(StatusPedidoChain).sms(StatusPedido);
     }
 }

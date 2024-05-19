@@ -4,6 +4,8 @@
 
 package br.com.techchallenge.fiap.neighborfood.domain.model;
 
+import br.com.techchallenge.fiap.neighborfood.adapters.outbound.repository.entities.PagamentoEntity;
+
 public class PagamentoDTO {
 
     private Long id;
@@ -17,6 +19,15 @@ public class PagamentoDTO {
         this.id = id;
         this.idPedido = idPedido;
         this.pagou = pagou;
+    }
+
+
+    public PagamentoEntity fromEntity(PagamentoDTO pagamento) {
+        PagamentoEntity entity = new PagamentoEntity();
+        entity.setId(pagamento.getId());
+        entity.setPagou(pagamento.getPagou());
+        entity.setIdPedido(pagamento.getIdPedido());
+        return entity;
     }
 
     public Long getId() {

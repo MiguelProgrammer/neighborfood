@@ -8,8 +8,9 @@ import org.springframework.context.annotation.Configuration;
 import java.util.Scanner;
 
 @Configuration
-@SpringBootApplication
-@EntityScan(basePackages = "br.com.techchallenge.fiap.neighborfood.core.*")
+@SpringBootApplication(scanBasePackages={"br.com.techchallenge.fiap.neighborfood.adpters.outbound.respository"})
+@EntityScan(basePackages = "br.com.techchallenge.fiap.neighborfood.adapters.outbound.repository.entities")
+
 public class NeighborfoodApplication {
 
     public static void main(String[] args) {

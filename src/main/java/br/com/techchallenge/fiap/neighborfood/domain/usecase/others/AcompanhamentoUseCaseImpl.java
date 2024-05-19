@@ -4,77 +4,79 @@
 
 package br.com.techchallenge.fiap.neighborfood.domain.usecase.others;
 
-import br.com.techchallenge.fiap.neighborfood.adapters.outbound.repository.entities.PedidoEntity;
-import br.com.techchallenge.fiap.neighborfood.adapters.outbound.repository.jpa.PedidoRepository;
-import br.com.techchallenge.fiap.neighborfood.domain.model.Acompanhamento;
+import br.com.techchallenge.fiap.neighborfood.config.exception.PedidoException;
 import br.com.techchallenge.fiap.neighborfood.domain.model.AcompanhamentoResponse;
+import br.com.techchallenge.fiap.neighborfood.domain.model.PedidoDTO;
+import br.com.techchallenge.fiap.neighborfood.domain.model.StatusPedido;
+import br.com.techchallenge.fiap.neighborfood.domain.ports.inbound.AcompanhamentoUseCasePort;
+import br.com.techchallenge.fiap.neighborfood.domain.ports.outbound.PedidoUseCaseAdapterPort;
 import br.com.techchallenge.fiap.neighborfood.domain.usecase.others.acompanhachain.AcompanhamentoChain;
 import br.com.techchallenge.fiap.neighborfood.domain.usecase.others.acompanhachain.impl.AcompanhamentoChainRecebidoImpl;
-import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
 
 
-@Service
-public class AcompanhamentoUseCaseImpl extends AcompanhamentoChain {
+public class AcompanhamentoUseCaseImpl implements AcompanhamentoUseCasePort {
 
-    @Autowired
-    private PedidoRepository pedidoRepository;
+    private PedidoUseCaseAdapterPort pedidoUseCaseAdapterPort;
+    private AcompanhamentoChain StatusPedidoChain;
 
-    private ModelMapper mapper = new ModelMapper();
+    public AcompanhamentoUseCaseImpl(PedidoUseCaseAdapterPort pedidoUseCaseAdapterPort, AcompanhamentoChain statusPedidoChain) {
+        this.pedidoUseCaseAdapterPort = pedidoUseCaseAdapterPort;
+        StatusPedidoChain = statusPedidoChain;
+    }
 
-    private AcompanhamentoChain acompanhamentoChain;
+    @Override
+    public AcompanhamentoResponse getOrderStatusExecute(Long idPedido) {
 
-    public ResponseEntity<AcompanhamentoResponse> getOrderStatus(Long idPedido) {
+        PedidoDTO pedido = new PedidoDTO();
         try {
-            AcompanhamentoResponse map = mapper.map(
-                    pedidoRepository.findById(idPedido).get(),
-                    AcompanhamentoResponse.class);
+            pedido = pedidoUseCaseAdapterPort.findById(idPedido);
 
-            if (map.getStatus().equals(Acompanhamento.EM_PREPARACAO)) {
-                this.pedidoStatus(idPedido, Acompanhamento.PRONTO);
-                map.setStatus(Acompanhamento.PRONTO);
-            } else if (map.getStatus().equals(Acompanhamento.PRONTO)) {
-                this.fluxoAcompanhamento(idPedido, Acompanhamento.FINALIZADO);
-                map.setStatus(Acompanhamento.FINALIZADO);
+            if (pedido.getStatus().equals(StatusPedido.EM_PREPARACAO)) {
+                this.pedidoStatusExecute(idPedido, StatusPedido.PRONTO);
+                pedido.setStatus(StatusPedido.PRONTO);
+            } else if (pedido.getStatus().equals(StatusPedido.PRONTO)) {
+                this.fluxoStatusPedidoExecute(idPedido, StatusPedido.FINALIZADO);
+                pedido.setStatus(StatusPedido.FINALIZADO);
             }
-
-            return ResponseEntity.ok(map);
         } catch (Exception ex) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new AcompanhamentoResponse());
+            throw new PedidoException("Pedido não encontrado!");
         }
+
+        AcompanhamentoResponse statusPedidoResponse = new AcompanhamentoResponse();
+        statusPedidoResponse.setStatus(pedido.getStatus());
+        statusPedidoResponse.setTotal(pedido.getTotal());
+        statusPedidoResponse.setPedido(pedido);
+
+        return statusPedidoResponse;
+    }
+
+    @Override
+    public String smsExecute(StatusPedido StatusPedido) {
+        return new AcompanhamentoChainRecebidoImpl(StatusPedidoChain).sms(StatusPedido);
     }
 
 
     @Override
-    public String sms(Acompanhamento acompanhamento) {
-        return new AcompanhamentoChainRecebidoImpl(acompanhamentoChain).sms(acompanhamento);
-    }
-
-    @Transactional
-    public void fluxoAcompanhamento(Long idPedido, Acompanhamento acompanhamento) {
-        PedidoEntity entity = pedidoRepository.findById(idPedido).get();
-        entity.setStatus(acompanhamento);
-        if (entity.getStatus().equals(Acompanhamento.FINALIZADO)) {
-            entity.setDataPedidoFim(new Date());
+    public void fluxoStatusPedidoExecute(Long idPedido, StatusPedido StatusPedido) {
+        PedidoDTO pedidoDTO = pedidoUseCaseAdapterPort.findById(idPedido);
+        pedidoDTO.setStatus(StatusPedido);
+        if (pedidoDTO.getStatus().equals(StatusPedido.FINALIZADO)) {
+            pedidoDTO.setDataPedidoFim(new Date());
         }
-        pedidoRepository.saveAndFlush(entity);
+        pedidoUseCaseAdapterPort.commitUpdates(pedidoDTO.fromEntity(pedidoDTO));
 
-        System.out.println(this.sms(entity.getStatus()));
+        System.out.println(this.smsExecute(pedidoDTO.getStatus()));
     }
 
-    @Transactional
-    public void pedidoStatus(Long idPedido, Acompanhamento acompanhamento) {
 
-        PedidoEntity pedido = pedidoRepository.findById(idPedido).orElseThrow();
-        pedido.setStatus(acompanhamento);
-        PedidoEntity entity = pedidoRepository.saveAndFlush(pedido);
-        System.out.println(this.sms(entity.getStatus()));
+    @Override
+    public void pedidoStatusExecute(Long idPedido, StatusPedido StatusPedido) {
+        PedidoDTO pedidoDTO = pedidoUseCaseAdapterPort.findById(idPedido);
+        pedidoDTO.setStatus(StatusPedido);
+        PedidoDTO pedidoDTO1 = pedidoUseCaseAdapterPort.commitUpdates(pedidoDTO.fromEntity(pedidoDTO));
+        System.out.println(this.smsExecute(pedidoDTO1.getStatus()));
     }
 
 }
