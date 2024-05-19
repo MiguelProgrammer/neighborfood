@@ -5,13 +5,13 @@
  */
 package _generated_sources_swagger;
 
-import br.com.techchallenge.fiap.neighborfood.core.domain.AcompanhamentoResponse;
-import br.com.techchallenge.fiap.neighborfood.core.domain.AdminRequest;
-import br.com.techchallenge.fiap.neighborfood.core.domain.ClienteRequest;
-import br.com.techchallenge.fiap.neighborfood.core.domain.Mimo;
-import br.com.techchallenge.fiap.neighborfood.core.domain.MimoRequest;
-import br.com.techchallenge.fiap.neighborfood.core.domain.Pagamento;
-import br.com.techchallenge.fiap.neighborfood.core.domain.Pedido;
+import br.com.techchallenge.fiap.neighborfood.domain.model.AcompanhamentoResponse;
+import br.com.techchallenge.fiap.neighborfood.domain.model.AdminRequest;
+import br.com.techchallenge.fiap.neighborfood.domain.model.ClienteRequest;
+import br.com.techchallenge.fiap.neighborfood.domain.model.Mimo;
+import br.com.techchallenge.fiap.neighborfood.domain.model.MimoRequest;
+import br.com.techchallenge.fiap.neighborfood.domain.model.Pagamento;
+import br.com.techchallenge.fiap.neighborfood.domain.model.Pedido;
 import io.swagger.v3.oas.annotations.ExternalDocumentation;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -38,7 +38,7 @@ import java.util.Map;
 import java.util.Optional;
 import jakarta.annotation.Generated;
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-05-15T20:29:37.152578500-03:00[America/Sao_Paulo]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-05-19T01:03:06.165477700-03:00[America/Sao_Paulo]")
 @Validated
 @Tag(name = "follow-up", description = "Acompanhar status do pedido")
 public interface NeighborfoodApi {
