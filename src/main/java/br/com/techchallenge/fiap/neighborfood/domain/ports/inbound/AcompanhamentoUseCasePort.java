@@ -6,14 +6,20 @@ package br.com.techchallenge.fiap.neighborfood.domain.ports.inbound;
 
 import br.com.techchallenge.fiap.neighborfood.domain.model.AcompanhamentoResponse;
 import br.com.techchallenge.fiap.neighborfood.domain.model.StatusPedido;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 
 public interface AcompanhamentoUseCasePort {
 
+    @Bean
     AcompanhamentoResponse getOrderStatusExecute(Long idPedido);
 
+    @Bean
     String smsExecute(StatusPedido StatusPedido);
 
+    @Bean
     void fluxoStatusPedidoExecute(Long idPedido, StatusPedido StatusPedido);
 
+    @Bean
     void pedidoStatusExecute(Long idPedido, StatusPedido StatusPedido);
 }

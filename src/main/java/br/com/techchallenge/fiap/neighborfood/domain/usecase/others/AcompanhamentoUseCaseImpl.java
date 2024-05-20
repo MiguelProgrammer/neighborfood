@@ -19,12 +19,9 @@ import java.util.Date;
 public class AcompanhamentoUseCaseImpl implements AcompanhamentoUseCasePort {
 
     private PedidoUseCaseAdapterPort pedidoUseCaseAdapterPort;
+
     private AcompanhamentoChain StatusPedidoChain;
 
-    public AcompanhamentoUseCaseImpl(PedidoUseCaseAdapterPort pedidoUseCaseAdapterPort, AcompanhamentoChain statusPedidoChain) {
-        this.pedidoUseCaseAdapterPort = pedidoUseCaseAdapterPort;
-        StatusPedidoChain = statusPedidoChain;
-    }
 
     @Override
     public AcompanhamentoResponse getOrderStatusExecute(Long idPedido) {

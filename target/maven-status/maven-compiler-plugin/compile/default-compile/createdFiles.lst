@@ -2,10 +2,13 @@ br\com\techchallenge\fiap\neighborfood\adapters\outbound\repository\jpa\EstoqueR
 br\com\techchallenge\fiap\neighborfood\adapters\outbound\repository\jpa\ClienteRepository.class
 br\com\techchallenge\fiap\neighborfood\adapters\outbound\repository\jpa\PagamentoRepository.class
 br\com\techchallenge\fiap\neighborfood\adapters\outbound\repository\EstoqueAdapter.class
+br\com\techchallenge\fiap\neighborfood\domain\dto\Mimo.class
+br\com\techchallenge\fiap\neighborfood\domain\dto\MimoRequest.class
 br\com\techchallenge\fiap\neighborfood\domain\usecase\others\acompanhachain\impl\AcompanhamentoChainFinalizadoImpl.class
 br\com\techchallenge\fiap\neighborfood\adapters\inbound\LanchoneteControllerImpl.class
 br\com\techchallenge\fiap\neighborfood\adapters\outbound\repository\entities\ClienteEntity$ClienteEntityBuilder.class
 br\com\techchallenge\fiap\neighborfood\config\exception\PedidoException.class
+br\com\techchallenge\fiap\neighborfood\domain\dto\Produto.class
 br\com\techchallenge\fiap\neighborfood\domain\model\Estoque.class
 br\com\techchallenge\fiap\neighborfood\config\exception\AdminException.class
 _generated_sources_swagger\NeighborfoodApi.class
@@ -17,6 +20,7 @@ br\com\techchallenge\fiap\neighborfood\domain\usecase\others\AcompanhamentoUseCa
 br\com\techchallenge\fiap\neighborfood\domain\ports\outbound\AcompanhamentoUseCaseAdapterPort.class
 br\com\techchallenge\fiap\neighborfood\domain\ports\outbound\EstoqueUseCaseAdapterPort.class
 br\com\techchallenge\fiap\neighborfood\domain\usecase\others\EstoqueUseCaseImpl.class
+br\com\techchallenge\fiap\neighborfood\domain\dto\Pedido.class
 br\com\techchallenge\fiap\neighborfood\domain\ports\inbound\AcompanhamentoUseCasePort.class
 br\com\techchallenge\fiap\neighborfood\adapters\outbound\repository\entities\PedidoEntity$PedidoEntityBuilder.class
 br\com\techchallenge\fiap\neighborfood\adapters\outbound\repository\jpa\ProdutoRepository.class
@@ -29,6 +33,7 @@ br\com\techchallenge\fiap\neighborfood\adapters\outbound\repository\jpa\AdmRepos
 br\com\techchallenge\fiap\neighborfood\config\exception\BeanConfig.class
 br\com\techchallenge\fiap\neighborfood\adapters\outbound\repository\entities\EstoqueEntity$EstoqueEntityBuilder.class
 br\com\techchallenge\fiap\neighborfood\domain\model\CategoriaCombo.class
+br\com\techchallenge\fiap\neighborfood\domain\dto\ClienteRequest.class
 br\com\techchallenge\fiap\neighborfood\adapters\outbound\repository\entities\ItensEntity.class
 br\com\techchallenge\fiap\neighborfood\adapters\outbound\repository\entities\NotificacaoEntity.class
 br\com\techchallenge\fiap\neighborfood\domain\ports\inbound\AdminUseCasePort.class
@@ -37,6 +42,7 @@ br\com\techchallenge\fiap\neighborfood\adapters\outbound\repository\entities\Cli
 _generated_sources_swagger\ApiUtil.class
 br\com\techchallenge\fiap\neighborfood\domain\ports\outbound\NotificationUseCaseAdapterPort.class
 br\com\techchallenge\fiap\neighborfood\adapters\outbound\repository\NotificacaoAdapter.class
+br\com\techchallenge\fiap\neighborfood\domain\dto\AcompanhamentoResponse.class
 br\com\techchallenge\fiap\neighborfood\domain\usecase\others\PagamentoUseCaseImpl.class
 br\com\techchallenge\fiap\neighborfood\domain\usecase\others\PedidoUseCaseImpl.class
 br\com\techchallenge\fiap\neighborfood\domain\usecase\others\acompanhachain\impl\AcompanhamentoChainProntoImpl.class
@@ -52,6 +58,7 @@ br\com\techchallenge\fiap\neighborfood\domain\ports\inbound\PedidoUseCasePort.cl
 br\com\techchallenge\fiap\neighborfood\domain\model\Notificacao.class
 br\com\techchallenge\fiap\neighborfood\domain\ports\outbound\LoginUseCaseAdapterPort.class
 br\com\techchallenge\fiap\neighborfood\domain\model\AcompanhamentoResponse.class
+br\com\techchallenge\fiap\neighborfood\domain\dto\AdminRequest.class
 br\com\techchallenge\fiap\neighborfood\domain\model\PedidoDTO.class
 br\com\techchallenge\fiap\neighborfood\domain\model\ProdutoDTO.class
 br\com\techchallenge\fiap\neighborfood\domain\model\StatusPedido.class
@@ -60,9 +67,11 @@ br\com\techchallenge\fiap\neighborfood\adapters\outbound\repository\entities\Mim
 br\com\techchallenge\fiap\neighborfood\domain\ports\inbound\LoginUseCasePort.class
 br\com\techchallenge\fiap\neighborfood\NeighborfoodApplication.class
 br\com\techchallenge\fiap\neighborfood\domain\model\Itens.class
+br\com\techchallenge\fiap\neighborfood\domain\dto\Pagamento.class
 br\com\techchallenge\fiap\neighborfood\adapters\outbound\repository\entities\PagamentoEntity.class
 br\com\techchallenge\fiap\neighborfood\domain\usecase\others\AdmUseCaseImpl.class
 br\com\techchallenge\fiap\neighborfood\adapters\outbound\repository\UserAdapter.class
+br\com\techchallenge\fiap\neighborfood\domain\dto\CategoriaCombo.class
 br\com\techchallenge\fiap\neighborfood\domain\ports\inbound\EstoqueUseCasePort.class
 br\com\techchallenge\fiap\neighborfood\adapters\outbound\repository\jpa\PedidoRepository.class
 br\com\techchallenge\fiap\neighborfood\domain\usecase\others\acompanhachain\impl\AcompanhamentoChainPreparacaoImpl.class
@@ -74,4 +83,5 @@ br\com\techchallenge\fiap\neighborfood\adapters\outbound\repository\entities\Pag
 br\com\techchallenge\fiap\neighborfood\domain\model\MimoDTO.class
 br\com\techchallenge\fiap\neighborfood\domain\ports\outbound\AdminUseCaseAdapterPort.class
 br\com\techchallenge\fiap\neighborfood\adapters\outbound\repository\entities\EstoqueEntity.class
+br\com\techchallenge\fiap\neighborfood\domain\dto\Acompanhamento.class
 br\com\techchallenge\fiap\neighborfood\domain\usecase\others\LoginUseCaseImpl.class

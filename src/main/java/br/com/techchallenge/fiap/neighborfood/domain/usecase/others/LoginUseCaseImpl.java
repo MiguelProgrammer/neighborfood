@@ -20,10 +20,6 @@ public class LoginUseCaseImpl implements LoginUseCasePort {
     private final String MESSAGE = "Usuário não encontrado ou não cadastrado!\n\n" +
             "Por favor, verifique as informações inseridas.";
 
-    public LoginUseCaseImpl(LoginUseCaseAdapterPort adapterPort, NotificationUseCaseAdapterPort notificacaoAdapter) {
-        this.loginAdapterPort = adapterPort;
-        this.notificacaoAdapter = notificacaoAdapter;
-    }
 
     @Override
     public Cliente loginExecute(Cliente clienteRequest) {

@@ -6,10 +6,9 @@ package br.com.techchallenge.fiap.neighborfood.adapters.inbound;
 
 
 import _generated_sources_swagger.NeighborfoodApi;
-import br.com.techchallenge.fiap.neighborfood.domain.model.Admin;
-import br.com.techchallenge.fiap.neighborfood.domain.model.Cliente;
-import br.com.techchallenge.fiap.neighborfood.domain.model.PagamentoDTO;
-import br.com.techchallenge.fiap.neighborfood.domain.model.PedidoDTO;
+import br.com.techchallenge.fiap.neighborfood.domain.dto.*;
+import br.com.techchallenge.fiap.neighborfood.domain.dto.AcompanhamentoResponse;
+import br.com.techchallenge.fiap.neighborfood.domain.model.*;
 import br.com.techchallenge.fiap.neighborfood.domain.ports.inbound.*;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
@@ -47,7 +46,7 @@ public class LanchoneteControllerImpl implements NeighborfoodApi {
      * or Pedido não encontrado (status code 404)
      */
     @Override
-    public ResponseEntity<Object> findOrderByIdOrder(Long idPedido) {
+    public ResponseEntity<AcompanhamentoResponse> findOrderByIdOrder(Long idPedido) {
         return NeighborfoodApi.super.findOrderByIdOrder(idPedido);
     }
 
@@ -61,7 +60,7 @@ public class LanchoneteControllerImpl implements NeighborfoodApi {
      * or Mimo não disponível (status code 404)
      */
     @Override
-    public ResponseEntity<List<Object>> listOrders(Long idAdmin) {
+    public ResponseEntity<List<br.com.techchallenge.fiap.neighborfood.domain.dto.AcompanhamentoResponse>> listOrders(Long idAdmin) {
         return NeighborfoodApi.super.listOrders(idAdmin);
     }
 
@@ -69,26 +68,26 @@ public class LanchoneteControllerImpl implements NeighborfoodApi {
      * POST /neighborfood/login : Se cadastrar, logar
      * Identificação do cliente
      *
-     * @param body Identifica um cliente logado (optional)
+     * @param clienteRequest Identifica um cliente logado (optional)
      * @return Usuário logado (status code 200)
      * or request inválida (status code 400)
      */
     @Override
-    public ResponseEntity<Object> login(Object body) {
-        return ResponseEntity.ok(loginUseCasePort.loginExecute((Cliente) body));
+    public ResponseEntity<Object> login(ClienteRequest clienteRequest) {
+        return NeighborfoodApi.super.login(clienteRequest);
     }
 
     /**
      * POST /neighborfood/painel/login : Cadastrar adm, logar adm
      * Identificação do adm
      *
-     * @param body Identifica um adminsitrador logado (optional)
+     * @param adminRequest Identifica um adminsitrador logado (optional)
      * @return Usuário logado (status code 200)
      * or request inválida (status code 400)
      */
     @Override
-    public ResponseEntity<Object> loginAdm(Object body) {
-       return ResponseEntity.ok(loginUseCasePort.loginAdmExecute((Admin) body));
+    public ResponseEntity<Object> loginAdm(AdminRequest adminRequest) {
+        return NeighborfoodApi.super.loginAdm(adminRequest);
     }
 
     /**
@@ -99,61 +98,67 @@ public class LanchoneteControllerImpl implements NeighborfoodApi {
      * or request inválida (status code 400)
      */
     @Override
-    public ResponseEntity<Object> menu() {
-        return ResponseEntity.ok(pedidoUseCasePort.menuOpcionaisExecute());
+    public ResponseEntity<String> menu() {
+        return NeighborfoodApi.super.menu();
     }
 
     /**
      * POST /neighborfood/pedido : Realizar um pedido
      * Fazer um  pedido
      *
-     * @param body Cria um novo pedido (optional)
+     * @param pedido Cria um novo pedido (optional)
      * @return Pedido criado (status code 200)
      * or request inválida (status code 400)
      */
     @Override
-    public ResponseEntity<Object> order(Object body) {
-        return ResponseEntity.ok(pedidoUseCasePort.pedidoExecute((PedidoDTO) body));
+    public ResponseEntity<br.com.techchallenge.fiap.neighborfood.domain.dto.AcompanhamentoResponse> order(Pedido pedido) {
+        return NeighborfoodApi.super.order(pedido);
     }
 
     /**
      * POST /neighborfood/pagamento : Realiza o pagamento do pedido
      * Realiza pagamento
      *
-     * @param body (required)
+     * @param pagamento (required)
      * @return pagamento realizado com sucesso. (status code 200)
      * or Id inválido (status code 400)
      * or Pedido não encontrado (status code 404)
      */
     @Override
-    public ResponseEntity<Object> payment(Object body) {
-        return ResponseEntity.ok(pagamentoUseCasePort.pagamentoExecute((PagamentoDTO) body));
+    public ResponseEntity<br.com.techchallenge.fiap.neighborfood.domain.dto.AcompanhamentoResponse> payment(Pagamento pagamento) {
+        return NeighborfoodApi.super.payment(pagamento);
     }
 
     /**
      * POST /neighborfood/cadastro : Se cadastrar, logar
      * Cria cliente
      *
-     * @param body Cria um novo cliente (optional)
+     * @param clienteRequest Cria um novo cliente (optional)
      * @return Usuário logado (status code 200)
      * or request inválida (status code 400)
      */
     @Override
-    public ResponseEntity<Object> register(Object body) {
-        return ResponseEntity.ok(loginUseCasePort.cadastroAdmExecute((Admin) body));
+    public ResponseEntity<Object> register(ClienteRequest clienteRequest) {
+
+        Cliente cliente = new Cliente();
+        cliente.setNome(clienteRequest.getNome());
+        cliente.setEmail(clienteRequest.getEmail());
+        cliente.setCpf(clienteRequest.getCpf());
+
+        return ResponseEntity.ok(loginUseCasePort.cadastroExecute(cliente));
     }
 
     /**
      * POST /neighborfood/painel/cadastro : Se cadastrar, logar
      * Cria cliente
      *
-     * @param body Cria um novo administrador (optional)
+     * @param adminRequest Cria um novo administrador (optional)
      * @return Usuário cadastrao (status code 200)
      * or request inválida (status code 400)
      */
     @Override
-    public ResponseEntity<Object> registerAdm(Object body) {
-        return ResponseEntity.ok(loginUseCasePort.cadastroAdmExecute((Admin) body));
+    public ResponseEntity<Object> registerAdm(AdminRequest adminRequest) {
+        return NeighborfoodApi.super.registerAdm(adminRequest);
     }
 
     /**
@@ -167,33 +172,33 @@ public class LanchoneteControllerImpl implements NeighborfoodApi {
      */
     @Override
     public ResponseEntity<Object> registerProduct(Long idAdmin) {
-        return ResponseEntity.ok(estoqueUseCasePort.gerenciaEstoqueExecute(idAdmin));
+        return NeighborfoodApi.super.registerProduct(idAdmin);
     }
 
     /**
      * POST /neighborfood/painel/cliente : Envia mimo ao último cliente que realizou um pedido
      * Envia mimo ao cliente
      *
-     * @param body (required)
+     * @param mimoRequest (required)
      * @return Mimo enviado (status code 200)
      * or Id inválido (status code 400)
      * or Mimo não disponível (status code 404)
      */
     @Override
-    public ResponseEntity<Object> sendBonus(Object body) {
-        return null; //notificacaoService.enviaMimos(mimo);
+    public ResponseEntity<Mimo> sendBonus(MimoRequest mimoRequest) {
+        return NeighborfoodApi.super.sendBonus(mimoRequest);
     }
 
     /**
      * PUT /neighborfood/pedido/update : Atualizar um pedido
      * Atualizar itens de um pedido já realizado
      *
-     * @param body atualiar um  pedido (optional)
+     * @param pedido atualiar um  pedido (optional)
      * @return Pedido atualizado (status code 200)
      * or request inválida (status code 400)
      */
     @Override
-    public ResponseEntity<Object> updateOrder(Object body) {
-        return null;//pedidoService.atualizarPedido(pedido);
+    public ResponseEntity<br.com.techchallenge.fiap.neighborfood.domain.dto.AcompanhamentoResponse> updateOrder(Pedido pedido) {
+        return NeighborfoodApi.super.updateOrder(pedido);
     }
 }
