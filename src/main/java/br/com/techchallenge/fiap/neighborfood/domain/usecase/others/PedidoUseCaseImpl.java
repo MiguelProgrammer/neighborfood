@@ -4,6 +4,8 @@
 
 package br.com.techchallenge.fiap.neighborfood.domain.usecase.others;
 
+import br.com.techchallenge.fiap.neighborfood.adapters.inbound.request.PedidoRequest;
+import br.com.techchallenge.fiap.neighborfood.adapters.inbound.response.AcompanhamentoResponse;
 import br.com.techchallenge.fiap.neighborfood.adapters.outbound.repository.UserAdapter;
 import br.com.techchallenge.fiap.neighborfood.adapters.outbound.repository.entities.NotificacaoEntity;
 import br.com.techchallenge.fiap.neighborfood.config.exception.ClienteException;
@@ -18,7 +20,6 @@ import br.com.techchallenge.fiap.neighborfood.domain.ports.outbound.Notification
 import br.com.techchallenge.fiap.neighborfood.domain.ports.outbound.PedidoUseCaseAdapterPort;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.ObjectUtils;
-import org.springframework.boot.json.JacksonJsonParser;
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -55,50 +56,43 @@ public class PedidoUseCaseImpl implements PedidoUseCasePort {
     }
 
     @Override
-    public AcompanhamentoResponse pedidoExecute(Pedido pedido) {
+    public AcompanhamentoResponse pedidoExecute(PedidoRequest pedidoRequest) {
 
-
-        Set<Itens> itens = new HashSet<>();
+        Pedido pedido = new Pedido();
         AcompanhamentoResponse response = new AcompanhamentoResponse();
-        Cliente cliente = userAdapter.clienteById(pedido.getIdCliente());
+        Cliente cliente = userAdapter.clienteById(pedidoRequest.getIdCliente());
 
         if (cliente == null) {
             throw new ClienteException("CLIENTE NÃO ENCONTRADO");
         }
 
-        pedido.getItens().forEach(pr -> {
+        pedidoRequest.setIdCliente(cliente.getId());
+        pedidoRequest.getItens().getProdutos().forEach(produto -> {
 
-            Set<Estoque> estoque = estoqueUseCaseAdapterPort.findByNome(pr.getNome());
+            Set<Estoque> estoque = estoqueUseCaseAdapterPort.findByNome(produto.getNome());
 
             if (estoque != null) {
-                itens.add(pr);
-                pedido.setTotal(pedido.getTotal().add(pr.getPreco()));
+                pedido.getItens().getProdutos().add(produto);
+                pedido.setTotal(pedido.getTotal().add(produto.getPreco()));
                 estoqueUseCaseAdapterPort.deleteAll(estoque);
             } else {
-                Itens entity1 = new Itens();
-                entity1.setDescricao("produto em falta! ");
-                itens.add(entity1);
+                Produto emFalta = new Produto();
+                emFalta.setDescricao("produto em falta!");
                 pedido.setTotal(BigDecimal.ZERO);
+                pedido.getItens().getProdutos().add(emFalta);
             }
         });
 
         pedido.setStatus(StatusPedido.RECEBIDO);
-        pedido.setItens(itens);
         pedido.setDataPedido(new Date());
 
         if (!pedido.getTotal().equals(BigDecimal.ZERO)) {
 
-            System.out.println(acompanhamentoUseCasePort.smsExecute(pedido.getStatus()));
+            log.info(acompanhamentoUseCasePort.smsExecute(pedido.getStatus()));
 
             Pedido pedidoDTO = pedidoUseCaseAdapterPort.commitUpdates(pedido.fromEntity(pedido));
-            pedidoDTO.getItens().forEach(pr -> {
-                pr.setIdPedido(pedidoDTO.getId());
-            });
-
             pedidoUseCaseAdapterPort.commitUpdates(pedidoDTO.fromEntity(pedidoDTO));
-            response.setTotal(pedido.getTotal());
             response.setPedido(pedidoDTO);
-            response.setStatus(pedido.getStatus());
         } else {
             NotificacaoEntity notificacao = new NotificacaoEntity();
             notificacao.setDescricao("Caro adm, por favor, veja a quantia de itens cadastrado no estoque!");
@@ -111,7 +105,7 @@ public class PedidoUseCaseImpl implements PedidoUseCasePort {
 
 
     @Override
-    public AcompanhamentoResponse atualizarPedidoExecute(Pedido pedido) {
+    public AcompanhamentoResponse atualizarPedidoExecute(PedidoRequest pedido) {
         Cliente cliente = userAdapter.clienteById(pedido.getIdCliente());
         Set<Itens> itensById = pedidoUseCaseAdapterPort.findByIdPedidoItens(pedido.getId());
 

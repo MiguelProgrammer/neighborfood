@@ -4,6 +4,7 @@
 
 package br.com.techchallenge.fiap.neighborfood.adapters.outbound.repository;
 
+import br.com.techchallenge.fiap.neighborfood.adapters.inbound.response.AcompanhamentoResponse;
 import br.com.techchallenge.fiap.neighborfood.adapters.outbound.repository.entities.EstoqueEntity;
 import br.com.techchallenge.fiap.neighborfood.adapters.outbound.repository.entities.ItensEntity;
 import br.com.techchallenge.fiap.neighborfood.adapters.outbound.repository.entities.PagamentoEntity;

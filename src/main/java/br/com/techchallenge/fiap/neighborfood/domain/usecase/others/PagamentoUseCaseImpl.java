@@ -5,7 +5,7 @@
 package br.com.techchallenge.fiap.neighborfood.domain.usecase.others;
 
 
-import br.com.techchallenge.fiap.neighborfood.domain.model.AcompanhamentoResponse;
+import br.com.techchallenge.fiap.neighborfood.adapters.inbound.response.AcompanhamentoResponse;
 import br.com.techchallenge.fiap.neighborfood.domain.model.Pagamento;
 import br.com.techchallenge.fiap.neighborfood.domain.model.Pedido;
 import br.com.techchallenge.fiap.neighborfood.domain.model.enums.StatusPedido;

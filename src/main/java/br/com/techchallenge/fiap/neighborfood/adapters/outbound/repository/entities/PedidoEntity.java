@@ -37,7 +37,7 @@ public class PedidoEntity implements Serializable {
     private Long idCliente;
 
     @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<ItensEntity> itens = new HashSet<>();
+    private Set<ProdutoEntity> itens = new HashSet<>();
 
     @Column(name = "total")
     private BigDecimal total = BigDecimal.ZERO;

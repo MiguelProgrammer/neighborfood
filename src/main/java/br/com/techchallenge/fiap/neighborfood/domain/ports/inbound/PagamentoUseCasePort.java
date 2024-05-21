@@ -4,7 +4,7 @@
 
 package br.com.techchallenge.fiap.neighborfood.domain.ports.inbound;
 
-import br.com.techchallenge.fiap.neighborfood.domain.model.AcompanhamentoResponse;
+import br.com.techchallenge.fiap.neighborfood.adapters.inbound.response.AcompanhamentoResponse;
 import br.com.techchallenge.fiap.neighborfood.domain.model.Pagamento;
 
 public interface PagamentoUseCasePort {

@@ -6,7 +6,7 @@ package br.com.techchallenge.fiap.neighborfood.domain.usecase.others;
 
 import br.com.techchallenge.fiap.neighborfood.adapters.outbound.repository.UserAdapter;
 import br.com.techchallenge.fiap.neighborfood.config.exception.AdminException;
-import br.com.techchallenge.fiap.neighborfood.domain.model.AcompanhamentoResponse;
+import br.com.techchallenge.fiap.neighborfood.adapters.inbound.response.AcompanhamentoResponse;
 import br.com.techchallenge.fiap.neighborfood.domain.model.Pedido;
 import br.com.techchallenge.fiap.neighborfood.domain.ports.inbound.AdminUseCasePort;
 import br.com.techchallenge.fiap.neighborfood.domain.ports.outbound.AdminUseCaseAdapterPort;

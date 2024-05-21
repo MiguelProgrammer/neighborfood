@@ -8,10 +8,9 @@ package br.com.techchallenge.fiap.neighborfood.adapters.inbound;
 import _generated_sources_swagger.NeighborfoodApi;
 import br.com.techchallenge.fiap.neighborfood.adapters.inbound.request.AdminRequest;
 import br.com.techchallenge.fiap.neighborfood.adapters.inbound.request.ClienteRequest;
+import br.com.techchallenge.fiap.neighborfood.adapters.inbound.request.PedidoRequest;
 import br.com.techchallenge.fiap.neighborfood.domain.dto.*;
-import br.com.techchallenge.fiap.neighborfood.domain.model.AcompanhamentoResponse;
-import br.com.techchallenge.fiap.neighborfood.domain.model.Cliente;
-import br.com.techchallenge.fiap.neighborfood.domain.model.Pedido;
+import br.com.techchallenge.fiap.neighborfood.adapters.inbound.response.AcompanhamentoResponse;
 import br.com.techchallenge.fiap.neighborfood.domain.ports.inbound.*;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
@@ -133,9 +132,10 @@ public class LanchoneteControllerImpl implements NeighborfoodApi {
      */
     @Override
     public ResponseEntity<AcompanhamentoResponseDTO> order(PedidoDTO pedidoDTO) {
-        return ResponseEntity.ok(new AcompanhamentoResponse().domainFromDto(
-                pedidoUseCasePort.pedidoExecute(new Pedido().dtoFromDomain(pedidoDTO))
-        ));
+
+        new PedidoRequest().dtoFromRequest(pedidoDTO);
+
+        return ResponseEntity.ok(pedidoUseCasePort.pedidoExecute(pedidoDTO));
 
         /**
          * TODO
