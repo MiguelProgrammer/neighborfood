@@ -5,9 +5,8 @@
 package br.com.techchallenge.fiap.neighborfood.domain.ports.inbound;
 
 import br.com.techchallenge.fiap.neighborfood.domain.model.AcompanhamentoResponse;
-import br.com.techchallenge.fiap.neighborfood.domain.model.StatusPedido;
+import br.com.techchallenge.fiap.neighborfood.domain.model.enums.StatusPedido;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 
 public interface AcompanhamentoUseCasePort {
 

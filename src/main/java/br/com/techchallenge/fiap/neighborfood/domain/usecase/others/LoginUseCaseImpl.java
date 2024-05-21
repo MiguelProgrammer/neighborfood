@@ -4,6 +4,9 @@
 
 package br.com.techchallenge.fiap.neighborfood.domain.usecase.others;
 
+import br.com.techchallenge.fiap.neighborfood.adapters.inbound.request.AdminRequest;
+import br.com.techchallenge.fiap.neighborfood.adapters.inbound.request.ClienteRequest;
+import br.com.techchallenge.fiap.neighborfood.adapters.outbound.repository.UserAdapter;
 import br.com.techchallenge.fiap.neighborfood.config.exception.AdminException;
 import br.com.techchallenge.fiap.neighborfood.config.exception.ClienteException;
 import br.com.techchallenge.fiap.neighborfood.domain.model.Admin;
@@ -11,46 +14,52 @@ import br.com.techchallenge.fiap.neighborfood.domain.model.Cliente;
 import br.com.techchallenge.fiap.neighborfood.domain.ports.inbound.LoginUseCasePort;
 import br.com.techchallenge.fiap.neighborfood.domain.ports.outbound.LoginUseCaseAdapterPort;
 import br.com.techchallenge.fiap.neighborfood.domain.ports.outbound.NotificationUseCaseAdapterPort;
-import org.apache.commons.lang3.ObjectUtils;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 public class LoginUseCaseImpl implements LoginUseCasePort {
 
     private LoginUseCaseAdapterPort loginAdapterPort;
     private NotificationUseCaseAdapterPort notificacaoAdapter;
+    private UserAdapter userAdapter;
+
     private final String MESSAGE = "Usuário não encontrado ou não cadastrado!\n\n" +
             "Por favor, verifique as informações inseridas.";
+    private final String MESSAGE_SUCCESS = "Cliente cadastrado com sucesso!";
 
+
+    public LoginUseCaseImpl(LoginUseCaseAdapterPort loginAdapterPort, NotificationUseCaseAdapterPort notificacaoAdapter, UserAdapter userAdapter) {
+        this.loginAdapterPort = loginAdapterPort;
+        this.notificacaoAdapter = notificacaoAdapter;
+        this.userAdapter = userAdapter;
+    }
 
     @Override
-    public Cliente loginExecute(Cliente clienteRequest) {
-
+    public Cliente loginExecute(ClienteRequest clienteRequest) {
         Cliente cliente = new Cliente();
         try {
             cliente = loginAdapterPort.login(clienteRequest);
 
-            if (ObjectUtils.isEmpty(cliente)) {
+            if (cliente.getId() == null) {
                 throw new ClienteException(MESSAGE);
             }
-        } catch (RuntimeException ex) {
+        } catch (ClienteException ex) {
             System.err.println(ex.getMessage());
         }
-
         return cliente;
     }
 
-
     @Override
-    public Cliente cadastroExecute(Cliente clienteRequest) {
+    public Cliente cadastroExecute(ClienteRequest clienteRequest) {
 
         Cliente clienteCadastrado = new Cliente();
-
         try {
-
             Cliente cadastro = this.loginExecute(clienteRequest);
-            if (ObjectUtils.isEmpty(cadastro)) {
+            if (naoCadastrado(cadastro)) {
                 clienteCadastrado = loginAdapterPort.cadastro(clienteRequest);
+                log.info(MESSAGE_SUCCESS);
             }
-        } catch (RuntimeException ex) {
+        } catch (ClienteException ex) {
             System.err.println(ex.getMessage());
         }
         return clienteCadastrado;
@@ -58,65 +67,53 @@ public class LoginUseCaseImpl implements LoginUseCasePort {
 
 
     @Override
-    public Admin loginAdmExecute(Admin adminRequest) {
+    public Admin loginAdmExecute(AdminRequest adminRequest) {
 
         Admin admin = new Admin();
 
         try {
-
             admin = loginAdapterPort.loginAdm(adminRequest);
-
-            if (ObjectUtils.isEmpty(admin)) {
+            if (admin.getId() == null) {
                 throw new AdminException(MESSAGE);
+            } else {
+                admin.setNotificacao(notificacaoAdapter.findAll().toString());
             }
 
-//            else {
-//
-//                //List<NotificacaoEntity> all = notificacaoRepository.findAll();
-//                List<String> notificacoes = new ArrayList<>();
-//
-//                if (!ObjectUtils.isEmpty(all)) {
-//
-//                    all.forEach(sms -> {
-//                        notificacoes.add(mapper.map(sms.getDescricao(), String.class));
-//                    });
-//
-//                    map.setNotificacao(notificacoes);
-//
-//                }
-//
-//                return ResponseEntity.ok(map);
-//            }
-
-        } catch (RuntimeException ex) {
-
+        } catch (AdminException ex) {
             System.err.println(ex.getMessage());
-
         }
         return admin;
     }
 
 
     @Override
-    public Admin cadastroAdmExecute(Admin adminRequest) {
-
-//        try {
-//
-//            AdminEntity adm = admRepository.findByCpf(adminRequest.getCpf());
-//            if (ObjectUtils.isEmpty(adm)) {
-//                if (ObjectUtils.isEmpty(adminRequest)) {
-//                    log.info("ADM NÃO SE IDENTIFICADO.");
-//                    return ResponseEntity.ok(admRepository.save(new AdminEntity()));
-//                }
-//                log.info("ADM CADASTRADO.");
-//                return ResponseEntity.ok(admRepository.save(mapper.map(adminRequest, AdminEntity.class)));
-//            } else {
-//                return ResponseEntity.ok(mapper.map(adm, AdmDTO.class));
-//            }
-//        } catch (RuntimeException ex) {
-//            System.err.println(ex.getMessage());
-//        }
-
-        return loginAdapterPort.cadastroAdm(adminRequest);
+    public Admin cadastroAdmExecute(AdminRequest adminRequest) {
+        Admin admin = new Admin();
+        try {
+            Admin adapt = this.loginAdmExecute(adminRequest);
+            if (naoCadastrado(admin) && adapt.getId() == null) {
+                admin = loginAdapterPort.cadastroAdm(adminRequest);
+                log.info("ADM CADASTRADO.");
+            }
+        } catch (AdminException ex) {
+            System.err.println(ex.getMessage());
+        }
+        return admin;
     }
+
+
+    private static boolean naoCadastrado(Cliente cadastro) {
+        return cadastro.getCpf() == null
+                && cadastro.getId() == null
+                && cadastro.getNome() == null
+                && cadastro.getEmail() == null;
+    }
+
+    private static boolean naoCadastrado(Admin cadastro) {
+        return cadastro.getCpf() == null
+                && cadastro.getId() == null
+                && cadastro.getNome() == null
+                && cadastro.getEmail() == null;
+    }
+
 }

@@ -6,9 +6,9 @@ package br.com.techchallenge.fiap.neighborfood.domain.usecase.others;
 
 
 import br.com.techchallenge.fiap.neighborfood.domain.model.AcompanhamentoResponse;
-import br.com.techchallenge.fiap.neighborfood.domain.model.PagamentoDTO;
-import br.com.techchallenge.fiap.neighborfood.domain.model.PedidoDTO;
-import br.com.techchallenge.fiap.neighborfood.domain.model.StatusPedido;
+import br.com.techchallenge.fiap.neighborfood.domain.model.Pagamento;
+import br.com.techchallenge.fiap.neighborfood.domain.model.Pedido;
+import br.com.techchallenge.fiap.neighborfood.domain.model.enums.StatusPedido;
 import br.com.techchallenge.fiap.neighborfood.domain.ports.inbound.AcompanhamentoUseCasePort;
 import br.com.techchallenge.fiap.neighborfood.domain.ports.inbound.PagamentoUseCasePort;
 import br.com.techchallenge.fiap.neighborfood.domain.ports.outbound.PedidoUseCaseAdapterPort;
@@ -19,9 +19,9 @@ public class PagamentoUseCaseImpl implements PagamentoUseCasePort {
     private AcompanhamentoUseCasePort acompanhamentoUseCasePort;
 
     @Override
-    public AcompanhamentoResponse pagamentoExecute(PagamentoDTO pagamento) {
+    public AcompanhamentoResponse pagamentoExecute(Pagamento pagamento) {
 
-        PedidoDTO pedidoDTO = pedidoUseCaseAdapterPort.findById(pagamento.getIdPedido());
+        Pedido pedidoDTO = pedidoUseCaseAdapterPort.findById(pagamento.getIdPedido());
         AcompanhamentoResponse response = new AcompanhamentoResponse();
 
         if (pedidoDTO != null) {

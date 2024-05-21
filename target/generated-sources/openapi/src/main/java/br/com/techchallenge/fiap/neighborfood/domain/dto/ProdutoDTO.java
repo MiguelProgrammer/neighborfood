@@ -2,7 +2,7 @@ package br.com.techchallenge.fiap.neighborfood.domain.dto;
 
 import java.net.URI;
 import java.util.Objects;
-import br.com.techchallenge.fiap.neighborfood.domain.dto.CategoriaCombo;
+import br.com.techchallenge.fiap.neighborfood.domain.dto.CategoriaComboDTO;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
@@ -17,23 +17,23 @@ import java.util.*;
 import jakarta.annotation.Generated;
 
 /**
- * Produto
+ * ProdutoDTO
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-05-20T08:01:32.392563-03:00[America/Sao_Paulo]")
-public class Produto {
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-05-20T23:19:13.374846-03:00[America/Sao_Paulo]")
+public class ProdutoDTO {
 
   private String nome;
 
   private java.math.BigDecimal preco;
 
-  private CategoriaCombo categoria;
+  private CategoriaComboDTO categoria;
 
   private String descricao;
 
   private String img;
 
-  public Produto nome(String nome) {
+  public ProdutoDTO nome(String nome) {
     this.nome = nome;
     return this;
   }
@@ -53,7 +53,7 @@ public class Produto {
     this.nome = nome;
   }
 
-  public Produto preco(java.math.BigDecimal preco) {
+  public ProdutoDTO preco(java.math.BigDecimal preco) {
     this.preco = preco;
     return this;
   }
@@ -73,7 +73,7 @@ public class Produto {
     this.preco = preco;
   }
 
-  public Produto categoria(CategoriaCombo categoria) {
+  public ProdutoDTO categoria(CategoriaComboDTO categoria) {
     this.categoria = categoria;
     return this;
   }
@@ -85,15 +85,15 @@ public class Produto {
   @Valid 
   @Schema(name = "categoria", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("categoria")
-  public CategoriaCombo getCategoria() {
+  public CategoriaComboDTO getCategoria() {
     return categoria;
   }
 
-  public void setCategoria(CategoriaCombo categoria) {
+  public void setCategoria(CategoriaComboDTO categoria) {
     this.categoria = categoria;
   }
 
-  public Produto descricao(String descricao) {
+  public ProdutoDTO descricao(String descricao) {
     this.descricao = descricao;
     return this;
   }
@@ -113,7 +113,7 @@ public class Produto {
     this.descricao = descricao;
   }
 
-  public Produto img(String img) {
+  public ProdutoDTO img(String img) {
     this.img = img;
     return this;
   }
@@ -141,12 +141,12 @@ public class Produto {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    Produto produto = (Produto) o;
-    return Objects.equals(this.nome, produto.nome) &&
-        Objects.equals(this.preco, produto.preco) &&
-        Objects.equals(this.categoria, produto.categoria) &&
-        Objects.equals(this.descricao, produto.descricao) &&
-        Objects.equals(this.img, produto.img);
+    ProdutoDTO produtoDTO = (ProdutoDTO) o;
+    return Objects.equals(this.nome, produtoDTO.nome) &&
+        Objects.equals(this.preco, produtoDTO.preco) &&
+        Objects.equals(this.categoria, produtoDTO.categoria) &&
+        Objects.equals(this.descricao, produtoDTO.descricao) &&
+        Objects.equals(this.img, produtoDTO.img);
   }
 
   @Override
@@ -157,7 +157,7 @@ public class Produto {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class Produto {\n");
+    sb.append("class ProdutoDTO {\n");
     sb.append("    nome: ").append(toIndentedString(nome)).append("\n");
     sb.append("    preco: ").append(toIndentedString(preco)).append("\n");
     sb.append("    categoria: ").append(toIndentedString(categoria)).append("\n");

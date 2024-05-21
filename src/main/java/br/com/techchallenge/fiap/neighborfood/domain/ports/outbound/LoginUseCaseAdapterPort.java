@@ -4,17 +4,19 @@
 
 package br.com.techchallenge.fiap.neighborfood.domain.ports.outbound;
 
+import br.com.techchallenge.fiap.neighborfood.adapters.inbound.request.AdminRequest;
+import br.com.techchallenge.fiap.neighborfood.adapters.inbound.request.ClienteRequest;
 import br.com.techchallenge.fiap.neighborfood.domain.model.Admin;
 import br.com.techchallenge.fiap.neighborfood.domain.model.Cliente;
 
 public interface LoginUseCaseAdapterPort {
 
-    Cliente login(Cliente clienteRequest);
+    Cliente login(ClienteRequest clienteRequest);
 
-    Cliente cadastro(Cliente clienteRequest);
+    Cliente cadastro(ClienteRequest clienteRequest);
 
-    Admin loginAdm(Admin adminRequest);
+    Admin loginAdm(AdminRequest adminRequest);
 
-    Admin cadastroAdm(Admin adminRequest);
+    Admin cadastroAdm(AdminRequest adminRequest);
 
 }

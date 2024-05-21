@@ -4,6 +4,7 @@
 
 package br.com.techchallenge.fiap.neighborfood.domain.model;
 
+import br.com.techchallenge.fiap.neighborfood.adapters.inbound.request.ClienteRequest;
 import br.com.techchallenge.fiap.neighborfood.adapters.outbound.repository.entities.ClienteEntity;
 
 import java.util.HashSet;
@@ -15,12 +16,12 @@ public class Cliente {
     private String nome;
     private String email;
     private String cpf;
-    private Set<PedidoDTO> pedidos = new HashSet<>();
+    private Set<Pedido> pedidos = new HashSet<>();
 
     public Cliente() {
     }
 
-    public Cliente(Long id, String nome, String email, String cpf, Set<PedidoDTO> pedidos) {
+    public Cliente(Long id, String nome, String email, String cpf, Set<Pedido> pedidos) {
         this.id = id;
         this.nome = nome;
         this.email = email;
@@ -30,14 +31,18 @@ public class Cliente {
 
     public Cliente fromModel(ClienteEntity entity) {
         Cliente cliente = new Cliente();
-        cliente.setNome(entity.getNome());
-        cliente.setCpf(entity.getCpf());
-        cliente.setEmail(entity.getEmail());
-        mapeamento(entity, cliente);
+
+        if (entity != null) {
+            cliente.setId(entity.getId());
+            cliente.setNome(entity.getNome());
+            cliente.setCpf(entity.getCpf());
+            cliente.setEmail(entity.getEmail());
+            mapeamento(entity, cliente);
+        }
         return cliente;
     }
 
-    public ClienteEntity fromEntity(Cliente clienteRequest) {
+    public ClienteEntity fromEntity(ClienteRequest clienteRequest) {
         ClienteEntity entity = new ClienteEntity();
         entity.setNome(clienteRequest.getNome());
         entity.setCpf(clienteRequest.getCpf());
@@ -47,10 +52,10 @@ public class Cliente {
     }
 
     private static void mapeamento(ClienteEntity entity, Cliente cliente) {
-        Set<PedidoDTO> pedidos = new HashSet<>();
+        Set<Pedido> pedidos = new HashSet<>();
         entity.getPedidos().forEach(pr -> {
 
-            PedidoDTO pedido = new PedidoDTO();
+            Pedido pedido = new Pedido();
             pedido.setIdCliente(pr.getIdCliente());
 
             Set<Itens> itens = new HashSet<>();
@@ -104,12 +109,13 @@ public class Cliente {
         this.cpf = cpf;
     }
 
-    public Set<PedidoDTO> getPedidos() {
+    public Set<Pedido> getPedidos() {
         return pedidos;
     }
 
-    public void setPedidos(Set<PedidoDTO> pedidos) {
+    public void setPedidos(Set<Pedido> pedidos) {
         this.pedidos = pedidos;
     }
+
 }
 

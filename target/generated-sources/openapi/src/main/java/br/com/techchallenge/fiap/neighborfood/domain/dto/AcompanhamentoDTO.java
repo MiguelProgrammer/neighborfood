@@ -17,23 +17,23 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 /**
- * Gets or Sets CategoriaCombo
+ * Gets or Sets AcompanhamentoDTO
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-05-20T08:01:32.392563-03:00[America/Sao_Paulo]")
-public enum CategoriaCombo {
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-05-20T23:19:13.374846-03:00[America/Sao_Paulo]")
+public enum AcompanhamentoDTO {
   
-  LANCHE("LANCHE"),
+  RECEBIDO("RECEBIDO"),
   
-  ACOMPANHAMENTO("ACOMPANHAMENTO"),
+  EM_PREPARACAO("EM_PREPARACAO"),
   
-  BEBIDA("BEBIDA"),
+  PRONTO("PRONTO"),
   
-  SOBREMESA("SOBREMESA");
+  FINALIZADO("FINALIZADO");
 
   private String value;
 
-  CategoriaCombo(String value) {
+  AcompanhamentoDTO(String value) {
     this.value = value;
   }
 
@@ -48,8 +48,8 @@ public enum CategoriaCombo {
   }
 
   @JsonCreator
-  public static CategoriaCombo fromValue(String value) {
-    for (CategoriaCombo b : CategoriaCombo.values()) {
+  public static AcompanhamentoDTO fromValue(String value) {
+    for (AcompanhamentoDTO b : AcompanhamentoDTO.values()) {
       if (b.value.equals(value)) {
         return b;
       }

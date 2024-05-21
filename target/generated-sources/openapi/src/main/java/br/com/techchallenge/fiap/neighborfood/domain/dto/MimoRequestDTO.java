@@ -15,15 +15,15 @@ import java.util.*;
 import jakarta.annotation.Generated;
 
 /**
- * MimoRequest
+ * MimoRequestDTO
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-05-20T08:01:32.392563-03:00[America/Sao_Paulo]")
-public class MimoRequest {
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-05-20T23:19:13.374846-03:00[America/Sao_Paulo]")
+public class MimoRequestDTO {
 
   private Long idCliente;
 
-  public MimoRequest idCliente(Long idCliente) {
+  public MimoRequestDTO idCliente(Long idCliente) {
     this.idCliente = idCliente;
     return this;
   }
@@ -51,8 +51,8 @@ public class MimoRequest {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    MimoRequest mimoRequest = (MimoRequest) o;
-    return Objects.equals(this.idCliente, mimoRequest.idCliente);
+    MimoRequestDTO mimoRequestDTO = (MimoRequestDTO) o;
+    return Objects.equals(this.idCliente, mimoRequestDTO.idCliente);
   }
 
   @Override
@@ -63,7 +63,7 @@ public class MimoRequest {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class MimoRequest {\n");
+    sb.append("class MimoRequestDTO {\n");
     sb.append("    idCliente: ").append(toIndentedString(idCliente)).append("\n");
     sb.append("}");
     return sb.toString();

@@ -5,6 +5,7 @@
 package br.com.techchallenge.fiap.neighborfood.domain.model;
 
 import br.com.techchallenge.fiap.neighborfood.adapters.outbound.repository.entities.EstoqueEntity;
+import br.com.techchallenge.fiap.neighborfood.domain.model.enums.CategoriaCombo;
 
 import java.math.BigDecimal;
 import java.util.HashSet;

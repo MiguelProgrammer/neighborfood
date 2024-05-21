@@ -4,7 +4,12 @@
 
 package br.com.techchallenge.fiap.neighborfood.config.exception;
 
+import br.com.techchallenge.fiap.neighborfood.adapters.outbound.repository.UserAdapter;
 import br.com.techchallenge.fiap.neighborfood.domain.ports.inbound.*;
+import br.com.techchallenge.fiap.neighborfood.domain.ports.outbound.EstoqueUseCaseAdapterPort;
+import br.com.techchallenge.fiap.neighborfood.domain.ports.outbound.LoginUseCaseAdapterPort;
+import br.com.techchallenge.fiap.neighborfood.domain.ports.outbound.NotificationUseCaseAdapterPort;
+import br.com.techchallenge.fiap.neighborfood.domain.ports.outbound.PedidoUseCaseAdapterPort;
 import br.com.techchallenge.fiap.neighborfood.domain.usecase.others.*;
 import br.com.techchallenge.fiap.neighborfood.domain.usecase.others.acompanhachain.AcompanhamentoChain;
 import br.com.techchallenge.fiap.neighborfood.domain.usecase.others.acompanhachain.impl.AcompanhamentoChainFinalizadoImpl;
@@ -49,13 +54,16 @@ public class BeanConfig {
     }
 
     @Bean
-    public EstoqueUseCasePort estoqueUseCasePort() {
-        return new EstoqueUseCaseImpl();
+    public EstoqueUseCasePort estoqueUseCasePort(EstoqueUseCaseAdapterPort estoqueUseCaseAdapterPort,
+                                                 LoginUseCaseAdapterPort loginAdapter, UserAdapter userdapter) {
+        return new EstoqueUseCaseImpl(estoqueUseCaseAdapterPort, loginAdapter, userdapter);
     }
 
     @Bean
-    public LoginUseCasePort loginUseCasePort() {
-        return new LoginUseCaseImpl();
+    public LoginUseCasePort loginUseCasePort(LoginUseCaseAdapterPort loginAdapterPort,
+                                             NotificationUseCaseAdapterPort notificacaoAdapter,
+                                             UserAdapter userAdapter) {
+        return new LoginUseCaseImpl(loginAdapterPort, notificacaoAdapter, userAdapter);
     }
 
     @Bean
@@ -69,7 +77,12 @@ public class BeanConfig {
     }
 
     @Bean
-    public PedidoUseCasePort pedidoUseCasePort() {
-        return new PedidoUseCaseImpl();
+    public PedidoUseCasePort pedidoUseCasePort(PedidoUseCaseAdapterPort pedidoUseCaseAdapterPort,
+                                               EstoqueUseCaseAdapterPort estoqueUseCaseAdapterPort,
+                                               NotificationUseCaseAdapterPort notificationUseCaseAdapterPort,
+                                               AcompanhamentoUseCasePort acompanhamentoUseCasePort,
+                                               UserAdapter userAdapter) {
+        return new PedidoUseCaseImpl(pedidoUseCaseAdapterPort, estoqueUseCaseAdapterPort,
+                notificationUseCaseAdapterPort, acompanhamentoUseCasePort, userAdapter);
     }
 }

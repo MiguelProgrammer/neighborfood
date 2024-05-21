@@ -2,8 +2,8 @@ package br.com.techchallenge.fiap.neighborfood.domain.dto;
 
 import java.net.URI;
 import java.util.Objects;
-import br.com.techchallenge.fiap.neighborfood.domain.dto.Acompanhamento;
-import br.com.techchallenge.fiap.neighborfood.domain.dto.Pedido;
+import br.com.techchallenge.fiap.neighborfood.domain.dto.AcompanhamentoDTO;
+import br.com.techchallenge.fiap.neighborfood.domain.dto.PedidoDTO;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
@@ -18,19 +18,19 @@ import java.util.*;
 import jakarta.annotation.Generated;
 
 /**
- * AcompanhamentoResponse
+ * AcompanhamentoResponseDTO
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-05-20T08:01:32.392563-03:00[America/Sao_Paulo]")
-public class AcompanhamentoResponse {
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-05-20T23:19:13.374846-03:00[America/Sao_Paulo]")
+public class AcompanhamentoResponseDTO {
 
-  private Pedido pedido;
+  private PedidoDTO pedido;
 
-  private Acompanhamento status;
+  private AcompanhamentoDTO status;
 
   private java.math.BigDecimal total;
 
-  public AcompanhamentoResponse pedido(Pedido pedido) {
+  public AcompanhamentoResponseDTO pedido(PedidoDTO pedido) {
     this.pedido = pedido;
     return this;
   }
@@ -42,15 +42,15 @@ public class AcompanhamentoResponse {
   @Valid 
   @Schema(name = "pedido", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("pedido")
-  public Pedido getPedido() {
+  public PedidoDTO getPedido() {
     return pedido;
   }
 
-  public void setPedido(Pedido pedido) {
+  public void setPedido(PedidoDTO pedido) {
     this.pedido = pedido;
   }
 
-  public AcompanhamentoResponse status(Acompanhamento status) {
+  public AcompanhamentoResponseDTO status(AcompanhamentoDTO status) {
     this.status = status;
     return this;
   }
@@ -62,15 +62,15 @@ public class AcompanhamentoResponse {
   @Valid 
   @Schema(name = "status", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("status")
-  public Acompanhamento getStatus() {
+  public AcompanhamentoDTO getStatus() {
     return status;
   }
 
-  public void setStatus(Acompanhamento status) {
+  public void setStatus(AcompanhamentoDTO status) {
     this.status = status;
   }
 
-  public AcompanhamentoResponse total(java.math.BigDecimal total) {
+  public AcompanhamentoResponseDTO total(java.math.BigDecimal total) {
     this.total = total;
     return this;
   }
@@ -98,10 +98,10 @@ public class AcompanhamentoResponse {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    AcompanhamentoResponse acompanhamentoResponse = (AcompanhamentoResponse) o;
-    return Objects.equals(this.pedido, acompanhamentoResponse.pedido) &&
-        Objects.equals(this.status, acompanhamentoResponse.status) &&
-        Objects.equals(this.total, acompanhamentoResponse.total);
+    AcompanhamentoResponseDTO acompanhamentoResponseDTO = (AcompanhamentoResponseDTO) o;
+    return Objects.equals(this.pedido, acompanhamentoResponseDTO.pedido) &&
+        Objects.equals(this.status, acompanhamentoResponseDTO.status) &&
+        Objects.equals(this.total, acompanhamentoResponseDTO.total);
   }
 
   @Override
@@ -112,7 +112,7 @@ public class AcompanhamentoResponse {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class AcompanhamentoResponse {\n");
+    sb.append("class AcompanhamentoResponseDTO {\n");
     sb.append("    pedido: ").append(toIndentedString(pedido)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("    total: ").append(toIndentedString(total)).append("\n");

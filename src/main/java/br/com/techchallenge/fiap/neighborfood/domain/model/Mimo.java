@@ -6,17 +6,17 @@ package br.com.techchallenge.fiap.neighborfood.domain.model;
 
 import br.com.techchallenge.fiap.neighborfood.adapters.outbound.repository.entities.MimoEntity;
 
-public class MimoDTO {
+public class Mimo {
 
     private Long codigo;
     private Long idUsuario;
     private String acao;
     private String descricao;
 
-    public MimoDTO() {
+    public Mimo() {
     }
 
-    public MimoDTO(Long codigo, String descricao, Long idUsuario, String acao) {
+    public Mimo(Long codigo, String descricao, Long idUsuario, String acao) {
         this.codigo = codigo;
         this.descricao = descricao;
         this.idUsuario = idUsuario;
@@ -24,8 +24,8 @@ public class MimoDTO {
     }
 
 
-    public MimoDTO fromModel(MimoEntity entity) {
-        MimoDTO mimo = new MimoDTO();
+    public Mimo fromModel(MimoEntity entity) {
+        Mimo mimo = new Mimo();
         mimo.setIdUsuario(entity.getIdUsuario());
         mimo.setAcao(entity.getAcao());
         mimo.setDescricao(entity.getDescricao());

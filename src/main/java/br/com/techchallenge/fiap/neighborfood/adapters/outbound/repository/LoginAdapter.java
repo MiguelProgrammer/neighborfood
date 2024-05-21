@@ -4,6 +4,9 @@
 
 package br.com.techchallenge.fiap.neighborfood.adapters.outbound.repository;
 
+import br.com.techchallenge.fiap.neighborfood.adapters.inbound.request.AdminRequest;
+import br.com.techchallenge.fiap.neighborfood.adapters.inbound.request.ClienteRequest;
+import br.com.techchallenge.fiap.neighborfood.adapters.outbound.repository.entities.AdminEntity;
 import br.com.techchallenge.fiap.neighborfood.adapters.outbound.repository.entities.ClienteEntity;
 import br.com.techchallenge.fiap.neighborfood.adapters.outbound.repository.jpa.AdmRepository;
 import br.com.techchallenge.fiap.neighborfood.adapters.outbound.repository.jpa.ClienteRepository;
@@ -24,13 +27,13 @@ public class LoginAdapter implements LoginUseCaseAdapterPort {
     }
 
     @Override
-    public Cliente login(Cliente clienteRequest) {
+    public Cliente login(ClienteRequest clienteRequest) {
         return new Cliente().fromModel(clienteRepository.findByCpf(clienteRequest.getCpf()));
     }
 
 
     @Override
-    public Cliente cadastro(Cliente clienteRequest) {
+    public Cliente cadastro(ClienteRequest clienteRequest) {
         Cliente cliente = new Cliente();
         ClienteEntity entity = cliente.fromEntity(clienteRequest);
         return new Cliente().fromModel(clienteRepository.save(entity));
@@ -38,13 +41,14 @@ public class LoginAdapter implements LoginUseCaseAdapterPort {
 
 
     @Override
-    public Admin loginAdm(Admin adminRequest) {
+    public Admin loginAdm(AdminRequest adminRequest) {
         return new Admin().fromModel(admRepository.findByCpf(adminRequest.getCpf()));
     }
 
 
     @Override
-    public Admin cadastroAdm(Admin adminRequest) {
-        return null;
+    public Admin cadastroAdm(AdminRequest adminRequest) {
+        AdminEntity adminEntity = new Admin().fromEntity(adminRequest);
+        return new Admin().fromModel(admRepository.save(adminEntity));
     }
 }

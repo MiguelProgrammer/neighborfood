@@ -5,7 +5,7 @@
 package br.com.techchallenge.fiap.neighborfood.adapters.outbound.repository;
 
 import br.com.techchallenge.fiap.neighborfood.domain.model.AcompanhamentoResponse;
-import br.com.techchallenge.fiap.neighborfood.domain.model.PagamentoDTO;
+import br.com.techchallenge.fiap.neighborfood.domain.model.Pagamento;
 import br.com.techchallenge.fiap.neighborfood.domain.ports.inbound.PagamentoUseCasePort;
 import br.com.techchallenge.fiap.neighborfood.domain.ports.outbound.PagamentoUseCaseAdapterPort;
 import org.springframework.stereotype.Component;
@@ -20,7 +20,7 @@ public class PagamentoAdapter implements PagamentoUseCaseAdapterPort {
     }
 
     @Override
-    public AcompanhamentoResponse pagamento(PagamentoDTO pagamento) {
+    public AcompanhamentoResponse pagamento(Pagamento pagamento) {
         return pagamentoUseCasePort.pagamentoExecute(pagamento);
     }
 }

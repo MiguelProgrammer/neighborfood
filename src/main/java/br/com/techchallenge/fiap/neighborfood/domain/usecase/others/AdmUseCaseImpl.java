@@ -7,14 +7,12 @@ package br.com.techchallenge.fiap.neighborfood.domain.usecase.others;
 import br.com.techchallenge.fiap.neighborfood.adapters.outbound.repository.UserAdapter;
 import br.com.techchallenge.fiap.neighborfood.config.exception.AdminException;
 import br.com.techchallenge.fiap.neighborfood.domain.model.AcompanhamentoResponse;
-import br.com.techchallenge.fiap.neighborfood.domain.model.PedidoDTO;
+import br.com.techchallenge.fiap.neighborfood.domain.model.Pedido;
 import br.com.techchallenge.fiap.neighborfood.domain.ports.inbound.AdminUseCasePort;
 import br.com.techchallenge.fiap.neighborfood.domain.ports.outbound.AdminUseCaseAdapterPort;
 import br.com.techchallenge.fiap.neighborfood.domain.ports.outbound.PedidoUseCaseAdapterPort;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.ObjectUtils;
-import org.springframework.context.annotation.Primary;
-import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,9 +35,9 @@ public class AdmUseCaseImpl implements AdminUseCasePort {
         }
 
         log.info("Listando pedidos ...\n");
-        List<PedidoDTO> listaPedidos = new ArrayList<>();
+        List<Pedido> listaPedidos = new ArrayList<>();
         pedidoUseCaseAdapterPort.pedidosExecute().forEach(pd -> {
-            listaPedidos.add(new PedidoDTO().fromDomain(pd));
+            listaPedidos.add(new Pedido().fromDomain(pd));
         });
 
 

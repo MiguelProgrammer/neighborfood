@@ -15,11 +15,11 @@ import java.util.*;
 import jakarta.annotation.Generated;
 
 /**
- * ClienteRequest
+ * ClienteRequestDTO
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-05-20T08:01:32.392563-03:00[America/Sao_Paulo]")
-public class ClienteRequest {
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-05-20T23:19:13.374846-03:00[America/Sao_Paulo]")
+public class ClienteRequestDTO {
 
   private String nome;
 
@@ -27,7 +27,7 @@ public class ClienteRequest {
 
   private String cpf;
 
-  public ClienteRequest nome(String nome) {
+  public ClienteRequestDTO nome(String nome) {
     this.nome = nome;
     return this;
   }
@@ -47,7 +47,7 @@ public class ClienteRequest {
     this.nome = nome;
   }
 
-  public ClienteRequest email(String email) {
+  public ClienteRequestDTO email(String email) {
     this.email = email;
     return this;
   }
@@ -67,7 +67,7 @@ public class ClienteRequest {
     this.email = email;
   }
 
-  public ClienteRequest cpf(String cpf) {
+  public ClienteRequestDTO cpf(String cpf) {
     this.cpf = cpf;
     return this;
   }
@@ -95,10 +95,10 @@ public class ClienteRequest {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    ClienteRequest clienteRequest = (ClienteRequest) o;
-    return Objects.equals(this.nome, clienteRequest.nome) &&
-        Objects.equals(this.email, clienteRequest.email) &&
-        Objects.equals(this.cpf, clienteRequest.cpf);
+    ClienteRequestDTO clienteRequestDTO = (ClienteRequestDTO) o;
+    return Objects.equals(this.nome, clienteRequestDTO.nome) &&
+        Objects.equals(this.email, clienteRequestDTO.email) &&
+        Objects.equals(this.cpf, clienteRequestDTO.cpf);
   }
 
   @Override
@@ -109,7 +109,7 @@ public class ClienteRequest {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class ClienteRequest {\n");
+    sb.append("class ClienteRequestDTO {\n");
     sb.append("    nome: ").append(toIndentedString(nome)).append("\n");
     sb.append("    email: ").append(toIndentedString(email)).append("\n");
     sb.append("    cpf: ").append(toIndentedString(cpf)).append("\n");

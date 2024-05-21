@@ -7,6 +7,7 @@ package br.com.techchallenge.fiap.neighborfood.domain.ports.outbound;
 import br.com.techchallenge.fiap.neighborfood.adapters.outbound.repository.entities.PagamentoEntity;
 import br.com.techchallenge.fiap.neighborfood.adapters.outbound.repository.entities.PedidoEntity;
 import br.com.techchallenge.fiap.neighborfood.domain.model.*;
+import br.com.techchallenge.fiap.neighborfood.domain.model.enums.CategoriaCombo;
 
 import java.util.List;
 import java.util.Set;
@@ -15,11 +16,11 @@ public interface PedidoUseCaseAdapterPort {
 
     Set<Estoque> menuOpcionais(CategoriaCombo combo);
 
-    AcompanhamentoResponse pedido(PedidoDTO pedido);
+    AcompanhamentoResponse pedido(Pedido pedido);
 
-    AcompanhamentoResponse atualizarPedido(PedidoDTO pedido);
+    AcompanhamentoResponse atualizarPedido(Pedido pedido);
 
-    PedidoDTO commitUpdates(PedidoEntity pedidoEntity);
+    Pedido commitUpdates(PedidoEntity pedidoEntity);
     void saveItens(Itens itens);
 
     void removeItens(Set<Itens> itens);
@@ -27,9 +28,9 @@ public interface PedidoUseCaseAdapterPort {
     Set<Itens> findAllById(Long id);
 
     Set<Itens> findByIdPedidoItens(Long id);
-    PedidoDTO findByIdPedido(Long id);
+    Pedido findByIdPedido(Long id);
 
-    PedidoDTO findById(Long id);
+    Pedido findById(Long id);
 
     void salvaPagamento(PagamentoEntity entity);
 

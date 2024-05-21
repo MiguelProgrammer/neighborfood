@@ -5,10 +5,11 @@
 package br.com.techchallenge.fiap.neighborfood.domain.model;
 
 import br.com.techchallenge.fiap.neighborfood.adapters.outbound.repository.entities.ProdutoEntity;
+import br.com.techchallenge.fiap.neighborfood.domain.model.enums.CategoriaCombo;
 
 import java.math.BigDecimal;
 
-public class ProdutoDTO {
+public class Produto {
 
     private Long id;
     private String nome;
@@ -16,17 +17,17 @@ public class ProdutoDTO {
     private CategoriaCombo categoria;
     private String descricao;
 
-    public ProdutoDTO() {
+    public Produto() {
     }
 
-    public ProdutoDTO(String nome, BigDecimal preco, CategoriaCombo categoria, String descricao) {
+    public Produto(String nome, BigDecimal preco, CategoriaCombo categoria, String descricao) {
         this.nome = nome;
         this.preco = preco;
         this.categoria = categoria;
         this.descricao = descricao;
     }
 
-    public ProdutoDTO(Long id, String nome, BigDecimal preco, CategoriaCombo categoria, String descricao) {
+    public Produto(Long id, String nome, BigDecimal preco, CategoriaCombo categoria, String descricao) {
         this.id = id;
         this.nome = nome;
         this.preco = preco;
@@ -34,8 +35,8 @@ public class ProdutoDTO {
         this.descricao = descricao;
     }
 
-    public ProdutoDTO fromEntity(ProdutoEntity entity) {
-        ProdutoDTO produto = new ProdutoDTO();
+    public Produto fromEntity(ProdutoEntity entity) {
+        Produto produto = new Produto();
         produto.setCategoria(entity.getCategoria());
         produto.setNome(entity.getNome());
         produto.setDescricao(entity.getDescricao());

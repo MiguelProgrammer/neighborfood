@@ -15,17 +15,17 @@ import java.util.*;
 import jakarta.annotation.Generated;
 
 /**
- * Pagamento
+ * PagamentoDTO
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-05-20T08:01:32.392563-03:00[America/Sao_Paulo]")
-public class Pagamento {
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-05-20T23:19:13.374846-03:00[America/Sao_Paulo]")
+public class PagamentoDTO {
 
   private Long idPedido;
 
   private Boolean pagou;
 
-  public Pagamento idPedido(Long idPedido) {
+  public PagamentoDTO idPedido(Long idPedido) {
     this.idPedido = idPedido;
     return this;
   }
@@ -45,7 +45,7 @@ public class Pagamento {
     this.idPedido = idPedido;
   }
 
-  public Pagamento pagou(Boolean pagou) {
+  public PagamentoDTO pagou(Boolean pagou) {
     this.pagou = pagou;
     return this;
   }
@@ -73,9 +73,9 @@ public class Pagamento {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    Pagamento pagamento = (Pagamento) o;
-    return Objects.equals(this.idPedido, pagamento.idPedido) &&
-        Objects.equals(this.pagou, pagamento.pagou);
+    PagamentoDTO pagamentoDTO = (PagamentoDTO) o;
+    return Objects.equals(this.idPedido, pagamentoDTO.idPedido) &&
+        Objects.equals(this.pagou, pagamentoDTO.pagou);
   }
 
   @Override
@@ -86,7 +86,7 @@ public class Pagamento {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class Pagamento {\n");
+    sb.append("class PagamentoDTO {\n");
     sb.append("    idPedido: ").append(toIndentedString(idPedido)).append("\n");
     sb.append("    pagou: ").append(toIndentedString(pagou)).append("\n");
     sb.append("}");

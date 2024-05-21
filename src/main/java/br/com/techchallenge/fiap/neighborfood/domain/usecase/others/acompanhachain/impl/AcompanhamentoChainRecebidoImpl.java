@@ -4,7 +4,7 @@
 
 package br.com.techchallenge.fiap.neighborfood.domain.usecase.others.acompanhachain.impl;
 
-import br.com.techchallenge.fiap.neighborfood.domain.model.StatusPedido;
+import br.com.techchallenge.fiap.neighborfood.domain.model.enums.StatusPedido;
 import br.com.techchallenge.fiap.neighborfood.domain.usecase.others.acompanhachain.AcompanhamentoChain;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;

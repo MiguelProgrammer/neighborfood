@@ -6,7 +6,7 @@ package br.com.techchallenge.fiap.neighborfood.domain.usecase.others;
 
 import br.com.techchallenge.fiap.neighborfood.adapters.outbound.repository.entities.ClienteEntity;
 import br.com.techchallenge.fiap.neighborfood.adapters.outbound.repository.jpa.ClienteRepository;
-import br.com.techchallenge.fiap.neighborfood.domain.model.MimoDTO;
+import br.com.techchallenge.fiap.neighborfood.domain.model.Mimo;
 import br.com.techchallenge.fiap.neighborfood.domain.model.Notificacao;
 import br.com.techchallenge.fiap.neighborfood.domain.ports.inbound.NotificationUseCasePort;
 import br.com.techchallenge.fiap.neighborfood.domain.ports.outbound.NotificationUseCaseAdapterPort;
@@ -20,8 +20,8 @@ public class NotificacaoUseCaseImpl implements NotificationUseCasePort {
     private ClienteRepository clienteRepository;
 
     @Override
-    public MimoDTO enviaMimosExecute(MimoDTO mimoRequest) {
-        MimoDTO mimo = notificacaoAdapterPort.enviaMimos(mimoRequest);
+    public Mimo enviaMimosExecute(Mimo mimoRequest) {
+        Mimo mimo = notificacaoAdapterPort.enviaMimos(mimoRequest);
 
         Optional<ClienteEntity> cliente = clienteRepository.findById(mimo.getIdUsuario());
 
@@ -37,7 +37,7 @@ public class NotificacaoUseCaseImpl implements NotificationUseCasePort {
     }
 
     @Override
-    public Notificacao notificaExecute(MimoDTO mimoRequest) {
+    public Notificacao notificaExecute(Mimo mimoRequest) {
         return null;
     }
 }

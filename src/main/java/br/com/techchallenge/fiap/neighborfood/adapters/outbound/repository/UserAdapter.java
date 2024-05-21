@@ -12,8 +12,6 @@ import br.com.techchallenge.fiap.neighborfood.domain.model.Admin;
 import br.com.techchallenge.fiap.neighborfood.domain.model.Cliente;
 import org.springframework.stereotype.Component;
 
-import java.util.Optional;
-
 @Component
 public class UserAdapter {
 
@@ -27,8 +25,7 @@ public class UserAdapter {
 
 
     public Cliente clienteById(Long idCliente) {
-        Optional<ClienteEntity> cliente = clienteRepository.findById(idCliente);
-        return new Cliente().fromModel(cliente.get());
+        return new Cliente().fromModel(clienteRepository.findById(idCliente).orElse(new ClienteEntity()));
     }
 
     public Cliente clienteByCpf(String cpf) {
@@ -40,8 +37,7 @@ public class UserAdapter {
     }
 
     public Admin adminById(Long idAdmin) {
-        Optional<AdminEntity> adminByAdmin = admRepository.findById(idAdmin);
-        return new Admin().fromModel(adminByAdmin.get());
+        return new Admin().fromModel(admRepository.findById(idAdmin).orElse(new AdminEntity()));
     }
 
 }

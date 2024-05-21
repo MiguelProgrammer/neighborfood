@@ -4,8 +4,8 @@
 
 package br.com.techchallenge.fiap.neighborfood.domain.model;
 
+import br.com.techchallenge.fiap.neighborfood.adapters.inbound.request.AdminRequest;
 import br.com.techchallenge.fiap.neighborfood.adapters.outbound.repository.entities.AdminEntity;
-import br.com.techchallenge.fiap.neighborfood.adapters.outbound.repository.entities.ClienteEntity;
 
 public class Admin {
 
@@ -28,10 +28,13 @@ public class Admin {
 
     public Admin fromModel(AdminEntity entity) {
         Admin ad = new Admin();
-        ad.setNome(entity.getNome());
-        ad.setCpf(entity.getCpf());
-        ad.setEmail(entity.getEmail());
-        ad.setNotificacao(entity.getNotificacao());
+        if (entity != null) {
+            ad.setId(entity.getId());
+            ad.setNome(entity.getNome());
+            ad.setCpf(entity.getCpf());
+            ad.setEmail(entity.getEmail());
+            ad.setNotificacao(entity.getNotificacao());
+        }
         return ad;
     }
 
@@ -75,4 +78,19 @@ public class Admin {
         this.notificacao = notificacao;
     }
 
+    public AdminRequest domainFromRequest(Admin admin) {
+        AdminRequest request = new AdminRequest();
+        request.setNome(admin.getNome());
+        request.setCpf(admin.getCpf());
+        request.setEmail(admin.getEmail());
+        return request;
+    }
+
+    public AdminEntity fromEntity(AdminRequest adminRequest) {
+        AdminEntity entity = new AdminEntity();
+        entity.setNome(adminRequest.getNome());
+        entity.setCpf(adminRequest.getCpf());
+        entity.setEmail(adminRequest.getEmail());
+        return entity;
+    }
 }

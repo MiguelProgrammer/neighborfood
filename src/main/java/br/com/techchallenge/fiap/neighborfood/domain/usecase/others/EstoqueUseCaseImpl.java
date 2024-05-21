@@ -6,16 +6,14 @@ package br.com.techchallenge.fiap.neighborfood.domain.usecase.others;
 
 import br.com.techchallenge.fiap.neighborfood.adapters.outbound.repository.UserAdapter;
 import br.com.techchallenge.fiap.neighborfood.domain.model.Admin;
-import br.com.techchallenge.fiap.neighborfood.domain.model.CategoriaCombo;
+import br.com.techchallenge.fiap.neighborfood.domain.model.enums.CategoriaCombo;
 import br.com.techchallenge.fiap.neighborfood.domain.model.Estoque;
 import br.com.techchallenge.fiap.neighborfood.domain.ports.inbound.EstoqueUseCasePort;
 import br.com.techchallenge.fiap.neighborfood.domain.ports.outbound.EstoqueUseCaseAdapterPort;
 import br.com.techchallenge.fiap.neighborfood.domain.ports.outbound.LoginUseCaseAdapterPort;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.context.annotation.Primary;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -30,12 +28,20 @@ public class EstoqueUseCaseImpl implements EstoqueUseCasePort {
     private LoginUseCaseAdapterPort loginAdapter;
     private UserAdapter userdapter;
 
+    public EstoqueUseCaseImpl(EstoqueUseCaseAdapterPort estoqueUseCaseAdapterPort,
+                              LoginUseCaseAdapterPort loginAdapter, UserAdapter userdapter) {
+        this.estoqueUseCaseAdapterPort = estoqueUseCaseAdapterPort;
+        this.loginAdapter = loginAdapter;
+        this.userdapter = userdapter;
+    }
+
     @Override
     public Object gerenciaEstoqueExecute(Long idAmdin) {
         List<Estoque> listaProdutos = new ArrayList<>();
-        Admin admin = loginAdapter.loginAdm(userdapter.adminById(idAmdin));
+        Admin adapt = userdapter.adminById(idAmdin);
+        Admin admin = loginAdapter.loginAdm(adapt.domainFromRequest(adapt));
 
-        if (admin != null) {
+        if (admin.getId() != null) {
 
             /**
              * Cadastro auto de produtos
@@ -76,11 +82,10 @@ public class EstoqueUseCaseImpl implements EstoqueUseCasePort {
                 this.repoemEstoqueExecute(pr);
             });
 
-            final String CADASTRO_PRODUTOS =
-                    "_____________________________________________\n "
+            final String CADASTRO_PRODUTOS = "_______________________________________________\n "
                             + listaProdutos.size() +
                             " novos produtos foram cadastrados no estoque \n" +
-                            "_____________________________________________";
+                            "_______________________________________________";
 
             log.info(CADASTRO_PRODUTOS);
             return ResponseEntity.ok(CADASTRO_PRODUTOS);

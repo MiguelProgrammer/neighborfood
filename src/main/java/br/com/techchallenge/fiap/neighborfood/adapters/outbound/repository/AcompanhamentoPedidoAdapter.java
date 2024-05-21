@@ -6,7 +6,7 @@ package br.com.techchallenge.fiap.neighborfood.adapters.outbound.repository;
 
 import br.com.techchallenge.fiap.neighborfood.adapters.outbound.repository.jpa.PedidoRepository;
 import br.com.techchallenge.fiap.neighborfood.domain.model.AcompanhamentoResponse;
-import br.com.techchallenge.fiap.neighborfood.domain.model.StatusPedido;
+import br.com.techchallenge.fiap.neighborfood.domain.model.enums.StatusPedido;
 import br.com.techchallenge.fiap.neighborfood.domain.ports.inbound.AcompanhamentoUseCasePort;
 import br.com.techchallenge.fiap.neighborfood.domain.ports.outbound.AcompanhamentoUseCaseAdapterPort;
 import br.com.techchallenge.fiap.neighborfood.domain.usecase.others.acompanhachain.AcompanhamentoChain;

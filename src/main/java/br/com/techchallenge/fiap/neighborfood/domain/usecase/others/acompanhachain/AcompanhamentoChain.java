@@ -4,7 +4,7 @@
 
 package br.com.techchallenge.fiap.neighborfood.domain.usecase.others.acompanhachain;
 
-import br.com.techchallenge.fiap.neighborfood.domain.model.StatusPedido;
+import br.com.techchallenge.fiap.neighborfood.domain.model.enums.StatusPedido;
 
 public abstract class AcompanhamentoChain {
 

@@ -5,6 +5,7 @@
 package br.com.techchallenge.fiap.neighborfood.domain.model;
 
 import br.com.techchallenge.fiap.neighborfood.adapters.outbound.repository.entities.ItensEntity;
+import br.com.techchallenge.fiap.neighborfood.domain.model.enums.CategoriaCombo;
 
 import java.math.BigDecimal;
 import java.util.HashSet;
@@ -12,7 +13,7 @@ import java.util.Set;
 
 public class Itens {
 
-    private PedidoDTO pedido;
+    private Pedido pedido;
     private Long id;
     private Long idPedido;
     private String nome;
@@ -24,7 +25,7 @@ public class Itens {
     public Itens() {
     }
 
-    public Itens(PedidoDTO pedido, Long id, Long idPedido, String nome, BigDecimal preco, CategoriaCombo categoria, String descricao, String img) {
+    public Itens(Pedido pedido, Long id, Long idPedido, String nome, BigDecimal preco, CategoriaCombo categoria, String descricao, String img) {
         this.pedido = pedido;
         this.id = id;
         this.idPedido = idPedido;
@@ -65,7 +66,7 @@ public class Itens {
             item.setPreco(it.getPreco());
             item.setImg(it.getImg());
 
-            PedidoDTO pedidoDTO = new PedidoDTO();
+            Pedido pedidoDTO = new Pedido();
             pedidoDTO.setId(it.getId());
             pedidoDTO.setIdCliente(it.getPedido().getIdCliente());
             pedidoDTO.setStatus(it.getPedido().getStatus());
@@ -79,11 +80,11 @@ public class Itens {
         return itens;
     }
 
-    public PedidoDTO getPedido() {
+    public Pedido getPedido() {
         return pedido;
     }
 
-    public void setPedido(PedidoDTO pedido) {
+    public void setPedido(Pedido pedido) {
         this.pedido = pedido;
     }
 

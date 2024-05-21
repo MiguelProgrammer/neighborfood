@@ -16,11 +16,11 @@ import java.util.*;
 import jakarta.annotation.Generated;
 
 /**
- * Mimo
+ * MimoDTO
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-05-20T08:01:32.392563-03:00[America/Sao_Paulo]")
-public class Mimo {
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-05-20T23:19:13.374846-03:00[America/Sao_Paulo]")
+public class MimoDTO {
 
   private String codigo;
 
@@ -28,7 +28,7 @@ public class Mimo {
 
   private Long idCliente;
 
-  public Mimo codigo(String codigo) {
+  public MimoDTO codigo(String codigo) {
     this.codigo = codigo;
     return this;
   }
@@ -48,7 +48,7 @@ public class Mimo {
     this.codigo = codigo;
   }
 
-  public Mimo desconto(BigDecimal desconto) {
+  public MimoDTO desconto(BigDecimal desconto) {
     this.desconto = desconto;
     return this;
   }
@@ -68,7 +68,7 @@ public class Mimo {
     this.desconto = desconto;
   }
 
-  public Mimo idCliente(Long idCliente) {
+  public MimoDTO idCliente(Long idCliente) {
     this.idCliente = idCliente;
     return this;
   }
@@ -96,10 +96,10 @@ public class Mimo {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    Mimo mimo = (Mimo) o;
-    return Objects.equals(this.codigo, mimo.codigo) &&
-        Objects.equals(this.desconto, mimo.desconto) &&
-        Objects.equals(this.idCliente, mimo.idCliente);
+    MimoDTO mimoDTO = (MimoDTO) o;
+    return Objects.equals(this.codigo, mimoDTO.codigo) &&
+        Objects.equals(this.desconto, mimoDTO.desconto) &&
+        Objects.equals(this.idCliente, mimoDTO.idCliente);
   }
 
   @Override
@@ -110,7 +110,7 @@ public class Mimo {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class Mimo {\n");
+    sb.append("class MimoDTO {\n");
     sb.append("    codigo: ").append(toIndentedString(codigo)).append("\n");
     sb.append("    desconto: ").append(toIndentedString(desconto)).append("\n");
     sb.append("    idCliente: ").append(toIndentedString(idCliente)).append("\n");

@@ -5,13 +5,12 @@
 package br.com.techchallenge.fiap.neighborfood.adapters.outbound.repository.jpa;
 
 import br.com.techchallenge.fiap.neighborfood.adapters.outbound.repository.entities.EstoqueEntity;
-import br.com.techchallenge.fiap.neighborfood.domain.model.CategoriaCombo;
+import br.com.techchallenge.fiap.neighborfood.domain.model.enums.CategoriaCombo;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
 import java.util.Set;
 
 @Repository

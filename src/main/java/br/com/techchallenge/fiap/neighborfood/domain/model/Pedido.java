@@ -6,13 +6,15 @@ package br.com.techchallenge.fiap.neighborfood.domain.model;
 
 import br.com.techchallenge.fiap.neighborfood.adapters.outbound.repository.entities.ItensEntity;
 import br.com.techchallenge.fiap.neighborfood.adapters.outbound.repository.entities.PedidoEntity;
+import br.com.techchallenge.fiap.neighborfood.domain.dto.PedidoDTO;
+import br.com.techchallenge.fiap.neighborfood.domain.model.enums.StatusPedido;
 
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
-public class PedidoDTO {
+public class Pedido {
 
     private Long id;
     private Long idCliente;
@@ -22,10 +24,10 @@ public class PedidoDTO {
     private Date dataPedido;
     private Date dataPedidoFim;
 
-    public PedidoDTO() {
+    public Pedido() {
     }
 
-    public PedidoDTO(Long id, Long idCliente, Set<Itens> itens, BigDecimal total, StatusPedido status, Date dataPedido, Date dataPedidoFim) {
+    public Pedido(Long id, Long idCliente, Set<Itens> itens, BigDecimal total, StatusPedido status, Date dataPedido, Date dataPedidoFim) {
         this.id = id;
         this.idCliente = idCliente;
         this.itens = itens;
@@ -35,7 +37,7 @@ public class PedidoDTO {
         this.dataPedidoFim = dataPedidoFim;
     }
 
-    public PedidoEntity fromEntity(PedidoDTO pedido) {
+    public PedidoEntity fromEntity(Pedido pedido) {
 
         PedidoEntity entity = new PedidoEntity();
 
@@ -70,9 +72,28 @@ public class PedidoDTO {
         return entity;
     }
 
+//    public Pedido fromDto(Pedido pedido) {
+//        Pedido dto = new Pedido();
+//        dto.setId(pedido.getId());
+//        pedido.getItens().forEach(item -> {
+//            dto.setTotal(dto.getTotal().add(item.getPreco()));
+//        });
+//        dto.setIdCliente(pedido.getIdCliente());
+//        return dto;
+//    }
+//
+//    public Pedido fromDto(Pedido pedido) {
+//        Pedido dto = new Pedido();
+//        dto.setId(pedido.getId());
+//        pedido.getItens().forEach(item -> {
+//            dto.se(dto.getTotal().add(item.getPreco()));
+//        });
+//        dto.setIdCliente(pedido.getIdCliente());
+//        return dto;
+//    }
 
-    public PedidoDTO fromDomain(PedidoEntity pedidoEntity) {
-        PedidoDTO dto = new PedidoDTO();
+    public Pedido fromDomain(PedidoEntity pedidoEntity) {
+        Pedido dto = new Pedido();
 
         Set<Itens> listaItens = new HashSet<>();
         pedidoEntity.getItens().forEach(it -> {
@@ -85,7 +106,7 @@ public class PedidoDTO {
             item.setImg(it.getImg());
             item.setCategoria(it.getCategoria());
 
-            PedidoDTO pedido = new PedidoDTO();
+            Pedido pedido = new Pedido();
             pedido.setIdCliente(it.getPedido().getIdCliente());
             pedido.setStatus(it.getPedido().getStatus());
             pedido.setDataPedido(it.getPedido().getDataPedido());
@@ -173,5 +194,15 @@ public class PedidoDTO {
         this.dataPedidoFim = dataPedidoFim;
     }
 
-
+    public Pedido dtoFromDomain(PedidoDTO pedidoDTO) {
+        Pedido pedido = new Pedido();
+        pedido.setId(pedido.getId());
+        pedido.setItens(pedido.getItens());
+        pedido.setTotal(pedido.getTotal());
+        pedido.setStatus(pedido.getStatus());
+        pedido.setIdCliente(pedido.getIdCliente());
+        pedido.setDataPedido(pedido.getDataPedido());
+        pedido.setDataPedidoFim(pedido.getDataPedidoFim());
+        return pedido;
+    }
 }

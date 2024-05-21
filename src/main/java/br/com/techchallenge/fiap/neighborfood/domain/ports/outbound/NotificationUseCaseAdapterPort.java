@@ -4,12 +4,14 @@
 
 package br.com.techchallenge.fiap.neighborfood.domain.ports.outbound;
 
-import br.com.techchallenge.fiap.neighborfood.domain.model.MimoDTO;
+import br.com.techchallenge.fiap.neighborfood.domain.model.Mimo;
 import br.com.techchallenge.fiap.neighborfood.domain.model.Notificacao;
+
+import java.util.List;
 
 public interface NotificationUseCaseAdapterPort {
 
-    MimoDTO enviaMimos(MimoDTO mimoRequest);
+    Mimo enviaMimos(Mimo mimoRequest);
     Notificacao notifica(Notificacao notificacao);
-
+    List<Notificacao> findAll();
 }

@@ -6,23 +6,23 @@ package br.com.techchallenge.fiap.neighborfood.domain.model;
 
 import br.com.techchallenge.fiap.neighborfood.adapters.outbound.repository.entities.PagamentoEntity;
 
-public class PagamentoDTO {
+public class Pagamento {
 
     private Long id;
     private Long idPedido;
     private Boolean pagou;
 
-    public PagamentoDTO() {
+    public Pagamento() {
     }
 
-    public PagamentoDTO(Long id, Long idPedido, Boolean pagou) {
+    public Pagamento(Long id, Long idPedido, Boolean pagou) {
         this.id = id;
         this.idPedido = idPedido;
         this.pagou = pagou;
     }
 
 
-    public PagamentoEntity fromEntity(PagamentoDTO pagamento) {
+    public PagamentoEntity fromEntity(Pagamento pagamento) {
         PagamentoEntity entity = new PagamentoEntity();
         entity.setId(pagamento.getId());
         entity.setPagou(pagamento.getPagou());

@@ -9,14 +9,16 @@ import br.com.techchallenge.fiap.neighborfood.adapters.outbound.repository.entit
 import br.com.techchallenge.fiap.neighborfood.config.exception.ClienteException;
 import br.com.techchallenge.fiap.neighborfood.config.exception.PedidoException;
 import br.com.techchallenge.fiap.neighborfood.domain.model.*;
+import br.com.techchallenge.fiap.neighborfood.domain.model.enums.CategoriaCombo;
+import br.com.techchallenge.fiap.neighborfood.domain.model.enums.StatusPedido;
 import br.com.techchallenge.fiap.neighborfood.domain.ports.inbound.AcompanhamentoUseCasePort;
 import br.com.techchallenge.fiap.neighborfood.domain.ports.inbound.PedidoUseCasePort;
 import br.com.techchallenge.fiap.neighborfood.domain.ports.outbound.EstoqueUseCaseAdapterPort;
 import br.com.techchallenge.fiap.neighborfood.domain.ports.outbound.NotificationUseCaseAdapterPort;
 import br.com.techchallenge.fiap.neighborfood.domain.ports.outbound.PedidoUseCaseAdapterPort;
-import com.google.gson.Gson;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.ObjectUtils;
+import org.springframework.boot.json.JacksonJsonParser;
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -33,19 +35,28 @@ public class PedidoUseCaseImpl implements PedidoUseCasePort {
     private AcompanhamentoUseCasePort acompanhamentoUseCasePort;
     private UserAdapter userAdapter;
 
+    public PedidoUseCaseImpl(PedidoUseCaseAdapterPort pedidoUseCaseAdapterPort, EstoqueUseCaseAdapterPort estoqueUseCaseAdapterPort, NotificationUseCaseAdapterPort notificationUseCaseAdapterPort, AcompanhamentoUseCasePort acompanhamentoUseCasePort, UserAdapter userAdapter) {
+        this.pedidoUseCaseAdapterPort = pedidoUseCaseAdapterPort;
+        this.estoqueUseCaseAdapterPort = estoqueUseCaseAdapterPort;
+        this.notificationUseCaseAdapterPort = notificationUseCaseAdapterPort;
+        this.acompanhamentoUseCasePort = acompanhamentoUseCasePort;
+        this.userAdapter = userAdapter;
+    }
+
     @Override
-    public String menuOpcionaisExecute() {
-        Gson gson = new Gson();
+    public Object menuOpcionaisExecute() {
         HashMap<CategoriaCombo, Set> menuItens = new HashMap<>();
 
         for (CategoriaCombo opt : CategoriaCombo.values()) {
             menuItens.put(opt, pedidoUseCaseAdapterPort.menuOpcionais(opt));
         }
-        return menuItens.toString();
+
+        return menuItens;
     }
 
     @Override
-    public AcompanhamentoResponse pedidoExecute(PedidoDTO pedido) {
+    public AcompanhamentoResponse pedidoExecute(Pedido pedido) {
+
 
         Set<Itens> itens = new HashSet<>();
         AcompanhamentoResponse response = new AcompanhamentoResponse();
@@ -79,7 +90,7 @@ public class PedidoUseCaseImpl implements PedidoUseCasePort {
 
             System.out.println(acompanhamentoUseCasePort.smsExecute(pedido.getStatus()));
 
-            PedidoDTO pedidoDTO = pedidoUseCaseAdapterPort.commitUpdates(pedido.fromEntity(pedido));
+            Pedido pedidoDTO = pedidoUseCaseAdapterPort.commitUpdates(pedido.fromEntity(pedido));
             pedidoDTO.getItens().forEach(pr -> {
                 pr.setIdPedido(pedidoDTO.getId());
             });
@@ -100,7 +111,7 @@ public class PedidoUseCaseImpl implements PedidoUseCasePort {
 
 
     @Override
-    public AcompanhamentoResponse atualizarPedidoExecute(PedidoDTO pedido) {
+    public AcompanhamentoResponse atualizarPedidoExecute(Pedido pedido) {
         Cliente cliente = userAdapter.clienteById(pedido.getIdCliente());
         Set<Itens> itensById = pedidoUseCaseAdapterPort.findByIdPedidoItens(pedido.getId());
 
@@ -119,7 +130,7 @@ public class PedidoUseCaseImpl implements PedidoUseCasePort {
             estoqueUseCaseAdapterPort.repoemEstoque(estoque);
         });
 
-        PedidoDTO byIdPedidoPedido = pedidoUseCaseAdapterPort.findByIdPedido(pedido.getId());
+        Pedido byIdPedidoPedido = pedidoUseCaseAdapterPort.findByIdPedido(pedido.getId());
         pedidoUseCaseAdapterPort.pedido(pedido);
         byIdPedidoPedido.setTotal(BigDecimal.ZERO);
         pedidoUseCaseAdapterPort.commitUpdates(byIdPedidoPedido.fromEntity(byIdPedidoPedido));
@@ -130,7 +141,7 @@ public class PedidoUseCaseImpl implements PedidoUseCasePort {
             itensById.forEach(item -> {
                 ped.setIdPedido(item.getIdPedido());
 
-                PedidoDTO pedidoDTO = pedidoUseCaseAdapterPort.findByIdPedido(pedido.getId());
+                Pedido pedidoDTO = pedidoUseCaseAdapterPort.findByIdPedido(pedido.getId());
                 pedidoDTO.setTotal(pedidoDTO.getTotal().add(ped.getPreco()));
                 pedidoUseCaseAdapterPort.commitUpdates(pedidoDTO.fromEntity(pedidoDTO));
 

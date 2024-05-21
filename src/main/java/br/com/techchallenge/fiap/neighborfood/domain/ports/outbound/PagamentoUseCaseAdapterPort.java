@@ -5,9 +5,9 @@
 package br.com.techchallenge.fiap.neighborfood.domain.ports.outbound;
 
 import br.com.techchallenge.fiap.neighborfood.domain.model.AcompanhamentoResponse;
-import br.com.techchallenge.fiap.neighborfood.domain.model.PagamentoDTO;
+import br.com.techchallenge.fiap.neighborfood.domain.model.Pagamento;
 
 public interface PagamentoUseCaseAdapterPort {
 
-    AcompanhamentoResponse pagamento(PagamentoDTO pagamento);
+    AcompanhamentoResponse pagamento(Pagamento pagamento);
 }

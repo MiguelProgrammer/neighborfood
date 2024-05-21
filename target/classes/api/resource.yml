@@ -47,7 +47,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/ClienteRequest'
+              $ref: '#/components/schemas/ClienteRequestDTO'
       responses:
         '200':
           description: Usuário logado
@@ -70,14 +70,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/ClienteRequest'
+              $ref: '#/components/schemas/ClienteRequestDTO'
       responses:
         '200':
           description: Usuário logado
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Cliente'
+                $ref: '#/components/schemas/ClienteDTO'
         '400':
           description: request inválida
 
@@ -94,7 +94,7 @@ paths:
           content:
             application/json:
               schema:
-                type: string
+                type: object
         '400':
           description: request inválida
 
@@ -110,14 +110,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Pedido'
+              $ref: '#/components/schemas/PedidoDTO'
       responses:
         '200':
           description: Pedido criado
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/AcompanhamentoResponse'
+                $ref: '#/components/schemas/AcompanhamentoResponseDTO'
         '400':
           description: request inválida
 
@@ -133,14 +133,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Pedido'
+              $ref: '#/components/schemas/PedidoDTO'
       responses:
         '200':
           description: Pedido atualizado
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/AcompanhamentoResponse'
+                $ref: '#/components/schemas/AcompanhamentoResponseDTO'
         '400':
           description: request inválida
 
@@ -165,7 +165,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/AcompanhamentoResponse'
+                $ref: '#/components/schemas/AcompanhamentoResponseDTO'
         '400':
           description: Id inválido
         '404':
@@ -183,14 +183,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Pagamento'
+              $ref: '#/components/schemas/PagamentoDTO'
       responses:
         '200':
           description: pagamento realizado com sucesso.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/AcompanhamentoResponse'
+                $ref: '#/components/schemas/AcompanhamentoResponseDTO'
         '400':
           description: Id inválido
         '404':
@@ -208,14 +208,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/MimoRequest'
+              $ref: '#/components/schemas/MimoRequestDTO'
       responses:
         '200':
           description: Mimo enviado
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Mimo'
+                $ref: '#/components/schemas/MimoDTO'
         '400':
           description: Id inválido
         '404':
@@ -243,7 +243,7 @@ paths:
             application/json:
               schema:
                 items:
-                  $ref: '#/components/schemas/AcompanhamentoResponse'
+                  $ref: '#/components/schemas/AcompanhamentoResponseDTO'
 
         '400':
           description: Id inválido
@@ -262,7 +262,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/AdminRequest'
+              $ref: '#/components/schemas/AdminRequestDTO'
       responses:
         '200':
           description: Usuário logado
@@ -285,7 +285,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/AdminRequest'
+              $ref: '#/components/schemas/AdminRequestDTO'
       responses:
         '200':
           description: Usuário cadastrao
@@ -328,14 +328,14 @@ paths:
 components:
   schemas:
 
-    MimoRequest:
+    MimoRequestDTO:
       type: object
       properties:
         idCliente:
           type: integer
           format: int64
 
-    Mimo:
+    MimoDTO:
       type: object
       properties:
         codigo:
@@ -346,7 +346,7 @@ components:
           type: integer
           format: int64
 
-    Pagamento:
+    PagamentoDTO:
       type: object
       properties:
         idPedido:
@@ -355,7 +355,7 @@ components:
         pagou:
           type: boolean
 
-    Pedido:
+    PedidoDTO:
       type: object
       properties:
         id:
@@ -367,9 +367,9 @@ components:
         Itens:
           type: array
           items:
-            $ref: '#/components/schemas/Produto'
+            $ref: '#/components/schemas/ProdutoDTO'
 
-    Produto:
+    ProdutoDTO:
       type: object
       properties:
         nome:
@@ -378,26 +378,24 @@ components:
           type: number
           format: double
         categoria:
-          $ref: '#/components/schemas/CategoriaCombo'
+          $ref: '#/components/schemas/CategoriaComboDTO'
         descricao:
           type: string
         img:
           type: string
 
-    AcompanhamentoResponse:
+    AcompanhamentoResponseDTO:
       type: object
       properties:
         pedido:
-          $ref: '#/components/schemas/Pedido'
+          $ref: '#/components/schemas/PedidoDTO'
         status:
-          $ref: '#/components/schemas/Acompanhamento'
+          $ref: '#/components/schemas/AcompanhamentoDTO'
         total:
           type: number
           format: double
 
-
-
-    Acompanhamento:
+    AcompanhamentoDTO:
       type: string
       enum:
         - RECEBIDO
@@ -405,7 +403,7 @@ components:
         - PRONTO
         - FINALIZADO
 
-    CategoriaCombo:
+    CategoriaComboDTO:
       type: string
       enum:
         - LANCHE
@@ -413,7 +411,7 @@ components:
         - BEBIDA
         - SOBREMESA
 
-    AdminRequest:
+    AdminRequestDTO:
       type: object
       properties:
         nome:
@@ -423,7 +421,7 @@ components:
         cpf:
           type: string
 
-    ClienteRequest:
+    ClienteRequestDTO:
       type: object
       properties:
         nome:
@@ -433,5 +431,5 @@ components:
         cpf:
           type: string
 
-    Cliente:
+    ClienteDTO:
       type: object

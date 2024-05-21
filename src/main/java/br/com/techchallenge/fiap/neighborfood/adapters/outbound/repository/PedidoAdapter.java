@@ -13,6 +13,7 @@ import br.com.techchallenge.fiap.neighborfood.adapters.outbound.repository.jpa.I
 import br.com.techchallenge.fiap.neighborfood.adapters.outbound.repository.jpa.PagamentoRepository;
 import br.com.techchallenge.fiap.neighborfood.adapters.outbound.repository.jpa.PedidoRepository;
 import br.com.techchallenge.fiap.neighborfood.domain.model.*;
+import br.com.techchallenge.fiap.neighborfood.domain.model.enums.CategoriaCombo;
 import br.com.techchallenge.fiap.neighborfood.domain.ports.outbound.PedidoUseCaseAdapterPort;
 import org.springframework.stereotype.Component;
 
@@ -42,9 +43,9 @@ public class PedidoAdapter implements PedidoUseCaseAdapterPort {
     }
 
     @Override
-    public AcompanhamentoResponse pedido(PedidoDTO pedido) {
+    public AcompanhamentoResponse pedido(Pedido pedido) {
         AcompanhamentoResponse response = new AcompanhamentoResponse();
-        PedidoDTO pedidoDTO = new PedidoDTO();
+        Pedido pedidoDTO = new Pedido();
         PedidoEntity pedidoEntity = pedidoRepository.findById(pedido.getId()).get();
         response.setPedido(pedidoDTO.fromDomain(pedidoEntity));
         response.setTotal(pedidoEntity.getTotal());
@@ -52,13 +53,13 @@ public class PedidoAdapter implements PedidoUseCaseAdapterPort {
     }
 
     @Override
-    public AcompanhamentoResponse atualizarPedido(PedidoDTO pedido) {
+    public AcompanhamentoResponse atualizarPedido(Pedido pedido) {
         return null;
     }
 
     @Override
-    public PedidoDTO commitUpdates(PedidoEntity pedidoEntity) {
-        return new PedidoDTO().fromDomain(pedidoRepository.saveAndFlush(pedidoEntity));
+    public Pedido commitUpdates(PedidoEntity pedidoEntity) {
+        return new Pedido().fromDomain(pedidoRepository.saveAndFlush(pedidoEntity));
     }
 
     @Override
@@ -92,14 +93,14 @@ public class PedidoAdapter implements PedidoUseCaseAdapterPort {
 
 
     @Override
-    public PedidoDTO findByIdPedido(Long id) {
+    public Pedido findByIdPedido(Long id) {
         Optional<PedidoEntity> pedidoRepositoryById = pedidoRepository.findById(id);
-        return new PedidoDTO().fromDomain(pedidoRepositoryById.get());
+        return new Pedido().fromDomain(pedidoRepositoryById.get());
     }
 
     @Override
-    public PedidoDTO findById(Long id) {
-        return new PedidoDTO().fromDomain(pedidoRepository.findById(id).get());
+    public Pedido findById(Long id) {
+        return new Pedido().fromDomain(pedidoRepository.findById(id).get());
     }
 
     @Override
