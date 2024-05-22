@@ -55,24 +55,11 @@ public class Cliente {
         Set<Pedido> pedidos = new HashSet<>();
         entity.getPedidos().forEach(pr -> {
 
-            Pedido pedido = new Pedido();
-            pedido.setIdCliente(pr.getIdCliente());
+            Pedido pedido = new Pedido().entityFromDomain(pr);
 
-            Set<Itens> itens = new HashSet<>();
-            pr.getItens().forEach(item -> {
-
-                Itens produtos = new Itens();
-
-                produtos.setIdPedido(item.getIdPedido());
-                produtos.setNome(item.getNome());
-                produtos.setDescricao(item.getDescricao());
-                produtos.setCategoria(item.getCategoria());
-                produtos.setPreco(item.getPreco());
-                produtos.setPedido(pedido);
-                itens.add(produtos);
-
+            pr.getProdutos().forEach(produto -> {
+                pedido.getProdutos().add(new Produto().entityFromDto(produto));
             });
-            pedido.setItens(itens);
         });
         cliente.setPedidos(pedidos);
     }

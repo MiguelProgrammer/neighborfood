@@ -4,7 +4,7 @@
 
 package br.com.techchallenge.fiap.neighborfood.adapters.outbound.repository.entities;
 
-import br.com.techchallenge.fiap.neighborfood.domain.model.enums.StatusPedido;
+import br.com.techchallenge.fiap.neighborfood.domain.model.enums.Status;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.*;
@@ -19,7 +19,6 @@ import java.util.Set;
 @Getter
 @Setter
 @Entity
-@Builder
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
@@ -36,15 +35,15 @@ public class PedidoEntity implements Serializable {
     @Column(name = "id_cliente")
     private Long idCliente;
 
-    @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<ProdutoEntity> itens = new HashSet<>();
+    @OneToMany(mappedBy = "id", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<ProdutoEntity> produtos = new HashSet<>();
 
     @Column(name = "total")
     private BigDecimal total = BigDecimal.ZERO;
 
     @Column(name = "status")
     @Enumerated(EnumType.STRING)
-    private StatusPedido status;
+    private Status status;
 
     @Column(name = "data_pedido")
     private Date dataPedido;

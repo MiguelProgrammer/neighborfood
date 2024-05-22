@@ -6,15 +6,18 @@ package br.com.techchallenge.fiap.neighborfood.adapters.outbound.repository;
 
 import br.com.techchallenge.fiap.neighborfood.adapters.inbound.response.AcompanhamentoResponse;
 import br.com.techchallenge.fiap.neighborfood.adapters.outbound.repository.entities.EstoqueEntity;
-import br.com.techchallenge.fiap.neighborfood.adapters.outbound.repository.entities.ItensEntity;
 import br.com.techchallenge.fiap.neighborfood.adapters.outbound.repository.entities.PagamentoEntity;
 import br.com.techchallenge.fiap.neighborfood.adapters.outbound.repository.entities.PedidoEntity;
+import br.com.techchallenge.fiap.neighborfood.adapters.outbound.repository.entities.ProdutoEntity;
 import br.com.techchallenge.fiap.neighborfood.adapters.outbound.repository.jpa.EstoqueRepository;
-import br.com.techchallenge.fiap.neighborfood.adapters.outbound.repository.jpa.ItensRepository;
 import br.com.techchallenge.fiap.neighborfood.adapters.outbound.repository.jpa.PagamentoRepository;
 import br.com.techchallenge.fiap.neighborfood.adapters.outbound.repository.jpa.PedidoRepository;
-import br.com.techchallenge.fiap.neighborfood.domain.model.*;
-import br.com.techchallenge.fiap.neighborfood.domain.model.enums.CategoriaCombo;
+import br.com.techchallenge.fiap.neighborfood.adapters.outbound.repository.jpa.ProdutoRepository;
+import br.com.techchallenge.fiap.neighborfood.domain.model.Estoque;
+import br.com.techchallenge.fiap.neighborfood.domain.model.Itens;
+import br.com.techchallenge.fiap.neighborfood.domain.model.Pedido;
+import br.com.techchallenge.fiap.neighborfood.domain.model.Produto;
+import br.com.techchallenge.fiap.neighborfood.domain.model.enums.Categoria;
 import br.com.techchallenge.fiap.neighborfood.domain.ports.outbound.PedidoUseCaseAdapterPort;
 import org.springframework.stereotype.Component;
 
@@ -27,30 +30,26 @@ public class PedidoAdapter implements PedidoUseCaseAdapterPort {
 
     private EstoqueRepository estoqueRepository;
     private PedidoRepository pedidoRepository;
-    private ItensRepository itensRepository;
     private PagamentoRepository pagamentoRepository;
+    private ProdutoRepository produtoRepository;
 
-    public PedidoAdapter(EstoqueRepository estoqueRepository, PedidoRepository pedidoRepository, ItensRepository itensRepository, PagamentoRepository pagamentoRepository) {
+    public PedidoAdapter(EstoqueRepository estoqueRepository, PedidoRepository pedidoRepository, PagamentoRepository pagamentoRepository, ProdutoRepository produtoRepository) {
         this.estoqueRepository = estoqueRepository;
         this.pedidoRepository = pedidoRepository;
-        this.itensRepository = itensRepository;
         this.pagamentoRepository = pagamentoRepository;
+        this.produtoRepository = produtoRepository;
     }
 
     @Override
-    public Set<Estoque> menuOpcionais(CategoriaCombo combo) {
-        Set<EstoqueEntity> byCategoria = estoqueRepository.findByCategoria(combo);
-        return new Estoque().fromDomain(byCategoria);
+    public Set<Produto> menuOpcionais(Categoria combo) {
+        Set<ProdutoEntity> byCategoria = produtoRepository.findByCategoria(combo);
+        return new Produto().setProdutosRequestFromSetEntity(byCategoria);
     }
 
     @Override
     public AcompanhamentoResponse pedido(Pedido pedido) {
-        AcompanhamentoResponse response = new AcompanhamentoResponse();
-        Pedido pedidoDTO = new Pedido();
-        PedidoEntity pedidoEntity = pedidoRepository.findById(pedido.getId()).get();
-        response.setPedido(pedidoDTO.fromDomain(pedidoEntity));
-        response.setTotal(pedidoEntity.getTotal());
-        return response;
+        return new AcompanhamentoResponse()
+                .pedidoEntityFromResponse(pedidoRepository.findById(pedido.getId()).get());
     }
 
     @Override
@@ -60,48 +59,73 @@ public class PedidoAdapter implements PedidoUseCaseAdapterPort {
 
     @Override
     public Pedido commitUpdates(PedidoEntity pedidoEntity) {
-        return new Pedido().fromDomain(pedidoRepository.saveAndFlush(pedidoEntity));
+        return new Pedido().entityFromDomain(pedidoRepository.saveAndFlush(pedidoEntity));
     }
 
+    /**
+     * @param itens
+     */
     @Override
     public void saveItens(Itens itens) {
-        ItensEntity item = new ItensEntity();
-        item.setIdPedido(itens.getIdPedido());
-        item.setNome(itens.getNome());
-        item.setDescricao(itens.getDescricao());
-        item.setPreco(itens.getPreco());
-        item.setCategoria(itens.getCategoria());
-        item.setImg(itens.getImg());
-        item.setPedido(itens.getPedido().fromEntity(itens.getPedido()));
-        itensRepository.save(item);
+
     }
 
+    /**
+     * @param itens
+     */
     @Override
     public void removeItens(Set<Itens> itens) {
-        new Itens().fromListEntity(itens);
-        pedidoRepository.deleteAll();
+
     }
 
+    /**
+     * @param id
+     * @return
+     */
     @Override
     public Set<Itens> findAllById(Long id) {
-        return new Itens().fromDomain(itensRepository.findAllById(id));
+        return Set.of();
     }
 
+    //    @Override
+//    public void saveItens(Itens itens) {
+//        ItensEntity item = new ItensEntity();
+//        item.setIdPedido(itens.getIdPedido());
+//        item.setNome(itens.getNome());
+//        item.setDescricao(itens.getDescricao());
+//        item.setPreco(itens.getPreco());
+//        item.setCategoria(itens.getCategoria());
+//        item.setImg(itens.getImg());
+//        item.setPedido(itens.getPedido().fromEntity(itens.getPedido()));
+//        itensRepository.save(item);
+//    }
+
+//    @Override
+//    public void removeProdutos(Set<Produto> produtos) {
+//        new Itens().fromListEntity(itens);
+//        pedidoRepository.deleteAll();
+//    }
+
+//    @Override
+//    public Set<Produto> findAllById(Long id) {
+//        return new Itens().fromDomain(pr.findAllById(id));
+//    }
+
     @Override
-    public Set<Itens> findByIdPedidoItens(Long id) {
-        return new Itens().fromDomain(itensRepository.findByIdPedido(id));
+    public Set<Produto> findAllByIdPedido(Long id) {
+        return null;//new Produto().setProdutosRequestFromSetEntity(itensRepository.findByIdPedido(id));
     }
 
 
     @Override
     public Pedido findByIdPedido(Long id) {
         Optional<PedidoEntity> pedidoRepositoryById = pedidoRepository.findById(id);
-        return new Pedido().fromDomain(pedidoRepositoryById.get());
+        return new Pedido().entityFromDomain(pedidoRepositoryById.get());
     }
 
     @Override
     public Pedido findById(Long id) {
-        return new Pedido().fromDomain(pedidoRepository.findById(id).get());
+        return new Pedido().entityFromDomain(pedidoRepository.findById(id).get());
     }
 
     @Override

@@ -18,20 +18,20 @@ import java.util.*;
 import jakarta.annotation.Generated;
 
 /**
- * PedidoDTO
+ * PedidoRequestDTO
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-05-20T23:19:13.374846-03:00[America/Sao_Paulo]")
-public class PedidoDTO {
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-05-22T00:21:45.152441700-03:00[America/Sao_Paulo]")
+public class PedidoRequestDTO {
 
   private Long id;
 
   private Long idCliente;
 
   @Valid
-  private List<@Valid ProdutoDTO> itens;
+  private List<@Valid ProdutoDTO> produtos;
 
-  public PedidoDTO id(Long id) {
+  public PedidoRequestDTO id(Long id) {
     this.id = id;
     return this;
   }
@@ -51,7 +51,7 @@ public class PedidoDTO {
     this.id = id;
   }
 
-  public PedidoDTO idCliente(Long idCliente) {
+  public PedidoRequestDTO idCliente(Long idCliente) {
     this.idCliente = idCliente;
     return this;
   }
@@ -71,32 +71,32 @@ public class PedidoDTO {
     this.idCliente = idCliente;
   }
 
-  public PedidoDTO itens(List<@Valid ProdutoDTO> itens) {
-    this.itens = itens;
+  public PedidoRequestDTO produtos(List<@Valid ProdutoDTO> produtos) {
+    this.produtos = produtos;
     return this;
   }
 
-  public PedidoDTO addItensItem(ProdutoDTO itensItem) {
-    if (this.itens == null) {
-      this.itens = new ArrayList<>();
+  public PedidoRequestDTO addProdutosItem(ProdutoDTO produtosItem) {
+    if (this.produtos == null) {
+      this.produtos = new ArrayList<>();
     }
-    this.itens.add(itensItem);
+    this.produtos.add(produtosItem);
     return this;
   }
 
   /**
-   * Get itens
-   * @return itens
+   * Get produtos
+   * @return produtos
   */
   @Valid 
-  @Schema(name = "Itens", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
-  @JsonProperty("Itens")
-  public List<@Valid ProdutoDTO> getItens() {
-    return itens;
+  @Schema(name = "Produtos", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("Produtos")
+  public List<@Valid ProdutoDTO> getProdutos() {
+    return produtos;
   }
 
-  public void setItens(List<@Valid ProdutoDTO> itens) {
-    this.itens = itens;
+  public void setProdutos(List<@Valid ProdutoDTO> produtos) {
+    this.produtos = produtos;
   }
 
   @Override
@@ -107,24 +107,24 @@ public class PedidoDTO {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    PedidoDTO pedidoDTO = (PedidoDTO) o;
-    return Objects.equals(this.id, pedidoDTO.id) &&
-        Objects.equals(this.idCliente, pedidoDTO.idCliente) &&
-        Objects.equals(this.itens, pedidoDTO.itens);
+    PedidoRequestDTO pedidoRequestDTO = (PedidoRequestDTO) o;
+    return Objects.equals(this.id, pedidoRequestDTO.id) &&
+        Objects.equals(this.idCliente, pedidoRequestDTO.idCliente) &&
+        Objects.equals(this.produtos, pedidoRequestDTO.produtos);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, idCliente, itens);
+    return Objects.hash(id, idCliente, produtos);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class PedidoDTO {\n");
+    sb.append("class PedidoRequestDTO {\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    idCliente: ").append(toIndentedString(idCliente)).append("\n");
-    sb.append("    itens: ").append(toIndentedString(itens)).append("\n");
+    sb.append("    produtos: ").append(toIndentedString(produtos)).append("\n");
     sb.append("}");
     return sb.toString();
   }

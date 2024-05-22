@@ -11,24 +11,27 @@ import br.com.techchallenge.fiap.neighborfood.adapters.outbound.repository.entit
 import br.com.techchallenge.fiap.neighborfood.config.exception.ClienteException;
 import br.com.techchallenge.fiap.neighborfood.config.exception.PedidoException;
 import br.com.techchallenge.fiap.neighborfood.domain.model.*;
-import br.com.techchallenge.fiap.neighborfood.domain.model.enums.CategoriaCombo;
-import br.com.techchallenge.fiap.neighborfood.domain.model.enums.StatusPedido;
+import br.com.techchallenge.fiap.neighborfood.domain.model.enums.Categoria;
+import br.com.techchallenge.fiap.neighborfood.domain.model.enums.Status;
 import br.com.techchallenge.fiap.neighborfood.domain.ports.inbound.AcompanhamentoUseCasePort;
 import br.com.techchallenge.fiap.neighborfood.domain.ports.inbound.PedidoUseCasePort;
 import br.com.techchallenge.fiap.neighborfood.domain.ports.outbound.EstoqueUseCaseAdapterPort;
 import br.com.techchallenge.fiap.neighborfood.domain.ports.outbound.NotificationUseCaseAdapterPort;
 import br.com.techchallenge.fiap.neighborfood.domain.ports.outbound.PedidoUseCaseAdapterPort;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.ObjectUtils;
 
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Set;
 
 @Slf4j
 public class PedidoUseCaseImpl implements PedidoUseCasePort {
+
+    private static final String MESSAGE_ADM_ESTOQUE =
+            "Caro adm, por favor, veja a quantia de itens cadastrado no estoque!";
+    private static final String CLIENTE_NOT_FOUND = "\n\nCliente ou Pedido não encontrado!\n\n";
+    private static final String ITENS_EM_FALLTA = "\n\nItens selecionados em falta!\n\n";
 
     private PedidoUseCaseAdapterPort pedidoUseCaseAdapterPort;
     private EstoqueUseCaseAdapterPort estoqueUseCaseAdapterPort;
@@ -46,106 +49,98 @@ public class PedidoUseCaseImpl implements PedidoUseCasePort {
 
     @Override
     public Object menuOpcionaisExecute() {
-        HashMap<CategoriaCombo, Set> menuItens = new HashMap<>();
+        HashMap<Categoria, Set> menuItens = new HashMap<>();
 
-        for (CategoriaCombo opt : CategoriaCombo.values()) {
+        for (Categoria opt : Categoria.values()) {
             menuItens.put(opt, pedidoUseCaseAdapterPort.menuOpcionais(opt));
         }
-
         return menuItens;
     }
 
     @Override
-    public AcompanhamentoResponse pedidoExecute(PedidoRequest pedidoRequest) {
+    public AcompanhamentoResponse pedidoExecute(PedidoRequest request) {
 
-        Pedido pedido = new Pedido();
-        AcompanhamentoResponse response = new AcompanhamentoResponse();
-        Cliente cliente = userAdapter.clienteById(pedidoRequest.getIdCliente());
+        Pedido pedidoDomain = new Pedido();
+        AcompanhamentoResponse pedidoResponse = new AcompanhamentoResponse();
+        Cliente cliente = userAdapter.clienteById(request.getIdCliente());
 
         if (cliente == null) {
             throw new ClienteException("CLIENTE NÃO ENCONTRADO");
         }
 
-        pedidoRequest.setIdCliente(cliente.getId());
-        pedidoRequest.getItens().getProdutos().forEach(produto -> {
+        request.setIdCliente(cliente.getId());
+        request.getProdutos().forEach(produto -> {
 
-            Set<Estoque> estoque = estoqueUseCaseAdapterPort.findByNome(produto.getNome());
+            Estoque estoque = estoqueUseCaseAdapterPort.findByNome(produto.getNome());
 
             if (estoque != null) {
-                pedido.getItens().getProdutos().add(produto);
-                pedido.setTotal(pedido.getTotal().add(produto.getPreco()));
+                pedidoDomain.getProdutos().add(produto);
+                pedidoDomain.setTotal(pedidoDomain.getTotal().add(produto.getPreco()));
                 estoqueUseCaseAdapterPort.deleteAll(estoque);
             } else {
                 Produto emFalta = new Produto();
                 emFalta.setDescricao("produto em falta!");
-                pedido.setTotal(BigDecimal.ZERO);
-                pedido.getItens().getProdutos().add(emFalta);
+                pedidoDomain.setTotal(BigDecimal.ZERO);
+                pedidoDomain.getProdutos().add(emFalta);
             }
+
         });
 
-        pedido.setStatus(StatusPedido.RECEBIDO);
-        pedido.setDataPedido(new Date());
+        pedidoDomain.setStatus(Status.RECEBIDO);
+        pedidoDomain.setDataPedido(new Date());
 
-        if (!pedido.getTotal().equals(BigDecimal.ZERO)) {
+        if (!pedidoDomain.getTotal().equals(BigDecimal.ZERO)) {
 
-            log.info(acompanhamentoUseCasePort.smsExecute(pedido.getStatus()));
-
-            Pedido pedidoDTO = pedidoUseCaseAdapterPort.commitUpdates(pedido.fromEntity(pedido));
-            pedidoUseCaseAdapterPort.commitUpdates(pedidoDTO.fromEntity(pedidoDTO));
-            response.setPedido(pedidoDTO);
+            log.info(acompanhamentoUseCasePort.smsExecute(pedidoDomain.getStatus()));
+            Pedido pedidoEnviado = pedidoUseCaseAdapterPort.commitUpdates(pedidoDomain.domainFromEntity());
+            pedidoResponse.setTotal(pedidoEnviado.getTotal());
+            pedidoResponse.setStatus(pedidoEnviado.getStatus());
+            pedidoResponse.setPedidoRequest(request);
         } else {
             NotificacaoEntity notificacao = new NotificacaoEntity();
-            notificacao.setDescricao("Caro adm, por favor, veja a quantia de itens cadastrado no estoque!");
-            notificationUseCaseAdapterPort.notifica(new Notificacao().fromDomain(notificacao));
-            log.info("\n\nItens selecionados em falta!\n\n");
+            notificacao.setDescricao(MESSAGE_ADM_ESTOQUE);
+            notificationUseCaseAdapterPort.notifica(new Notificacao().entityfromDomain(notificacao));
+            log.info(ITENS_EM_FALLTA);
         }
 
-        return response;
+        return pedidoResponse;
     }
 
 
     @Override
     public AcompanhamentoResponse atualizarPedidoExecute(PedidoRequest pedido) {
         Cliente cliente = userAdapter.clienteById(pedido.getIdCliente());
-        Set<Itens> itensById = pedidoUseCaseAdapterPort.findByIdPedidoItens(pedido.getId());
+        Set<Produto> produtos = pedidoUseCaseAdapterPort.findAllByIdPedido(pedido.getId());
 
-        if (cliente == null && ObjectUtils.isEmpty(itensById)) {
-            throw new PedidoException("\n\nCliente ou Pedido não encontrado!\n\n");
+        if (cliente == null && produtos == null) {
+            throw new PedidoException(CLIENTE_NOT_FOUND);
         }
 
-        itensById.forEach(item -> {
+        produtos.forEach(produto -> {
             Estoque estoque = new Estoque();
-            estoque.setId(item.getId());
-            estoque.setNome(item.getNome());
-            estoque.setDescricao(item.getDescricao());
-            estoque.setCategoria(item.getCategoria());
-            estoque.setImg(item.getImg());
-            estoque.setPreco(item.getPreco());
+            estoque.setProdutos(produtos);
             estoqueUseCaseAdapterPort.repoemEstoque(estoque);
         });
 
-        Pedido byIdPedidoPedido = pedidoUseCaseAdapterPort.findByIdPedido(pedido.getId());
-        pedidoUseCaseAdapterPort.pedido(pedido);
-        byIdPedidoPedido.setTotal(BigDecimal.ZERO);
-        pedidoUseCaseAdapterPort.commitUpdates(byIdPedidoPedido.fromEntity(byIdPedidoPedido));
+        Pedido pedidoRealizado = pedidoUseCaseAdapterPort.findByIdPedido(pedido.getId());
+        pedidoUseCaseAdapterPort.pedido(pedidoRealizado);
+        pedidoRealizado.setTotal(BigDecimal.ZERO);
+        pedidoUseCaseAdapterPort.commitUpdates(pedidoRealizado.domainFromEntity());
 
-        pedidoUseCaseAdapterPort.removeItens(itensById);
-        pedido.getItens().forEach(ped -> {
+        //pedidoUseCaseAdapterPort.removeItens(itensById);
 
-            itensById.forEach(item -> {
-                ped.setIdPedido(item.getIdPedido());
+        pedido.getProdutos().forEach(pro -> {
+            Pedido pedidoDTO = pedidoUseCaseAdapterPort.findByIdPedido(pedido.getId());
+            pedidoDTO.setTotal(pedidoDTO.getTotal().add(pro.getPreco()));
+            pedidoUseCaseAdapterPort.commitUpdates(pedidoDTO.domainFromEntity());
 
-                Pedido pedidoDTO = pedidoUseCaseAdapterPort.findByIdPedido(pedido.getId());
-                pedidoDTO.setTotal(pedidoDTO.getTotal().add(ped.getPreco()));
-                pedidoUseCaseAdapterPort.commitUpdates(pedidoDTO.fromEntity(pedidoDTO));
-
-                pedidoUseCaseAdapterPort.saveItens(ped);
-                estoqueUseCaseAdapterPort.deleteByNome(ped.getNome());
-            });
+            //pedidoUseCaseAdapterPort.saveItens();
+            estoqueUseCaseAdapterPort.deleteByNome(pro.getNome());
         });
+
         log.info("Pedido atualizado!");
 
-        return pedidoUseCaseAdapterPort.atualizarPedido(pedido);
+        return pedidoUseCaseAdapterPort.atualizarPedido(pedidoRealizado);
 
     }
 

@@ -4,10 +4,9 @@
 
 package br.com.techchallenge.fiap.neighborfood.domain.model;
 
-import br.com.techchallenge.fiap.neighborfood.adapters.outbound.repository.entities.ItensEntity;
 import br.com.techchallenge.fiap.neighborfood.adapters.outbound.repository.entities.PedidoEntity;
 import br.com.techchallenge.fiap.neighborfood.adapters.outbound.repository.entities.ProdutoEntity;
-import br.com.techchallenge.fiap.neighborfood.domain.model.enums.StatusPedido;
+import br.com.techchallenge.fiap.neighborfood.domain.model.enums.Status;
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -18,19 +17,20 @@ public class Pedido {
 
     private Long id;
     private Long idCliente;
-    private Itens itens = new Itens();
+    private Set<Produto> produtos = new HashSet<>();
     private BigDecimal total = BigDecimal.ZERO;
-    private StatusPedido status;
+    private Status status;
     private Date dataPedido;
     private Date dataPedidoFim;
 
     public Pedido() {
     }
 
-    public Pedido(Long id, Long idCliente, Itens itens, BigDecimal total, StatusPedido status, Date dataPedido, Date dataPedidoFim) {
+
+    public Pedido(Long id, Long idCliente, Set<Produto> produtos, BigDecimal total, Status status, Date dataPedido, Date dataPedidoFim) {
         this.id = id;
         this.idCliente = idCliente;
-        this.itens = itens;
+        this.produtos = produtos;
         this.total = total;
         this.status = status;
         this.dataPedido = dataPedido;
@@ -53,12 +53,12 @@ public class Pedido {
         this.idCliente = idCliente;
     }
 
-    public Itens getItens() {
-        return itens;
+    public Set<Produto> getProdutos() {
+        return produtos;
     }
 
-    public void setItens(Itens itens) {
-        this.itens = itens;
+    public void setProdutos(Set<Produto> produtos) {
+        this.produtos = produtos;
     }
 
     public BigDecimal getTotal() {
@@ -69,11 +69,11 @@ public class Pedido {
         this.total = total;
     }
 
-    public StatusPedido getStatus() {
+    public Status getStatus() {
         return status;
     }
 
-    public void setStatus(StatusPedido status) {
+    public void setStatus(Status status) {
         this.status = status;
     }
 
@@ -93,24 +93,41 @@ public class Pedido {
         this.dataPedidoFim = dataPedidoFim;
     }
 
-    public PedidoEntity fromEntity(Pedido domain) {
+    public PedidoEntity domainFromEntity() {
         PedidoEntity entity = new PedidoEntity();
-        entity.setIdCliente(domain.getIdCliente());
-        entity.setStatus(domain.getStatus());
-        entity.setTotal(domain.getTotal());
-        entity.setDataPedido(domain.getDataPedido());
-
-        Set<ProdutoEntity> produtoEntity = new HashSet<>();
-        domain.getItens().getProdutos().forEach(item -> {
-            ProdutoEntity produto = new ProdutoEntity();
-            produto.setNome(item.getNome());
-            produto.setDescricao(item.getDescricao());
-            produto.setPreco(item.getPreco());
-            produto.setCategoria(item.getCategoria());
-            produtoEntity.add(produto);
-        });
-        entity.setItens(produtoEntity);
-        entity.setDataPedidoFim(domain.getDataPedidoFim());
+        entity.setIdCliente(this.getIdCliente());
+        entity.setStatus(this.getStatus());
+        entity.setDataPedido(this.getDataPedido());
+        entity.setTotal(this.getTotal());
+        entity.setDataPedidoFim(this.getDataPedidoFim());
+        entity.setProdutos(this.setProdutosToSetEntity());
         return entity;
+    }
+
+    private Set<ProdutoEntity> setProdutosToSetEntity() {
+        Set<ProdutoEntity> produtoEntities = new HashSet<>();
+        this.produtos.forEach(produto -> {
+            produtoEntities.add(produto.dtoFromEntity());
+        });
+        return produtoEntities;
+    }
+
+    public Pedido entityFromDomain(PedidoEntity entity) {
+        Pedido domain = new Pedido();
+        domain.setIdCliente(entity.getIdCliente());
+        domain.setStatus(entity.getStatus());
+        domain.setDataPedido(entity.getDataPedido());
+        domain.setTotal(entity.getTotal());
+        domain.setDataPedidoFim(entity.getDataPedidoFim());
+        domain.setProdutos(this.setEntitiesToSetDomain(entity.getProdutos()));
+        return domain;
+    }
+
+    private Set<Produto> setEntitiesToSetDomain(Set<ProdutoEntity> entities) {
+        Set<Produto> produtos = new HashSet<>();
+        entities.forEach(produto -> {
+            produtos.add(new Produto().entityFromDto(produto));
+        });
+        return produtos;
     }
 }

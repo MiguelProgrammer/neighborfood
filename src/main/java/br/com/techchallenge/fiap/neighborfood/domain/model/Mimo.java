@@ -27,7 +27,6 @@ public class Mimo {
     public Mimo fromModel(MimoEntity entity) {
         Mimo mimo = new Mimo();
         mimo.setIdUsuario(entity.getIdUsuario());
-        mimo.setAcao(entity.getAcao());
         mimo.setDescricao(entity.getDescricao());
         mimo.setCodigo(entity.getCodigo());
         return mimo;

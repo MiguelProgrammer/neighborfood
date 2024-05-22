@@ -54,8 +54,8 @@ public class LoginUseCaseImpl implements LoginUseCasePort {
 
         Cliente clienteCadastrado = new Cliente();
         try {
-            Cliente cadastro = this.loginExecute(clienteRequest);
-            if (naoCadastrado(cadastro)) {
+            clienteCadastrado = this.loginExecute(clienteRequest);
+            if (naoCadastrado(clienteCadastrado)) {
                 clienteCadastrado = loginAdapterPort.cadastro(clienteRequest);
                 log.info(MESSAGE_SUCCESS);
             }
@@ -90,8 +90,8 @@ public class LoginUseCaseImpl implements LoginUseCasePort {
     public Admin cadastroAdmExecute(AdminRequest adminRequest) {
         Admin admin = new Admin();
         try {
-            Admin adapt = this.loginAdmExecute(adminRequest);
-            if (naoCadastrado(admin) && adapt.getId() == null) {
+            admin = this.loginAdmExecute(adminRequest);
+            if (naoCadastrado(admin)) {
                 admin = loginAdapterPort.cadastroAdm(adminRequest);
                 log.info("ADM CADASTRADO.");
             }

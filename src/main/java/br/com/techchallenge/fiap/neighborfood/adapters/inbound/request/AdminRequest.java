@@ -5,7 +5,6 @@
 package br.com.techchallenge.fiap.neighborfood.adapters.inbound.request;
 
 import br.com.techchallenge.fiap.neighborfood.domain.dto.AdminRequestDTO;
-import br.com.techchallenge.fiap.neighborfood.domain.dto.ClienteRequestDTO;
 
 public class AdminRequest {
 
@@ -22,7 +21,7 @@ public class AdminRequest {
         this.cpf = cpf;
     }
 
-    public AdminRequest dtoFromDomain(AdminRequestDTO dto){
+    public AdminRequest dtoFromDomain(AdminRequestDTO dto) {
         AdminRequest domain = new AdminRequest();
         domain.setNome(dto.getNome());
         domain.setCpf(dto.getCpf());

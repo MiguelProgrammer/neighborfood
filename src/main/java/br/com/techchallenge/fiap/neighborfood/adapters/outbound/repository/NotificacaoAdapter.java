@@ -33,7 +33,7 @@ public class NotificacaoAdapter implements NotificationUseCaseAdapterPort {
     public Notificacao notifica(Notificacao notificacao) {
         Notificacao alerta = new Notificacao();
         NotificacaoEntity save = notificacaoRepository.save(alerta.fromEntity(notificacao));
-        return alerta.fromDomain(save);
+        return alerta.entityfromDomain(save);
     }
 
 
@@ -41,7 +41,7 @@ public class NotificacaoAdapter implements NotificationUseCaseAdapterPort {
     public List<Notificacao> findAll() {
         List<Notificacao> lista = new ArrayList<>();
         notificacaoRepository.findAll().forEach(sms -> {
-            lista.add(new Notificacao().fromDomain(sms));
+            lista.add(new Notificacao().entityfromDomain(sms));
         });
         return lista;
     }

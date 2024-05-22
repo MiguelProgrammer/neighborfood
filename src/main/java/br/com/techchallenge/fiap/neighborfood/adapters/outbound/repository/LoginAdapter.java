@@ -48,6 +48,7 @@ public class LoginAdapter implements LoginUseCaseAdapterPort {
 
     @Override
     public Admin cadastroAdm(AdminRequest adminRequest) {
+
         AdminEntity adminEntity = new Admin().fromEntity(adminRequest);
         return new Admin().fromModel(admRepository.save(adminEntity));
     }

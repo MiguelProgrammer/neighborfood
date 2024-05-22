@@ -28,7 +28,7 @@ public class Notificacao {
     }
 
 
-    public Notificacao fromDomain(NotificacaoEntity entity) {
+    public Notificacao entityfromDomain(NotificacaoEntity entity) {
         Notificacao notificacao = new Notificacao();
         notificacao.setIdUsuario(entity.getIdUsuario());
         notificacao.setDescricao(entity.getDescricao());

@@ -4,17 +4,19 @@
 
 package br.com.techchallenge.fiap.neighborfood.adapters.outbound.repository.entities;
 
-import br.com.techchallenge.fiap.neighborfood.domain.model.enums.CategoriaCombo;
+import br.com.techchallenge.fiap.neighborfood.domain.model.enums.Categoria;
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.Cascade;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.HashSet;
+import java.util.Set;
 
 @Getter
 @Setter
 @Entity
-@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "produto")
@@ -22,6 +24,9 @@ import java.math.BigDecimal;
 public class ProdutoEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
+
+    @JoinColumn(name = "id")
+    private EstoqueEntity entity = new EstoqueEntity();
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -35,8 +40,11 @@ public class ProdutoEntity implements Serializable {
 
     @Column(name = "categoria")
     @Enumerated(EnumType.STRING)
-    private CategoriaCombo categoria;
+    private Categoria categoria;
 
     @Column(name = "descricao")
     private String descricao;
+
+    @Column(name = "img")
+    private String img;
 }

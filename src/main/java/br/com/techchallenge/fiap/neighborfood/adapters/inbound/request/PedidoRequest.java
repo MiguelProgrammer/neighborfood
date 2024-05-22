@@ -4,23 +4,56 @@
 
 package br.com.techchallenge.fiap.neighborfood.adapters.inbound.request;
 
-import br.com.techchallenge.fiap.neighborfood.domain.dto.PedidoDTO;
-import br.com.techchallenge.fiap.neighborfood.domain.model.Itens;
+import br.com.techchallenge.fiap.neighborfood.domain.dto.PedidoRequestDTO;
+import br.com.techchallenge.fiap.neighborfood.domain.dto.ProdutoDTO;
 import br.com.techchallenge.fiap.neighborfood.domain.model.Produto;
+import br.com.techchallenge.fiap.neighborfood.domain.model.enums.Categoria;
+
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 public class PedidoRequest {
 
     private Long id;
     private Long idCliente;
-    private Itens<Pro> itens = new Itens();
+    private Set<Produto> produtos = new HashSet<>();
 
     public PedidoRequest() {
     }
 
-    public PedidoRequest(Long id, Long idCliente, Itens itens) {
+    public PedidoRequest(Long id, Long idCliente, Set<Produto> produtos) {
         this.id = id;
         this.idCliente = idCliente;
-        this.itens = itens;
+        this.produtos = produtos;
+    }
+
+    public PedidoRequest dtoFromRequest(PedidoRequestDTO pedidoRequest) {
+        PedidoRequest request = new PedidoRequest();
+        request.setId(pedidoRequest.getId());
+        request.setIdCliente(pedidoRequest.getIdCliente());
+        pedidoRequest.getProdutos().forEach(produto -> {
+            request.getProdutos().add(this.toDomain(produto));
+        });
+        return request;
+    }
+
+    private Set<Produto> setProdutosDtoFromProdutos(List<ProdutoDTO> produtos) {
+        produtos.forEach(produto -> {
+            this.getProdutos().add(this.toDomain(produto));
+        });
+        return this.getProdutos();
+    }
+
+    private Produto toDomain(ProdutoDTO dto) {
+        Produto produto = new Produto();
+        produto.setNome(dto.getNome());
+        produto.setDescricao(dto.getDescricao());
+        produto.setCategoria(Categoria.valueOf(dto.getCategoria().getValue()));
+        produto.setImg(dto.getImg());
+        produto.setImg(dto.getImg());
+        produto.setPreco(dto.getPreco());
+        return produto;
     }
 
     public Long getId() {
@@ -39,20 +72,11 @@ public class PedidoRequest {
         this.idCliente = idCliente;
     }
 
-    public Itens getItens() {
-        return itens;
+    public Set<Produto> getProdutos() {
+        return produtos;
     }
 
-    public void setItens(Itens itens) {
-        this.itens = itens;
-    }
-
-    public PedidoRequest dtoFromRequest(PedidoDTO dto) {
-        PedidoRequest request = new PedidoRequest();
-        request.setIdCliente(dto.getIdCliente());
-
-        dto.getItens().
-
-                request.setItens(dto.getItens());
+    public void setProdutos(Set<Produto> produtos) {
+        this.produtos = produtos;
     }
 }

@@ -4,10 +4,10 @@
 
 package br.com.techchallenge.fiap.neighborfood.domain.usecase.others;
 
-import br.com.techchallenge.fiap.neighborfood.config.exception.PedidoException;
 import br.com.techchallenge.fiap.neighborfood.adapters.inbound.response.AcompanhamentoResponse;
+import br.com.techchallenge.fiap.neighborfood.config.exception.PedidoException;
 import br.com.techchallenge.fiap.neighborfood.domain.model.Pedido;
-import br.com.techchallenge.fiap.neighborfood.domain.model.enums.StatusPedido;
+import br.com.techchallenge.fiap.neighborfood.domain.model.enums.Status;
 import br.com.techchallenge.fiap.neighborfood.domain.ports.inbound.AcompanhamentoUseCasePort;
 import br.com.techchallenge.fiap.neighborfood.domain.ports.outbound.PedidoUseCaseAdapterPort;
 import br.com.techchallenge.fiap.neighborfood.domain.usecase.others.acompanhachain.AcompanhamentoChain;
@@ -30,49 +30,49 @@ public class AcompanhamentoUseCaseImpl implements AcompanhamentoUseCasePort {
         try {
             pedido = pedidoUseCaseAdapterPort.findById(idPedido);
 
-            if (pedido.getStatus().equals(StatusPedido.EM_PREPARACAO)) {
-                this.pedidoStatusExecute(idPedido, StatusPedido.PRONTO);
-                pedido.setStatus(StatusPedido.PRONTO);
-            } else if (pedido.getStatus().equals(StatusPedido.PRONTO)) {
-                this.fluxoStatusPedidoExecute(idPedido, StatusPedido.FINALIZADO);
-                pedido.setStatus(StatusPedido.FINALIZADO);
+            if (pedido.getStatus().equals(Status.EM_PREPARACAO)) {
+                this.pedidoStatusExecute(idPedido, Status.PRONTO);
+                pedido.setStatus(Status.PRONTO);
+            } else if (pedido.getStatus().equals(Status.PRONTO)) {
+                this.fluxoStatusPedidoExecute(idPedido, Status.FINALIZADO);
+                pedido.setStatus(Status.FINALIZADO);
             }
         } catch (Exception ex) {
             throw new PedidoException("Pedido não encontrado!");
         }
 
-        AcompanhamentoResponse statusPedidoResponse = new AcompanhamentoResponse();
-        statusPedidoResponse.setStatus(pedido.getStatus());
-        statusPedidoResponse.setTotal(pedido.getTotal());
-        statusPedidoResponse.setPedido(pedido);
-
-        return statusPedidoResponse;
+//        AcompanhamentoResponse statusPedidoResponse = new AcompanhamentoResponse();
+//        statusPedidoResponse.pedidoFromResponse();
+//        statusPedidoResponse.setStatus(pedido.getStatus());
+//        statusPedidoResponse.setTotal(pedido.getTotal());
+//        statusPedidoResponse.setPedidoRequest(pedido);
+        return pedidoUseCaseAdapterPort.pedido(pedido);
     }
 
     @Override
-    public String smsExecute(StatusPedido StatusPedido) {
-        return new AcompanhamentoChainRecebidoImpl(StatusPedidoChain).sms(StatusPedido);
+    public String smsExecute(Status Status) {
+        return new AcompanhamentoChainRecebidoImpl(StatusPedidoChain).sms(Status);
     }
 
 
     @Override
-    public void fluxoStatusPedidoExecute(Long idPedido, StatusPedido StatusPedido) {
+    public void fluxoStatusPedidoExecute(Long idPedido, Status Status) {
         Pedido pedidoDTO = pedidoUseCaseAdapterPort.findById(idPedido);
-        pedidoDTO.setStatus(StatusPedido);
-        if (pedidoDTO.getStatus().equals(StatusPedido.FINALIZADO)) {
+        pedidoDTO.setStatus(Status);
+        if (pedidoDTO.getStatus().equals(Status.FINALIZADO)) {
             pedidoDTO.setDataPedidoFim(new Date());
         }
-        pedidoUseCaseAdapterPort.commitUpdates(pedidoDTO.fromEntity(pedidoDTO));
+        pedidoUseCaseAdapterPort.commitUpdates(pedidoDTO.domainFromEntity());
 
         System.out.println(this.smsExecute(pedidoDTO.getStatus()));
     }
 
 
     @Override
-    public void pedidoStatusExecute(Long idPedido, StatusPedido StatusPedido) {
+    public void pedidoStatusExecute(Long idPedido, Status Status) {
         Pedido pedidoDTO = pedidoUseCaseAdapterPort.findById(idPedido);
-        pedidoDTO.setStatus(StatusPedido);
-        Pedido pedidoDTO1 = pedidoUseCaseAdapterPort.commitUpdates(pedidoDTO.fromEntity(pedidoDTO));
+        pedidoDTO.setStatus(Status);
+        Pedido pedidoDTO1 = pedidoUseCaseAdapterPort.commitUpdates(pedidoDTO.domainFromEntity());
         System.out.println(this.smsExecute(pedidoDTO1.getStatus()));
     }
 

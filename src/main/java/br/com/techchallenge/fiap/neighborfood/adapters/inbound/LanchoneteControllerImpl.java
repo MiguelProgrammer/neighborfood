@@ -9,8 +9,8 @@ import _generated_sources_swagger.NeighborfoodApi;
 import br.com.techchallenge.fiap.neighborfood.adapters.inbound.request.AdminRequest;
 import br.com.techchallenge.fiap.neighborfood.adapters.inbound.request.ClienteRequest;
 import br.com.techchallenge.fiap.neighborfood.adapters.inbound.request.PedidoRequest;
-import br.com.techchallenge.fiap.neighborfood.domain.dto.*;
 import br.com.techchallenge.fiap.neighborfood.adapters.inbound.response.AcompanhamentoResponse;
+import br.com.techchallenge.fiap.neighborfood.domain.dto.*;
 import br.com.techchallenge.fiap.neighborfood.domain.ports.inbound.*;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
@@ -122,20 +122,10 @@ public class LanchoneteControllerImpl implements NeighborfoodApi {
         return ResponseEntity.ok(pedidoUseCasePort.menuOpcionaisExecute());
     }
 
-    /**
-     * POST /neighborfood/pedido : Realizar um pedido
-     * Fazer um  pedido
-     *
-     * @param pedidoDTO Cria um novo pedido (optional)
-     * @return Pedido criado (status code 200)
-     * or request inválida (status code 400)
-     */
     @Override
-    public ResponseEntity<AcompanhamentoResponseDTO> order(PedidoDTO pedidoDTO) {
-
-        new PedidoRequest().dtoFromRequest(pedidoDTO);
-
-        return ResponseEntity.ok(pedidoUseCasePort.pedidoExecute(pedidoDTO));
+    public ResponseEntity<AcompanhamentoResponseDTO> order(PedidoRequestDTO pedidoRequest) {
+        AcompanhamentoResponse response = pedidoUseCasePort.pedidoExecute(new PedidoRequest().dtoFromRequest(pedidoRequest));
+        return ResponseEntity.ok(response.pedidoFromResponse());
 
         /**
          * TODO
@@ -210,7 +200,7 @@ public class LanchoneteControllerImpl implements NeighborfoodApi {
      * or request inválida (status code 400)
      */
     @Override
-    public ResponseEntity<AcompanhamentoResponseDTO> updateOrder(PedidoDTO pedidoDTO) {
+    public ResponseEntity<AcompanhamentoResponseDTO> updateOrder(PedidoRequestDTO pedidoDTO) {
         return NeighborfoodApi.super.updateOrder(pedidoDTO);
     }
 }

@@ -6,7 +6,7 @@ package br.com.techchallenge.fiap.neighborfood.adapters.outbound.repository;
 
 import br.com.techchallenge.fiap.neighborfood.adapters.outbound.repository.jpa.PedidoRepository;
 import br.com.techchallenge.fiap.neighborfood.adapters.inbound.response.AcompanhamentoResponse;
-import br.com.techchallenge.fiap.neighborfood.domain.model.enums.StatusPedido;
+import br.com.techchallenge.fiap.neighborfood.domain.model.enums.Status;
 import br.com.techchallenge.fiap.neighborfood.domain.ports.inbound.AcompanhamentoUseCasePort;
 import br.com.techchallenge.fiap.neighborfood.domain.ports.outbound.AcompanhamentoUseCaseAdapterPort;
 import br.com.techchallenge.fiap.neighborfood.domain.usecase.others.acompanhachain.AcompanhamentoChain;
@@ -33,19 +33,19 @@ public class AcompanhamentoPedidoAdapter extends AcompanhamentoChain
 
 
     @Override
-    public String sms(StatusPedido StatusPedido) {
-        return new AcompanhamentoChainRecebidoImpl(acompanhamentoChain).sms(StatusPedido);
+    public String sms(Status Status) {
+        return new AcompanhamentoChainRecebidoImpl(acompanhamentoChain).sms(Status);
     }
 
 
     @Override
-    public void fluxoStatusPedido(Long idPedido, StatusPedido StatusPedido) {
-        acompanhamentoUseCasePort.pedidoStatusExecute(idPedido, StatusPedido);
+    public void fluxoStatusPedido(Long idPedido, Status Status) {
+        acompanhamentoUseCasePort.pedidoStatusExecute(idPedido, Status);
     }
 
 
     @Override
-    public void pedidoStatus(Long idPedido, StatusPedido StatusPedido) {
-        acompanhamentoUseCasePort.pedidoStatusExecute(idPedido, StatusPedido);
+    public void pedidoStatus(Long idPedido, Status Status) {
+        acompanhamentoUseCasePort.pedidoStatusExecute(idPedido, Status);
     }
 }

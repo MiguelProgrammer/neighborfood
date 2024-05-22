@@ -7,28 +7,33 @@ package br.com.techchallenge.fiap.neighborfood.domain.ports.outbound;
 import br.com.techchallenge.fiap.neighborfood.adapters.inbound.response.AcompanhamentoResponse;
 import br.com.techchallenge.fiap.neighborfood.adapters.outbound.repository.entities.PagamentoEntity;
 import br.com.techchallenge.fiap.neighborfood.adapters.outbound.repository.entities.PedidoEntity;
-import br.com.techchallenge.fiap.neighborfood.domain.model.*;
-import br.com.techchallenge.fiap.neighborfood.domain.model.enums.CategoriaCombo;
+import br.com.techchallenge.fiap.neighborfood.domain.model.Estoque;
+import br.com.techchallenge.fiap.neighborfood.domain.model.Itens;
+import br.com.techchallenge.fiap.neighborfood.domain.model.Pedido;
+import br.com.techchallenge.fiap.neighborfood.domain.model.Produto;
+import br.com.techchallenge.fiap.neighborfood.domain.model.enums.Categoria;
 
 import java.util.List;
 import java.util.Set;
 
 public interface PedidoUseCaseAdapterPort {
 
-    Set<Estoque> menuOpcionais(CategoriaCombo combo);
+    Set<Produto> menuOpcionais(Categoria combo);
 
     AcompanhamentoResponse pedido(Pedido pedido);
 
     AcompanhamentoResponse atualizarPedido(Pedido pedido);
 
     Pedido commitUpdates(PedidoEntity pedidoEntity);
+
     void saveItens(Itens itens);
 
     void removeItens(Set<Itens> itens);
 
     Set<Itens> findAllById(Long id);
 
-    Set<Itens> findByIdPedidoItens(Long id);
+    Set<Produto> findAllByIdPedido(Long id);
+
     Pedido findByIdPedido(Long id);
 
     Pedido findById(Long id);

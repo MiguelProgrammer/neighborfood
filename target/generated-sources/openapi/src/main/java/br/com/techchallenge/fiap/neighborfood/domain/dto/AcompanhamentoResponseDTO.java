@@ -2,8 +2,8 @@ package br.com.techchallenge.fiap.neighborfood.domain.dto;
 
 import java.net.URI;
 import java.util.Objects;
-import br.com.techchallenge.fiap.neighborfood.domain.dto.AcompanhamentoDTO;
-import br.com.techchallenge.fiap.neighborfood.domain.dto.PedidoDTO;
+import br.com.techchallenge.fiap.neighborfood.domain.dto.PedidoRequestDTO;
+import br.com.techchallenge.fiap.neighborfood.domain.dto.StatusPedidoDTO;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
@@ -21,16 +21,16 @@ import jakarta.annotation.Generated;
  * AcompanhamentoResponseDTO
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-05-20T23:19:13.374846-03:00[America/Sao_Paulo]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-05-22T00:21:45.152441700-03:00[America/Sao_Paulo]")
 public class AcompanhamentoResponseDTO {
 
-  private PedidoDTO pedido;
+  private PedidoRequestDTO pedido;
 
-  private AcompanhamentoDTO status;
+  private StatusPedidoDTO status;
 
   private java.math.BigDecimal total;
 
-  public AcompanhamentoResponseDTO pedido(PedidoDTO pedido) {
+  public AcompanhamentoResponseDTO pedido(PedidoRequestDTO pedido) {
     this.pedido = pedido;
     return this;
   }
@@ -42,15 +42,15 @@ public class AcompanhamentoResponseDTO {
   @Valid 
   @Schema(name = "pedido", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("pedido")
-  public PedidoDTO getPedido() {
+  public PedidoRequestDTO getPedido() {
     return pedido;
   }
 
-  public void setPedido(PedidoDTO pedido) {
+  public void setPedido(PedidoRequestDTO pedido) {
     this.pedido = pedido;
   }
 
-  public AcompanhamentoResponseDTO status(AcompanhamentoDTO status) {
+  public AcompanhamentoResponseDTO status(StatusPedidoDTO status) {
     this.status = status;
     return this;
   }
@@ -62,11 +62,11 @@ public class AcompanhamentoResponseDTO {
   @Valid 
   @Schema(name = "status", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("status")
-  public AcompanhamentoDTO getStatus() {
+  public StatusPedidoDTO getStatus() {
     return status;
   }
 
-  public void setStatus(AcompanhamentoDTO status) {
+  public void setStatus(StatusPedidoDTO status) {
     this.status = status;
   }
 

@@ -4,7 +4,7 @@
 
 package br.com.techchallenge.fiap.neighborfood.domain.usecase.others.acompanhachain.impl;
 
-import br.com.techchallenge.fiap.neighborfood.domain.model.enums.StatusPedido;
+import br.com.techchallenge.fiap.neighborfood.domain.model.enums.Status;
 import br.com.techchallenge.fiap.neighborfood.domain.usecase.others.acompanhachain.AcompanhamentoChain;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
@@ -16,7 +16,7 @@ public class AcompanhamentoChainPreparacaoImpl extends AcompanhamentoChain {
     private AcompanhamentoChain StatusPedidoChain;
 
     @Override
-    public String sms(StatusPedido StatusPedido) {
+    public String sms(Status Status) {
 
         final String MESSAGE =
                 "______________________________\n\n" +
@@ -25,9 +25,9 @@ public class AcompanhamentoChainPreparacaoImpl extends AcompanhamentoChain {
                         "Somente aguarde, obrigado.\n\n" +
                         "______________________________\n\n";
 
-        if (StatusPedido.equals(StatusPedido.EM_PREPARACAO)) {
+        if (Status.equals(Status.EM_PREPARACAO)) {
             return MESSAGE;
         }
-        return new AcompanhamentoChainFinalizadoImpl(StatusPedidoChain).sms(StatusPedido);
+        return new AcompanhamentoChainFinalizadoImpl(StatusPedidoChain).sms(Status);
     }
 }

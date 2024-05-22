@@ -2,7 +2,7 @@ package br.com.techchallenge.fiap.neighborfood.domain.dto;
 
 import java.net.URI;
 import java.util.Objects;
-import br.com.techchallenge.fiap.neighborfood.domain.dto.CategoriaComboDTO;
+import br.com.techchallenge.fiap.neighborfood.domain.dto.CategoriaDTO;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
@@ -20,18 +20,40 @@ import jakarta.annotation.Generated;
  * ProdutoDTO
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-05-20T23:19:13.374846-03:00[America/Sao_Paulo]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-05-22T00:21:45.152441700-03:00[America/Sao_Paulo]")
 public class ProdutoDTO {
+
+  private Long id;
 
   private String nome;
 
   private java.math.BigDecimal preco;
 
-  private CategoriaComboDTO categoria;
+  private CategoriaDTO categoria;
 
   private String descricao;
 
   private String img;
+
+  public ProdutoDTO id(Long id) {
+    this.id = id;
+    return this;
+  }
+
+  /**
+   * Get id
+   * @return id
+  */
+  
+  @Schema(name = "id", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("id")
+  public Long getId() {
+    return id;
+  }
+
+  public void setId(Long id) {
+    this.id = id;
+  }
 
   public ProdutoDTO nome(String nome) {
     this.nome = nome;
@@ -73,7 +95,7 @@ public class ProdutoDTO {
     this.preco = preco;
   }
 
-  public ProdutoDTO categoria(CategoriaComboDTO categoria) {
+  public ProdutoDTO categoria(CategoriaDTO categoria) {
     this.categoria = categoria;
     return this;
   }
@@ -85,11 +107,11 @@ public class ProdutoDTO {
   @Valid 
   @Schema(name = "categoria", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("categoria")
-  public CategoriaComboDTO getCategoria() {
+  public CategoriaDTO getCategoria() {
     return categoria;
   }
 
-  public void setCategoria(CategoriaComboDTO categoria) {
+  public void setCategoria(CategoriaDTO categoria) {
     this.categoria = categoria;
   }
 
@@ -142,7 +164,8 @@ public class ProdutoDTO {
       return false;
     }
     ProdutoDTO produtoDTO = (ProdutoDTO) o;
-    return Objects.equals(this.nome, produtoDTO.nome) &&
+    return Objects.equals(this.id, produtoDTO.id) &&
+        Objects.equals(this.nome, produtoDTO.nome) &&
         Objects.equals(this.preco, produtoDTO.preco) &&
         Objects.equals(this.categoria, produtoDTO.categoria) &&
         Objects.equals(this.descricao, produtoDTO.descricao) &&
@@ -151,13 +174,14 @@ public class ProdutoDTO {
 
   @Override
   public int hashCode() {
-    return Objects.hash(nome, preco, categoria, descricao, img);
+    return Objects.hash(id, nome, preco, categoria, descricao, img);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class ProdutoDTO {\n");
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    nome: ").append(toIndentedString(nome)).append("\n");
     sb.append("    preco: ").append(toIndentedString(preco)).append("\n");
     sb.append("    categoria: ").append(toIndentedString(categoria)).append("\n");

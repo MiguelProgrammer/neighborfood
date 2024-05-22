@@ -11,7 +11,7 @@ import br.com.techchallenge.fiap.neighborfood.domain.dto.ClienteRequestDTO;
 import br.com.techchallenge.fiap.neighborfood.domain.dto.MimoDTO;
 import br.com.techchallenge.fiap.neighborfood.domain.dto.MimoRequestDTO;
 import br.com.techchallenge.fiap.neighborfood.domain.dto.PagamentoDTO;
-import br.com.techchallenge.fiap.neighborfood.domain.dto.PedidoDTO;
+import br.com.techchallenge.fiap.neighborfood.domain.dto.PedidoRequestDTO;
 import io.swagger.v3.oas.annotations.ExternalDocumentation;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -38,7 +38,7 @@ import java.util.Map;
 import java.util.Optional;
 import jakarta.annotation.Generated;
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-05-20T23:19:13.374846-03:00[America/Sao_Paulo]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-05-22T00:21:45.152441700-03:00[America/Sao_Paulo]")
 @Validated
 @Tag(name = "follow-up", description = "Acompanhar status do pedido")
 public interface NeighborfoodApi {
@@ -80,7 +80,7 @@ public interface NeighborfoodApi {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "{ \"total\" : 5.962133916683182, \"pedido\" : { \"idCliente\" : 6, \"Itens\" : [ { \"preco\" : 1.4658129805029452, \"img\" : \"img\", \"nome\" : \"nome\", \"descricao\" : \"descricao\" }, { \"preco\" : 1.4658129805029452, \"img\" : \"img\", \"nome\" : \"nome\", \"descricao\" : \"descricao\" } ], \"id\" : 0 } }";
+                    String exampleString = "{ \"total\" : 5.637376656633329, \"pedido\" : { \"idCliente\" : 6, \"id\" : 0, \"Produtos\" : [ { \"preco\" : 5.962133916683182, \"img\" : \"img\", \"nome\" : \"nome\", \"id\" : 1, \"descricao\" : \"descricao\" }, { \"preco\" : 5.962133916683182, \"img\" : \"img\", \"nome\" : \"nome\", \"id\" : 1, \"descricao\" : \"descricao\" } ] } }";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
                     break;
                 }
@@ -124,7 +124,7 @@ public interface NeighborfoodApi {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "[ { \"total\" : 5.962133916683182, \"pedido\" : { \"idCliente\" : 6, \"Itens\" : [ { \"preco\" : 1.4658129805029452, \"img\" : \"img\", \"nome\" : \"nome\", \"descricao\" : \"descricao\" }, { \"preco\" : 1.4658129805029452, \"img\" : \"img\", \"nome\" : \"nome\", \"descricao\" : \"descricao\" } ], \"id\" : 0 } }, { \"total\" : 5.962133916683182, \"pedido\" : { \"idCliente\" : 6, \"Itens\" : [ { \"preco\" : 1.4658129805029452, \"img\" : \"img\", \"nome\" : \"nome\", \"descricao\" : \"descricao\" }, { \"preco\" : 1.4658129805029452, \"img\" : \"img\", \"nome\" : \"nome\", \"descricao\" : \"descricao\" } ], \"id\" : 0 } } ]";
+                    String exampleString = "[ { \"total\" : 5.637376656633329, \"pedido\" : { \"idCliente\" : 6, \"id\" : 0, \"Produtos\" : [ { \"preco\" : 5.962133916683182, \"img\" : \"img\", \"nome\" : \"nome\", \"id\" : 1, \"descricao\" : \"descricao\" }, { \"preco\" : 5.962133916683182, \"img\" : \"img\", \"nome\" : \"nome\", \"id\" : 1, \"descricao\" : \"descricao\" } ] } }, { \"total\" : 5.637376656633329, \"pedido\" : { \"idCliente\" : 6, \"id\" : 0, \"Produtos\" : [ { \"preco\" : 5.962133916683182, \"img\" : \"img\", \"nome\" : \"nome\", \"id\" : 1, \"descricao\" : \"descricao\" }, { \"preco\" : 5.962133916683182, \"img\" : \"img\", \"nome\" : \"nome\", \"id\" : 1, \"descricao\" : \"descricao\" } ] } } ]";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
                     break;
                 }
@@ -257,7 +257,7 @@ public interface NeighborfoodApi {
      * POST /neighborfood/pedido : Realizar um pedido
      * Fazer um  pedido
      *
-     * @param pedidoDTO Cria um novo pedido (optional)
+     * @param pedidoRequestDTO Cria um novo pedido (optional)
      * @return Pedido criado (status code 200)
      *         or request inválida (status code 400)
      */
@@ -280,12 +280,12 @@ public interface NeighborfoodApi {
         consumes = { "application/json" }
     )
     default ResponseEntity<AcompanhamentoResponseDTO> order(
-        @Parameter(name = "PedidoDTO", description = "Cria um novo pedido") @Valid @RequestBody(required = false) PedidoDTO pedidoDTO
+        @Parameter(name = "PedidoRequestDTO", description = "Cria um novo pedido") @Valid @RequestBody(required = false) PedidoRequestDTO pedidoRequestDTO
     ) {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "{ \"total\" : 5.962133916683182, \"pedido\" : { \"idCliente\" : 6, \"Itens\" : [ { \"preco\" : 1.4658129805029452, \"img\" : \"img\", \"nome\" : \"nome\", \"descricao\" : \"descricao\" }, { \"preco\" : 1.4658129805029452, \"img\" : \"img\", \"nome\" : \"nome\", \"descricao\" : \"descricao\" } ], \"id\" : 0 } }";
+                    String exampleString = "{ \"total\" : 5.637376656633329, \"pedido\" : { \"idCliente\" : 6, \"id\" : 0, \"Produtos\" : [ { \"preco\" : 5.962133916683182, \"img\" : \"img\", \"nome\" : \"nome\", \"id\" : 1, \"descricao\" : \"descricao\" }, { \"preco\" : 5.962133916683182, \"img\" : \"img\", \"nome\" : \"nome\", \"id\" : 1, \"descricao\" : \"descricao\" } ] } }";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
                     break;
                 }
@@ -330,7 +330,7 @@ public interface NeighborfoodApi {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "{ \"total\" : 5.962133916683182, \"pedido\" : { \"idCliente\" : 6, \"Itens\" : [ { \"preco\" : 1.4658129805029452, \"img\" : \"img\", \"nome\" : \"nome\", \"descricao\" : \"descricao\" }, { \"preco\" : 1.4658129805029452, \"img\" : \"img\", \"nome\" : \"nome\", \"descricao\" : \"descricao\" } ], \"id\" : 0 } }";
+                    String exampleString = "{ \"total\" : 5.637376656633329, \"pedido\" : { \"idCliente\" : 6, \"id\" : 0, \"Produtos\" : [ { \"preco\" : 5.962133916683182, \"img\" : \"img\", \"nome\" : \"nome\", \"id\" : 1, \"descricao\" : \"descricao\" }, { \"preco\" : 5.962133916683182, \"img\" : \"img\", \"nome\" : \"nome\", \"id\" : 1, \"descricao\" : \"descricao\" } ] } }";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
                     break;
                 }
@@ -511,7 +511,7 @@ public interface NeighborfoodApi {
      * PUT /neighborfood/pedido/update : Atualizar um pedido
      * Atualizar itens de um pedido já realizado
      *
-     * @param pedidoDTO atualiar um  pedido (optional)
+     * @param pedidoRequestDTO atualiar um  pedido (optional)
      * @return Pedido atualizado (status code 200)
      *         or request inválida (status code 400)
      */
@@ -534,12 +534,12 @@ public interface NeighborfoodApi {
         consumes = { "application/json" }
     )
     default ResponseEntity<AcompanhamentoResponseDTO> updateOrder(
-        @Parameter(name = "PedidoDTO", description = "atualiar um  pedido") @Valid @RequestBody(required = false) PedidoDTO pedidoDTO
+        @Parameter(name = "PedidoRequestDTO", description = "atualiar um  pedido") @Valid @RequestBody(required = false) PedidoRequestDTO pedidoRequestDTO
     ) {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "{ \"total\" : 5.962133916683182, \"pedido\" : { \"idCliente\" : 6, \"Itens\" : [ { \"preco\" : 1.4658129805029452, \"img\" : \"img\", \"nome\" : \"nome\", \"descricao\" : \"descricao\" }, { \"preco\" : 1.4658129805029452, \"img\" : \"img\", \"nome\" : \"nome\", \"descricao\" : \"descricao\" } ], \"id\" : 0 } }";
+                    String exampleString = "{ \"total\" : 5.637376656633329, \"pedido\" : { \"idCliente\" : 6, \"id\" : 0, \"Produtos\" : [ { \"preco\" : 5.962133916683182, \"img\" : \"img\", \"nome\" : \"nome\", \"id\" : 1, \"descricao\" : \"descricao\" }, { \"preco\" : 5.962133916683182, \"img\" : \"img\", \"nome\" : \"nome\", \"id\" : 1, \"descricao\" : \"descricao\" } ] } }";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
                     break;
                 }

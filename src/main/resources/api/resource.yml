@@ -110,7 +110,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/PedidoDTO'
+              $ref: '#/components/schemas/PedidoRequestDTO'
       responses:
         '200':
           description: Pedido criado
@@ -133,7 +133,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/PedidoDTO'
+              $ref: '#/components/schemas/PedidoRequestDTO'
       responses:
         '200':
           description: Pedido atualizado
@@ -296,7 +296,6 @@ paths:
         '400':
           description: request inválida
 
-
   /neighborfood/painel/produto/cadastro/{idAdmin}:
     get:
       tags:
@@ -355,7 +354,7 @@ components:
         pagou:
           type: boolean
 
-    PedidoDTO:
+    PedidoRequestDTO:
       type: object
       properties:
         id:
@@ -364,7 +363,7 @@ components:
         idCliente:
           type: integer
           format: int64
-        Itens:
+        Produtos:
           type: array
           items:
             $ref: '#/components/schemas/ProdutoDTO'
@@ -372,13 +371,16 @@ components:
     ProdutoDTO:
       type: object
       properties:
+        id:
+          type: integer
+          format: int64
         nome:
           type: string
         preco:
           type: number
           format: double
         categoria:
-          $ref: '#/components/schemas/CategoriaComboDTO'
+          $ref: '#/components/schemas/CategoriaDTO'
         descricao:
           type: string
         img:
@@ -388,14 +390,14 @@ components:
       type: object
       properties:
         pedido:
-          $ref: '#/components/schemas/PedidoDTO'
+          $ref: '#/components/schemas/PedidoRequestDTO'
         status:
-          $ref: '#/components/schemas/AcompanhamentoDTO'
+          $ref: '#/components/schemas/StatusPedidoDTO'
         total:
           type: number
           format: double
 
-    AcompanhamentoDTO:
+    StatusPedidoDTO:
       type: string
       enum:
         - RECEBIDO
@@ -403,7 +405,7 @@ components:
         - PRONTO
         - FINALIZADO
 
-    CategoriaComboDTO:
+    CategoriaDTO:
       type: string
       enum:
         - LANCHE

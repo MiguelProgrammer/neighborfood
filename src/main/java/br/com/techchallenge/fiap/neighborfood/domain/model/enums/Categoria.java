@@ -4,9 +4,9 @@
 
 package br.com.techchallenge.fiap.neighborfood.domain.model.enums;
 
-public enum StatusPedido {
-    RECEBIDO,
-    EM_PREPARACAO,
-    PRONTO,
-    FINALIZADO
+public enum Categoria {
+    LANCHE,
+    ACOMPANHAMENTO,
+    BEBIDA,
+    SOBREMESA
 }

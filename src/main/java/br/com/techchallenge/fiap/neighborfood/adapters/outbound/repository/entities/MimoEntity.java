@@ -31,9 +31,6 @@ public class MimoEntity implements Serializable {
     @Column(name = "id_usuario")
     private Long idUsuario;
 
-    @Column(name = "acao")
-    private String acao;
-
     @Column(name = "descricao")
     private String descricao;
 

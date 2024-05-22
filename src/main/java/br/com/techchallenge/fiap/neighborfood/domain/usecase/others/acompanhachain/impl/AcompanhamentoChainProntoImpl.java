@@ -4,7 +4,7 @@
 
 package br.com.techchallenge.fiap.neighborfood.domain.usecase.others.acompanhachain.impl;
 
-import br.com.techchallenge.fiap.neighborfood.domain.model.enums.StatusPedido;
+import br.com.techchallenge.fiap.neighborfood.domain.model.enums.Status;
 import br.com.techchallenge.fiap.neighborfood.domain.usecase.others.acompanhachain.AcompanhamentoChain;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
@@ -16,7 +16,7 @@ public class AcompanhamentoChainProntoImpl extends AcompanhamentoChain {
     private AcompanhamentoChain StatusPedidoChain;
 
     @Override
-    public String sms(StatusPedido StatusPedido) {
+    public String sms(Status Status) {
 
         final String MESSAGE =
                 "______________________________\n\n" +
@@ -24,7 +24,7 @@ public class AcompanhamentoChainProntoImpl extends AcompanhamentoChain {
                         "Retire o quanto antes.\n\n" +
                         "______________________________\n\n";
 
-        if (StatusPedido.equals(StatusPedido.PRONTO)) {
+        if (Status.equals(Status.PRONTO)) {
             return MESSAGE;
         }
         return null;
