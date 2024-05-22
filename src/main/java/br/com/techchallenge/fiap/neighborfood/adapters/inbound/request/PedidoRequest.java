@@ -47,6 +47,7 @@ public class PedidoRequest {
 
     private Produto toDomain(ProdutoDTO dto) {
         Produto produto = new Produto();
+        produto.setId(dto.getId());
         produto.setNome(dto.getNome());
         produto.setDescricao(dto.getDescricao());
         produto.setCategoria(Categoria.valueOf(dto.getCategoria().getValue()));

@@ -15,9 +15,9 @@ import br.com.techchallenge.fiap.neighborfood.domain.model.enums.Categoria;
 import br.com.techchallenge.fiap.neighborfood.domain.model.enums.Status;
 import br.com.techchallenge.fiap.neighborfood.domain.ports.inbound.AcompanhamentoUseCasePort;
 import br.com.techchallenge.fiap.neighborfood.domain.ports.inbound.PedidoUseCasePort;
-import br.com.techchallenge.fiap.neighborfood.domain.ports.outbound.EstoqueUseCaseAdapterPort;
 import br.com.techchallenge.fiap.neighborfood.domain.ports.outbound.NotificationUseCaseAdapterPort;
 import br.com.techchallenge.fiap.neighborfood.domain.ports.outbound.PedidoUseCaseAdapterPort;
+import br.com.techchallenge.fiap.neighborfood.domain.ports.outbound.ProdutoUseCaseAdapterPort;
 import lombok.extern.slf4j.Slf4j;
 
 import java.math.BigDecimal;
@@ -34,14 +34,14 @@ public class PedidoUseCaseImpl implements PedidoUseCasePort {
     private static final String ITENS_EM_FALLTA = "\n\nItens selecionados em falta!\n\n";
 
     private PedidoUseCaseAdapterPort pedidoUseCaseAdapterPort;
-    private EstoqueUseCaseAdapterPort estoqueUseCaseAdapterPort;
+    private ProdutoUseCaseAdapterPort produtoUseCaseAdapterPort;
     private NotificationUseCaseAdapterPort notificationUseCaseAdapterPort;
     private AcompanhamentoUseCasePort acompanhamentoUseCasePort;
     private UserAdapter userAdapter;
 
-    public PedidoUseCaseImpl(PedidoUseCaseAdapterPort pedidoUseCaseAdapterPort, EstoqueUseCaseAdapterPort estoqueUseCaseAdapterPort, NotificationUseCaseAdapterPort notificationUseCaseAdapterPort, AcompanhamentoUseCasePort acompanhamentoUseCasePort, UserAdapter userAdapter) {
+    public PedidoUseCaseImpl(PedidoUseCaseAdapterPort pedidoUseCaseAdapterPort, ProdutoUseCaseAdapterPort estoqueUseCaseAdapterPort, NotificationUseCaseAdapterPort notificationUseCaseAdapterPort, AcompanhamentoUseCasePort acompanhamentoUseCasePort, UserAdapter userAdapter) {
         this.pedidoUseCaseAdapterPort = pedidoUseCaseAdapterPort;
-        this.estoqueUseCaseAdapterPort = estoqueUseCaseAdapterPort;
+        this.produtoUseCaseAdapterPort = estoqueUseCaseAdapterPort;
         this.notificationUseCaseAdapterPort = notificationUseCaseAdapterPort;
         this.acompanhamentoUseCasePort = acompanhamentoUseCasePort;
         this.userAdapter = userAdapter;
@@ -71,12 +71,12 @@ public class PedidoUseCaseImpl implements PedidoUseCasePort {
         request.setIdCliente(cliente.getId());
         request.getProdutos().forEach(produto -> {
 
-            Estoque estoque = estoqueUseCaseAdapterPort.findByNome(produto.getNome());
+            Produto prod = produtoUseCaseAdapterPort.findById(produto.getId());
 
-            if (estoque != null) {
+            if (prod != null) {
                 pedidoDomain.getProdutos().add(produto);
                 pedidoDomain.setTotal(pedidoDomain.getTotal().add(produto.getPreco()));
-                estoqueUseCaseAdapterPort.deleteAll(estoque);
+                produtoUseCaseAdapterPort.deleteById(prod.getId());
             } else {
                 Produto emFalta = new Produto();
                 emFalta.setDescricao("produto em falta!");
@@ -116,11 +116,7 @@ public class PedidoUseCaseImpl implements PedidoUseCasePort {
             throw new PedidoException(CLIENTE_NOT_FOUND);
         }
 
-        produtos.forEach(produto -> {
-            Estoque estoque = new Estoque();
-            estoque.setProdutos(produtos);
-            estoqueUseCaseAdapterPort.repoemEstoque(estoque);
-        });
+        produtoUseCaseAdapterPort.repoemEstoque(produtos);
 
         Pedido pedidoRealizado = pedidoUseCaseAdapterPort.findByIdPedido(pedido.getId());
         pedidoUseCaseAdapterPort.pedido(pedidoRealizado);
@@ -135,7 +131,7 @@ public class PedidoUseCaseImpl implements PedidoUseCasePort {
             pedidoUseCaseAdapterPort.commitUpdates(pedidoDTO.domainFromEntity());
 
             //pedidoUseCaseAdapterPort.saveItens();
-            estoqueUseCaseAdapterPort.deleteByNome(pro.getNome());
+            produtoUseCaseAdapterPort.deleteById(pro.getId());
         });
 
         log.info("Pedido atualizado!");

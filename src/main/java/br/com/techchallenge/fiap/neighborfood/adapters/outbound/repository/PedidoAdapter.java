@@ -5,15 +5,12 @@
 package br.com.techchallenge.fiap.neighborfood.adapters.outbound.repository;
 
 import br.com.techchallenge.fiap.neighborfood.adapters.inbound.response.AcompanhamentoResponse;
-import br.com.techchallenge.fiap.neighborfood.adapters.outbound.repository.entities.EstoqueEntity;
 import br.com.techchallenge.fiap.neighborfood.adapters.outbound.repository.entities.PagamentoEntity;
 import br.com.techchallenge.fiap.neighborfood.adapters.outbound.repository.entities.PedidoEntity;
 import br.com.techchallenge.fiap.neighborfood.adapters.outbound.repository.entities.ProdutoEntity;
-import br.com.techchallenge.fiap.neighborfood.adapters.outbound.repository.jpa.EstoqueRepository;
 import br.com.techchallenge.fiap.neighborfood.adapters.outbound.repository.jpa.PagamentoRepository;
 import br.com.techchallenge.fiap.neighborfood.adapters.outbound.repository.jpa.PedidoRepository;
 import br.com.techchallenge.fiap.neighborfood.adapters.outbound.repository.jpa.ProdutoRepository;
-import br.com.techchallenge.fiap.neighborfood.domain.model.Estoque;
 import br.com.techchallenge.fiap.neighborfood.domain.model.Itens;
 import br.com.techchallenge.fiap.neighborfood.domain.model.Pedido;
 import br.com.techchallenge.fiap.neighborfood.domain.model.Produto;
@@ -28,13 +25,11 @@ import java.util.Set;
 @Component
 public class PedidoAdapter implements PedidoUseCaseAdapterPort {
 
-    private EstoqueRepository estoqueRepository;
     private PedidoRepository pedidoRepository;
     private PagamentoRepository pagamentoRepository;
     private ProdutoRepository produtoRepository;
 
-    public PedidoAdapter(EstoqueRepository estoqueRepository, PedidoRepository pedidoRepository, PagamentoRepository pagamentoRepository, ProdutoRepository produtoRepository) {
-        this.estoqueRepository = estoqueRepository;
+    public PedidoAdapter(PedidoRepository pedidoRepository, PagamentoRepository pagamentoRepository, ProdutoRepository produtoRepository) {
         this.pedidoRepository = pedidoRepository;
         this.pagamentoRepository = pagamentoRepository;
         this.produtoRepository = produtoRepository;
@@ -59,6 +54,7 @@ public class PedidoAdapter implements PedidoUseCaseAdapterPort {
 
     @Override
     public Pedido commitUpdates(PedidoEntity pedidoEntity) {
+        pedidoEntity.setId(null);
         return new Pedido().entityFromDomain(pedidoRepository.saveAndFlush(pedidoEntity));
     }
 

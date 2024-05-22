@@ -15,4 +15,6 @@ import java.util.Set;
 public interface ProdutoRepository extends JpaRepository<ProdutoEntity, Long> {
 
     Set<ProdutoEntity> findByCategoria(Categoria combo);
+
+
 }

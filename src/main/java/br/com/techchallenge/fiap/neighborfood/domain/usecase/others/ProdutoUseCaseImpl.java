@@ -5,33 +5,30 @@
 package br.com.techchallenge.fiap.neighborfood.domain.usecase.others;
 
 import br.com.techchallenge.fiap.neighborfood.adapters.outbound.repository.UserAdapter;
-import br.com.techchallenge.fiap.neighborfood.domain.model.Admin;
-import br.com.techchallenge.fiap.neighborfood.domain.model.Estoque;
 import br.com.techchallenge.fiap.neighborfood.domain.model.Produto;
 import br.com.techchallenge.fiap.neighborfood.domain.model.enums.Categoria;
-import br.com.techchallenge.fiap.neighborfood.domain.ports.inbound.EstoqueUseCasePort;
-import br.com.techchallenge.fiap.neighborfood.domain.ports.outbound.EstoqueUseCaseAdapterPort;
+import br.com.techchallenge.fiap.neighborfood.domain.ports.inbound.ProdutoUseCasePort;
 import br.com.techchallenge.fiap.neighborfood.domain.ports.outbound.LoginUseCaseAdapterPort;
+import br.com.techchallenge.fiap.neighborfood.domain.ports.outbound.ProdutoUseCaseAdapterPort;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.Set;
 
 @Slf4j
-public class EstoqueUseCaseImpl implements EstoqueUseCasePort {
+public class ProdutoUseCaseImpl implements ProdutoUseCasePort {
 
 
-    private EstoqueUseCaseAdapterPort estoqueUseCaseAdapterPort;
+    private ProdutoUseCaseAdapterPort produtoUseCaseAdapterPort;
     private LoginUseCaseAdapterPort loginAdapter;
     private UserAdapter userdapter;
 
-    public EstoqueUseCaseImpl(EstoqueUseCaseAdapterPort estoqueUseCaseAdapterPort,
+    public ProdutoUseCaseImpl(ProdutoUseCaseAdapterPort produtoUseCaseAdapterPort,
                               LoginUseCaseAdapterPort loginAdapter, UserAdapter userdapter) {
-        this.estoqueUseCaseAdapterPort = estoqueUseCaseAdapterPort;
+        this.produtoUseCaseAdapterPort = produtoUseCaseAdapterPort;
         this.loginAdapter = loginAdapter;
         this.userdapter = userdapter;
     }
@@ -39,7 +36,6 @@ public class EstoqueUseCaseImpl implements EstoqueUseCasePort {
     @Override
     public Object gerenciaEstoqueExecute(Long idAmdin) {
         Set<Produto> listaProdutos = new HashSet<>();
-        Estoque estoque = new Estoque();
 
         if (userdapter.adminById(idAmdin).getId() != null) {
 
@@ -77,9 +73,8 @@ public class EstoqueUseCaseImpl implements EstoqueUseCasePort {
             produtoSobremesa.setPreco(new BigDecimal(4.90));
             produtoSobremesa.setImg("https://i.pinimg.com/originals/9a/25/9e/9a259efb922ed0e05b46b73373777adc.png");
             listaProdutos.add(produtoSobremesa);
-            estoque.setProdutos(listaProdutos);
 
-            this.repoemEstoqueExecute(estoque);
+            this.repoemEstoqueExecute(listaProdutos);
 
             final String CADASTRO_PRODUTOS = "_______________________________________________\n "
                     + listaProdutos.size() +
@@ -94,22 +89,22 @@ public class EstoqueUseCaseImpl implements EstoqueUseCasePort {
     }
 
     @Override
-    public Object repoemEstoqueExecute(Estoque estoque) {
-        return estoqueUseCaseAdapterPort.repoemEstoque(estoque);
+    public Object repoemEstoqueExecute(Set<Produto> produtos) {
+        return produtoUseCaseAdapterPort.repoemEstoque(produtos);
     }
 
     @Override
-    public Object findByNomeExecute(Estoque estoque) {
-        return estoqueUseCaseAdapterPort.findByNome(estoque.toString());
+    public Object findById(Long idProduto) {
+        return produtoUseCaseAdapterPort.findById(idProduto);
     }
 
     @Override
-    public void deleteByNomeExecute(String nome) {
-        estoqueUseCaseAdapterPort.deleteByNome(nome);
+    public void deleteById(Long idProduto) {
+        produtoUseCaseAdapterPort.deleteById(idProduto);
     }
 
     @Override
-    public void deleteAllExecute(Estoque lista) {
-        estoqueUseCaseAdapterPort.deleteAll(lista);
+    public void deleteAllExecute(Set<Produto> produtos) {
+        produtoUseCaseAdapterPort.deleteAll(produtos);
     }
 }

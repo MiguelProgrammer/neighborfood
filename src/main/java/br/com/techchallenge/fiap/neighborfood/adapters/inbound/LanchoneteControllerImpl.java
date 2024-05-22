@@ -22,13 +22,13 @@ public class LanchoneteControllerImpl implements NeighborfoodApi {
 
     private AcompanhamentoUseCasePort acompanhamentoUseCasePort;
     private AdminUseCasePort adminUseCasePort;
-    private EstoqueUseCasePort estoqueUseCasePort;
+    private ProdutoUseCasePort estoqueUseCasePort;
     private LoginUseCasePort loginUseCasePort;
     private NotificationUseCasePort notificationUseCasePort;
     private PagamentoUseCasePort pagamentoUseCasePort;
     private PedidoUseCasePort pedidoUseCasePort;
 
-    public LanchoneteControllerImpl(AcompanhamentoUseCasePort acompanhamentoUseCasePort, AdminUseCasePort adminUseCasePort, EstoqueUseCasePort estoqueUseCasePort, LoginUseCasePort loginUseCasePort, NotificationUseCasePort notificationUseCasePort, PagamentoUseCasePort pagamentoUseCasePort, PedidoUseCasePort pedidoUseCasePort) {
+    public LanchoneteControllerImpl(AcompanhamentoUseCasePort acompanhamentoUseCasePort, AdminUseCasePort adminUseCasePort, ProdutoUseCasePort estoqueUseCasePort, LoginUseCasePort loginUseCasePort, NotificationUseCasePort notificationUseCasePort, PagamentoUseCasePort pagamentoUseCasePort, PedidoUseCasePort pedidoUseCasePort) {
         this.acompanhamentoUseCasePort = acompanhamentoUseCasePort;
         this.adminUseCasePort = adminUseCasePort;
         this.estoqueUseCasePort = estoqueUseCasePort;

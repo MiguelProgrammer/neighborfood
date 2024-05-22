@@ -25,9 +25,6 @@ public class ProdutoEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    @JoinColumn(name = "id")
-    private EstoqueEntity entity = new EstoqueEntity();
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;

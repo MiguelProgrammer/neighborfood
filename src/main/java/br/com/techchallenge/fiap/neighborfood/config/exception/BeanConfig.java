@@ -6,7 +6,7 @@ package br.com.techchallenge.fiap.neighborfood.config.exception;
 
 import br.com.techchallenge.fiap.neighborfood.adapters.outbound.repository.UserAdapter;
 import br.com.techchallenge.fiap.neighborfood.domain.ports.inbound.*;
-import br.com.techchallenge.fiap.neighborfood.domain.ports.outbound.EstoqueUseCaseAdapterPort;
+import br.com.techchallenge.fiap.neighborfood.domain.ports.outbound.ProdutoUseCaseAdapterPort;
 import br.com.techchallenge.fiap.neighborfood.domain.ports.outbound.LoginUseCaseAdapterPort;
 import br.com.techchallenge.fiap.neighborfood.domain.ports.outbound.NotificationUseCaseAdapterPort;
 import br.com.techchallenge.fiap.neighborfood.domain.ports.outbound.PedidoUseCaseAdapterPort;
@@ -54,9 +54,9 @@ public class BeanConfig {
     }
 
     @Bean
-    public EstoqueUseCasePort estoqueUseCasePort(EstoqueUseCaseAdapterPort estoqueUseCaseAdapterPort,
+    public ProdutoUseCasePort estoqueUseCasePort(ProdutoUseCaseAdapterPort estoqueUseCaseAdapterPort,
                                                  LoginUseCaseAdapterPort loginAdapter, UserAdapter userdapter) {
-        return new EstoqueUseCaseImpl(estoqueUseCaseAdapterPort, loginAdapter, userdapter);
+        return new ProdutoUseCaseImpl(estoqueUseCaseAdapterPort, loginAdapter, userdapter);
     }
 
     @Bean
@@ -78,7 +78,7 @@ public class BeanConfig {
 
     @Bean
     public PedidoUseCasePort pedidoUseCasePort(PedidoUseCaseAdapterPort pedidoUseCaseAdapterPort,
-                                               EstoqueUseCaseAdapterPort estoqueUseCaseAdapterPort,
+                                               ProdutoUseCaseAdapterPort estoqueUseCaseAdapterPort,
                                                NotificationUseCaseAdapterPort notificationUseCaseAdapterPort,
                                                AcompanhamentoUseCasePort acompanhamentoUseCasePort,
                                                UserAdapter userAdapter) {
