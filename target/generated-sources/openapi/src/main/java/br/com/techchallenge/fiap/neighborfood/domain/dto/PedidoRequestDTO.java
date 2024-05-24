@@ -2,7 +2,7 @@ package br.com.techchallenge.fiap.neighborfood.domain.dto;
 
 import java.net.URI;
 import java.util.Objects;
-import br.com.techchallenge.fiap.neighborfood.domain.dto.ProdutoDTO;
+import br.com.techchallenge.fiap.neighborfood.domain.dto.ItensPedido;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.ArrayList;
@@ -21,7 +21,7 @@ import jakarta.annotation.Generated;
  * PedidoRequestDTO
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-05-22T00:21:45.152441700-03:00[America/Sao_Paulo]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-05-24T00:34:49.182568600-03:00[America/Sao_Paulo]")
 public class PedidoRequestDTO {
 
   private Long id;
@@ -29,7 +29,7 @@ public class PedidoRequestDTO {
   private Long idCliente;
 
   @Valid
-  private List<@Valid ProdutoDTO> produtos;
+  private List<@Valid ItensPedido> itensPedido;
 
   public PedidoRequestDTO id(Long id) {
     this.id = id;
@@ -71,32 +71,32 @@ public class PedidoRequestDTO {
     this.idCliente = idCliente;
   }
 
-  public PedidoRequestDTO produtos(List<@Valid ProdutoDTO> produtos) {
-    this.produtos = produtos;
+  public PedidoRequestDTO itensPedido(List<@Valid ItensPedido> itensPedido) {
+    this.itensPedido = itensPedido;
     return this;
   }
 
-  public PedidoRequestDTO addProdutosItem(ProdutoDTO produtosItem) {
-    if (this.produtos == null) {
-      this.produtos = new ArrayList<>();
+  public PedidoRequestDTO addItensPedidoItem(ItensPedido itensPedidoItem) {
+    if (this.itensPedido == null) {
+      this.itensPedido = new ArrayList<>();
     }
-    this.produtos.add(produtosItem);
+    this.itensPedido.add(itensPedidoItem);
     return this;
   }
 
   /**
-   * Get produtos
-   * @return produtos
+   * Get itensPedido
+   * @return itensPedido
   */
   @Valid 
-  @Schema(name = "Produtos", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
-  @JsonProperty("Produtos")
-  public List<@Valid ProdutoDTO> getProdutos() {
-    return produtos;
+  @Schema(name = "itensPedido", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("itensPedido")
+  public List<@Valid ItensPedido> getItensPedido() {
+    return itensPedido;
   }
 
-  public void setProdutos(List<@Valid ProdutoDTO> produtos) {
-    this.produtos = produtos;
+  public void setItensPedido(List<@Valid ItensPedido> itensPedido) {
+    this.itensPedido = itensPedido;
   }
 
   @Override
@@ -110,12 +110,12 @@ public class PedidoRequestDTO {
     PedidoRequestDTO pedidoRequestDTO = (PedidoRequestDTO) o;
     return Objects.equals(this.id, pedidoRequestDTO.id) &&
         Objects.equals(this.idCliente, pedidoRequestDTO.idCliente) &&
-        Objects.equals(this.produtos, pedidoRequestDTO.produtos);
+        Objects.equals(this.itensPedido, pedidoRequestDTO.itensPedido);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, idCliente, produtos);
+    return Objects.hash(id, idCliente, itensPedido);
   }
 
   @Override
@@ -124,7 +124,7 @@ public class PedidoRequestDTO {
     sb.append("class PedidoRequestDTO {\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    idCliente: ").append(toIndentedString(idCliente)).append("\n");
-    sb.append("    produtos: ").append(toIndentedString(produtos)).append("\n");
+    sb.append("    itensPedido: ").append(toIndentedString(itensPedido)).append("\n");
     sb.append("}");
     return sb.toString();
   }

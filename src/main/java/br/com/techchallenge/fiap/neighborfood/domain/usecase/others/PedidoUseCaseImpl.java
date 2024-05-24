@@ -23,6 +23,7 @@ import lombok.extern.slf4j.Slf4j;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Set;
 
 @Slf4j
@@ -59,8 +60,10 @@ public class PedidoUseCaseImpl implements PedidoUseCasePort {
 
     @Override
     public AcompanhamentoResponse pedidoExecute(PedidoRequest request) {
-
-        Pedido pedidoDomain = new Pedido();
+        Pedido pedido = new Pedido();
+        Set<Item> itensPedido = new HashSet<>();
+        Item itemPedido = new Item();
+        Set<Produto> deleteProdutos = new HashSet<>();
         AcompanhamentoResponse pedidoResponse = new AcompanhamentoResponse();
         Cliente cliente = userAdapter.clienteById(request.getIdCliente());
 
@@ -68,34 +71,46 @@ public class PedidoUseCaseImpl implements PedidoUseCasePort {
             throw new ClienteException("CLIENTE NÃO ENCONTRADO");
         }
 
-        request.setIdCliente(cliente.getId());
-        request.getProdutos().forEach(produto -> {
+        pedido.setIdCliente(cliente.getId());
+        request.getItemPedido().forEach(item -> {
 
-            Produto prod = produtoUseCaseAdapterPort.findById(produto.getId());
+            Produto prod = produtoUseCaseAdapterPort.findById(item.getId());
 
             if (prod != null) {
-                pedidoDomain.getProdutos().add(produto);
-                pedidoDomain.setTotal(pedidoDomain.getTotal().add(produto.getPreco()));
-                produtoUseCaseAdapterPort.deleteById(prod.getId());
+                itemPedido.setId(prod.getId());
+                itemPedido.setNome(prod.getNome());
+                itemPedido.setCategoria(Categoria.valueOf(prod.getCategoria().toString()));
+                itemPedido.setDescricao(prod.getDescricao());
+                itemPedido.setPreco(prod.getPreco());
+                itemPedido.setImg(prod.getImg());
+                deleteProdutos.add(prod);
             } else {
-                Produto emFalta = new Produto();
+                Item emFalta = new Item();
+                emFalta.setPreco(BigDecimal.ZERO);
+                emFalta.setImg("https://st4.depositphotos.com/14953852/24787/v/450/depositphotos_247872612-stock-illustration-no-image-available-icon-vector.jpg");
                 emFalta.setDescricao("produto em falta!");
-                pedidoDomain.setTotal(BigDecimal.ZERO);
-                pedidoDomain.getProdutos().add(emFalta);
+                itensPedido.add(emFalta);
             }
 
         });
 
-        pedidoDomain.setStatus(Status.RECEBIDO);
-        pedidoDomain.setDataPedido(new Date());
+        itensPedido.add(itemPedido);
+        pedido.setIdCliente(request.getIdCliente());
+        pedido.setItemProdutos(itensPedido);
+        pedido.setStatus(Status.RECEBIDO);
+        itensPedido.forEach(valor -> {
+            pedido.setTotal(pedido.getTotal().add(valor.getPreco()));
+        });
+        pedido.setDataPedido(new Date());
 
-        if (!pedidoDomain.getTotal().equals(BigDecimal.ZERO)) {
+        if (!pedido.getTotal().equals(BigDecimal.ZERO)) {
 
-            log.info(acompanhamentoUseCasePort.smsExecute(pedidoDomain.getStatus()));
-            Pedido pedidoEnviado = pedidoUseCaseAdapterPort.commitUpdates(pedidoDomain.domainFromEntity());
-            pedidoResponse.setTotal(pedidoEnviado.getTotal());
-            pedidoResponse.setStatus(pedidoEnviado.getStatus());
+            log.info(acompanhamentoUseCasePort.smsExecute(pedido.getStatus()));
+            AcompanhamentoResponse ped = pedidoUseCaseAdapterPort.pedido(pedido);
+            pedidoResponse.setTotal(ped.getTotal());
+            pedidoResponse.setStatus(ped.getStatus());
             pedidoResponse.setPedidoRequest(request);
+            produtoUseCaseAdapterPort.deleteAll(deleteProdutos);
         } else {
             NotificacaoEntity notificacao = new NotificacaoEntity();
             notificacao.setDescricao(MESSAGE_ADM_ESTOQUE);
@@ -125,7 +140,7 @@ public class PedidoUseCaseImpl implements PedidoUseCasePort {
 
         //pedidoUseCaseAdapterPort.removeItens(itensById);
 
-        pedido.getProdutos().forEach(pro -> {
+        pedido.getItemPedido().forEach(pro -> {
             Pedido pedidoDTO = pedidoUseCaseAdapterPort.findByIdPedido(pedido.getId());
             pedidoDTO.setTotal(pedidoDTO.getTotal().add(pro.getPreco()));
             pedidoUseCaseAdapterPort.commitUpdates(pedidoDTO.domainFromEntity());
@@ -141,7 +156,7 @@ public class PedidoUseCaseImpl implements PedidoUseCasePort {
     }
 
     @Override
-    public void removeItensExecute(Set<Itens> itens) {
+    public void removeItensExecute(Set<Item> itens) {
         pedidoUseCaseAdapterPort.removeItens(itens);
     }
 }

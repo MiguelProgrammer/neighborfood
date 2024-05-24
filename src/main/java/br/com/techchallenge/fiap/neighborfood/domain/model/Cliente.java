@@ -53,12 +53,12 @@ public class Cliente {
 
     private static void mapeamento(ClienteEntity entity, Cliente cliente) {
         Set<Pedido> pedidos = new HashSet<>();
-        entity.getPedidos().forEach(pr -> {
+        entity.getPedidos().forEach(itensProdutos -> {
 
-            Pedido pedido = new Pedido().entityFromDomain(pr);
+            Pedido pedido = new Pedido().entityFromDomain(itensProdutos);
 
-            pr.getProdutos().forEach(produto -> {
-                pedido.getProdutos().add(new Produto().entityFromDto(produto));
+            pedido.getItemProdutos().forEach(produto -> {
+                pedido.getItemProdutos().add(produto);
             });
         });
         cliente.setPedidos(pedidos);

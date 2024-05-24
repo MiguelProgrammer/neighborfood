@@ -363,10 +363,33 @@ components:
         idCliente:
           type: integer
           format: int64
-        Produtos:
+        itensPedido:
           type: array
           items:
-            $ref: '#/components/schemas/ProdutoDTO'
+            $ref: '#/components/schemas/itensPedido'
+
+    itensPedido:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        idPedido:
+          type: integer
+          format: int64
+        itensPedido:
+          $ref: '#/components/schemas/ProdutoDTO'
+        nome:
+          type: string
+        preco:
+          type: number
+          format: double
+        categoria:
+          $ref: '#/components/schemas/CategoriaDTO'
+        descricao:
+          type: string
+        img:
+          type: string
 
     ProdutoDTO:
       type: object

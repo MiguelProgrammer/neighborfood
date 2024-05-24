@@ -24,19 +24,19 @@ import java.util.Set;
 @AllArgsConstructor
 @Table(name = "pedido")
 @JsonIgnoreProperties({"idPedido"})
-public class PedidoEntity implements Serializable {
+public class  PedidoEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @Column(name = "id_cliente")
     private Long idCliente;
 
-    @OneToMany(mappedBy = "id", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<ProdutoEntity> produtos = new HashSet<>();
+    @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<ItemEntity> itensProdutos = new HashSet<>();
 
     @Column(name = "total")
     private BigDecimal total = BigDecimal.ZERO;

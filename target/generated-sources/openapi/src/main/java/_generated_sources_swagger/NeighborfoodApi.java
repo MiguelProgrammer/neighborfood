@@ -38,7 +38,7 @@ import java.util.Map;
 import java.util.Optional;
 import jakarta.annotation.Generated;
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-05-22T00:21:45.152441700-03:00[America/Sao_Paulo]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-05-24T00:34:49.182568600-03:00[America/Sao_Paulo]")
 @Validated
 @Tag(name = "follow-up", description = "Acompanhar status do pedido")
 public interface NeighborfoodApi {
@@ -80,7 +80,7 @@ public interface NeighborfoodApi {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "{ \"total\" : 5.637376656633329, \"pedido\" : { \"idCliente\" : 6, \"id\" : 0, \"Produtos\" : [ { \"preco\" : 5.962133916683182, \"img\" : \"img\", \"nome\" : \"nome\", \"id\" : 1, \"descricao\" : \"descricao\" }, { \"preco\" : 5.962133916683182, \"img\" : \"img\", \"nome\" : \"nome\", \"id\" : 1, \"descricao\" : \"descricao\" } ] } }";
+                    String exampleString = "{ \"total\" : 9.301444243932576, \"pedido\" : { \"itensPedido\" : [ { \"itensPedido\" : { \"preco\" : 2.3021358869347655, \"img\" : \"img\", \"nome\" : \"nome\", \"id\" : 5, \"descricao\" : \"descricao\" }, \"preco\" : 7.061401241503109, \"img\" : \"img\", \"nome\" : \"nome\", \"id\" : 1, \"idPedido\" : 5, \"descricao\" : \"descricao\" }, { \"itensPedido\" : { \"preco\" : 2.3021358869347655, \"img\" : \"img\", \"nome\" : \"nome\", \"id\" : 5, \"descricao\" : \"descricao\" }, \"preco\" : 7.061401241503109, \"img\" : \"img\", \"nome\" : \"nome\", \"id\" : 1, \"idPedido\" : 5, \"descricao\" : \"descricao\" } ], \"idCliente\" : 6, \"id\" : 0 } }";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
                     break;
                 }
@@ -124,7 +124,7 @@ public interface NeighborfoodApi {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "[ { \"total\" : 5.637376656633329, \"pedido\" : { \"idCliente\" : 6, \"id\" : 0, \"Produtos\" : [ { \"preco\" : 5.962133916683182, \"img\" : \"img\", \"nome\" : \"nome\", \"id\" : 1, \"descricao\" : \"descricao\" }, { \"preco\" : 5.962133916683182, \"img\" : \"img\", \"nome\" : \"nome\", \"id\" : 1, \"descricao\" : \"descricao\" } ] } }, { \"total\" : 5.637376656633329, \"pedido\" : { \"idCliente\" : 6, \"id\" : 0, \"Produtos\" : [ { \"preco\" : 5.962133916683182, \"img\" : \"img\", \"nome\" : \"nome\", \"id\" : 1, \"descricao\" : \"descricao\" }, { \"preco\" : 5.962133916683182, \"img\" : \"img\", \"nome\" : \"nome\", \"id\" : 1, \"descricao\" : \"descricao\" } ] } } ]";
+                    String exampleString = "[ { \"total\" : 9.301444243932576, \"pedido\" : { \"itensPedido\" : [ { \"itensPedido\" : { \"preco\" : 2.3021358869347655, \"img\" : \"img\", \"nome\" : \"nome\", \"id\" : 5, \"descricao\" : \"descricao\" }, \"preco\" : 7.061401241503109, \"img\" : \"img\", \"nome\" : \"nome\", \"id\" : 1, \"idPedido\" : 5, \"descricao\" : \"descricao\" }, { \"itensPedido\" : { \"preco\" : 2.3021358869347655, \"img\" : \"img\", \"nome\" : \"nome\", \"id\" : 5, \"descricao\" : \"descricao\" }, \"preco\" : 7.061401241503109, \"img\" : \"img\", \"nome\" : \"nome\", \"id\" : 1, \"idPedido\" : 5, \"descricao\" : \"descricao\" } ], \"idCliente\" : 6, \"id\" : 0 } }, { \"total\" : 9.301444243932576, \"pedido\" : { \"itensPedido\" : [ { \"itensPedido\" : { \"preco\" : 2.3021358869347655, \"img\" : \"img\", \"nome\" : \"nome\", \"id\" : 5, \"descricao\" : \"descricao\" }, \"preco\" : 7.061401241503109, \"img\" : \"img\", \"nome\" : \"nome\", \"id\" : 1, \"idPedido\" : 5, \"descricao\" : \"descricao\" }, { \"itensPedido\" : { \"preco\" : 2.3021358869347655, \"img\" : \"img\", \"nome\" : \"nome\", \"id\" : 5, \"descricao\" : \"descricao\" }, \"preco\" : 7.061401241503109, \"img\" : \"img\", \"nome\" : \"nome\", \"id\" : 1, \"idPedido\" : 5, \"descricao\" : \"descricao\" } ], \"idCliente\" : 6, \"id\" : 0 } } ]";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
                     break;
                 }
@@ -285,7 +285,7 @@ public interface NeighborfoodApi {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "{ \"total\" : 5.637376656633329, \"pedido\" : { \"idCliente\" : 6, \"id\" : 0, \"Produtos\" : [ { \"preco\" : 5.962133916683182, \"img\" : \"img\", \"nome\" : \"nome\", \"id\" : 1, \"descricao\" : \"descricao\" }, { \"preco\" : 5.962133916683182, \"img\" : \"img\", \"nome\" : \"nome\", \"id\" : 1, \"descricao\" : \"descricao\" } ] } }";
+                    String exampleString = "{ \"total\" : 9.301444243932576, \"pedido\" : { \"itensPedido\" : [ { \"itensPedido\" : { \"preco\" : 2.3021358869347655, \"img\" : \"img\", \"nome\" : \"nome\", \"id\" : 5, \"descricao\" : \"descricao\" }, \"preco\" : 7.061401241503109, \"img\" : \"img\", \"nome\" : \"nome\", \"id\" : 1, \"idPedido\" : 5, \"descricao\" : \"descricao\" }, { \"itensPedido\" : { \"preco\" : 2.3021358869347655, \"img\" : \"img\", \"nome\" : \"nome\", \"id\" : 5, \"descricao\" : \"descricao\" }, \"preco\" : 7.061401241503109, \"img\" : \"img\", \"nome\" : \"nome\", \"id\" : 1, \"idPedido\" : 5, \"descricao\" : \"descricao\" } ], \"idCliente\" : 6, \"id\" : 0 } }";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
                     break;
                 }
@@ -330,7 +330,7 @@ public interface NeighborfoodApi {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "{ \"total\" : 5.637376656633329, \"pedido\" : { \"idCliente\" : 6, \"id\" : 0, \"Produtos\" : [ { \"preco\" : 5.962133916683182, \"img\" : \"img\", \"nome\" : \"nome\", \"id\" : 1, \"descricao\" : \"descricao\" }, { \"preco\" : 5.962133916683182, \"img\" : \"img\", \"nome\" : \"nome\", \"id\" : 1, \"descricao\" : \"descricao\" } ] } }";
+                    String exampleString = "{ \"total\" : 9.301444243932576, \"pedido\" : { \"itensPedido\" : [ { \"itensPedido\" : { \"preco\" : 2.3021358869347655, \"img\" : \"img\", \"nome\" : \"nome\", \"id\" : 5, \"descricao\" : \"descricao\" }, \"preco\" : 7.061401241503109, \"img\" : \"img\", \"nome\" : \"nome\", \"id\" : 1, \"idPedido\" : 5, \"descricao\" : \"descricao\" }, { \"itensPedido\" : { \"preco\" : 2.3021358869347655, \"img\" : \"img\", \"nome\" : \"nome\", \"id\" : 5, \"descricao\" : \"descricao\" }, \"preco\" : 7.061401241503109, \"img\" : \"img\", \"nome\" : \"nome\", \"id\" : 1, \"idPedido\" : 5, \"descricao\" : \"descricao\" } ], \"idCliente\" : 6, \"id\" : 0 } }";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
                     break;
                 }
@@ -539,7 +539,7 @@ public interface NeighborfoodApi {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "{ \"total\" : 5.637376656633329, \"pedido\" : { \"idCliente\" : 6, \"id\" : 0, \"Produtos\" : [ { \"preco\" : 5.962133916683182, \"img\" : \"img\", \"nome\" : \"nome\", \"id\" : 1, \"descricao\" : \"descricao\" }, { \"preco\" : 5.962133916683182, \"img\" : \"img\", \"nome\" : \"nome\", \"id\" : 1, \"descricao\" : \"descricao\" } ] } }";
+                    String exampleString = "{ \"total\" : 9.301444243932576, \"pedido\" : { \"itensPedido\" : [ { \"itensPedido\" : { \"preco\" : 2.3021358869347655, \"img\" : \"img\", \"nome\" : \"nome\", \"id\" : 5, \"descricao\" : \"descricao\" }, \"preco\" : 7.061401241503109, \"img\" : \"img\", \"nome\" : \"nome\", \"id\" : 1, \"idPedido\" : 5, \"descricao\" : \"descricao\" }, { \"itensPedido\" : { \"preco\" : 2.3021358869347655, \"img\" : \"img\", \"nome\" : \"nome\", \"id\" : 5, \"descricao\" : \"descricao\" }, \"preco\" : 7.061401241503109, \"img\" : \"img\", \"nome\" : \"nome\", \"id\" : 1, \"idPedido\" : 5, \"descricao\" : \"descricao\" } ], \"idCliente\" : 6, \"id\" : 0 } }";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
                     break;
                 }

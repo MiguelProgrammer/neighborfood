@@ -9,7 +9,6 @@ import br.com.techchallenge.fiap.neighborfood.adapters.outbound.repository.entit
 import br.com.techchallenge.fiap.neighborfood.domain.dto.AcompanhamentoResponseDTO;
 import br.com.techchallenge.fiap.neighborfood.domain.dto.StatusPedidoDTO;
 import br.com.techchallenge.fiap.neighborfood.domain.model.Pedido;
-import br.com.techchallenge.fiap.neighborfood.domain.model.Produto;
 import br.com.techchallenge.fiap.neighborfood.domain.model.enums.Status;
 
 import java.math.BigDecimal;
@@ -29,7 +28,7 @@ public class AcompanhamentoResponse {
         this.total = total;
     }
 
-    public AcompanhamentoResponseDTO pedidoFromResponse(){
+    public AcompanhamentoResponseDTO pedidoFromResponse() {
         AcompanhamentoResponseDTO response = new AcompanhamentoResponseDTO();
         response.setPedido(this.pedidoFromResponse().getPedido());
         response.setStatus(StatusPedidoDTO.valueOf(this.getStatus().toString()));
@@ -37,13 +36,16 @@ public class AcompanhamentoResponse {
         return response;
     }
 
-    public AcompanhamentoResponse pedidoEntityFromResponse(PedidoEntity pedidoEntity){
+    public AcompanhamentoResponse pedidoEntityFromResponse(PedidoEntity pedidoEntity) {
         AcompanhamentoResponse response = new AcompanhamentoResponse();
 
         PedidoRequest request = new PedidoRequest();
         request.setIdCliente(pedidoEntity.getIdCliente());
         request.setId(pedidoEntity.getId());
-        request.setProdutos(new Produto().setProdutosRequestFromSetEntity(pedidoEntity.getProdutos()));
+
+        pedidoEntity.getItensProdutos().forEach(item -> {
+            request.getItemPedido().add(new Pedido().itemEntityFromItemDomain(item));
+        });
         response.setPedidoRequest(request);
         response.setStatus(pedidoEntity.getStatus());
         response.setTotal(pedidoEntity.getTotal());

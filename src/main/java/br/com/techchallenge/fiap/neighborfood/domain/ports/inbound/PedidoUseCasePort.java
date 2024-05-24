@@ -6,7 +6,7 @@ package br.com.techchallenge.fiap.neighborfood.domain.ports.inbound;
 
 import br.com.techchallenge.fiap.neighborfood.adapters.inbound.request.PedidoRequest;
 import br.com.techchallenge.fiap.neighborfood.adapters.inbound.response.AcompanhamentoResponse;
-import br.com.techchallenge.fiap.neighborfood.domain.model.Itens;
+import br.com.techchallenge.fiap.neighborfood.domain.model.Item;
 
 import java.util.Set;
 
@@ -18,5 +18,5 @@ public interface PedidoUseCasePort {
 
     AcompanhamentoResponse atualizarPedidoExecute(PedidoRequest pedido);
 
-    void removeItensExecute(Set<Itens> itens);
+    void removeItensExecute(Set<Item> itens);
 }

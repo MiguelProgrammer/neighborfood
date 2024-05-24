@@ -3,8 +3,10 @@ package br.com.techchallenge.fiap.neighborfood.domain.dto;
 import java.net.URI;
 import java.util.Objects;
 import br.com.techchallenge.fiap.neighborfood.domain.dto.CategoriaDTO;
+import br.com.techchallenge.fiap.neighborfood.domain.dto.ProdutoDTO;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
@@ -17,13 +19,18 @@ import java.util.*;
 import jakarta.annotation.Generated;
 
 /**
- * ProdutoDTO
+ * ItensPedido
  */
 
+@JsonTypeName("itensPedido")
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-05-24T00:34:49.182568600-03:00[America/Sao_Paulo]")
-public class ProdutoDTO {
+public class ItensPedido {
 
   private Long id;
+
+  private Long idPedido;
+
+  private ProdutoDTO itensPedido;
 
   private String nome;
 
@@ -35,7 +42,7 @@ public class ProdutoDTO {
 
   private String img;
 
-  public ProdutoDTO id(Long id) {
+  public ItensPedido id(Long id) {
     this.id = id;
     return this;
   }
@@ -55,7 +62,47 @@ public class ProdutoDTO {
     this.id = id;
   }
 
-  public ProdutoDTO nome(String nome) {
+  public ItensPedido idPedido(Long idPedido) {
+    this.idPedido = idPedido;
+    return this;
+  }
+
+  /**
+   * Get idPedido
+   * @return idPedido
+  */
+  
+  @Schema(name = "idPedido", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("idPedido")
+  public Long getIdPedido() {
+    return idPedido;
+  }
+
+  public void setIdPedido(Long idPedido) {
+    this.idPedido = idPedido;
+  }
+
+  public ItensPedido itensPedido(ProdutoDTO itensPedido) {
+    this.itensPedido = itensPedido;
+    return this;
+  }
+
+  /**
+   * Get itensPedido
+   * @return itensPedido
+  */
+  @Valid 
+  @Schema(name = "itensPedido", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("itensPedido")
+  public ProdutoDTO getItensPedido() {
+    return itensPedido;
+  }
+
+  public void setItensPedido(ProdutoDTO itensPedido) {
+    this.itensPedido = itensPedido;
+  }
+
+  public ItensPedido nome(String nome) {
     this.nome = nome;
     return this;
   }
@@ -75,7 +122,7 @@ public class ProdutoDTO {
     this.nome = nome;
   }
 
-  public ProdutoDTO preco(java.math.BigDecimal preco) {
+  public ItensPedido preco(java.math.BigDecimal preco) {
     this.preco = preco;
     return this;
   }
@@ -95,7 +142,7 @@ public class ProdutoDTO {
     this.preco = preco;
   }
 
-  public ProdutoDTO categoria(CategoriaDTO categoria) {
+  public ItensPedido categoria(CategoriaDTO categoria) {
     this.categoria = categoria;
     return this;
   }
@@ -115,7 +162,7 @@ public class ProdutoDTO {
     this.categoria = categoria;
   }
 
-  public ProdutoDTO descricao(String descricao) {
+  public ItensPedido descricao(String descricao) {
     this.descricao = descricao;
     return this;
   }
@@ -135,7 +182,7 @@ public class ProdutoDTO {
     this.descricao = descricao;
   }
 
-  public ProdutoDTO img(String img) {
+  public ItensPedido img(String img) {
     this.img = img;
     return this;
   }
@@ -163,25 +210,29 @@ public class ProdutoDTO {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    ProdutoDTO produtoDTO = (ProdutoDTO) o;
-    return Objects.equals(this.id, produtoDTO.id) &&
-        Objects.equals(this.nome, produtoDTO.nome) &&
-        Objects.equals(this.preco, produtoDTO.preco) &&
-        Objects.equals(this.categoria, produtoDTO.categoria) &&
-        Objects.equals(this.descricao, produtoDTO.descricao) &&
-        Objects.equals(this.img, produtoDTO.img);
+    ItensPedido itensPedido = (ItensPedido) o;
+    return Objects.equals(this.id, itensPedido.id) &&
+        Objects.equals(this.idPedido, itensPedido.idPedido) &&
+        Objects.equals(this.itensPedido, itensPedido.itensPedido) &&
+        Objects.equals(this.nome, itensPedido.nome) &&
+        Objects.equals(this.preco, itensPedido.preco) &&
+        Objects.equals(this.categoria, itensPedido.categoria) &&
+        Objects.equals(this.descricao, itensPedido.descricao) &&
+        Objects.equals(this.img, itensPedido.img);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, nome, preco, categoria, descricao, img);
+    return Objects.hash(id, idPedido, itensPedido, nome, preco, categoria, descricao, img);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class ProdutoDTO {\n");
+    sb.append("class ItensPedido {\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    sb.append("    idPedido: ").append(toIndentedString(idPedido)).append("\n");
+    sb.append("    itensPedido: ").append(toIndentedString(itensPedido)).append("\n");
     sb.append("    nome: ").append(toIndentedString(nome)).append("\n");
     sb.append("    preco: ").append(toIndentedString(preco)).append("\n");
     sb.append("    categoria: ").append(toIndentedString(categoria)).append("\n");

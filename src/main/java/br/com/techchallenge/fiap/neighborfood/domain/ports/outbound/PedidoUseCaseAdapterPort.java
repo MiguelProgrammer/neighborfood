@@ -7,7 +7,7 @@ package br.com.techchallenge.fiap.neighborfood.domain.ports.outbound;
 import br.com.techchallenge.fiap.neighborfood.adapters.inbound.response.AcompanhamentoResponse;
 import br.com.techchallenge.fiap.neighborfood.adapters.outbound.repository.entities.PagamentoEntity;
 import br.com.techchallenge.fiap.neighborfood.adapters.outbound.repository.entities.PedidoEntity;
-import br.com.techchallenge.fiap.neighborfood.domain.model.Itens;
+import br.com.techchallenge.fiap.neighborfood.domain.model.Item;
 import br.com.techchallenge.fiap.neighborfood.domain.model.Pedido;
 import br.com.techchallenge.fiap.neighborfood.domain.model.Produto;
 import br.com.techchallenge.fiap.neighborfood.domain.model.enums.Categoria;
@@ -25,11 +25,11 @@ public interface PedidoUseCaseAdapterPort {
 
     Pedido commitUpdates(PedidoEntity pedidoEntity);
 
-    void saveItens(Itens itens);
+    void saveItens(Item item);
 
-    void removeItens(Set<Itens> itens);
+    void removeItens(Set<Item> itens);
 
-    Set<Itens> findAllById(Long id);
+    Set<Item> findAllById(Long id);
 
     Set<Produto> findAllByIdPedido(Long id);
 
