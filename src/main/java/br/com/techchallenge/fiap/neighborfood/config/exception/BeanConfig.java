@@ -18,14 +18,15 @@ import br.com.techchallenge.fiap.neighborfood.domain.usecase.others.acompanhacha
 import br.com.techchallenge.fiap.neighborfood.domain.usecase.others.acompanhachain.impl.AcompanhamentoChainRecebidoImpl;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 
 @Configuration
 public class BeanConfig {
 
 
     @Bean
-    public AcompanhamentoUseCasePort acompanhamentoUseCaseImpl() {
-        return new AcompanhamentoUseCaseImpl();
+    public AcompanhamentoUseCasePort acompanhamentoUseCaseImpl(PedidoUseCaseAdapterPort pedidoUseCaseAdapterPort, AcompanhamentoChain statusPedidoChain) {
+        return new AcompanhamentoUseCaseImpl(pedidoUseCaseAdapterPort, statusPedidoChain);
     }
 
     @Bean
@@ -34,6 +35,7 @@ public class BeanConfig {
     }
 
     @Bean
+    @Primary
     public AcompanhamentoChain acompanhamentoChainRecebido() {
         return new AcompanhamentoChainRecebidoImpl();
     }
@@ -72,8 +74,8 @@ public class BeanConfig {
     }
 
     @Bean
-    public PagamentoUseCasePort pagamentoUseCasePort() {
-        return new PagamentoUseCaseImpl();
+    public PagamentoUseCasePort pagamentoUseCasePort(PedidoUseCaseAdapterPort pedidoUseCaseAdapterPort, AcompanhamentoUseCasePort acompanhamentoUseCasePort) {
+        return new PagamentoUseCaseImpl(pedidoUseCaseAdapterPort, acompanhamentoUseCasePort);
     }
 
     @Bean

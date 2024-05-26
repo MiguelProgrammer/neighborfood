@@ -31,7 +31,7 @@ public interface PedidoUseCaseAdapterPort {
 
     Set<Item> findAllById(Long id);
 
-    Set<Produto> findAllByIdPedido(Long id);
+    Set<Item> findAllByIdPedido(Long id);
 
     Pedido findByIdPedido(Long id);
 

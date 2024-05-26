@@ -11,6 +11,7 @@ import br.com.techchallenge.fiap.neighborfood.adapters.inbound.request.ClienteRe
 import br.com.techchallenge.fiap.neighborfood.adapters.inbound.request.PedidoRequest;
 import br.com.techchallenge.fiap.neighborfood.adapters.inbound.response.AcompanhamentoResponse;
 import br.com.techchallenge.fiap.neighborfood.domain.dto.*;
+import br.com.techchallenge.fiap.neighborfood.domain.model.Pagamento;
 import br.com.techchallenge.fiap.neighborfood.domain.ports.inbound.*;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
@@ -124,14 +125,9 @@ public class LanchoneteControllerImpl implements NeighborfoodApi {
 
     @Override
     public ResponseEntity<AcompanhamentoResponseDTO> order(PedidoRequestDTO pedidoRequest) {
-        AcompanhamentoResponse response = pedidoUseCasePort.pedidoExecute(new PedidoRequest().dtoFromRequest(pedidoRequest));
+        AcompanhamentoResponse response =
+                pedidoUseCasePort.pedidoExecute(new PedidoRequest().dtoFromRequest(pedidoRequest));
         return ResponseEntity.ok(response.pedidoFromResponse());
-
-        /**
-         * TODO
-         *
-         * DAR CONTINUÍDADE NA IMPLEMENTAÇÃO ORDER
-         */
     }
 
     /**
@@ -145,7 +141,14 @@ public class LanchoneteControllerImpl implements NeighborfoodApi {
      */
     @Override
     public ResponseEntity<AcompanhamentoResponseDTO> payment(PagamentoDTO pagamentoDTO) {
-        return NeighborfoodApi.super.payment(pagamentoDTO);
+        Pagamento pagamento = new Pagamento();
+        pagamento.setIdPedido(pagamentoDTO.getIdPedido());
+        /**
+         * VERIFICAR SE O VALOR ESTÁ NO RESPONSE
+         */
+        pagamento.setPagou(pagamentoDTO.getPagou());
+        AcompanhamentoResponse response = pagamentoUseCasePort.pagamentoExecute(pagamento);
+        return ResponseEntity.ok(response.pedidoFromResponse());
     }
 
 
@@ -201,6 +204,7 @@ public class LanchoneteControllerImpl implements NeighborfoodApi {
      */
     @Override
     public ResponseEntity<AcompanhamentoResponseDTO> updateOrder(PedidoRequestDTO pedidoDTO) {
-        return NeighborfoodApi.super.updateOrder(pedidoDTO);
+        AcompanhamentoResponse response = pedidoUseCasePort.atualizarPedidoExecute(new PedidoRequest().dtoFromRequest(pedidoDTO));
+        return ResponseEntity.ok(response.pedidoFromResponse());
     }
 }

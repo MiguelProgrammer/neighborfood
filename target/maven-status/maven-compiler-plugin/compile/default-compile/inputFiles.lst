@@ -2,6 +2,7 @@ C:\Users\Miguel Silva\Documents\Pos\project\neighborfood\src\main\java\br\com\te
 C:\Users\Miguel Silva\Documents\Pos\project\neighborfood\target\generated-sources\openapi\src\main\java\br\com\techchallenge\fiap\neighborfood\domain\dto\AcompanhamentoResponseDTO.java
 C:\Users\Miguel Silva\Documents\Pos\project\neighborfood\src\main\java\br\com\techchallenge\fiap\neighborfood\adapters\outbound\repository\PedidoAdapter.java
 C:\Users\Miguel Silva\Documents\Pos\project\neighborfood\src\main\java\br\com\techchallenge\fiap\neighborfood\adapters\outbound\repository\jpa\ItensRepository.java
+C:\Users\Miguel Silva\Documents\Pos\project\neighborfood\target\generated-sources\openapi\src\main\java\br\com\techchallenge\fiap\neighborfood\domain\dto\ItemPedido.java
 C:\Users\Miguel Silva\Documents\Pos\project\neighborfood\target\generated-sources\openapi\src\main\java\br\com\techchallenge\fiap\neighborfood\domain\dto\MimoDTO.java
 C:\Users\Miguel Silva\Documents\Pos\project\neighborfood\src\main\java\br\com\techchallenge\fiap\neighborfood\adapters\outbound\repository\entities\ClienteEntity.java
 C:\Users\Miguel Silva\Documents\Pos\project\neighborfood\src\main\java\br\com\techchallenge\fiap\neighborfood\config\exception\BeanConfig.java
@@ -47,7 +48,6 @@ C:\Users\Miguel Silva\Documents\Pos\project\neighborfood\src\main\java\br\com\te
 C:\Users\Miguel Silva\Documents\Pos\project\neighborfood\src\main\java\br\com\techchallenge\fiap\neighborfood\config\exception\PedidoException.java
 C:\Users\Miguel Silva\Documents\Pos\project\neighborfood\target\generated-sources\openapi\src\main\java\br\com\techchallenge\fiap\neighborfood\domain\dto\StatusPedidoDTO.java
 C:\Users\Miguel Silva\Documents\Pos\project\neighborfood\src\main\java\br\com\techchallenge\fiap\neighborfood\adapters\outbound\repository\entities\PagamentoEntity.java
-C:\Users\Miguel Silva\Documents\Pos\project\neighborfood\target\generated-sources\openapi\src\main\java\br\com\techchallenge\fiap\neighborfood\domain\dto\ItensPedido.java
 C:\Users\Miguel Silva\Documents\Pos\project\neighborfood\src\main\java\br\com\techchallenge\fiap\neighborfood\domain\ports\outbound\PedidoUseCaseAdapterPort.java
 C:\Users\Miguel Silva\Documents\Pos\project\neighborfood\src\main\java\br\com\techchallenge\fiap\neighborfood\domain\usecase\others\acompanhachain\AcompanhamentoChain.java
 C:\Users\Miguel Silva\Documents\Pos\project\neighborfood\src\main\java\br\com\techchallenge\fiap\neighborfood\adapters\inbound\request\AdminRequest.java

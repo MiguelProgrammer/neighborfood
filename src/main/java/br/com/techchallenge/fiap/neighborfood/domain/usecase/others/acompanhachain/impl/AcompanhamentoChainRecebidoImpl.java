@@ -9,11 +9,17 @@ import br.com.techchallenge.fiap.neighborfood.domain.usecase.others.acompanhacha
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
-@NoArgsConstructor
-@AllArgsConstructor
+
 public class AcompanhamentoChainRecebidoImpl extends AcompanhamentoChain {
 
-    private AcompanhamentoChain StatusPedidoChain;
+    private AcompanhamentoChain statusPedidoChain;
+
+    public AcompanhamentoChainRecebidoImpl() {
+    }
+
+    public AcompanhamentoChainRecebidoImpl(AcompanhamentoChain statusPedidoChain) {
+        this.statusPedidoChain = statusPedidoChain;
+    }
 
     @Override
     public String sms(Status Status) {
@@ -29,6 +35,6 @@ public class AcompanhamentoChainRecebidoImpl extends AcompanhamentoChain {
         if (Status.equals(Status.RECEBIDO)) {
             return MESSAGE;
         }
-        return new AcompanhamentoChainPreparacaoImpl(StatusPedidoChain).sms(Status);
+        return new AcompanhamentoChainPreparacaoImpl(statusPedidoChain).sms(Status);
     }
 }

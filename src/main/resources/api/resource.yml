@@ -366,9 +366,9 @@ components:
         itensPedido:
           type: array
           items:
-            $ref: '#/components/schemas/itensPedido'
+            $ref: '#/components/schemas/ItemPedido'
 
-    itensPedido:
+    ItemPedido:
       type: object
       properties:
         id:
@@ -377,19 +377,8 @@ components:
         idPedido:
           type: integer
           format: int64
-        itensPedido:
+        produto:
           $ref: '#/components/schemas/ProdutoDTO'
-        nome:
-          type: string
-        preco:
-          type: number
-          format: double
-        categoria:
-          $ref: '#/components/schemas/CategoriaDTO'
-        descricao:
-          type: string
-        img:
-          type: string
 
     ProdutoDTO:
       type: object

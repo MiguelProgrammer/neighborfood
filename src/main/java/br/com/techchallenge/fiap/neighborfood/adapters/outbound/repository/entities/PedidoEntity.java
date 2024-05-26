@@ -8,6 +8,7 @@ import br.com.techchallenge.fiap.neighborfood.domain.model.enums.Status;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.Cascade;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -19,31 +20,32 @@ import java.util.Set;
 @Getter
 @Setter
 @Entity
-@ToString
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "pedido")
-@JsonIgnoreProperties({"idPedido"})
+@SequenceGenerator(name = "pedido_sequence", initialValue = 1)
 public class  PedidoEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     @Id
+    @Column(name = "id_pedido")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @Column(name = "id_cliente")
     private Long idCliente;
 
-    @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL, orphanRemoval = true)
+    @Cascade(org.hibernate.annotations.CascadeType.ALL)
+    @OneToMany(mappedBy = "id")
     private Set<ItemEntity> itensProdutos = new HashSet<>();
-
-    @Column(name = "total")
-    private BigDecimal total = BigDecimal.ZERO;
 
     @Column(name = "status")
     @Enumerated(EnumType.STRING)
     private Status status;
+
+    @Column(name = "total")
+    private BigDecimal total = BigDecimal.ZERO;
 
     @Column(name = "data_pedido")
     private Date dataPedido;

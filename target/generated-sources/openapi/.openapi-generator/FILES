@@ -7,7 +7,7 @@ src/main/java/br/com/techchallenge/fiap/neighborfood/domain/dto/AcompanhamentoRe
 src/main/java/br/com/techchallenge/fiap/neighborfood/domain/dto/AdminRequestDTO.java
 src/main/java/br/com/techchallenge/fiap/neighborfood/domain/dto/CategoriaDTO.java
 src/main/java/br/com/techchallenge/fiap/neighborfood/domain/dto/ClienteRequestDTO.java
-src/main/java/br/com/techchallenge/fiap/neighborfood/domain/dto/ItensPedido.java
+src/main/java/br/com/techchallenge/fiap/neighborfood/domain/dto/ItemPedido.java
 src/main/java/br/com/techchallenge/fiap/neighborfood/domain/dto/MimoDTO.java
 src/main/java/br/com/techchallenge/fiap/neighborfood/domain/dto/MimoRequestDTO.java
 src/main/java/br/com/techchallenge/fiap/neighborfood/domain/dto/PagamentoDTO.java

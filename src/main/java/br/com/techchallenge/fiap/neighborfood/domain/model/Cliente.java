@@ -37,7 +37,6 @@ public class Cliente {
             cliente.setNome(entity.getNome());
             cliente.setCpf(entity.getCpf());
             cliente.setEmail(entity.getEmail());
-            mapeamento(entity, cliente);
         }
         return cliente;
     }
@@ -49,19 +48,6 @@ public class Cliente {
         entity.setEmail(clienteRequest.getEmail());
         entity.setPedidos(new HashSet<>());
         return entity;
-    }
-
-    private static void mapeamento(ClienteEntity entity, Cliente cliente) {
-        Set<Pedido> pedidos = new HashSet<>();
-        entity.getPedidos().forEach(itensProdutos -> {
-
-            Pedido pedido = new Pedido().entityFromDomain(itensProdutos);
-
-            pedido.getItemProdutos().forEach(produto -> {
-                pedido.getItemProdutos().add(produto);
-            });
-        });
-        cliente.setPedidos(pedidos);
     }
 
     public Long getId() {

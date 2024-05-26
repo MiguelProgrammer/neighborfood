@@ -4,17 +4,21 @@ package br.com.techchallenge.fiap.neighborfood.adapters.outbound.repository.enti
  */
 
 import br.com.techchallenge.fiap.neighborfood.domain.model.enums.Categoria;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import org.hibernate.annotations.Cascade;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.HashSet;
+import java.util.Set;
 
 @Getter
 @Setter
 @Entity
-@ToString
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "itens_pedido")
@@ -27,11 +31,11 @@ public class ItemEntity implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @JoinColumn(name = "pedido_id")
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
-    private PedidoEntity pedido;
+    @Column(name = "id_pedido")
+    private Long idPedido = new PedidoEntity().getId();
 
-    private Long idPedido;
+    @Column(name = "id_produto")
+    private Long idProduto;
 
     @Column(name = "nome")
     private String nome;

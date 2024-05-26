@@ -2,7 +2,7 @@ package br.com.techchallenge.fiap.neighborfood.domain.dto;
 
 import java.net.URI;
 import java.util.Objects;
-import br.com.techchallenge.fiap.neighborfood.domain.dto.ItensPedido;
+import br.com.techchallenge.fiap.neighborfood.domain.dto.ItemPedido;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.ArrayList;
@@ -21,7 +21,7 @@ import jakarta.annotation.Generated;
  * PedidoRequestDTO
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-05-24T00:34:49.182568600-03:00[America/Sao_Paulo]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-05-25T21:04:24.998699200-03:00[America/Sao_Paulo]")
 public class PedidoRequestDTO {
 
   private Long id;
@@ -29,7 +29,7 @@ public class PedidoRequestDTO {
   private Long idCliente;
 
   @Valid
-  private List<@Valid ItensPedido> itensPedido;
+  private List<@Valid ItemPedido> itensPedido;
 
   public PedidoRequestDTO id(Long id) {
     this.id = id;
@@ -71,12 +71,12 @@ public class PedidoRequestDTO {
     this.idCliente = idCliente;
   }
 
-  public PedidoRequestDTO itensPedido(List<@Valid ItensPedido> itensPedido) {
+  public PedidoRequestDTO itensPedido(List<@Valid ItemPedido> itensPedido) {
     this.itensPedido = itensPedido;
     return this;
   }
 
-  public PedidoRequestDTO addItensPedidoItem(ItensPedido itensPedidoItem) {
+  public PedidoRequestDTO addItensPedidoItem(ItemPedido itensPedidoItem) {
     if (this.itensPedido == null) {
       this.itensPedido = new ArrayList<>();
     }
@@ -91,11 +91,11 @@ public class PedidoRequestDTO {
   @Valid 
   @Schema(name = "itensPedido", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("itensPedido")
-  public List<@Valid ItensPedido> getItensPedido() {
+  public List<@Valid ItemPedido> getItensPedido() {
     return itensPedido;
   }
 
-  public void setItensPedido(List<@Valid ItensPedido> itensPedido) {
+  public void setItensPedido(List<@Valid ItemPedido> itensPedido) {
     this.itensPedido = itensPedido;
   }
 

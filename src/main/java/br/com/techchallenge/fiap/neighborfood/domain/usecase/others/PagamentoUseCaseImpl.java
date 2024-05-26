@@ -5,6 +5,7 @@
 package br.com.techchallenge.fiap.neighborfood.domain.usecase.others;
 
 
+import br.com.techchallenge.fiap.neighborfood.adapters.inbound.request.PedidoRequest;
 import br.com.techchallenge.fiap.neighborfood.adapters.inbound.response.AcompanhamentoResponse;
 import br.com.techchallenge.fiap.neighborfood.domain.model.Pagamento;
 import br.com.techchallenge.fiap.neighborfood.domain.model.Pedido;
@@ -18,12 +19,16 @@ public class PagamentoUseCaseImpl implements PagamentoUseCasePort {
     private PedidoUseCaseAdapterPort pedidoUseCaseAdapterPort;
     private AcompanhamentoUseCasePort acompanhamentoUseCasePort;
 
+    public PagamentoUseCaseImpl(PedidoUseCaseAdapterPort pedidoUseCaseAdapterPort, AcompanhamentoUseCasePort acompanhamentoUseCasePort) {
+        this.pedidoUseCaseAdapterPort = pedidoUseCaseAdapterPort;
+        this.acompanhamentoUseCasePort = acompanhamentoUseCasePort;
+    }
+
     @Override
     public AcompanhamentoResponse pagamentoExecute(Pagamento pagamento) {
 
         Pedido pedidoDTO = pedidoUseCaseAdapterPort.findById(pagamento.getIdPedido());
         AcompanhamentoResponse response = new AcompanhamentoResponse();
-
         if (pedidoDTO != null) {
 
             pedidoUseCaseAdapterPort.salvaPagamento(pagamento.fromEntity(pagamento));
@@ -33,15 +38,12 @@ public class PagamentoUseCaseImpl implements PagamentoUseCasePort {
             try {
 
                 pedidoDTO.setStatus(Status.EM_PREPARACAO);
-                pedidoUseCaseAdapterPort.commitUpdates(pedidoDTO.domainFromEntity());
-//
-//                response.setStatus(Status.EM_PREPARACAO);
-
-                System.out.println(acompanhamentoUseCasePort.smsExecute(response.getStatus()));
-//
-//                response.setPedido(pedidoDTO);
-//                response.setTotal(pedidoDTO.getTotal());
-                pedidoUseCaseAdapterPort.pedido(pedidoDTO);
+                response.setPedidoRequest(
+                        response.convertPedidoRequest(
+                                pedidoUseCaseAdapterPort.commitUpdates(pedidoDTO.domainFromEntity())));
+                System.out.println(acompanhamentoUseCasePort.smsExecute(pedidoDTO.getStatus()));
+                response.setStatus(pedidoDTO.getStatus());
+                response.setTotal(pedidoDTO.getTotal());
 
             } catch (RuntimeException ex) {
                 System.err.println("Erro ao realizar pagamento => Pedido não encontrado!!!");

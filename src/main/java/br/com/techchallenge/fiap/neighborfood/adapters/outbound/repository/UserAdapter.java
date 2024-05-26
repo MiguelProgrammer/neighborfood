@@ -25,7 +25,8 @@ public class UserAdapter {
 
 
     public Cliente clienteById(Long idCliente) {
-        return new Cliente().fromModel(clienteRepository.findById(idCliente).orElse(new ClienteEntity()));
+        ClienteEntity entity = clienteRepository.findById(idCliente).get();
+        return new Cliente().fromModel(entity);
     }
 
     public Cliente clienteByCpf(String cpf) {

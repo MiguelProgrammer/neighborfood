@@ -19,9 +19,12 @@ import java.util.Date;
 public class AcompanhamentoUseCaseImpl implements AcompanhamentoUseCasePort {
 
     private PedidoUseCaseAdapterPort pedidoUseCaseAdapterPort;
+    private AcompanhamentoChain statusPedidoChain;
 
-    private AcompanhamentoChain StatusPedidoChain;
-
+    public AcompanhamentoUseCaseImpl(PedidoUseCaseAdapterPort pedidoUseCaseAdapterPort, AcompanhamentoChain statusPedidoChain) {
+        this.pedidoUseCaseAdapterPort = pedidoUseCaseAdapterPort;
+        this.statusPedidoChain = statusPedidoChain;
+    }
 
     @Override
     public AcompanhamentoResponse getOrderStatusExecute(Long idPedido) {
@@ -51,7 +54,7 @@ public class AcompanhamentoUseCaseImpl implements AcompanhamentoUseCasePort {
 
     @Override
     public String smsExecute(Status Status) {
-        return new AcompanhamentoChainRecebidoImpl(StatusPedidoChain).sms(Status);
+        return new AcompanhamentoChainRecebidoImpl(statusPedidoChain).sms(Status);
     }
 
 

@@ -2,6 +2,7 @@ package br.com.techchallenge.fiap.neighborfood.domain.dto;
 
 import java.net.URI;
 import java.util.Objects;
+import br.com.techchallenge.fiap.neighborfood.domain.dto.ProdutoDTO;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import org.openapitools.jackson.nullable.JsonNullable;
@@ -15,17 +16,39 @@ import java.util.*;
 import jakarta.annotation.Generated;
 
 /**
- * PagamentoDTO
+ * ItemPedido
  */
 
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-05-25T21:04:24.998699200-03:00[America/Sao_Paulo]")
-public class PagamentoDTO {
+public class ItemPedido {
+
+  private Long id;
 
   private Long idPedido;
 
-  private Boolean pagou;
+  private ProdutoDTO produto;
 
-  public PagamentoDTO idPedido(Long idPedido) {
+  public ItemPedido id(Long id) {
+    this.id = id;
+    return this;
+  }
+
+  /**
+   * Get id
+   * @return id
+  */
+  
+  @Schema(name = "id", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("id")
+  public Long getId() {
+    return id;
+  }
+
+  public void setId(Long id) {
+    this.id = id;
+  }
+
+  public ItemPedido idPedido(Long idPedido) {
     this.idPedido = idPedido;
     return this;
   }
@@ -45,24 +68,24 @@ public class PagamentoDTO {
     this.idPedido = idPedido;
   }
 
-  public PagamentoDTO pagou(Boolean pagou) {
-    this.pagou = pagou;
+  public ItemPedido produto(ProdutoDTO produto) {
+    this.produto = produto;
     return this;
   }
 
   /**
-   * Get pagou
-   * @return pagou
+   * Get produto
+   * @return produto
   */
-  
-  @Schema(name = "pagou", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
-  @JsonProperty("pagou")
-  public Boolean getPagou() {
-    return pagou;
+  @Valid 
+  @Schema(name = "produto", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("produto")
+  public ProdutoDTO getProduto() {
+    return produto;
   }
 
-  public void setPagou(Boolean pagou) {
-    this.pagou = pagou;
+  public void setProduto(ProdutoDTO produto) {
+    this.produto = produto;
   }
 
   @Override
@@ -73,22 +96,24 @@ public class PagamentoDTO {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    PagamentoDTO pagamentoDTO = (PagamentoDTO) o;
-    return Objects.equals(this.idPedido, pagamentoDTO.idPedido) &&
-        Objects.equals(this.pagou, pagamentoDTO.pagou);
+    ItemPedido itemPedido = (ItemPedido) o;
+    return Objects.equals(this.id, itemPedido.id) &&
+        Objects.equals(this.idPedido, itemPedido.idPedido) &&
+        Objects.equals(this.produto, itemPedido.produto);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(idPedido, pagou);
+    return Objects.hash(id, idPedido, produto);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class PagamentoDTO {\n");
+    sb.append("class ItemPedido {\n");
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    idPedido: ").append(toIndentedString(idPedido)).append("\n");
-    sb.append("    pagou: ").append(toIndentedString(pagou)).append("\n");
+    sb.append("    produto: ").append(toIndentedString(produto)).append("\n");
     sb.append("}");
     return sb.toString();
   }

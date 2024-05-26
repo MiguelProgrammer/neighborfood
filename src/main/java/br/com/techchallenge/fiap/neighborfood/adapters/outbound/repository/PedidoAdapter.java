@@ -5,6 +5,7 @@
 package br.com.techchallenge.fiap.neighborfood.adapters.outbound.repository;
 
 import br.com.techchallenge.fiap.neighborfood.adapters.inbound.response.AcompanhamentoResponse;
+import br.com.techchallenge.fiap.neighborfood.adapters.outbound.repository.entities.ItemEntity;
 import br.com.techchallenge.fiap.neighborfood.adapters.outbound.repository.entities.PagamentoEntity;
 import br.com.techchallenge.fiap.neighborfood.adapters.outbound.repository.entities.PedidoEntity;
 import br.com.techchallenge.fiap.neighborfood.adapters.outbound.repository.entities.ProdutoEntity;
@@ -20,6 +21,7 @@ import br.com.techchallenge.fiap.neighborfood.domain.ports.outbound.PedidoUseCas
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -46,20 +48,24 @@ public class PedidoAdapter implements PedidoUseCaseAdapterPort {
     }
 
     @Override
-    @Transactional
     public AcompanhamentoResponse pedido(Pedido pedido) {
         PedidoEntity entity = new PedidoEntity();
-        entity.setStatus(pedido.getStatus());
-        pedido.getItemProdutos().forEach(item -> {
-            entity.setTotal(entity.getTotal().add(item.getPreco()));
-            entity.getItensProdutos().add(item.itemDomainFromItemEntity());
-        });
+
         entity.setDataPedido(pedido.getDataPedido());
         entity.setIdCliente(pedido.getIdCliente());
-
-
+        entity.setDataPedido(pedido.getDataPedido());
+        entity.setStatus(pedido.getStatus());
+        entity.setTotal(pedido.getTotal());
+        pedido.getItensProdutos().forEach(item -> {
+            entity.getItensProdutos().add(item.itemDomainFromItemEntity());
+        });
         PedidoEntity save = pedidoRepository.saveAndFlush(entity);
-        return new AcompanhamentoResponse().pedidoEntityFromResponse(save);
+        save.getItensProdutos().forEach(item -> {
+            item.setIdPedido(save.getId());
+        });
+        PedidoEntity updateResponse = pedidoRepository.saveAndFlush(save);
+        AcompanhamentoResponse response = new AcompanhamentoResponse().pedidoEntityFromResponse(updateResponse);
+        return response;
     }
 
     @Override
@@ -69,28 +75,21 @@ public class PedidoAdapter implements PedidoUseCaseAdapterPort {
 
     @Override
     public Pedido commitUpdates(PedidoEntity pedidoEntity) {
-        return new Pedido().entityFromDomain(pedidoRepository.saveAndFlush(pedidoEntity));
+        PedidoEntity entity = pedidoRepository.findById(pedidoEntity.getId()).get();
+        entity = pedidoEntity;
+        pedidoRepository.save(entity);
+        return new Pedido().entityFromDomain(entity);
     }
 
-    /**
-     * @param item
-     */
     @Override
     public void saveItens(Item item) {
         itensRepository.save(new Pedido().itemDomainFromItemEntity(item));
     }
 
-    /**
-     * @param itens
-     */
     @Override
     public void removeItens(Set<Item> itens) {
     }
 
-    /**
-     * @param id
-     * @return
-     */
     @Override
     public Set<Item> findAllById(Long id) {
         return Set.of();
@@ -121,8 +120,22 @@ public class PedidoAdapter implements PedidoUseCaseAdapterPort {
 //    }
 
     @Override
-    public Set<Produto> findAllByIdPedido(Long id) {
-        return null;//new Produto().setProdutosRequestFromSetEntity(itensRepository.findByIdPedido(id));
+    public Set<Item> findAllByIdPedido(Long id) {
+        Set<Item> produtos = new HashSet<>();
+        Set<ItemEntity> byIdPedido = itensRepository.findByIdPedido(id);
+        byIdPedido.forEach(item -> {
+            Item produto = new Item();
+            produto.setId(item.getId());
+            produto.setIdPedido(item.getIdPedido());
+            produto.setIdProduto(item.getIdProduto());
+            produto.setNome(item.getNome());
+            produto.setDescricao(item.getDescricao());
+            produto.setCategoria(item.getCategoria());
+            produto.setPreco(item.getPreco());
+            produto.setImg(item.getImg());
+            produtos.add(produto);
+        });
+        return produtos;
     }
 
 
@@ -134,12 +147,18 @@ public class PedidoAdapter implements PedidoUseCaseAdapterPort {
 
     @Override
     public Pedido findById(Long id) {
-        return new Pedido().entityFromDomain(pedidoRepository.findById(id).get());
+        PedidoEntity entity = pedidoRepository.findById(id).get();
+        entity.setItensProdutos(itensRepository.findByIdPedido(entity.getId()));
+        return new Pedido().entityFromDomain(entity);
     }
 
     @Override
+    @Transactional
     public void salvaPagamento(PagamentoEntity entity) {
-        pagamentoRepository.save(entity);
+        PagamentoEntity pagamento = new PagamentoEntity();
+            pagamento.setPagou(entity.getPagou());
+            pagamento.setIdPedido(entity.getIdPedido());
+            pagamentoRepository.save(pagamento);
     }
 
     @Override

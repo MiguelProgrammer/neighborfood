@@ -12,7 +12,6 @@ import java.io.Serializable;
 @Getter
 @Setter
 @Entity
-@ToString
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "mimo")

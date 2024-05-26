@@ -17,31 +17,37 @@ public class PedidoRequest {
 
     private Long id;
     private Long idCliente;
-    private Set<Item> itemPedido = new HashSet<>();
+    private Set<Item> itensPedido = new HashSet<>();
 
     public PedidoRequest() {
     }
 
-    public PedidoRequest(Long id, Long idCliente, Set<Item> itemPedido) {
+    public PedidoRequest(Long id, Long idCliente, Set<Item> itensPedido) {
         this.id = id;
         this.idCliente = idCliente;
-        this.itemPedido = itemPedido;
+        this.itensPedido = itensPedido;
     }
 
     public PedidoRequest dtoFromRequest(PedidoRequestDTO pedidoRequest) {
+
         PedidoRequest request = new PedidoRequest();
-        request.setId(pedidoRequest.getId());
         request.setIdCliente(pedidoRequest.getIdCliente());
+
         pedidoRequest.getItensPedido().forEach(item -> {
+
             Item it = new Item();
             it.setId(item.getId());
             it.setIdPedido(item.getIdPedido());
-            it.setNome(item.getNome());
-            it.setCategoria(Categoria.valueOf(item.getCategoria().getValue()));
-            it.setDescricao(item.getDescricao());
-            it.setPreco(item.getPreco());
-            it.setImg(item.getImg());
-            request.getItemPedido().add(it);
+
+            Produto pro = new Produto();
+            it.setIdProduto(item.getProduto().getId());
+            it.setNome(item.getProduto().getNome());
+            it.setDescricao(item.getProduto().getDescricao());
+            it.setPreco(item.getProduto().getPreco());
+            it.setCategoria(Categoria.valueOf(item.getProduto().getCategoria().getValue()));
+            it.setImg(item.getProduto().getImg());
+
+            request.getItensPedido().add(it);
         });
         return request;
     }
@@ -89,11 +95,11 @@ public class PedidoRequest {
         this.idCliente = idCliente;
     }
 
-    public Set<Item> getItemPedido() {
-        return itemPedido;
+    public Set<Item> getItensPedido() {
+        return itensPedido;
     }
 
-    public void setItemPedido(Set<Item> itemPedido) {
-        this.itemPedido = itemPedido;
+    public void setItensPedido(Set<Item> itensPedido) {
+        this.itensPedido = itensPedido;
     }
 }

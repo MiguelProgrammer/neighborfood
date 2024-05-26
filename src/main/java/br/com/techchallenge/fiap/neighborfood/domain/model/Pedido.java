@@ -7,19 +7,16 @@ package br.com.techchallenge.fiap.neighborfood.domain.model;
 import br.com.techchallenge.fiap.neighborfood.adapters.outbound.repository.entities.ItemEntity;
 import br.com.techchallenge.fiap.neighborfood.adapters.outbound.repository.entities.PedidoEntity;
 import br.com.techchallenge.fiap.neighborfood.adapters.outbound.repository.entities.ProdutoEntity;
-import br.com.techchallenge.fiap.neighborfood.domain.model.enums.Categoria;
 import br.com.techchallenge.fiap.neighborfood.domain.model.enums.Status;
 
 import java.math.BigDecimal;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 public class Pedido {
 
     private Long id;
     private Long idCliente;
-    private Set<Item> itemProdutos = new HashSet<>();
+    private List<Item> itensProdutos = new ArrayList<>();
     private BigDecimal total = BigDecimal.ZERO;
     private Status status;
     private Date dataPedido;
@@ -28,10 +25,10 @@ public class Pedido {
     public Pedido() {
     }
 
-    public Pedido(Long id, Long idCliente, Set<Item> itemProdutos, BigDecimal total, Status status, Date dataPedido, Date dataPedidoFim) {
+    public Pedido(Long id, Long idCliente, List<Item> itensProdutos, BigDecimal total, Status status, Date dataPedido, Date dataPedidoFim) {
         this.id = id;
         this.idCliente = idCliente;
-        this.itemProdutos = itemProdutos;
+        this.itensProdutos = itensProdutos;
         this.total = total;
         this.status = status;
         this.dataPedido = dataPedido;
@@ -54,12 +51,12 @@ public class Pedido {
         this.idCliente = idCliente;
     }
 
-    public Set<Item> getItemProdutos() {
-        return itemProdutos;
+    public List<Item> getItensProdutos() {
+        return itensProdutos;
     }
 
-    public void setItemProdutos(Set<Item> itemProdutos) {
-        this.itemProdutos = itemProdutos;
+    public void setItensProdutos(List<Item> itensProdutos) {
+        this.itensProdutos = itensProdutos;
     }
 
     public BigDecimal getTotal() {
@@ -96,12 +93,13 @@ public class Pedido {
 
     public PedidoEntity domainFromEntity() {
         PedidoEntity entity = new PedidoEntity();
-        entity.setIdCliente(this.getIdCliente());
-        entity.setStatus(this.getStatus());
-        entity.setDataPedido(this.getDataPedido());
-        entity.setTotal(this.getTotal());
-        entity.setDataPedidoFim(this.getDataPedidoFim());
-        this.getItemProdutos().forEach(item -> {
+        entity.setId(this.id);
+        entity.setIdCliente(this.idCliente);
+        entity.setStatus(this.status);
+        entity.setDataPedido(this.dataPedido);
+        entity.setTotal(this.total);
+        entity.setDataPedidoFim(this.dataPedidoFim);
+        this.getItensProdutos().forEach(item -> {
             entity.getItensProdutos().add(item.itemDomainFromItemEntity());
         });
         return entity;
@@ -109,36 +107,44 @@ public class Pedido {
 
     public Pedido entityFromDomain(PedidoEntity entity) {
         Pedido domain = new Pedido();
+
+        domain.setId(entity.getId());
         domain.setIdCliente(entity.getIdCliente());
         domain.setStatus(entity.getStatus());
         domain.setDataPedido(entity.getDataPedido());
         domain.setTotal(entity.getTotal());
         domain.setDataPedidoFim(entity.getDataPedidoFim());
-        entity.getItensProdutos().forEach(item -> {
-            domain.getItemProdutos().add(this.itemEntityFromItemDomain(item));
+        entity.getItensProdutos().forEach(produtos -> {
+            Item item = new Item();
+            item.setId(produtos.getId());
+            item.setIdPedido(produtos.getIdPedido());
+            item.setIdProduto(produtos.getIdProduto());
+            item.setNome(produtos.getNome());
+            item.setDescricao(produtos.getDescricao());
+            item.setCategoria(produtos.getCategoria());
+            item.setPreco(produtos.getPreco());
+            item.setImg(produtos.getImg());
+            domain.getItensProdutos().add(item);
         });
         return domain;
     }
 
-    public Item itemEntityFromItemDomain(ItemEntity itensProdutos) {
+    public Set<Item> itemEntityFromItemDomain(ItemEntity itensProdutos) {
+        Set<Item> itens = new HashSet<>();
         Item item = new Item();
         item.setId(itensProdutos.getId());
         item.setIdPedido(itensProdutos.getIdPedido());
-        item.setNome(itensProdutos.getNome());
-        item.setCategoria(Categoria.valueOf(itensProdutos.getCategoria().toString()));
-        item.setDescricao(itensProdutos.getDescricao());
-        item.setPreco(itensProdutos.getPreco());
-        item.setImg(itensProdutos.getImg());
-        return item;
+        return itens;
     }
 
     public ItemEntity itemDomainFromItemEntity(Item domain) {
         ItemEntity item = new ItemEntity();
         item.setId(domain.getId());
         item.setIdPedido(domain.getIdPedido());
+        item.setIdProduto(domain.getIdProduto());
         item.setNome(domain.getNome());
-        item.setCategoria(Categoria.valueOf(domain.getCategoria().toString()));
         item.setDescricao(domain.getDescricao());
+        item.setCategoria(domain.getCategoria());
         item.setPreco(domain.getPreco());
         item.setImg(domain.getImg());
         return item;

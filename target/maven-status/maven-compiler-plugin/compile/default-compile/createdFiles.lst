@@ -64,11 +64,11 @@ br\com\techchallenge\fiap\neighborfood\domain\ports\outbound\PagamentoUseCaseAda
 br\com\techchallenge\fiap\neighborfood\adapters\outbound\repository\entities\MimoEntity.class
 br\com\techchallenge\fiap\neighborfood\domain\ports\inbound\LoginUseCasePort.class
 br\com\techchallenge\fiap\neighborfood\NeighborfoodApplication.class
+br\com\techchallenge\fiap\neighborfood\domain\dto\ItemPedido.class
 br\com\techchallenge\fiap\neighborfood\adapters\outbound\repository\entities\PagamentoEntity.class
 br\com\techchallenge\fiap\neighborfood\domain\usecase\others\AdmUseCaseImpl.class
 br\com\techchallenge\fiap\neighborfood\domain\dto\CategoriaDTO.class
 br\com\techchallenge\fiap\neighborfood\adapters\outbound\repository\UserAdapter.class
-br\com\techchallenge\fiap\neighborfood\domain\dto\ItensPedido.class
 br\com\techchallenge\fiap\neighborfood\adapters\outbound\repository\jpa\PedidoRepository.class
 br\com\techchallenge\fiap\neighborfood\domain\dto\StatusPedidoDTO.class
 br\com\techchallenge\fiap\neighborfood\domain\usecase\others\acompanhachain\impl\AcompanhamentoChainPreparacaoImpl.class

@@ -21,10 +21,8 @@ import br.com.techchallenge.fiap.neighborfood.domain.ports.outbound.ProdutoUseCa
 import lombok.extern.slf4j.Slf4j;
 
 import java.math.BigDecimal;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Slf4j
 public class PedidoUseCaseImpl implements PedidoUseCasePort {
@@ -60,29 +58,36 @@ public class PedidoUseCaseImpl implements PedidoUseCasePort {
 
     @Override
     public AcompanhamentoResponse pedidoExecute(PedidoRequest request) {
+
         Pedido pedido = new Pedido();
-        Set<Item> itensPedido = new HashSet<>();
-        Item itemPedido = new Item();
+
+        List<Item> itensPedido = new ArrayList<>();
         Set<Produto> deleteProdutos = new HashSet<>();
         AcompanhamentoResponse pedidoResponse = new AcompanhamentoResponse();
+
         Cliente cliente = userAdapter.clienteById(request.getIdCliente());
 
-        if (cliente == null) {
-            throw new ClienteException("CLIENTE NÃO ENCONTRADO");
+
+        if (cliente.getId() == null) {
+            throw new ClienteException("CLIENTE NÃO ENCONTRADO/LOGADO");
         }
 
         pedido.setIdCliente(cliente.getId());
-        request.getItemPedido().forEach(item -> {
+        request.getItensPedido().forEach(item -> {
 
-            Produto prod = produtoUseCaseAdapterPort.findById(item.getId());
+            Produto prod = produtoUseCaseAdapterPort.findById(item.getIdProduto());
 
-            if (prod != null) {
-                itemPedido.setId(prod.getId());
+            if (prod.getId() != null) {
+                pedido.setTotal(pedido.getTotal().add(prod.getPreco()));
+
+                Item itemPedido = new Item();
+                itemPedido.setIdProduto(prod.getId());
                 itemPedido.setNome(prod.getNome());
-                itemPedido.setCategoria(Categoria.valueOf(prod.getCategoria().toString()));
                 itemPedido.setDescricao(prod.getDescricao());
+                itemPedido.setCategoria(prod.getCategoria());
                 itemPedido.setPreco(prod.getPreco());
                 itemPedido.setImg(prod.getImg());
+                itensPedido.add(itemPedido);
                 deleteProdutos.add(prod);
             } else {
                 Item emFalta = new Item();
@@ -94,22 +99,16 @@ public class PedidoUseCaseImpl implements PedidoUseCasePort {
 
         });
 
-        itensPedido.add(itemPedido);
-        pedido.setIdCliente(request.getIdCliente());
-        pedido.setItemProdutos(itensPedido);
-        pedido.setStatus(Status.RECEBIDO);
-        itensPedido.forEach(valor -> {
-            pedido.setTotal(pedido.getTotal().add(valor.getPreco()));
-        });
         pedido.setDataPedido(new Date());
+        pedido.setStatus(Status.RECEBIDO);
+        pedido.setItensProdutos(itensPedido);
+        pedido.setIdCliente(request.getIdCliente());
 
         if (!pedido.getTotal().equals(BigDecimal.ZERO)) {
 
             log.info(acompanhamentoUseCasePort.smsExecute(pedido.getStatus()));
-            AcompanhamentoResponse ped = pedidoUseCaseAdapterPort.pedido(pedido);
-            pedidoResponse.setTotal(ped.getTotal());
-            pedidoResponse.setStatus(ped.getStatus());
-            pedidoResponse.setPedidoRequest(request);
+            pedidoResponse = pedidoUseCaseAdapterPort.pedido(pedido);
+
             produtoUseCaseAdapterPort.deleteAll(deleteProdutos);
         } else {
             NotificacaoEntity notificacao = new NotificacaoEntity();
@@ -124,12 +123,29 @@ public class PedidoUseCaseImpl implements PedidoUseCasePort {
 
     @Override
     public AcompanhamentoResponse atualizarPedidoExecute(PedidoRequest pedido) {
+        /**
+         * TODO
+         *
+         * CORRIGIR ATUALIZAÇÃO DE PEDIDO
+         */
+        Set<Item> itens = pedidoUseCaseAdapterPort.findAllByIdPedido(pedido.getId());
         Cliente cliente = userAdapter.clienteById(pedido.getIdCliente());
-        Set<Produto> produtos = pedidoUseCaseAdapterPort.findAllByIdPedido(pedido.getId());
+        Set<Produto> produtos = new HashSet<>();
 
-        if (cliente == null && produtos == null) {
+        if (cliente.getId() == null && produtos == null) {
             throw new PedidoException(CLIENTE_NOT_FOUND);
         }
+
+        itens.forEach(item -> {
+            Produto produto = new Produto();
+            produto.setId(item.getId());
+            produto.setNome(item.getNome());
+            produto.setDescricao(item.getDescricao());
+            produto.setCategoria(item.getCategoria());
+            produto.setPreco(item.getPreco());
+            produto.setImg(item.getImg());
+            produtos.add(produto);
+        });
 
         produtoUseCaseAdapterPort.repoemEstoque(produtos);
 
@@ -140,13 +156,13 @@ public class PedidoUseCaseImpl implements PedidoUseCasePort {
 
         //pedidoUseCaseAdapterPort.removeItens(itensById);
 
-        pedido.getItemPedido().forEach(pro -> {
+        pedido.getItensPedido().forEach(item -> {
             Pedido pedidoDTO = pedidoUseCaseAdapterPort.findByIdPedido(pedido.getId());
-            pedidoDTO.setTotal(pedidoDTO.getTotal().add(pro.getPreco()));
+            pedidoDTO.setTotal(pedidoDTO.getTotal().add(item.getPreco()));
             pedidoUseCaseAdapterPort.commitUpdates(pedidoDTO.domainFromEntity());
 
             //pedidoUseCaseAdapterPort.saveItens();
-            produtoUseCaseAdapterPort.deleteById(pro.getId());
+            produtoUseCaseAdapterPort.deleteById(item.getId());
         });
 
         log.info("Pedido atualizado!");
