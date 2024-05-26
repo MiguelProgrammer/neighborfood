@@ -33,3 +33,5 @@ NEIGHBORFOOD MENU
 * 8 - Collect your order
 * 9 - Receive treats
      * 9.1 - You will receive discount alerts on upcoming orders
+
+<img src="https://i.imgur.com/i4nWA9q.png">
