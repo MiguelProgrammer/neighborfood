@@ -2,7 +2,7 @@
  * Copyright (c) 2024. MiguelProgrammer
  */
 
-package br.com.techchallenge.fiap.neighborfood.domain.usecase.others;
+package br.com.techchallenge.fiap.neighborfood.domain.usecase;
 
 
 import br.com.techchallenge.fiap.neighborfood.adapters.inbound.request.PedidoRequest;

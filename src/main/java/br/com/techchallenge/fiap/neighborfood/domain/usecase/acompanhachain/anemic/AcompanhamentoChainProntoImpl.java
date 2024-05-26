@@ -2,12 +2,10 @@
  * Copyright (c) 2024. MiguelProgrammer
  */
 
-package br.com.techchallenge.fiap.neighborfood.domain.usecase.others.acompanhachain.impl;
+package br.com.techchallenge.fiap.neighborfood.domain.usecase.acompanhachain.anemic;
 
 import br.com.techchallenge.fiap.neighborfood.domain.model.enums.Status;
-import br.com.techchallenge.fiap.neighborfood.domain.usecase.others.acompanhachain.AcompanhamentoChain;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
+import br.com.techchallenge.fiap.neighborfood.domain.usecase.acompanhachain.AcompanhamentoChain;
 
 public class AcompanhamentoChainProntoImpl extends AcompanhamentoChain {
 

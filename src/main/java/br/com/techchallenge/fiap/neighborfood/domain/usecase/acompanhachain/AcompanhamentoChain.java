@@ -2,7 +2,7 @@
  * Copyright (c) 2024. MiguelProgrammer
  */
 
-package br.com.techchallenge.fiap.neighborfood.domain.usecase.others.acompanhachain;
+package br.com.techchallenge.fiap.neighborfood.domain.usecase.acompanhachain;
 
 import br.com.techchallenge.fiap.neighborfood.domain.model.enums.Status;
 

@@ -2,7 +2,7 @@
  * Copyright (c) 2024. MiguelProgrammer
  */
 
-package br.com.techchallenge.fiap.neighborfood.domain.usecase.others;
+package br.com.techchallenge.fiap.neighborfood.domain.usecase;
 
 import br.com.techchallenge.fiap.neighborfood.adapters.inbound.response.AcompanhamentoResponse;
 import br.com.techchallenge.fiap.neighborfood.config.exception.PedidoException;
@@ -10,8 +10,8 @@ import br.com.techchallenge.fiap.neighborfood.domain.model.Pedido;
 import br.com.techchallenge.fiap.neighborfood.domain.model.enums.Status;
 import br.com.techchallenge.fiap.neighborfood.domain.ports.inbound.AcompanhamentoUseCasePort;
 import br.com.techchallenge.fiap.neighborfood.domain.ports.outbound.PedidoUseCaseAdapterPort;
-import br.com.techchallenge.fiap.neighborfood.domain.usecase.others.acompanhachain.AcompanhamentoChain;
-import br.com.techchallenge.fiap.neighborfood.domain.usecase.others.acompanhachain.impl.AcompanhamentoChainRecebidoImpl;
+import br.com.techchallenge.fiap.neighborfood.domain.usecase.acompanhachain.AcompanhamentoChain;
+import br.com.techchallenge.fiap.neighborfood.domain.usecase.acompanhachain.anemic.AcompanhamentoChainRecebidoImpl;
 
 import java.util.Date;
 
