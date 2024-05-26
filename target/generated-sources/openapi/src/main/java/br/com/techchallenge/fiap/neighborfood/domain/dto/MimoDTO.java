@@ -4,7 +4,6 @@ import java.net.URI;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import java.math.BigDecimal;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
 import jakarta.validation.Valid;
@@ -19,14 +18,16 @@ import jakarta.annotation.Generated;
  * MimoDTO
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-05-25T21:04:24.998699200-03:00[America/Sao_Paulo]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-05-26T13:08:12.600058900-03:00[America/Sao_Paulo]")
 public class MimoDTO {
 
   private String codigo;
 
-  private BigDecimal desconto;
-
   private Long idCliente;
+
+  private String acao;
+
+  private String descricao;
 
   public MimoDTO codigo(String codigo) {
     this.codigo = codigo;
@@ -46,26 +47,6 @@ public class MimoDTO {
 
   public void setCodigo(String codigo) {
     this.codigo = codigo;
-  }
-
-  public MimoDTO desconto(BigDecimal desconto) {
-    this.desconto = desconto;
-    return this;
-  }
-
-  /**
-   * Get desconto
-   * @return desconto
-  */
-  @Valid 
-  @Schema(name = "desconto", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
-  @JsonProperty("desconto")
-  public BigDecimal getDesconto() {
-    return desconto;
-  }
-
-  public void setDesconto(BigDecimal desconto) {
-    this.desconto = desconto;
   }
 
   public MimoDTO idCliente(Long idCliente) {
@@ -88,6 +69,46 @@ public class MimoDTO {
     this.idCliente = idCliente;
   }
 
+  public MimoDTO acao(String acao) {
+    this.acao = acao;
+    return this;
+  }
+
+  /**
+   * Get acao
+   * @return acao
+  */
+  
+  @Schema(name = "acao", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("acao")
+  public String getAcao() {
+    return acao;
+  }
+
+  public void setAcao(String acao) {
+    this.acao = acao;
+  }
+
+  public MimoDTO descricao(String descricao) {
+    this.descricao = descricao;
+    return this;
+  }
+
+  /**
+   * Get descricao
+   * @return descricao
+  */
+  
+  @Schema(name = "descricao", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("descricao")
+  public String getDescricao() {
+    return descricao;
+  }
+
+  public void setDescricao(String descricao) {
+    this.descricao = descricao;
+  }
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -98,13 +119,14 @@ public class MimoDTO {
     }
     MimoDTO mimoDTO = (MimoDTO) o;
     return Objects.equals(this.codigo, mimoDTO.codigo) &&
-        Objects.equals(this.desconto, mimoDTO.desconto) &&
-        Objects.equals(this.idCliente, mimoDTO.idCliente);
+        Objects.equals(this.idCliente, mimoDTO.idCliente) &&
+        Objects.equals(this.acao, mimoDTO.acao) &&
+        Objects.equals(this.descricao, mimoDTO.descricao);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(codigo, desconto, idCliente);
+    return Objects.hash(codigo, idCliente, acao, descricao);
   }
 
   @Override
@@ -112,8 +134,9 @@ public class MimoDTO {
     StringBuilder sb = new StringBuilder();
     sb.append("class MimoDTO {\n");
     sb.append("    codigo: ").append(toIndentedString(codigo)).append("\n");
-    sb.append("    desconto: ").append(toIndentedString(desconto)).append("\n");
     sb.append("    idCliente: ").append(toIndentedString(idCliente)).append("\n");
+    sb.append("    acao: ").append(toIndentedString(acao)).append("\n");
+    sb.append("    descricao: ").append(toIndentedString(descricao)).append("\n");
     sb.append("}");
     return sb.toString();
   }

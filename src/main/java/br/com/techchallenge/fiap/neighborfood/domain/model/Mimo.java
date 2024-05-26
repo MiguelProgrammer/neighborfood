@@ -29,6 +29,7 @@ public class Mimo {
         mimo.setIdUsuario(entity.getIdUsuario());
         mimo.setDescricao(entity.getDescricao());
         mimo.setCodigo(entity.getCodigo());
+        mimo.setAcao("COMPRA");
         return mimo;
     }
 

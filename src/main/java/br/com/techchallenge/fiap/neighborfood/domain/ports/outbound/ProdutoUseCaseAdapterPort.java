@@ -19,4 +19,6 @@ public interface ProdutoUseCaseAdapterPort {
     void deleteById(Long idProduto);
 
     void deleteAll(Set<Produto> produtos);
+
+    void deleteByNome(String nome);
 }

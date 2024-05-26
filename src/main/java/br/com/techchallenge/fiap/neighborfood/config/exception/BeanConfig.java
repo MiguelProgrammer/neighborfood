@@ -5,11 +5,9 @@
 package br.com.techchallenge.fiap.neighborfood.config.exception;
 
 import br.com.techchallenge.fiap.neighborfood.adapters.outbound.repository.UserAdapter;
+import br.com.techchallenge.fiap.neighborfood.adapters.outbound.repository.jpa.ClienteRepository;
 import br.com.techchallenge.fiap.neighborfood.domain.ports.inbound.*;
-import br.com.techchallenge.fiap.neighborfood.domain.ports.outbound.ProdutoUseCaseAdapterPort;
-import br.com.techchallenge.fiap.neighborfood.domain.ports.outbound.LoginUseCaseAdapterPort;
-import br.com.techchallenge.fiap.neighborfood.domain.ports.outbound.NotificationUseCaseAdapterPort;
-import br.com.techchallenge.fiap.neighborfood.domain.ports.outbound.PedidoUseCaseAdapterPort;
+import br.com.techchallenge.fiap.neighborfood.domain.ports.outbound.*;
 import br.com.techchallenge.fiap.neighborfood.domain.usecase.others.*;
 import br.com.techchallenge.fiap.neighborfood.domain.usecase.others.acompanhachain.AcompanhamentoChain;
 import br.com.techchallenge.fiap.neighborfood.domain.usecase.others.acompanhachain.impl.AcompanhamentoChainFinalizadoImpl;
@@ -51,8 +49,8 @@ public class BeanConfig {
     }
 
     @Bean
-    public AdminUseCasePort adminUseCasePort() {
-        return new AdmUseCaseImpl();
+    public AdminUseCasePort adminUseCasePort(PedidoUseCaseAdapterPort pedidoUseCaseAdapterPort, UserAdapter userAdapter) {
+        return new AdmUseCaseImpl(pedidoUseCaseAdapterPort, userAdapter);
     }
 
     @Bean
@@ -69,8 +67,9 @@ public class BeanConfig {
     }
 
     @Bean
-    public NotificationUseCasePort notificationUseCasePort() {
-        return new NotificacaoUseCaseImpl();
+
+    public NotificationUseCasePort notificationUseCasePort(NotificationUseCaseAdapterPort notificacaoAdapterPort, ClienteRepository clienteRepository) {
+        return new NotificacaoUseCaseImpl(notificacaoAdapterPort, clienteRepository);
     }
 
     @Bean

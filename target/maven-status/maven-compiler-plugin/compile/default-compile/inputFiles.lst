@@ -15,6 +15,7 @@ C:\Users\Miguel Silva\Documents\Pos\project\neighborfood\src\main\java\br\com\te
 C:\Users\Miguel Silva\Documents\Pos\project\neighborfood\src\main\java\br\com\techchallenge\fiap\neighborfood\domain\usecase\others\AdmUseCaseImpl.java
 C:\Users\Miguel Silva\Documents\Pos\project\neighborfood\src\main\java\br\com\techchallenge\fiap\neighborfood\domain\usecase\others\NotificacaoUseCaseImpl.java
 C:\Users\Miguel Silva\Documents\Pos\project\neighborfood\src\main\java\br\com\techchallenge\fiap\neighborfood\domain\ports\outbound\LoginUseCaseAdapterPort.java
+C:\Users\Miguel Silva\Documents\Pos\project\neighborfood\src\main\java\br\com\techchallenge\fiap\neighborfood\adapters\outbound\repository\jpa\MimoRepository.java
 C:\Users\Miguel Silva\Documents\Pos\project\neighborfood\src\main\java\br\com\techchallenge\fiap\neighborfood\domain\model\Pedido.java
 C:\Users\Miguel Silva\Documents\Pos\project\neighborfood\src\main\java\br\com\techchallenge\fiap\neighborfood\adapters\outbound\repository\NotificacaoAdapter.java
 C:\Users\Miguel Silva\Documents\Pos\project\neighborfood\src\main\java\br\com\techchallenge\fiap\neighborfood\domain\usecase\others\PagamentoUseCaseImpl.java

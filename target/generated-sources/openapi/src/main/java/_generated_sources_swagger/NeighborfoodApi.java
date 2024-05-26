@@ -38,7 +38,7 @@ import java.util.Map;
 import java.util.Optional;
 import jakarta.annotation.Generated;
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-05-25T21:04:24.998699200-03:00[America/Sao_Paulo]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-05-26T13:08:12.600058900-03:00[America/Sao_Paulo]")
 @Validated
 @Tag(name = "follow-up", description = "Acompanhar status do pedido")
 public interface NeighborfoodApi {
@@ -496,7 +496,7 @@ public interface NeighborfoodApi {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "{ \"codigo\" : \"codigo\", \"desconto\" : 0.8008281904610115, \"idCliente\" : 6 }";
+                    String exampleString = "{ \"codigo\" : \"codigo\", \"idCliente\" : 0, \"acao\" : \"acao\", \"descricao\" : \"descricao\" }";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
                     break;
                 }

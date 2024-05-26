@@ -18,6 +18,7 @@ br\com\techchallenge\fiap\neighborfood\adapters\inbound\request\AdminRequest.cla
 br\com\techchallenge\fiap\neighborfood\adapters\outbound\repository\LoginAdapter.class
 br\com\techchallenge\fiap\neighborfood\adapters\outbound\repository\ProdutoAdapter.class
 br\com\techchallenge\fiap\neighborfood\domain\usecase\others\AcompanhamentoUseCaseImpl.class
+br\com\techchallenge\fiap\neighborfood\adapters\outbound\repository\jpa\MimoRepository.class
 br\com\techchallenge\fiap\neighborfood\domain\ports\outbound\AcompanhamentoUseCaseAdapterPort.class
 br\com\techchallenge\fiap\neighborfood\adapters\inbound\request\PedidoRequest.class
 br\com\techchallenge\fiap\neighborfood\domain\dto\MimoDTO.class

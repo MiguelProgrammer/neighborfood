@@ -43,12 +43,6 @@ public class AcompanhamentoUseCaseImpl implements AcompanhamentoUseCasePort {
         } catch (Exception ex) {
             throw new PedidoException("Pedido não encontrado!");
         }
-
-//        AcompanhamentoResponse statusPedidoResponse = new AcompanhamentoResponse();
-//        statusPedidoResponse.pedidoFromResponse();
-//        statusPedidoResponse.setStatus(pedido.getStatus());
-//        statusPedidoResponse.setTotal(pedido.getTotal());
-//        statusPedidoResponse.setPedidoRequest(pedido);
         return pedidoUseCaseAdapterPort.pedido(pedido);
     }
 

@@ -8,6 +8,7 @@ import br.com.techchallenge.fiap.neighborfood.adapters.outbound.repository.entit
 import br.com.techchallenge.fiap.neighborfood.adapters.outbound.repository.jpa.ProdutoRepository;
 import br.com.techchallenge.fiap.neighborfood.domain.model.Produto;
 import br.com.techchallenge.fiap.neighborfood.domain.ports.outbound.ProdutoUseCaseAdapterPort;
+import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Component;
 
 import java.util.Optional;
@@ -61,6 +62,12 @@ public class ProdutoAdapter implements ProdutoUseCaseAdapterPort {
         produtos.forEach(produto -> {
             produtoRepository.delete(produto.dtoFromEntity());
         });
+    }
+
+    @Override
+    @Transactional
+    public void deleteByNome(String nome) {
+        produtoRepository.deleteByNome(nome);
     }
 
 }

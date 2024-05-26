@@ -31,6 +31,7 @@ public class PedidoRequest {
     public PedidoRequest dtoFromRequest(PedidoRequestDTO pedidoRequest) {
 
         PedidoRequest request = new PedidoRequest();
+        request.setId(pedidoRequest.getId());
         request.setIdCliente(pedidoRequest.getIdCliente());
 
         pedidoRequest.getItensPedido().forEach(item -> {
@@ -38,15 +39,12 @@ public class PedidoRequest {
             Item it = new Item();
             it.setId(item.getId());
             it.setIdPedido(item.getIdPedido());
-
-            Produto pro = new Produto();
             it.setIdProduto(item.getProduto().getId());
             it.setNome(item.getProduto().getNome());
             it.setDescricao(item.getProduto().getDescricao());
             it.setPreco(item.getProduto().getPreco());
             it.setCategoria(Categoria.valueOf(item.getProduto().getCategoria().getValue()));
             it.setImg(item.getProduto().getImg());
-
             request.getItensPedido().add(it);
         });
         return request;

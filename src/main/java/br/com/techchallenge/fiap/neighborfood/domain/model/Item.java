@@ -5,9 +5,6 @@
 package br.com.techchallenge.fiap.neighborfood.domain.model;
 
 import br.com.techchallenge.fiap.neighborfood.adapters.outbound.repository.entities.ItemEntity;
-import br.com.techchallenge.fiap.neighborfood.domain.dto.CategoriaDTO;
-import br.com.techchallenge.fiap.neighborfood.domain.dto.ItemPedido;
-import br.com.techchallenge.fiap.neighborfood.domain.dto.ProdutoDTO;
 import br.com.techchallenge.fiap.neighborfood.domain.model.enums.Categoria;
 
 import java.math.BigDecimal;
@@ -113,5 +110,16 @@ public class Item {
 
     public void setImg(String img) {
         this.img = img;
+    }
+
+    @Override
+    public String toString() {
+        return "\n\n" +
+                " ID = " + idProduto +
+                " NOME = " + nome +
+                " PRECÇO R$ = " + preco +
+                "\nCATEGORIA = " + categoria +
+                " DESCRIÇÃO = " + descricao +
+                "\nIMAGEM = " + img + "\n\n";
     }
 }

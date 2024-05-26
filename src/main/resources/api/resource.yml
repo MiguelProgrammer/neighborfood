@@ -339,11 +339,13 @@ components:
       properties:
         codigo:
           type: string
-        desconto:
-          type: number
         idCliente:
           type: integer
           format: int64
+        acao:
+          type: string
+        descricao:
+          type: string
 
     PagamentoDTO:
       type: object

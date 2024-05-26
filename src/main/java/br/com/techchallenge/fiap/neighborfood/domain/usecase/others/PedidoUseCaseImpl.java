@@ -22,7 +22,6 @@ import lombok.extern.slf4j.Slf4j;
 
 import java.math.BigDecimal;
 import java.util.*;
-import java.util.stream.Collectors;
 
 @Slf4j
 public class PedidoUseCaseImpl implements PedidoUseCasePort {
@@ -123,11 +122,6 @@ public class PedidoUseCaseImpl implements PedidoUseCasePort {
 
     @Override
     public AcompanhamentoResponse atualizarPedidoExecute(PedidoRequest pedido) {
-        /**
-         * TODO
-         *
-         * CORRIGIR ATUALIZAÇÃO DE PEDIDO
-         */
         Set<Item> itens = pedidoUseCaseAdapterPort.findAllByIdPedido(pedido.getId());
         Cliente cliente = userAdapter.clienteById(pedido.getIdCliente());
         Set<Produto> produtos = new HashSet<>();
@@ -149,25 +143,25 @@ public class PedidoUseCaseImpl implements PedidoUseCasePort {
 
         produtoUseCaseAdapterPort.repoemEstoque(produtos);
 
+        pedidoUseCaseAdapterPort.removeItens(itens);
         Pedido pedidoRealizado = pedidoUseCaseAdapterPort.findByIdPedido(pedido.getId());
         pedidoUseCaseAdapterPort.pedido(pedidoRealizado);
         pedidoRealizado.setTotal(BigDecimal.ZERO);
         pedidoUseCaseAdapterPort.commitUpdates(pedidoRealizado.domainFromEntity());
 
-        //pedidoUseCaseAdapterPort.removeItens(itensById);
 
         pedido.getItensPedido().forEach(item -> {
             Pedido pedidoDTO = pedidoUseCaseAdapterPort.findByIdPedido(pedido.getId());
             pedidoDTO.setTotal(pedidoDTO.getTotal().add(item.getPreco()));
             pedidoUseCaseAdapterPort.commitUpdates(pedidoDTO.domainFromEntity());
-
-            //pedidoUseCaseAdapterPort.saveItens();
-            produtoUseCaseAdapterPort.deleteById(item.getId());
+            pedidoUseCaseAdapterPort.saveItens(item);
+            pedidoUseCaseAdapterPort.commitUpdates(pedidoDTO.domainFromEntity());
+            produtoUseCaseAdapterPort.deleteByNome(item.getNome());
         });
 
         log.info("Pedido atualizado!");
 
-        return pedidoUseCaseAdapterPort.atualizarPedido(pedidoRealizado);
+        return pedidoUseCaseAdapterPort.atualizarPedido(pedidoUseCaseAdapterPort.findByIdPedido(pedido.getId()));
 
     }
 

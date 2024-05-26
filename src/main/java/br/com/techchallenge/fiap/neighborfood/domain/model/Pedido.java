@@ -165,4 +165,28 @@ public class Pedido {
         });
         return produtos;
     }
+
+    @Override
+    public String toString() {
+        return "\n\n____________PEDIDO N* "+id+"____________\n\n" +
+                "\nIDCLIENTE = " + idCliente +
+                "\nITENS = " + itensProdutos +
+                "\nTOTAL = " + total +
+                "\nSTATUS = " + status +
+                "\nDATA DO PEDIDO = " + dataPedido +
+                "\nDATA DE FINALIZAÇÃO PEDIDO = " + dataPedidoFim +
+                "\nTEMPO DE ESPERA = " + (dataPedidoFim.getMinutes() - dataPedido.getMinutes()) + " Minutos." +
+                "\n____________PEDIDO N* "+id+"____________\n\n";
+    }
+
+
+    public String toStringAberto() {
+        return "\n\n____________PEDIDO N* "+id+"____________\n\n" +
+                "\nIDCLIENTE = " + idCliente +
+                "\nITENS = " + itensProdutos +
+                "\nTOTAL = " + total +
+                "\nSTATUS = " + status +
+                "\nDATA DO PEDIDO = " + dataPedido +
+                "\n\n____________PEDIDO N* "+id+"____________\n\n";
+    }
 }

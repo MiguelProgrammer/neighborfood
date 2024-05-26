@@ -5,37 +5,31 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b98da9cc-1d07-4246-9de1-00a329614987" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/br/com/techchallenge/fiap/neighborfood/adapters/outbound/repository/jpa/MimoRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/br/com/techchallenge/fiap/neighborfood/adapters/inbound/LanchoneteControllerImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/techchallenge/fiap/neighborfood/adapters/inbound/LanchoneteControllerImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/br/com/techchallenge/fiap/neighborfood/adapters/inbound/request/PedidoRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/techchallenge/fiap/neighborfood/adapters/inbound/request/PedidoRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/techchallenge/fiap/neighborfood/adapters/inbound/response/AcompanhamentoResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/techchallenge/fiap/neighborfood/adapters/inbound/response/AcompanhamentoResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/techchallenge/fiap/neighborfood/adapters/outbound/repository/NotificacaoAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/techchallenge/fiap/neighborfood/adapters/outbound/repository/NotificacaoAdapter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/br/com/techchallenge/fiap/neighborfood/adapters/outbound/repository/PedidoAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/techchallenge/fiap/neighborfood/adapters/outbound/repository/PedidoAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/techchallenge/fiap/neighborfood/adapters/outbound/repository/UserAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/techchallenge/fiap/neighborfood/adapters/outbound/repository/UserAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/techchallenge/fiap/neighborfood/adapters/outbound/repository/entities/ItemEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/techchallenge/fiap/neighborfood/adapters/outbound/repository/entities/ItemEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/techchallenge/fiap/neighborfood/adapters/outbound/repository/entities/MimoEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/techchallenge/fiap/neighborfood/adapters/outbound/repository/entities/MimoEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/techchallenge/fiap/neighborfood/adapters/outbound/repository/entities/PagamentoEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/techchallenge/fiap/neighborfood/adapters/outbound/repository/entities/PagamentoEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/techchallenge/fiap/neighborfood/adapters/outbound/repository/entities/PedidoEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/techchallenge/fiap/neighborfood/adapters/outbound/repository/entities/PedidoEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/techchallenge/fiap/neighborfood/adapters/outbound/repository/jpa/ItensRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/techchallenge/fiap/neighborfood/adapters/outbound/repository/jpa/ItensRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/techchallenge/fiap/neighborfood/adapters/outbound/repository/jpa/PagamentoRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/techchallenge/fiap/neighborfood/adapters/outbound/repository/jpa/PagamentoRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/techchallenge/fiap/neighborfood/adapters/outbound/repository/ProdutoAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/techchallenge/fiap/neighborfood/adapters/outbound/repository/ProdutoAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/techchallenge/fiap/neighborfood/adapters/outbound/repository/jpa/ProdutoRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/techchallenge/fiap/neighborfood/adapters/outbound/repository/jpa/ProdutoRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/br/com/techchallenge/fiap/neighborfood/config/exception/BeanConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/techchallenge/fiap/neighborfood/config/exception/BeanConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/techchallenge/fiap/neighborfood/domain/model/Cliente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/techchallenge/fiap/neighborfood/domain/model/Cliente.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/br/com/techchallenge/fiap/neighborfood/domain/model/Item.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/techchallenge/fiap/neighborfood/domain/model/Item.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/techchallenge/fiap/neighborfood/domain/model/Mimo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/techchallenge/fiap/neighborfood/domain/model/Mimo.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/br/com/techchallenge/fiap/neighborfood/domain/model/Pedido.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/techchallenge/fiap/neighborfood/domain/model/Pedido.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/techchallenge/fiap/neighborfood/domain/ports/outbound/PedidoUseCaseAdapterPort.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/techchallenge/fiap/neighborfood/domain/ports/outbound/PedidoUseCaseAdapterPort.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/techchallenge/fiap/neighborfood/domain/ports/inbound/NotificationUseCasePort.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/techchallenge/fiap/neighborfood/domain/ports/inbound/NotificationUseCasePort.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/techchallenge/fiap/neighborfood/domain/ports/outbound/ProdutoUseCaseAdapterPort.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/techchallenge/fiap/neighborfood/domain/ports/outbound/ProdutoUseCaseAdapterPort.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/br/com/techchallenge/fiap/neighborfood/domain/usecase/others/AcompanhamentoUseCaseImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/techchallenge/fiap/neighborfood/domain/usecase/others/AcompanhamentoUseCaseImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/techchallenge/fiap/neighborfood/domain/usecase/others/PagamentoUseCaseImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/techchallenge/fiap/neighborfood/domain/usecase/others/PagamentoUseCaseImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/techchallenge/fiap/neighborfood/domain/usecase/others/AdmUseCaseImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/techchallenge/fiap/neighborfood/domain/usecase/others/AdmUseCaseImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/techchallenge/fiap/neighborfood/domain/usecase/others/NotificacaoUseCaseImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/techchallenge/fiap/neighborfood/domain/usecase/others/NotificacaoUseCaseImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/br/com/techchallenge/fiap/neighborfood/domain/usecase/others/PedidoUseCaseImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/techchallenge/fiap/neighborfood/domain/usecase/others/PedidoUseCaseImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/techchallenge/fiap/neighborfood/domain/usecase/others/acompanhachain/impl/AcompanhamentoChainFinalizadoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/techchallenge/fiap/neighborfood/domain/usecase/others/acompanhachain/impl/AcompanhamentoChainFinalizadoImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/techchallenge/fiap/neighborfood/domain/usecase/others/acompanhachain/impl/AcompanhamentoChainPreparacaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/techchallenge/fiap/neighborfood/domain/usecase/others/acompanhachain/impl/AcompanhamentoChainPreparacaoImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/techchallenge/fiap/neighborfood/domain/usecase/others/acompanhachain/impl/AcompanhamentoChainProntoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/techchallenge/fiap/neighborfood/domain/usecase/others/acompanhachain/impl/AcompanhamentoChainProntoImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/techchallenge/fiap/neighborfood/domain/usecase/others/acompanhachain/impl/AcompanhamentoChainRecebidoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/techchallenge/fiap/neighborfood/domain/usecase/others/acompanhachain/impl/AcompanhamentoChainRecebidoImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/api/resource.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/api/resource.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/generated-sources/openapi/src/main/java/_generated_sources_swagger/NeighborfoodApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/target/generated-sources/openapi/src/main/java/_generated_sources_swagger/NeighborfoodApi.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/generated-sources/openapi/src/main/java/br/com/techchallenge/fiap/neighborfood/domain/dto/AcompanhamentoResponseDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/target/generated-sources/openapi/src/main/java/br/com/techchallenge/fiap/neighborfood/domain/dto/AcompanhamentoResponseDTO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/generated-sources/openapi/src/main/java/br/com/techchallenge/fiap/neighborfood/domain/dto/AdminRequestDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/target/generated-sources/openapi/src/main/java/br/com/techchallenge/fiap/neighborfood/domain/dto/AdminRequestDTO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/generated-sources/openapi/src/main/java/br/com/techchallenge/fiap/neighborfood/domain/dto/CategoriaDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/target/generated-sources/openapi/src/main/java/br/com/techchallenge/fiap/neighborfood/domain/dto/CategoriaDTO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/generated-sources/openapi/src/main/java/br/com/techchallenge/fiap/neighborfood/domain/dto/ClienteRequestDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/target/generated-sources/openapi/src/main/java/br/com/techchallenge/fiap/neighborfood/domain/dto/ClienteRequestDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/generated-sources/openapi/src/main/java/br/com/techchallenge/fiap/neighborfood/domain/dto/ItensPedido.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/generated-sources/openapi/src/main/java/br/com/techchallenge/fiap/neighborfood/domain/dto/ItemPedido.java" beforeDir="false" afterPath="$PROJECT_DIR$/target/generated-sources/openapi/src/main/java/br/com/techchallenge/fiap/neighborfood/domain/dto/ItemPedido.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/generated-sources/openapi/src/main/java/br/com/techchallenge/fiap/neighborfood/domain/dto/MimoDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/target/generated-sources/openapi/src/main/java/br/com/techchallenge/fiap/neighborfood/domain/dto/MimoDTO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/generated-sources/openapi/src/main/java/br/com/techchallenge/fiap/neighborfood/domain/dto/MimoRequestDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/target/generated-sources/openapi/src/main/java/br/com/techchallenge/fiap/neighborfood/domain/dto/MimoRequestDTO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/generated-sources/openapi/src/main/java/br/com/techchallenge/fiap/neighborfood/domain/dto/PagamentoDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/target/generated-sources/openapi/src/main/java/br/com/techchallenge/fiap/neighborfood/domain/dto/PagamentoDTO.java" afterDir="false" />
@@ -73,42 +67,42 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.NeighborfoodAppl.executor": "Debug",
-    "Downloaded.Files.Path.Enabled": "true",
-    "Maven.neighborfood [clean,install,-U...].executor": "Debug",
-    "Maven.neighborfood [clean,install,-U].executor": "Run",
-    "Maven.neighborfood [clean,install,-X].executor": "Run",
-    "Maven.neighborfood [clean,install].executor": "Run",
-    "OpenRewrite.UpgradeSpringBoot_3_2.executor": "Run",
-    "OverrideImplement.generate.javadoc": "true",
-    "Repository.Attach.Annotations": "false",
-    "Repository.Attach.JavaDocs": "false",
-    "Repository.Attach.Sources": "false",
-    "RequestMappingsPanelOrder0": "0",
-    "RequestMappingsPanelOrder1": "1",
-    "RequestMappingsPanelWidth0": "75",
-    "RequestMappingsPanelWidth1": "75",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "Spring Boot.NeighborfoodApplication.executor": "Run",
-    "ignore.virus.scanning.warn.message": "true",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/Miguel Silva/Documents/Pos/project/neighborfood/src/main/java/br/com/techchallenge/fiap/neighborfood/application/core/models",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "SDKs",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.3045977",
-    "run.code.analysis.last.selected.profile": "pProject Default",
-    "settings.editor.selected.configurable": "editor.preferences.fonts.default",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.NeighborfoodAppl.executor&quot;: &quot;Debug&quot;,
+    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;true&quot;,
+    &quot;Maven.neighborfood [clean,install,-U...].executor&quot;: &quot;Debug&quot;,
+    &quot;Maven.neighborfood [clean,install,-U].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.neighborfood [clean,install,-X].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.neighborfood [clean,install].executor&quot;: &quot;Run&quot;,
+    &quot;OpenRewrite.UpgradeSpringBoot_3_2.executor&quot;: &quot;Run&quot;,
+    &quot;OverrideImplement.generate.javadoc&quot;: &quot;true&quot;,
+    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;Spring Boot.NeighborfoodApplication.executor&quot;: &quot;Run&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Miguel Silva/Documents/Pos/project/neighborfood/src/main/java/br/com/techchallenge/fiap/neighborfood/application/core/models&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;SDKs&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.3045977&quot;,
+    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;editor.preferences.fonts.default&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="br.com.techchallenge.fiap.neighborfood.config" />
@@ -119,11 +113,11 @@
       <recent name="C:\Users\MP-Silva\OneDrive\Documentos\Projetos Java\neighborfood\src\main\resources" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="br.com.techchallenge.fiap.neighborfood.adapters.outbound.repository.jpa" />
       <recent name="br.com.techchallenge.fiap.neighborfood.adapters.inbound.request" />
       <recent name="br.com.techchallenge.fiap.neighborfood.adapters.outbound.repository" />
       <recent name="br.com.techchallenge.fiap.neighborfood.domain.usecase.others" />
       <recent name="br.com.techchallenge.fiap.neighborfood.domain.ports.outbound" />
-      <recent name="br.com.techchallenge.fiap.neighborfood.adapters.outbound.repository.entities" />
     </key>
   </component>
   <component name="RunManager" selected="Application.NeighborfoodAppl">
@@ -207,7 +201,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/br/com/techchallenge/fiap/neighborfood/adapters/inbound/LanchoneteControllerImpl.java</url>
-          <line>53</line>
+          <line>55</line>
           <option name="timeStamp" value="28" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
@@ -252,23 +246,8 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/br/com/techchallenge/fiap/neighborfood/adapters/outbound/repository/ProdutoAdapter.java</url>
-          <line>55</line>
+          <line>56</line>
           <option name="timeStamp" value="108" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/br/com/techchallenge/fiap/neighborfood/domain/model/Pedido.java</url>
-          <line>94</line>
-          <option name="timeStamp" value="114" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/br/com/techchallenge/fiap/neighborfood/adapters/inbound/response/AcompanhamentoResponse.java</url>
-          <line>39</line>
-          <option name="timeStamp" value="132" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/br/com/techchallenge/fiap/neighborfood/adapters/inbound/response/AcompanhamentoResponse.java</url>
-          <line>35</line>
-          <option name="timeStamp" value="135" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/br/com/techchallenge/fiap/neighborfood/adapters/inbound/response/AcompanhamentoResponse.java</url>
@@ -282,13 +261,8 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/br/com/techchallenge/fiap/neighborfood/adapters/outbound/repository/PedidoAdapter.java</url>
-          <line>160</line>
+          <line>201</line>
           <option name="timeStamp" value="155" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/br/com/techchallenge/fiap/neighborfood/adapters/inbound/response/AcompanhamentoResponse.java</url>
-          <line>37</line>
-          <option name="timeStamp" value="156" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/br/com/techchallenge/fiap/neighborfood/domain/usecase/others/PagamentoUseCaseImpl.java</url>
@@ -297,7 +271,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/br/com/techchallenge/fiap/neighborfood/adapters/inbound/LanchoneteControllerImpl.java</url>
-          <line>149</line>
+          <line>148</line>
           <option name="timeStamp" value="164" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
@@ -322,7 +296,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/br/com/techchallenge/fiap/neighborfood/adapters/inbound/LanchoneteControllerImpl.java</url>
-          <line>148</line>
+          <line>147</line>
           <option name="timeStamp" value="174" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
@@ -337,12 +311,12 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/br/com/techchallenge/fiap/neighborfood/adapters/outbound/repository/PedidoAdapter.java</url>
-          <line>157</line>
+          <line>198</line>
           <option name="timeStamp" value="177" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/br/com/techchallenge/fiap/neighborfood/adapters/inbound/LanchoneteControllerImpl.java</url>
-          <line>206</line>
+          <line>216</line>
           <option name="timeStamp" value="178" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
@@ -351,39 +325,199 @@
           <option name="timeStamp" value="179" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/br/com/techchallenge/fiap/neighborfood/domain/usecase/others/PedidoUseCaseImpl.java</url>
-          <line>129</line>
-          <option name="timeStamp" value="182" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/br/com/techchallenge/fiap/neighborfood/domain/usecase/others/PedidoUseCaseImpl.java</url>
-          <line>144</line>
-          <option name="timeStamp" value="183" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/br/com/techchallenge/fiap/neighborfood/domain/usecase/others/PedidoUseCaseImpl.java</url>
-          <line>146</line>
-          <option name="timeStamp" value="184" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/br/com/techchallenge/fiap/neighborfood/domain/usecase/others/PedidoUseCaseImpl.java</url>
-          <line>126</line>
-          <option name="timeStamp" value="185" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/br/com/techchallenge/fiap/neighborfood/adapters/outbound/repository/PedidoAdapter.java</url>
-          <line>123</line>
+          <line>163</line>
           <option name="timeStamp" value="186" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/br/com/techchallenge/fiap/neighborfood/adapters/outbound/repository/UserAdapter.java</url>
-          <line>28</line>
-          <option name="timeStamp" value="187" />
+          <url>file://$PROJECT_DIR$/src/main/java/br/com/techchallenge/fiap/neighborfood/adapters/outbound/repository/PedidoAdapter.java</url>
+          <line>52</line>
+          <option name="timeStamp" value="190" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/br/com/techchallenge/fiap/neighborfood/domain/model/Cliente.java</url>
+          <url>file://$PROJECT_DIR$/src/main/java/br/com/techchallenge/fiap/neighborfood/adapters/outbound/repository/PedidoAdapter.java</url>
+          <line>76</line>
+          <option name="timeStamp" value="191" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/br/com/techchallenge/fiap/neighborfood/domain/usecase/others/PedidoUseCaseImpl.java</url>
+          <line>153</line>
+          <option name="timeStamp" value="196" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/br/com/techchallenge/fiap/neighborfood/domain/usecase/others/PedidoUseCaseImpl.java</url>
+          <line>156</line>
+          <option name="timeStamp" value="198" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/br/com/techchallenge/fiap/neighborfood/domain/usecase/others/PedidoUseCaseImpl.java</url>
+          <line>158</line>
+          <option name="timeStamp" value="199" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/br/com/techchallenge/fiap/neighborfood/adapters/outbound/repository/PedidoAdapter.java</url>
+          <line>108</line>
+          <option name="timeStamp" value="200" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/br/com/techchallenge/fiap/neighborfood/domain/model/Pedido.java</url>
+          <line>140</line>
+          <option name="timeStamp" value="201" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/br/com/techchallenge/fiap/neighborfood/adapters/outbound/repository/PedidoAdapter.java</url>
+          <line>113</line>
+          <option name="timeStamp" value="202" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/br/com/techchallenge/fiap/neighborfood/adapters/outbound/repository/PedidoAdapter.java</url>
+          <line>114</line>
+          <option name="timeStamp" value="203" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/br/com/techchallenge/fiap/neighborfood/adapters/outbound/repository/PedidoAdapter.java</url>
+          <line>100</line>
+          <option name="timeStamp" value="204" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/br/com/techchallenge/fiap/neighborfood/adapters/outbound/repository/ProdutoAdapter.java</url>
+          <line>69</line>
+          <option name="timeStamp" value="205" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/br/com/techchallenge/fiap/neighborfood/adapters/outbound/repository/ProdutoAdapter.java</url>
           <line>32</line>
-          <option name="timeStamp" value="188" />
+          <option name="timeStamp" value="206" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/br/com/techchallenge/fiap/neighborfood/adapters/outbound/repository/PedidoAdapter.java</url>
+          <line>94</line>
+          <option name="timeStamp" value="207" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/br/com/techchallenge/fiap/neighborfood/adapters/inbound/response/AcompanhamentoResponse.java</url>
+          <line>64</line>
+          <option name="timeStamp" value="208" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/br/com/techchallenge/fiap/neighborfood/adapters/outbound/repository/PedidoAdapter.java</url>
+          <line>183</line>
+          <option name="timeStamp" value="211" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/br/com/techchallenge/fiap/neighborfood/domain/usecase/others/PedidoUseCaseImpl.java</url>
+          <line>163</line>
+          <option name="timeStamp" value="212" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/br/com/techchallenge/fiap/neighborfood/adapters/inbound/LanchoneteControllerImpl.java</url>
+          <line>164</line>
+          <option name="timeStamp" value="213" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/br/com/techchallenge/fiap/neighborfood/domain/usecase/others/AcompanhamentoUseCaseImpl.java</url>
+          <line>31</line>
+          <option name="timeStamp" value="214" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/br/com/techchallenge/fiap/neighborfood/domain/usecase/others/NotificacaoUseCaseImpl.java</url>
+          <line>32</line>
+          <option name="timeStamp" value="216" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/br/com/techchallenge/fiap/neighborfood/adapters/inbound/LanchoneteControllerImpl.java</url>
+          <line>201</line>
+          <option name="timeStamp" value="217" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/br/com/techchallenge/fiap/neighborfood/adapters/inbound/LanchoneteControllerImpl.java</url>
+          <line>202</line>
+          <option name="timeStamp" value="218" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/br/com/techchallenge/fiap/neighborfood/domain/model/Mimo.java</url>
+          <line>27</line>
+          <option name="timeStamp" value="220" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/br/com/techchallenge/fiap/neighborfood/adapters/outbound/repository/NotificacaoAdapter.java</url>
+          <line>33</line>
+          <option name="timeStamp" value="221" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/br/com/techchallenge/fiap/neighborfood/domain/usecase/others/AcompanhamentoUseCaseImpl.java</url>
+          <line>56</line>
+          <option name="timeStamp" value="222" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/br/com/techchallenge/fiap/neighborfood/domain/usecase/others/AcompanhamentoUseCaseImpl.java</url>
+          <line>58</line>
+          <option name="timeStamp" value="223" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/br/com/techchallenge/fiap/neighborfood/adapters/inbound/LanchoneteControllerImpl.java</url>
+          <line>180</line>
+          <option name="timeStamp" value="225" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/br/com/techchallenge/fiap/neighborfood/adapters/outbound/repository/PedidoAdapter.java</url>
+          <line>206</line>
+          <option name="timeStamp" value="226" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/br/com/techchallenge/fiap/neighborfood/adapters/inbound/LanchoneteControllerImpl.java</url>
+          <line>184</line>
+          <option name="timeStamp" value="227" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/br/com/techchallenge/fiap/neighborfood/adapters/outbound/repository/PedidoAdapter.java</url>
+          <line>207</line>
+          <option name="timeStamp" value="232" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/br/com/techchallenge/fiap/neighborfood/adapters/outbound/repository/PedidoAdapter.java</url>
+          <line>208</line>
+          <option name="timeStamp" value="233" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/br/com/techchallenge/fiap/neighborfood/adapters/outbound/repository/PedidoAdapter.java</url>
+          <line>210</line>
+          <option name="timeStamp" value="234" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/br/com/techchallenge/fiap/neighborfood/domain/usecase/others/AdmUseCaseImpl.java</url>
+          <line>50</line>
+          <option name="timeStamp" value="235" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/br/com/techchallenge/fiap/neighborfood/domain/usecase/others/AdmUseCaseImpl.java</url>
+          <line>56</line>
+          <option name="timeStamp" value="237" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/br/com/techchallenge/fiap/neighborfood/domain/usecase/others/AdmUseCaseImpl.java</url>
+          <line>52</line>
+          <option name="timeStamp" value="238" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/br/com/techchallenge/fiap/neighborfood/domain/usecase/others/AdmUseCaseImpl.java</url>
+          <line>58</line>
+          <option name="timeStamp" value="239" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/br/com/techchallenge/fiap/neighborfood/domain/usecase/others/AdmUseCaseImpl.java</url>
+          <line>60</line>
+          <option name="timeStamp" value="240" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/br/com/techchallenge/fiap/neighborfood/adapters/outbound/repository/PedidoAdapter.java</url>
+          <line>82</line>
+          <option name="timeStamp" value="241" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/br/com/techchallenge/fiap/neighborfood/adapters/outbound/repository/PedidoAdapter.java</url>
+          <line>86</line>
+          <option name="timeStamp" value="242" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
