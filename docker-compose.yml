@@ -1,0 +1,29 @@
+version: '3.9'
+
+services:
+
+  db:
+    image: postgres:16-alpine
+    volumes:
+      - postgresql_data:/var/lib/postgresql/data
+    container_name: database_food
+    restart: always
+    environment:
+      POSTGRES_DB: food
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgresql
+      PGDATA: /var/lib/postgresql/data/pgdata
+    ports:
+      - "5432:5432"
+
+  app:
+    image: neighborfood_img
+    container_name: neighborfood-app
+    ports:
+      - "8090:8090"
+    depends_on:
+      - db
+    restart: always
+
+volumes:
+  postgresql_data: {}
