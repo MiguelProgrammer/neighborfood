@@ -1,12 +1,10 @@
-version: '3.9'
-
 services:
 
   db:
     image: postgres:16-alpine
     volumes:
       - postgresql_data:/var/lib/postgresql/data
-    container_name: database_food
+    container_name: neighborfood_database
     restart: always
     environment:
       POSTGRES_DB: food
@@ -17,10 +15,17 @@ services:
       - "5432:5432"
 
   app:
-    image: neighborfood_img
+    build:
+      context: .
+      dockerfile: Dockerfile
     container_name: neighborfood-app
     ports:
       - "8090:8090"
+    environment:
+      - "SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/food"
+      - "SPRING_DATASOURCE_USERNAME=postgres"
+      - "SPRING_DATASOURCE_PASSWORD=postgresql"
+      - "SPRING_JPA_HIBERNATE_DDL_AUTO=update"
     depends_on:
       - db
     restart: always
