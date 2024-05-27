@@ -23,7 +23,7 @@ Thinking in a pragmatic way, I see this definition of exagonal architecture as a
 
 NEIGHBORFOOD MENU
 
-*1 - Register as administrator
+* 1 - Register as administrator
 ** 1.1 - If a user accesses the system and uses areas such as listing the menu or placing an order, the response will be empty and a
        notification will be sent to admin
 * 1.2 - The administrator will be able to list the orders entered regardless of their status, however, only orders with a finalized status will be able to check the waiting time.
