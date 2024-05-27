@@ -27,7 +27,7 @@ NEIGHBORFOOD MENU
 ** 1.1 - If a user accesses the system and uses areas such as listing the menu or placing an order, the response will be empty and a
        notification will be sent to admin
 * 1.2 - The administrator will be able to list the orders entered regardless of their status, however, only orders with a finalized status will be able to check the waiting time.
-*2 - Register items in stock
+* 2 - Register items in stock
      * 2.1 - The administrator can register one item per category per batch
       2.2 - When the customer places an order, the item selected in the order is subtracted from stock
 * 3 - Register as a Customer
