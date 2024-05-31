@@ -2,7 +2,7 @@
 
 <h3>Neighborfood-app</h3>
 
-* To upload the application, use the <b>docker-compose up</b> command, use a client for the request, the results are also presented via the console to fill in the response.<hr>
+* To upload the application, use the <b>docker-compose up</b> or <b>docker-compose up --build</b> command, use a client for the request, the results are also presented via the console to fill in the response.<hr>
 
 <img src="https://codingcanvas.com/wp-content/uploads/2015/07/Image.png"><hr>
 
