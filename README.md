@@ -34,7 +34,7 @@ NEIGHBORFOOD MENU
      * 3.1 - You can register using your name, email and CPF, if you do not want to, you will be identified by the order number
       3.2 – When registering and already having a login, the system will return your current username
 * 4 - Log in as a customer
-*5 – List the options menu
+* 5 – List the options menu
 * 6 - Place an order
      * 6.1 - If a product is missing, the system will notify the customer and the administrative area for replacement
   * 6.2 - The customer can make changes to items, updating their order
@@ -42,5 +42,21 @@ NEIGHBORFOOD MENU
 * 8 - Collect your order
 * 9 - Receive treats
      * 9.1 - You will receive discount alerts on upcoming orders
+
+<hr>
+Happy flow:
+
+* 1 - Register as an administrator
+* 2 - Register products
+* 3 - Register as a customer
+* 4 - Place an order
+* 5 - Update your order if you wish
+* 6 - Make payment
+* 7 - Check the order status
+  * 7.1 - When you check the order status after payment, the system will move to the next statuses until the order is finalized
+* 8 - Send gifts to the customer
+* 9 - List the orders containing the average waiting time
+* 10 - You can list the orders at any time, regardless of their status.
+<hr>
 
 <img src="https://i.imgur.com/i4nWA9q.png">
