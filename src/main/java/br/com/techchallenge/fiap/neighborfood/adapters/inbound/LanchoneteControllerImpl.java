@@ -179,9 +179,7 @@ public class LanchoneteControllerImpl implements NeighborfoodApi {
     public ResponseEntity<List<AcompanhamentoResponseDTO>> listOrders(Long idAdmin) {
         List<AcompanhamentoResponseDTO> statusDosPedidos = new ArrayList<>();
         List<AcompanhamentoResponse> acompanhamentoResponses = adminUseCasePort.listaPedidosExecute(idAdmin);
-        /**
-         * VERIFICARF AQUI
-         */
+
         acompanhamentoResponses.forEach(resp ->{
             statusDosPedidos.add(resp.pedidoFromResponse());
         });
