@@ -15,9 +15,7 @@ services:
       - "5432:5432"
 
   app:
-    build:
-      context: .
-      dockerfile: Dockerfile
+    image: migprogrammer/neighborfood-img:latest
     container_name: neighborfood-app
     ports:
       - "8090:8090"
