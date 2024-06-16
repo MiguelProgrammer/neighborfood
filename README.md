@@ -19,6 +19,7 @@ Thinking in a pragmatic way, I see this definition of exagonal architecture as a
 * Doc DDD miro: <a href="https://miro.com/app/board/uXjVKUqbA08=/?share_link_id=950297951149">miro</a>
 * Json doc to postman requests: <a href="https://drive.google.com/file/d/1GfCgxuSvyfNFsuZa6ZJAr42No8sQolPO/view?usp=sharing">request postman</a>
 * Api-docs Swagger OpenPI <a href="http://localhost:8090/swagger-ui/index.html">swagger-ui</a> -> Access documentation only by running the application or by inserting the contents of the src/main/resources/api/resource.yml file on the swagger web editor website
+* app in Azure Cloud <a href="https://neighborfood-app.azurewebsites.net/swagger-ui/index.html">Swagger UI - OpenAPI definition</a>
 <hr>
 
 NEIGHBORFOOD MENU
