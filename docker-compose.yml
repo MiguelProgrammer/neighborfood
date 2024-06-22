@@ -5,28 +5,34 @@ services:
     volumes:
       - postgresql_data:/var/lib/postgresql/data
     container_name: neighborfood-database
-    restart: always
-    environment:
-      POSTGRES_DB: food
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgresql
-      PGDATA: /var/lib/postgresql/data/pgdata
+    env_file: ./env/postgres.env
     ports:
       - "5432:5432"
+    restart: unless-stopped
+    healthcheck:
+      test: pg_isready -d $$POSTGRES_DB -h db -p 5432 -U $$POSTGRES_USER
+      interval: 5s
+      timeout: 5s
+      retries: 10
 
   app:
-    image: migprogrammer/neighborfood-img:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
     container_name: neighborfood-app
     ports:
-      - "8090:8090"
-    environment:
-      - "SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/food"
-      - "SPRING_DATASOURCE_USERNAME=postgres"
-      - "SPRING_DATASOURCE_PASSWORD=postgresql"
-      - "SPRING_JPA_HIBERNATE_DDL_AUTO=create-drop"
+      - "80:80"
+    env_file: ./env/app.env
     depends_on:
-      - db
-    restart: always
+      db:
+        condition: service_healthy
+    restart: unless-stopped
+    healthcheck:
+      test: curl -v http://app:80/neighborfood/menu
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
 
 volumes:
-  postgresql_data: {}
+  postgresql_data:
