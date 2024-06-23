@@ -22,5 +22,5 @@ jobs:
       run: docker login -u migprogrammer -p ${{ secrets.DOCKERHUB_TOKEN }}
 
     - name: Push image to Docker Hub
-      run: docker push -t migprogrammer/neighborfood:latest
+      run: docker push migprogrammer/neighborfood:latest
       
