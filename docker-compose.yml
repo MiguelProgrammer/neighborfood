@@ -13,7 +13,7 @@ services:
       test: pg_isready -d $$POSTGRES_DB -h db -p 5432 -U $$POSTGRES_USER
       interval: 5s
       timeout: 5s
-      retries: 10
+      retries: 5
 
   app:
     image: migprogrammer/neighborfood-img:latest
