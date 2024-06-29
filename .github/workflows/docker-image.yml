@@ -1,10 +1,9 @@
-name: Docker Image CI
+name: CI/CD with Docker and GitHub Actions
 
 on:
   push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+    branches:
+      - main
 
 jobs:
 
@@ -20,8 +19,8 @@ jobs:
       run: docker build -t migprogrammer/neighborfood-img:latest .
       
     - name: Log into Docker Hub
-      run: docker login -u migprogrammer -p ${{ secrets.DOCKERHUB_TOKEN }}
+      run: docker login -u migprogrammer -p ${secrets.DOCKERHUB_TOKEN}
 
     - name: Push image to Docker Hub
-      run: docker push -t migprogrammer/neighborfood:latest
+      run: docker push migprogrammer/neighborfood-img:latest
       
