@@ -1,4 +1,4 @@
-<h2>Architecture used - Hezagonal - Ports and Adapters</h2><hr>
+<h2>Architecture used - Hexagonal - Ports and Adapters</h2><hr>
 
 <h3>Neighborfood-app</h3>
 
