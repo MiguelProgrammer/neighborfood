@@ -4,7 +4,7 @@
 
 package br.com.techchallenge.fiap.neighborfood.domain.usecase;
 
-import br.com.techchallenge.fiap.neighborfood.adapters.outbound.repository.UserAdapter;
+import br.com.techchallenge.fiap.neighborfood.adapters.outbound.UserAdapter;
 import br.com.techchallenge.fiap.neighborfood.domain.model.Produto;
 import br.com.techchallenge.fiap.neighborfood.domain.model.enums.Categoria;
 import br.com.techchallenge.fiap.neighborfood.domain.ports.inbound.ProdutoUseCasePort;

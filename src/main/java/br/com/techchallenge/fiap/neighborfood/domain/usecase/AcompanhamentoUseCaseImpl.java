@@ -47,15 +47,15 @@ public class AcompanhamentoUseCaseImpl implements AcompanhamentoUseCasePort {
     }
 
     @Override
-    public String smsExecute(Status Status) {
-        return new AcompanhamentoChainRecebidoImpl(statusPedidoChain).sms(Status);
+    public String smsExecute(Status status) {
+        return new AcompanhamentoChainRecebidoImpl(statusPedidoChain).sms(status);
     }
 
 
     @Override
-    public void fluxoStatusPedidoExecute(Long idPedido, Status Status) {
+    public void fluxoStatusPedidoExecute(Long idPedido, Status status) {
         Pedido pedidoDTO = pedidoUseCaseAdapterPort.findById(idPedido);
-        pedidoDTO.setStatus(Status);
+        pedidoDTO.setStatus(status);
         if (pedidoDTO.getStatus().equals(Status.FINALIZADO)) {
             pedidoDTO.setDataPedidoFim(new Date());
         }
@@ -66,9 +66,9 @@ public class AcompanhamentoUseCaseImpl implements AcompanhamentoUseCasePort {
 
 
     @Override
-    public void pedidoStatusExecute(Long idPedido, Status Status) {
+    public void pedidoStatusExecute(Long idPedido, Status status) {
         Pedido pedidoDTO = pedidoUseCaseAdapterPort.findById(idPedido);
-        pedidoDTO.setStatus(Status);
+        pedidoDTO.setStatus(status);
         Pedido pedidoDTO1 = pedidoUseCaseAdapterPort.commitUpdates(pedidoDTO.domainFromEntity());
         System.out.println(this.smsExecute(pedidoDTO1.getStatus()));
     }

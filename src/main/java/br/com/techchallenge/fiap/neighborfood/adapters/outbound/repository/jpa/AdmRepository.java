@@ -4,7 +4,7 @@
 
 package br.com.techchallenge.fiap.neighborfood.adapters.outbound.repository.jpa;
 
-import br.com.techchallenge.fiap.neighborfood.adapters.outbound.repository.entities.AdminEntity;
+import br.com.techchallenge.fiap.neighborfood.adapters.outbound.entities.AdminEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

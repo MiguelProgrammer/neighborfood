@@ -5,7 +5,7 @@
 package br.com.techchallenge.fiap.neighborfood.adapters.inbound.response;
 
 import br.com.techchallenge.fiap.neighborfood.adapters.inbound.request.PedidoRequest;
-import br.com.techchallenge.fiap.neighborfood.adapters.outbound.repository.entities.PedidoEntity;
+import br.com.techchallenge.fiap.neighborfood.adapters.outbound.entities.PedidoEntity;
 import br.com.techchallenge.fiap.neighborfood.domain.dto.*;
 import br.com.techchallenge.fiap.neighborfood.domain.model.Item;
 import br.com.techchallenge.fiap.neighborfood.domain.model.Pedido;

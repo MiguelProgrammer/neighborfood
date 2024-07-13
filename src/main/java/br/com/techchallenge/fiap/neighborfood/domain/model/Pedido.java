@@ -4,9 +4,9 @@
 
 package br.com.techchallenge.fiap.neighborfood.domain.model;
 
-import br.com.techchallenge.fiap.neighborfood.adapters.outbound.repository.entities.ItemEntity;
-import br.com.techchallenge.fiap.neighborfood.adapters.outbound.repository.entities.PedidoEntity;
-import br.com.techchallenge.fiap.neighborfood.adapters.outbound.repository.entities.ProdutoEntity;
+import br.com.techchallenge.fiap.neighborfood.adapters.outbound.entities.ItemEntity;
+import br.com.techchallenge.fiap.neighborfood.adapters.outbound.entities.PedidoEntity;
+import br.com.techchallenge.fiap.neighborfood.adapters.outbound.entities.ProdutoEntity;
 import br.com.techchallenge.fiap.neighborfood.domain.model.enums.Status;
 
 import java.math.BigDecimal;
@@ -32,62 +32,6 @@ public class Pedido {
         this.total = total;
         this.status = status;
         this.dataPedido = dataPedido;
-        this.dataPedidoFim = dataPedidoFim;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Long getIdCliente() {
-        return idCliente;
-    }
-
-    public void setIdCliente(Long idCliente) {
-        this.idCliente = idCliente;
-    }
-
-    public List<Item> getItensProdutos() {
-        return itensProdutos;
-    }
-
-    public void setItensProdutos(List<Item> itensProdutos) {
-        this.itensProdutos = itensProdutos;
-    }
-
-    public BigDecimal getTotal() {
-        return total;
-    }
-
-    public void setTotal(BigDecimal total) {
-        this.total = total;
-    }
-
-    public Status getStatus() {
-        return status;
-    }
-
-    public void setStatus(Status status) {
-        this.status = status;
-    }
-
-    public Date getDataPedido() {
-        return dataPedido;
-    }
-
-    public void setDataPedido(Date dataPedido) {
-        this.dataPedido = dataPedido;
-    }
-
-    public Date getDataPedidoFim() {
-        return dataPedidoFim;
-    }
-
-    public void setDataPedidoFim(Date dataPedidoFim) {
         this.dataPedidoFim = dataPedidoFim;
     }
 
@@ -188,5 +132,61 @@ public class Pedido {
                 "\nSTATUS = " + status +
                 "\nDATA DO PEDIDO = " + dataPedido +
                 "\n\n____________PEDIDO N* "+id+"____________\n\n";
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Long getIdCliente() {
+        return idCliente;
+    }
+
+    public void setIdCliente(Long idCliente) {
+        this.idCliente = idCliente;
+    }
+
+    public List<Item> getItensProdutos() {
+        return itensProdutos;
+    }
+
+    public void setItensProdutos(List<Item> itensProdutos) {
+        this.itensProdutos = itensProdutos;
+    }
+
+    public BigDecimal getTotal() {
+        return total;
+    }
+
+    public void setTotal(BigDecimal total) {
+        this.total = total;
+    }
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
+    }
+
+    public Date getDataPedido() {
+        return dataPedido;
+    }
+
+    public void setDataPedido(Date dataPedido) {
+        this.dataPedido = dataPedido;
+    }
+
+    public Date getDataPedidoFim() {
+        return dataPedidoFim;
+    }
+
+    public void setDataPedidoFim(Date dataPedidoFim) {
+        this.dataPedidoFim = dataPedidoFim;
     }
 }

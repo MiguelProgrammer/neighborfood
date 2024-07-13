@@ -5,7 +5,7 @@
 package br.com.techchallenge.fiap.neighborfood.domain.model;
 
 import br.com.techchallenge.fiap.neighborfood.adapters.inbound.request.ClienteRequest;
-import br.com.techchallenge.fiap.neighborfood.adapters.outbound.repository.entities.ClienteEntity;
+import br.com.techchallenge.fiap.neighborfood.adapters.outbound.entities.ClienteEntity;
 
 import java.util.HashSet;
 import java.util.Set;

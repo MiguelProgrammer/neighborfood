@@ -4,7 +4,7 @@
 
 package br.com.techchallenge.fiap.neighborfood.domain.model;
 
-import br.com.techchallenge.fiap.neighborfood.adapters.outbound.repository.entities.NotificacaoEntity;
+import br.com.techchallenge.fiap.neighborfood.adapters.outbound.entities.NotificacaoEntity;
 
 public class Notificacao {
 
@@ -19,14 +19,12 @@ public class Notificacao {
         this.descricao = descricao;
     }
 
-
     public NotificacaoEntity fromEntity(Notificacao notificacao) {
         NotificacaoEntity entity = new NotificacaoEntity();
         entity.setIdUsuario(notificacao.getIdUsuario());
         entity.setDescricao(notificacao.getDescricao());
         return entity;
     }
-
 
     public Notificacao entityfromDomain(NotificacaoEntity entity) {
         Notificacao notificacao = new Notificacao();

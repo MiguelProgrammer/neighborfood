@@ -4,7 +4,7 @@
 
 package br.com.techchallenge.fiap.neighborfood.domain.model;
 
-import br.com.techchallenge.fiap.neighborfood.adapters.outbound.repository.entities.PagamentoEntity;
+import br.com.techchallenge.fiap.neighborfood.adapters.outbound.entities.PagamentoEntity;
 
 public class Pagamento {
 
@@ -20,7 +20,6 @@ public class Pagamento {
         this.idPedido = idPedido;
         this.pagou = pagou;
     }
-
 
     public PagamentoEntity fromEntity(Pagamento pagamento) {
         PagamentoEntity entity = new PagamentoEntity();

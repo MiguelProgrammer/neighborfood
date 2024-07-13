@@ -4,7 +4,7 @@
 
 package br.com.techchallenge.fiap.neighborfood.adapters.outbound.repository.jpa;
 
-import br.com.techchallenge.fiap.neighborfood.adapters.outbound.repository.entities.ProdutoEntity;
+import br.com.techchallenge.fiap.neighborfood.adapters.outbound.entities.ProdutoEntity;
 import br.com.techchallenge.fiap.neighborfood.domain.model.enums.Categoria;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;

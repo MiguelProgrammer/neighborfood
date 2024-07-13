@@ -5,17 +5,15 @@
 package br.com.techchallenge.fiap.neighborfood.domain.usecase;
 
 import br.com.techchallenge.fiap.neighborfood.adapters.inbound.response.AcompanhamentoResponse;
-import br.com.techchallenge.fiap.neighborfood.adapters.outbound.repository.UserAdapter;
+import br.com.techchallenge.fiap.neighborfood.adapters.outbound.UserAdapter;
 import br.com.techchallenge.fiap.neighborfood.config.exception.AdminException;
 import br.com.techchallenge.fiap.neighborfood.domain.model.Pedido;
 import br.com.techchallenge.fiap.neighborfood.domain.model.enums.Status;
 import br.com.techchallenge.fiap.neighborfood.domain.ports.inbound.AdminUseCasePort;
-import br.com.techchallenge.fiap.neighborfood.domain.ports.outbound.AdminUseCaseAdapterPort;
 import br.com.techchallenge.fiap.neighborfood.domain.ports.outbound.PedidoUseCaseAdapterPort;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.ObjectUtils;
 
-import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 

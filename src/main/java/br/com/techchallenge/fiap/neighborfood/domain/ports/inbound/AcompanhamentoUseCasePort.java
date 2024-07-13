@@ -14,11 +14,11 @@ public interface AcompanhamentoUseCasePort {
     AcompanhamentoResponse getOrderStatusExecute(Long idPedido);
 
     @Bean
-    String smsExecute(Status Status);
+    String smsExecute(Status status);
 
     @Bean
-    void fluxoStatusPedidoExecute(Long idPedido, Status Status);
+    void fluxoStatusPedidoExecute(Long idPedido, Status status);
 
     @Bean
-    void pedidoStatusExecute(Long idPedido, Status Status);
+    void pedidoStatusExecute(Long idPedido, Status status);
 }

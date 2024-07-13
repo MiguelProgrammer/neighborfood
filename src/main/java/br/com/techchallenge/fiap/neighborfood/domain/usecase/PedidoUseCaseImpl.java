@@ -6,8 +6,8 @@ package br.com.techchallenge.fiap.neighborfood.domain.usecase;
 
 import br.com.techchallenge.fiap.neighborfood.adapters.inbound.request.PedidoRequest;
 import br.com.techchallenge.fiap.neighborfood.adapters.inbound.response.AcompanhamentoResponse;
-import br.com.techchallenge.fiap.neighborfood.adapters.outbound.repository.UserAdapter;
-import br.com.techchallenge.fiap.neighborfood.adapters.outbound.repository.entities.NotificacaoEntity;
+import br.com.techchallenge.fiap.neighborfood.adapters.outbound.UserAdapter;
+import br.com.techchallenge.fiap.neighborfood.adapters.outbound.entities.NotificacaoEntity;
 import br.com.techchallenge.fiap.neighborfood.config.exception.ClienteException;
 import br.com.techchallenge.fiap.neighborfood.config.exception.PedidoException;
 import br.com.techchallenge.fiap.neighborfood.domain.model.*;

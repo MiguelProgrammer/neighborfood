@@ -4,8 +4,7 @@
 
 package br.com.techchallenge.fiap.neighborfood.domain.usecase;
 
-import br.com.techchallenge.fiap.neighborfood.adapters.outbound.repository.entities.ClienteEntity;
-import br.com.techchallenge.fiap.neighborfood.adapters.outbound.repository.entities.MimoEntity;
+import br.com.techchallenge.fiap.neighborfood.adapters.outbound.entities.ClienteEntity;
 import br.com.techchallenge.fiap.neighborfood.adapters.outbound.repository.jpa.ClienteRepository;
 import br.com.techchallenge.fiap.neighborfood.domain.dto.MimoDTO;
 import br.com.techchallenge.fiap.neighborfood.domain.model.Mimo;

@@ -4,7 +4,7 @@
 
 package br.com.techchallenge.fiap.neighborfood.domain.model;
 
-import br.com.techchallenge.fiap.neighborfood.adapters.outbound.repository.entities.MimoEntity;
+import br.com.techchallenge.fiap.neighborfood.adapters.outbound.entities.MimoEntity;
 
 public class Mimo {
 
